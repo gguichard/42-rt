@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/17 01:45:18 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/17 10:36:53 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ SDL_TAR		=	$(SDL_LIB).tar.gz
 SDL_BUILD	=	$(SDL_DIR)/lib/libSDL2.a
 
 CC			=	gcc
-CPPFLAGS	=	-Ilibft/includes -I$(INC_DIR) -I$(SDL_DIR)/include/SDL2 -D_THREAD_SAFE
-CFLAGS 		=	-Wall -Werror -Wextra
-LDFLAGS		=	-Llibft -L$(SDL_DIR)/lib
-LDLIBS		=	-lft -lSDL2
+CPPFLAGS	=	-Ilibft/includes -I$(INC_DIR)
+CFLAGS 		=	-Wall -Werror -Wextra $(shell ./SDL2/bin/sdl2-config --cflags)
+LDFLAGS		=	-Llibft $(shell ./$(SDL_DIR)/bin/sdl2-config --libs)
+LDLIBS		=	-lft
 
 SRC_DIR		=	src
 SRC 		=	\
@@ -39,29 +39,29 @@ DEP			=	$(OBJ:.o=.d)
 
 all: $(NAME)
 
-$(NAME): $(SDL_BUILD) $(addprefix $(OBJ_DIR)/,$(OBJ))
+$(NAME): $(addprefix $(OBJ_DIR)/,$(OBJ))
 	$(MAKE) -C libft
-	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o $@ $(addprefix $(OBJ_DIR)/,$(OBJ))
+	$(CC) $(LDFLAGS) $(LDLIBS) -o $@ $^
 	@echo "\n$(NAME):\t\t\t$(GREEN)[READY]\n\t\t¯\_(ツ)_/¯$(END)"
+
+-include $(addprefix $(OBJ_DIR)/,$(DEP))
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(SDL_BUILD) $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS)  -MMD -o $@ -c $<
 
 $(SDL_BUILD): | $(SDL_DIR)
 	curl https://www.libsdl.org/release/$(SDL_TAR) --output $(SDL_TAR)
 	tar -xf $(SDL_TAR)
-	/bin/rm $(SDL_TAR)
 	cd $(SDL_LIB) && ./configure --prefix=$(shell pwd)/$(SDL_DIR)
 	$(MAKE) -C $(SDL_LIB)
 	$(MAKE) -C $(SDL_LIB) install
-
--include $(addprefix $(OBJ_DIR)/,$(DEP))
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -MMD -o $@ -c $<
 
 $(SDL_DIR) $(OBJ_DIR):
 	@/bin/mkdir $@ 2> /dev/null || true
 
 clean:
 	$(MAKE) -C libft clean
+	/bin/rm -f $(SDL_TAR)
 	/bin/rm -rf $(SDL_LIB)
 	/bin/rm -rf $(OBJ_DIR)
 

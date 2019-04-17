@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracer.h                                        :+:      :+:    :+:   */
+/*   draw_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 12:10:28 by gguichar         ###   ########.fr       */
+/*   Created: 2019/04/17 12:09:54 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/17 12:58:52 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_TRACER_H
-# define RAY_TRACER_H
+#include "SDL.h"
+#include "raytracer.h"
 
-# include "SDL.h"
-# include "lib.h"
-# include "winsize.h"
-
-typedef struct	s_data
+void	draw_view(t_data *data)
 {
-	int			running;
-	t_winsize	winsize;
-	t_lib		lib;
-}				t_data;
+	int	x;
+	int	y;
 
-void			draw_view(t_data *data);
-
-#endif
+	y = 50;
+	while (y < 600)
+	{
+		x = 50;
+		while (x < 150)
+		{
+			data->lib.view[y * data->winsize.width + x] = 0xFF0000;
+			x++;
+		}
+		y++;
+	}
+}

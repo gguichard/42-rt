@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/17 10:36:53 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/17 13:00:16 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ LDLIBS		=	-lft
 SRC_DIR		=	src
 SRC 		=	\
 main.c			\
+lib.c			\
+draw_view.c		\
 error.c
 
 OBJ_DIR		=	.obj

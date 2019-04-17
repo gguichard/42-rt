@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracer.h                                        :+:      :+:    :+:   */
+/*   vec3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:43:22 by gguichar         ###   ########.fr       */
+/*   Created: 2019/04/17 13:56:35 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/17 13:57:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYTRACER_H
-# define RAYTRACER_H
+#ifndef VEC3D_H
+# define VEC3D_H
 
-# include "SDL.h"
-# include "lib.h"
-# include "winsize.h"
-# include "camera.h"
-
-typedef struct	s_data
+typedef struct	s_vec3d
 {
-	int			running;
-	t_winsize	winsize;
-	t_lib		lib;
-	t_camera	camera;
-	t_list		*objects;
-}				t_data;
-
-void			draw_view(t_data *data);
+	double		x;
+	double		y;
+	double		z;
+}				t_vec3d;
 
 #endif

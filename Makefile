@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/17 13:00:16 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/17 16:27:19 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ SRC_DIR		=	src
 SRC 		=	\
 main.c			\
 lib.c			\
+parser.c		\
+parser_types.c	\
+parser_utils.c	\
 draw_view.c		\
 error.c
 

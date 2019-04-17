@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/06 15:50:19 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 15:45:26 by gguichar         ###   ########.fr       */
+/*   Created: 2019/04/17 16:21:38 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/17 16:26:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef PARSER_H
+# define PARSER_H
 
-typedef enum	e_error
-{
-	ERR_NOERROR = 0,
-	ERR_UNEXPECTED,
-	ERR_ERRNO,
-	ERR_SDLINIT,
-	ERR_INVALIDSCENE,
-	ERR_SCENEBADFORMAT,
-	ERR_SCENEBADCAMERA,
-	ERR_BADVEC3D
-}				t_error;
+# include "raytracer.h"
+# include "vec3d.h"
 
-const char		*error_to_str(t_error error);
+t_vec3d		read_json_vec3d(t_json_token *token, t_error *err);
+t_error		setup_camera_properties(t_data *data, t_json_token *token);
+
+t_error		parse_scene(t_data *data, const char *file_path);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:43:22 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/17 14:45:39 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RAYTRACER_H
 
 # include "SDL.h"
+# include "libft.h"
 # include "lib.h"
 # include "winsize.h"
 # include "camera.h"

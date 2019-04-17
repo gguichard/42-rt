@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:47:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 16:27:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:39:19 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static t_error		read_json_scene(t_data *data, t_json_token *root)
 		{
 			if (ft_strequ(child->key, "camera"))
 				err = setup_camera_properties(data, child);
+			else if (ft_strequ(child->key, "objects"))
+				err = parse_ray_objects(data, child);
 			child = child->next;
 		}
 	}

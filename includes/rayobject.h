@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   rayobject.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:11:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:20:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:45:43 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#ifndef RAYOBJECT_H
+# define RAYOBJECT_H
 
-# define OBJ_UNKNOWN 0
-# define OBJ_SPHERE 1
-# define OBJ_LIGHT 2
+# define RAYOBJ_UNKNOWN 0
+# define RAYOBJ_SPHERE 1
+# define RAYOBJ_LIGHT 2
 
-typedef struct	s_object
+typedef struct	s_ray_object
 {
 	int			type;
 	t_vec3d		pos;
 	t_vec3d		rotation;
 	void		*custom_data;
-}				t_object;
+}				t_ray_object;
 
 #endif

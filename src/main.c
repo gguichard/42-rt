@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 15:28:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/17 17:26:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,24 @@
 #include "raytracer.h"
 #include "error.h"
 #include "lib.h"
+#include "parser.h"
+#include "rayobject.h"
 
-int	main(int argc, char **argv)
+static void	debug_rayobjects(t_data *data)
+{
+	t_list			*lst;
+	t_ray_object	*obj;
+
+	lst = data->objects;
+	while (lst != NULL)
+	{
+		obj = (t_ray_object *)lst->content;
+		ft_printf("OBJ{type=%d}\n", obj->type);
+		lst = lst->next;
+	}
+}
+
+int			main(int argc, char **argv)
 {
 	t_data	data;
 	t_error	err;
@@ -31,6 +47,8 @@ int	main(int argc, char **argv)
 	data.winsize.width = WIN_WIDTH;
 	data.winsize.height = WIN_HEIGHT;
 	err = parse_scene(&data, argv[1]);
+	if (err == ERR_NOERROR)
+		debug_rayobjects(&data);
 	if (err == ERR_NOERROR)
 		err = init_and_create_window(&data.lib, data.winsize);
 	if (err != ERR_NOERROR)

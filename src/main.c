@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 14:33:23 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:58:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int			main(int argc, char **argv)
 		return (1);
 	}
 	ft_memset(&data, 0, sizeof(t_data));
-	data.camera.origin = (t_vec3d){1, 1, -5};
-	data.camera.direction = (t_vec3d){0, 0, -1};
 	data.winsize.width = WIN_WIDTH;
 	data.winsize.height = WIN_HEIGHT;
 	err = parse_scene(&data, argv[1]);

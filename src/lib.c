@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 14:38:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:20:54 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
 		err = ERR_SDLINIT;
 	if (err == ERR_NOERROR
 			&& (lib->texture = SDL_CreateTexture(lib->renderer
-					, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING
+					, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING
 					, winsize.width, winsize.height)) == NULL)
 		err = ERR_SDLINIT;
 	if (err != ERR_NOERROR)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:40:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 15:57:50 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:39:08 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,29 @@
 
 static unsigned int	launch_ray(t_data *data, t_vec3d ray_dir)
 {
+	int				color;
 	t_list			*cur;
 	t_ray_object	*obj;
-	int				dist;
-	double			intersect;
+	double			dist;
+	double			best_dist;
 
+	color = 0x0;
 	cur = data->objects;
-	dist = INT_MAX;
-	intersect = -1;
+	best_dist = 999999;
 	while (cur != NULL)
 	{
 		obj = (t_ray_object *)cur->content;
+		dist = -1;
 		if (obj->type == RAYOBJ_SPHERE)
-			intersect = get_sphere_intersect(&data->camera, ray_dir, obj);
-		if (intersect >= 0)
-			break ;
+			dist = get_sphere_intersect(&data->camera, ray_dir, obj);
+		if (dist >= 0 && dist < best_dist)
+		{
+			color = obj->color;
+			best_dist = dist;
+		}
 		cur = cur->next;
 	}
-	return (intersect >= 0 ? 0xFFFFFF : 0x0);
+	return (color);
 }
 
 static t_vec3d	get_ray_dir(t_data *data, int x, int y)
@@ -58,10 +63,10 @@ static t_vec3d	get_ray_dir(t_data *data, int x, int y)
 
 void			launch_rays(t_data *data)
 {
-	int	x;
-	int	y;
-	int	color;
-	int	ratio;
+	int				ratio;
+	int				x;
+	int				y;
+	unsigned int	color;
 
 	ratio = 10;
 	data->camera.right = vec3d_mul((t_vec3d){0, 1, 0}, data->camera.direction);

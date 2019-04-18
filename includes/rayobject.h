@@ -6,14 +6,13 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:11:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 15:30:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:26:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYOBJECT_H
 # define RAYOBJECT_H
 
-# include "color.h"
 # include "vec3d.h"
 # include "camera.h"
 
@@ -23,10 +22,11 @@
 
 typedef struct	s_ray_object
 {
-	int			type;
-	t_vec3d		origin;
-	t_vec3d		rotation;
-	t_color		color;
+	int				type;
+	t_vec3d			origin;
+	t_vec3d			rotation;
+	unsigned int	color;
+	double			radius;
 }				t_ray_object;
 
 double			get_sphere_intersect(t_camera *camera, t_vec3d ray_dir

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 14:58:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:28:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,7 @@
 #include "parser.h"
 #include "rayobject.h"
 
-static void	debug_rayobjects(t_data *data)
-{
-	t_list			*lst;
-	t_ray_object	*obj;
-
-	lst = data->objects;
-	while (lst != NULL)
-	{
-		obj = (t_ray_object *)lst->content;
-		ft_printf("OBJ{type=%d, color=[%d, %d, %d]}\n", obj->type
-				, obj->color.r, obj->color.g, obj->color.b);
-		lst = lst->next;
-	}
-}
-
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_error	err;
@@ -48,8 +33,6 @@ int			main(int argc, char **argv)
 	data.winsize.width = WIN_WIDTH;
 	data.winsize.height = WIN_HEIGHT;
 	err = parse_scene(&data, argv[1]);
-	if (err == ERR_NOERROR)
-		debug_rayobjects(&data);
 	if (err == ERR_NOERROR)
 		err = init_and_create_window(&data.lib, data.winsize);
 	if (err != ERR_NOERROR)

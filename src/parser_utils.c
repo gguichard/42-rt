@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:18:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 10:31:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:35:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 #include "parser.h"
 #include "error.h"
 #include "vec3d.h"
-#include "color.h"
 
-static int	write_json_vec3d_field(t_json_token **token, double *f)
+static int		write_json_vec3d_field(t_json_token **token, double *f)
 {
 	if (*token == NULL)
 		return (0);
@@ -31,7 +30,7 @@ static int	write_json_vec3d_field(t_json_token **token, double *f)
 	return (1);
 }
 
-t_vec3d		read_json_vec3d(t_json_token *token, t_error *err)
+t_vec3d			read_json_vec3d(t_json_token *token, t_error *err)
 {
 	t_vec3d			vec;
 	t_json_token	*child;
@@ -52,7 +51,7 @@ t_vec3d		read_json_vec3d(t_json_token *token, t_error *err)
 	return (vec);
 }
 
-static int	write_json_color_field(t_json_token **token, unsigned char *i)
+static int		write_json_color_field(t_json_token **token, unsigned char *i)
 {
 	if (*token == NULL)
 		return (0);
@@ -65,23 +64,28 @@ static int	write_json_color_field(t_json_token **token, unsigned char *i)
 	return (1);
 }
 
-t_color		read_json_color(t_json_token *token, t_error *err)
+unsigned int	read_json_color(t_json_token *token, t_error *err)
 {
-	t_color			color;
 	t_json_token	*child;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	unsigned int	color;
 
-	ft_memset(&color, 0, sizeof(t_color));
+	color = 0;
 	if (token->type != JSON_ARRAY)
 		*err = ERR_BADCOLOR;
 	else
 	{
 		*err = ERR_NOERROR;
 		child = token->value.child;
-		if (!write_json_color_field(&child, &color.r)
-				|| !write_json_color_field(&child, &color.g)
-				|| !write_json_color_field(&child, &color.b)
+		if (!write_json_color_field(&child, &r)
+				|| !write_json_color_field(&child, &g)
+				|| !write_json_color_field(&child, &b)
 				|| child != NULL)
 			*err = ERR_BADCOLOR;
+		else
+			color = (r << 16) | (g << 8) | b;
 	}
 	return (color);
 }

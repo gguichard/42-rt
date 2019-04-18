@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:55:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 16:51:37 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:27:34 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ const char	*error_to_str(t_error error)
 		return ("Scene bad object definition");
 	else if (error == ERR_BADVEC3D)
 		return ("Bad vec3d definition");
+	else if (error == ERR_BADCOLOR)
+		return ("Bad color definition");
 	else
 		return ("Unknown error");
 }

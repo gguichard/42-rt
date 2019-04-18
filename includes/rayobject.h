@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:11:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 10:28:50 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 15:30:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RAYOBJECT_H
 
 # include "color.h"
+# include "vec3d.h"
+# include "camera.h"
 
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
@@ -26,5 +28,8 @@ typedef struct	s_ray_object
 	t_vec3d		rotation;
 	t_color		color;
 }				t_ray_object;
+
+double			get_sphere_intersect(t_camera *camera, t_vec3d ray_dir
+		, t_ray_object *obj);
 
 #endif

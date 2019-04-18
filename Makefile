@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/18 14:26:26 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/18 15:30:34 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ quaternion.c	\
 vec3d.c			\
 raytracer.c		\
 camera_move.c	\
-key_event.c
+key_event.c		\
+intersects.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

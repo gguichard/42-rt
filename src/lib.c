@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 12:22:45 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:15:03 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 	{
 		if (SDL_PollEvent(&event))
 		{
-			if (event.type == SDL_QUIT)
+			if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
 				break ;
 			else if (SDL_LockTexture(data->lib.texture, NULL
 						, (void **)&data->lib.view, &pitch) < 0)

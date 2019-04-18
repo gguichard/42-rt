@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:56:10 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 12:29:12 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 13:23:08 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_camera
 ** PROTOTYPES
 */
 
-t_vec3d			rotate_camera(t_camera *camera, t_vec3d rot_vec, double angle);
+void			rotate_camera(t_camera *camera, t_vec3d rot_vec, double angle);
 void			camera_event(SDL_Event *event, t_camera *camera);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 11:55:24 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/18 12:27:56 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:52:38 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,8 @@ void		camera_event(SDL_Event *event, t_camera *camera)
 		rotate_camera(camera, (t_vec3d){0, 0, 1}, M_PI / 90);
 	if (event->key.keysym.sym == SDLK_3)
 		rotate_camera(camera, (t_vec3d){0, 0, 1}, -1 * M_PI / 90);
+	if (event->key.keysym.sym == SDLK_UP)
+		camera->origin = vec3d_add(camera->origin, camera->direction);
+	if (event->key.keysym.sym == SDLK_DOWN)
+		camera->origin = vec3d_sub(camera->origin, camera->direction);
 }

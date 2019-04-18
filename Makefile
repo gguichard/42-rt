@@ -6,9 +6,11 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/17 16:27:19 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/18 11:13:06 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SILENT :
 
 NAME		=	rtv1
 
@@ -36,7 +38,9 @@ parser.c		\
 parser_types.c	\
 parser_utils.c	\
 draw_view.c		\
-error.c
+error.c			\
+quaternion.c	\
+vec3d.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

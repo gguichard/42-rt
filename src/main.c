@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 17:26:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:33:48 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	debug_rayobjects(t_data *data)
 	while (lst != NULL)
 	{
 		obj = (t_ray_object *)lst->content;
-		ft_printf("OBJ{type=%d}\n", obj->type);
+		ft_printf("OBJ{type=%d, color=[%d, %d, %d]}\n", obj->type
+				, obj->color.r, obj->color.g, obj->color.b);
 		lst = lst->next;
 	}
 }

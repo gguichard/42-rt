@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 17:09:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 10:01:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_error				setup_camera_properties(t_data *data, t_json_token *token)
 	child = token->value.child;
 	while (err == ERR_NOERROR && child != NULL)
 	{
-		if (ft_strequ(child->key, "pos"))
-			data->camera.pos = read_json_vec3d(child, &err);
+		if (ft_strequ(child->key, "origin"))
+			data->camera.origin = read_json_vec3d(child, &err);
 		else if (ft_strequ(child->key, "direction"))
 			data->camera.direction = read_json_vec3d(child, &err);
 		child = child->next;
@@ -68,8 +68,8 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 		{
 			if (ft_strequ(child->key, "type"))
 				obj.type = get_ray_object_type(child);
-			else if (ft_strequ(child->key, "pos"))
-				obj.pos = read_json_vec3d(child, err);
+			else if (ft_strequ(child->key, "origin"))
+				obj.origin = read_json_vec3d(child, err);
 			else if (ft_strequ(child->key, "rotation"))
 				obj.rotation = read_json_vec3d(child, err);
 			child = child->next;

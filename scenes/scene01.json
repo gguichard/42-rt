@@ -1,13 +1,13 @@
 {
 	"camera": {
-		"pos": [10, 10, 10.5],
+		"origin": [10, 10, 10.5],
 		"rotation": [0, 0, 0]
 	},
 	"objects": [
 		{
 			"type": "sphere",
 			"radius": 15,
-			"pos": [0, 0, 0],
+			"origin": [0, 0, 0],
 			"rotation": [45, 90, 0]
 		}
 	]

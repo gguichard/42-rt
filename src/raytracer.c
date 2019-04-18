@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:40:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 16:39:08 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 17:17:14 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,14 @@ static unsigned int	launch_ray(t_data *data, t_vec3d ray_dir)
 
 static t_vec3d	get_ray_dir(t_data *data, int x, int y)
 {
-	double	w;
-	double	h;
 	t_vec3d	img_point;
 	t_vec3d	ray_dir;
 
-	w = x / (double)data->winsize.width - 0.5;
-	h = y / (double)data->winsize.height - 0.5;
-	img_point = vec3d_mul_by_scalar(data->camera.right, w);
+	img_point = vec3d_mul_by_scalar(data->camera.right
+			, x / (double)data->winsize.width - 0.5);
 	img_point = vec3d_add(img_point
-			, vec3d_mul_by_scalar(data->camera.up, h));
+			, vec3d_mul_by_scalar(data->camera.up
+				, y / (double)data->winsize.height - 0.5));
 	img_point = vec3d_add(img_point, data->camera.origin);
 	img_point = vec3d_add(img_point, data->camera.direction);
 	ray_dir = vec3d_sub(img_point, data->camera.origin);

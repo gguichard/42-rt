@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 10:15:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 17:09:33 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 				obj.rotation = read_json_vec3d(child, err);
 			else if (ft_strequ(child->key, "color"))
 				obj.color = read_json_color(child, err);
+			else if (ft_strequ(child->key, "radius"))
+				obj.radius = read_json_double(child, err);
 			child = child->next;
 		}
 		if (obj.type == RAYOBJ_UNKNOWN)

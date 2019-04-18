@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:18:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 16:35:09 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 17:12:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
 #include "parser.h"
 #include "error.h"
 #include "vec3d.h"
+
+double			read_json_double(t_json_token *token, t_error *err)
+{
+	*err = ERR_NOERROR;
+	if (token->type == JSON_FLOAT)
+		return (token->value.f);
+	else if (token->type == JSON_INTEGER)
+		return ((double)token->value.i);
+	else
+	{
+		*err = ERR_SCENEBADFORMAT;
+		return (0);
+	}
+}
 
 static int		write_json_vec3d_field(t_json_token **token, double *f)
 {

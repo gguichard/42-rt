@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:40:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 17:17:14 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 19:50:48 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			launch_rays(t_data *data)
 	int				y;
 	unsigned int	color;
 
-	ratio = 10;
+	ratio = 2;
 	data->camera.right = vec3d_mul((t_vec3d){0, 1, 0}, data->camera.direction);
 	data->camera.up = vec3d_mul(data->camera.direction, data->camera.right);
 	y = 0;

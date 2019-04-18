@@ -1,0 +1,30 @@
+{
+	"camera": {
+		"origin": [0, 0, -5],
+		"rotation": [0, 0, 0],
+		"direction": [0, 0, 1]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"radius": 5,
+			"origin": [0, 0, 5],
+			"rotation": [45, 90, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "sphere",
+			"radius": 7.5,
+			"origin": [15, 0, 15],
+			"rotation": [45, 90, 0],
+			"color": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 7.5,
+			"origin": [-15, 0, -15],
+			"rotation": [45, 90, 0],
+			"color": [255, 0, 0]
+		}
+	]
+}

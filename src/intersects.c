@@ -6,41 +6,45 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 15:24:41 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 17:13:20 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 19:50:17 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rayobject.h"
 #include "camera.h"
+#include "calcul.h"
+#include "libft.h"
 
 double	get_sphere_intersect(t_camera *camera, t_vec3d ray_dir
 		, t_ray_object *obj)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
+	t_calcul	calc;
 
-	a = pow(ray_dir.x, 2) + pow(ray_dir.y, 2) + pow(ray_dir.z, 2);
-	b = 2 * (ray_dir.x * (camera->origin.x - obj->origin.x)
-			+ ray_dir.y * (camera->origin.y - obj->origin.y)
-			+ ray_dir.z * (camera->origin.z - obj->origin.z));
-	c = (pow(camera->origin.x - obj->origin.x, 2)
-			+ pow(camera->origin.y - obj->origin.y, 2)
-			+ pow(camera->origin.z - obj->origin.z, 2))
+	ft_memset(&calc, 0, sizeof(t_calcul));
+	calc.tmp1 = camera->origin.x - obj->origin.x;
+	calc.tmp2 = camera->origin.y - obj->origin.y;
+	calc.tmp3 = camera->origin.z - obj->origin.z;
+	calc.a = pow(ray_dir.x, 2) + pow(ray_dir.y, 2) + pow(ray_dir.z, 2);
+	calc.b = 2 * (ray_dir.x * calc.tmp1
+			+ ray_dir.y * calc.tmp2
+			+ ray_dir.z * calc.tmp3);
+	calc.c = (pow(calc.tmp1, 2) + pow(calc.tmp2, 2) + pow(calc.tmp3, 2))
 		- pow(obj->radius, 2);
-	delta = pow(b, 2) - 4 * a * c;
-	if (delta >= 0)
+	calc.delta = pow(calc.b, 2) - 4 * calc.a * calc.c;
+	if (calc.delta >= 0)
 	{
-		double t1 = (-b + sqrt(delta)) / (2 * a);
-		double t2 = (delta == 0 ? t1 : (-b - sqrt(delta)) / (2 * a));
-		if (t1 >= 0 && t2 >= 0)
-			return (t1 < t2 ? t1 : t2);
-		else if (t1 >= 0 && t2 < 0)
-			return (t1);
-		else if (t1 < 0 && t2 >= 0)
-			return (t2);
+		calc.a = 2 * calc.a;
+		calc.tmp3 = sqrt(calc.delta);
+		calc.tmp1 = (calc.tmp3 - calc.b) / (calc.a);
+		calc.tmp2 = (calc.delta == 0 ? calc.tmp1
+				: (-calc.b - calc.tmp3) / (calc.a));
+		if (calc.tmp1 >= 0 && calc.tmp2 >= 0)
+			return (calc.tmp1 < calc.tmp2 ? calc.tmp1 : calc.tmp2);
+		else if (calc.tmp1 >= 0 && calc.tmp2 < 0)
+			return (calc.tmp1);
+		else if (calc.tmp1 < 0 && calc.tmp2 >= 0)
+			return (calc.tmp2);
 	}
 	return (-1);
 }

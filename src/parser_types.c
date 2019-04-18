@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 17:09:33 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 19:16:42 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "raytracer.h"
 #include "parser.h"
 #include "error.h"
-#include "rayobject.h"
+#include "ray_object.h"
 
 t_error				setup_camera_properties(t_data *data, t_json_token *token)
 {

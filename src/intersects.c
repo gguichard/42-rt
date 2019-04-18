@@ -6,12 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 15:24:41 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:50:17 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 20:10:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "rayobject.h"
+#include "ray_object.h"
 #include "camera.h"
 #include "calcul.h"
 #include "libft.h"

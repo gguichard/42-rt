@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 09:50:23 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/18 14:58:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 19:23:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ void		rotate_camera(t_camera *camera, t_vec3d rot_vec, double angle)
 	camera->direction.x = quat_result.x;
 	camera->direction.y = quat_result.y;
 	camera->direction.z = quat_result.z;
+	camera->right = vec3d_cross_product((t_vec3d){0, 1, 0}, camera->direction);
+	camera->up = vec3d_cross_product(camera->direction, camera->right);
 }

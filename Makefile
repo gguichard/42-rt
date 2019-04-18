@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/18 15:30:34 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/18 19:17:48 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SDL_DIR		=	SDL2
 SDL_TAR		=	$(SDL_LIB).tar.gz
 SDL_BUILD	=	$(SDL_DIR)/lib/libSDL2.a
 
-CC			=	gcc
+CC			=	gcc -O2
 CPPFLAGS	=	-Ilibft/includes -I$(INC_DIR)
 CFLAGS 		=	-Wall -Werror -Wextra $(shell ./SDL2/bin/sdl2-config --cflags)
 LDFLAGS		=	-Llibft $(shell ./$(SDL_DIR)/bin/sdl2-config --libs)
@@ -35,7 +35,6 @@ lib.c			\
 parser.c		\
 parser_types.c	\
 parser_utils.c	\
-draw_view.c		\
 error.c			\
 quaternion.c	\
 vec3d.c			\

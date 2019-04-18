@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 09:00:42 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/18 12:26:32 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 19:13:52 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_vec3d		vec3d_sub(t_vec3d vec_a, t_vec3d vec_b)
 			, vec_a.z - vec_b.z});
 }
 
-t_vec3d		vec3d_mul(t_vec3d vec_a, t_vec3d vec_b)
+t_vec3d		vec3d_cross_product(t_vec3d vec_a, t_vec3d vec_b)
 {
 	return ((t_vec3d){vec_a.y * vec_b.z - vec_a.z * vec_b.y
 			, vec_a.z * vec_b.x - vec_a.x * vec_b.z

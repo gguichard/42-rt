@@ -6,41 +6,40 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:40:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:50:48 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 20:12:56 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
+#include <stdlib.h>
 #include "libft.h"
 #include "raytracer.h"
-#include "rayobject.h"
+#include "ray_object.h"
+#include "ray_inf.h"
 #include "vec3d.h"
 
-static unsigned int	launch_ray(t_data *data, t_vec3d ray_dir)
+static t_ray_inf	trace_ray(t_data *data, t_vec3d ray_dir)
 {
-	int				color;
+	t_ray_inf		ray_inf;
 	t_list			*cur;
 	t_ray_object	*obj;
 	double			dist;
-	double			best_dist;
 
-	color = 0x0;
+	ray_inf.object = NULL;
 	cur = data->objects;
-	best_dist = 999999;
 	while (cur != NULL)
 	{
 		obj = (t_ray_object *)cur->content;
 		dist = -1;
 		if (obj->type == RAYOBJ_SPHERE)
 			dist = get_sphere_intersect(&data->camera, ray_dir, obj);
-		if (dist >= 0 && dist < best_dist)
+		if (dist >= 0 && (dist < ray_inf.dist || ray_inf.object == NULL))
 		{
-			color = obj->color;
-			best_dist = dist;
+			ray_inf.object = obj;
+			ray_inf.dist = dist;
 		}
 		cur = cur->next;
 	}
-	return (color);
+	return (ray_inf);
 }
 
 static t_vec3d	get_ray_dir(t_data *data, int x, int y)
@@ -59,27 +58,29 @@ static t_vec3d	get_ray_dir(t_data *data, int x, int y)
 	return (vec3d_unit(ray_dir));
 }
 
-void			launch_rays(t_data *data)
+void			trace_rays(t_data *data)
 {
-	int				ratio;
-	int				x;
-	int				y;
-	unsigned int	color;
+	const int	skip_ratio = 2;
+	int			x;
+	int			y;
+	t_ray_inf	ray_inf;
 
-	ratio = 2;
-	data->camera.right = vec3d_mul((t_vec3d){0, 1, 0}, data->camera.direction);
-	data->camera.up = vec3d_mul(data->camera.direction, data->camera.right);
 	y = 0;
 	while (y < data->winsize.height)
 	{
 		x = 0;
 		while (x < data->winsize.width)
 		{
-			if (y % ratio != 0)
-				color = data->lib.view[(y - 1) * data->winsize.width + x];
-			else if (x % ratio == 0)
-				color = launch_ray(data, get_ray_dir(data, x, y));
-			data->lib.view[y * data->winsize.width + x] = color;
+			if (y % skip_ratio != 0)
+				data->lib.view[y * data->winsize.width + x] =
+					data->lib.view[(y - 1) * data->winsize.width + x];
+			else
+			{
+				if (x % skip_ratio == 0)
+					ray_inf = trace_ray(data, get_ray_dir(data, x, y));
+				data->lib.view[y * data->winsize.width + x] =
+					(ray_inf.object == NULL ? 0x0 : ray_inf.object->color);
+			}
 			x++;
 		}
 		y++;

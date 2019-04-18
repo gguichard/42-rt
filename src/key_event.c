@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 11:55:24 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/18 16:23:32 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 20:20:22 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void		camera_event(SDL_Event *event, t_camera *camera)
 {
-	if (event->key.keysym.sym == SDLK_KP_6)
+	if (event->key.keysym.sym == SDLK_KP_6 || event->key.keysym.sym == SDLK_d)
 		rotate_camera(camera, (t_vec3d){0, 1, 0}, M_PI / 90);
-	if (event->key.keysym.sym == SDLK_KP_4)
+	if (event->key.keysym.sym == SDLK_KP_4 || event->key.keysym.sym == SDLK_a)
 		rotate_camera(camera, (t_vec3d){0, 1, 0}, -1 * M_PI / 90);
-	if (event->key.keysym.sym == SDLK_KP_2)
+	if (event->key.keysym.sym == SDLK_KP_2 || event->key.keysym.sym == SDLK_s)
 		rotate_camera(camera, (t_vec3d){1, 0, 0}, M_PI / 90);
-	if (event->key.keysym.sym == SDLK_KP_8)
+	if (event->key.keysym.sym == SDLK_KP_8 || event->key.keysym.sym == SDLK_w)
 		rotate_camera(camera, (t_vec3d){1, 0, 0}, -1 * M_PI / 90);
 	if (event->key.keysym.sym == SDLK_KP_7)
 		rotate_camera(camera, (t_vec3d){0, 0, 1}, M_PI / 90);

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 14:15:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 14:38:13 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 		{
 			if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
 				break ;
-			else if (SDL_LockTexture(data->lib.texture, NULL
+			camera_event(&event, &(data->camera));
+			if (SDL_LockTexture(data->lib.texture, NULL
 						, (void **)&data->lib.view, &pitch) < 0)
 				break ;
-			camera_event(&event, &(data->camera));
 			draw_fn(data);
 			SDL_UnlockTexture(data->lib.texture);
 			SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);

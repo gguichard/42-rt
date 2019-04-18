@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/18 12:14:18 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/18 14:26:26 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ draw_view.c		\
 error.c			\
 quaternion.c	\
 vec3d.c			\
+raytracer.c		\
 camera_move.c	\
 key_event.c
 

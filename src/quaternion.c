@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:07:03 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/18 11:12:25 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/18 11:32:23 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_quaternion	quaternion_conj(t_quaternion quat)
 	return ((t_quaternion){-quat.x, -quat.y, -quat.z, quat.scalar});
 }
 
-t_quaternion	vec3d_to_quaternion(t_vec3d vec, double angle)
+t_quaternion	vec3d_to_rotate_quaternion(t_vec3d vec, double angle)
 {
 	double	theta;
 	double	sin_theta;

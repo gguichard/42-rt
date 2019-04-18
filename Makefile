@@ -6,11 +6,9 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/18 11:13:06 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/18 12:14:18 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-.SILENT :
 
 NAME		=	rtv1
 
@@ -40,7 +38,9 @@ parser_utils.c	\
 draw_view.c		\
 error.c			\
 quaternion.c	\
-vec3d.c
+vec3d.c			\
+camera_move.c	\
+key_event.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

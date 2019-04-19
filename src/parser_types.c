@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:16:42 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 11:58:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,18 @@ t_error				parse_ray_objects(t_data *data, t_json_token *token)
 				&& (elem = ft_lstnew(&obj, sizeof(t_ray_object))) == NULL)
 			err = ERR_UNEXPECTED;
 		if (err == ERR_NOERROR)
-			ft_lstadd(&data->objects, elem);
+		{
+			if (obj.type == RAYOBJ_LIGHT)
+				ft_lstadd(&data->lights, elem);
+			else
+				ft_lstadd(&data->objects, elem);
+		}
 		child = child->next;
 	}
 	if (err != ERR_NOERROR)
+	{
 		ft_lstfree(&data->objects);
+		ft_lstfree(&data->lights);
+	}
 	return (err);
 }

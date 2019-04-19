@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/19 10:33:29 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/19 12:52:16 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,17 @@ LDFLAGS		=	-Llibft $(shell ./$(SDL_DIR)/bin/sdl2-config --libs)
 LDLIBS		=	-lft
 
 SRC_DIR		=	src
-SRC 		=	\
-main.c			\
-lib.c			\
-parser.c		\
-parser_types.c	\
-parser_utils.c	\
-error.c			\
-quaternion.c	\
-vec3d.c			\
-raytracer.c		\
-camera_move.c	\
+SRC 		=			\
+main.c					\
+lib.c					\
+parser.c				\
+parser_types.c			\
+parser_utils.c			\
+error.c					\
+quaternion.c			\
+vec3d.c					\
+raytracer.c				\
+camera_move.c			\
 key_camera_events.c		\
 intersects.c
 

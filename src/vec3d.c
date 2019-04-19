@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 09:00:42 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/19 10:39:30 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/19 12:51:23 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ t_vec3d		vec3d_cross_product(t_vec3d vec_a, t_vec3d vec_b)
 	return ((t_vec3d){vec_a.y * vec_b.z - vec_a.z * vec_b.y
 			, vec_a.z * vec_b.x - vec_a.x * vec_b.z
 			, vec_a.x * vec_b.y - vec_a.y * vec_b.x});
+}
+
+double		vec3d_dot_product(t_vec3d vec_a, t_vec3d vec_b)
+{
+	return (vec_a.x * vec_b.x + vec_a.y * vec_b.y + vec_a.z * vec_b.z);
 }
 
 t_vec3d		vec3d_mul_by_scalar(t_vec3d vec, double scalar)

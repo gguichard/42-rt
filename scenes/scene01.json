@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 0, -5],
+		"origin": [5, 5, -15],
 		"rotation": [0, 0, 0],
 		"direction": [0, 0, 1]
 	},
@@ -8,16 +8,28 @@
 		{
 			"type": "sphere",
 			"radius": 5,
-			"origin": [0, 0, 5],
-			"rotation": [45, 90, 0],
-			"color": [255, 255, 255]
+			"origin": [5, 5, 0],
+			"color": [255, 0, 0]
 		},
 		{
 			"type": "sphere",
-			"radius": 7.5,
-			"origin": [15, 0, 15],
-			"rotation": [45, 90, 0],
-			"color": [255, 0, 0]
+			"radius": 10,
+			"origin": [5, 25, 0],
+			"color": [0, 0, 0]
+		},
+		{
+			"type": "light",
+			"radius": 0.5,
+			"origin": [5, 50, 0],
+			"rotation": [0, 0, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "light",
+			"radius": 0.5,
+			"origin": [5, 25, 15],
+			"rotation": [0, 0, 0],
+			"color": [0, 255, 0]
 		}
 	]
 }

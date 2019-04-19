@@ -6,18 +6,24 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 19:08:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:16:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 09:49:17 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_INF_H
 # define RAY_INF_H
 
-# include "ray_object.h"
+# include "vec3d.h"
+
+typedef struct s_ray_object	t_ray_object;
 
 typedef struct		s_ray_inf
 {
+	t_vec3d			origin;
+	t_vec3d			direction;
+	t_vec3d			normal;
 	t_ray_object	*object;
+	int				color;
 	double			dist;
 }					t_ray_inf;
 

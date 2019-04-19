@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:56:35 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:13:40 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 12:34:21 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_vec3d			vec3d_unit(t_vec3d vec);
 t_vec3d			vec3d_add(t_vec3d vec_a, t_vec3d vec_b);
 t_vec3d			vec3d_sub(t_vec3d vec_a, t_vec3d vec_b);
 t_vec3d			vec3d_cross_product(t_vec3d vec_a, t_vec3d vec_b);
+double			vec3d_dot_product(t_vec3d vec_a, t_vec3d vec_b);
 double			vec3d_length(t_vec3d vec);
 
 #endif

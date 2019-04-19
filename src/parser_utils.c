@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:18:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 17:12:09 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 20:13:33 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parser.h"
 #include "error.h"
 #include "vec3d.h"
+#include "color.h"
 
 double			read_json_double(t_json_token *token, t_error *err)
 {
@@ -78,7 +79,7 @@ static int		write_json_color_field(t_json_token **token, unsigned char *i)
 	return (1);
 }
 
-unsigned int	read_json_color(t_json_token *token, t_error *err)
+t_color			read_json_color(t_json_token *token, t_error *err)
 {
 	t_json_token	*child;
 	unsigned char	r;
@@ -101,5 +102,5 @@ unsigned int	read_json_color(t_json_token *token, t_error *err)
 		else
 			color = (r << 16) | (g << 8) | b;
 	}
-	return (color);
+	return (color_create_from_rgb(color));
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_inf.h                                          :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 19:08:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 20:12:25 by gguichar         ###   ########.fr       */
+/*   Created: 2019/04/19 19:41:58 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/19 20:16:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_INF_H
-# define RAY_INF_H
+#ifndef COLOR_H
+# define COLOR_H
 
-# include "vec3d.h"
-# include "color.h"
-
-typedef struct s_ray_object	t_ray_object;
-
-typedef struct		s_ray_inf
+typedef struct	s_color
 {
-	t_vec3d			origin;
-	t_vec3d			direction;
-	t_vec3d			normal;
-	t_ray_object	*object;
-	t_color			color;
-	double			dist;
-}					t_ray_inf;
+	float		r;
+	float		g;
+	float		b;
+}				t_color;
+
+unsigned int	color_get_rgb(t_color color);
+t_color			color_create_from_rgb(int rgb);
+t_color			color_clamp(t_color color);
+t_color			color_add(t_color color_a, t_color color_b);
+t_color			color_mul(t_color color, float scale);
 
 #endif

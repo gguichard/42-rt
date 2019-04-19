@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 11:55:24 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/19 11:29:59 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/19 17:53:05 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 void		camera_event(t_data *data)
 {
+	if (data->lib.cam_keys == 0 && data->square_pixels_per_ray > 1)
+		data->square_pixels_per_ray -= 1;
+	if (data->lib.cam_keys != 0)
+		data->square_pixels_per_ray = 8;
 	if (data->lib.cam_keys & CAMERA_RIGHT)
 		rotate_camera(&data->camera, data->camera.up, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_LEFT)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:24:41 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 17:49:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			main(int argc, char **argv)
 	err = parse_scene(&data, argv[1]);
 	if (err == ERR_NOERROR)
 	{
+		data.square_pixels_per_ray = 1;
 		init_camera(&data.camera);
 		err = init_and_create_window(&data.lib, data.winsize);
 	}

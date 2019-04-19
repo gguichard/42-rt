@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 20:02:01 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 20:27:06 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 20:44:01 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_color			color_clamp(t_color color)
 	t_color	new_color;
 
 	new_color.r = (color.r > 1. ? 1. : color.r);
-	new_color.g = (color.r > 1. ? 1. : color.r);
-	new_color.b = (color.r > 1. ? 1. : color.r);
+	new_color.g = (color.g > 1. ? 1. : color.g);
+	new_color.b = (color.b > 1. ? 1. : color.b);
 	return (new_color);
 }
 
@@ -54,7 +54,17 @@ t_color			color_add(t_color color_a, t_color color_b)
 	return (new_color);
 }
 
-t_color			color_mul(t_color color, float scale)
+t_color			color_mul(t_color color_a, t_color color_b)
+{
+	t_color	new_color;
+
+	new_color.r = color_a.r * color_b.r;
+	new_color.g = color_a.g * color_b.g;
+	new_color.b = color_a.b * color_b.b;
+	return (new_color);
+}
+
+t_color			color_scale(t_color color, float scale)
 {
 	t_color	new_color;
 

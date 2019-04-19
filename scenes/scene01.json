@@ -9,34 +9,22 @@
 			"type": "sphere",
 			"radius": 5,
 			"origin": [5, 5, 0],
-			"color": [255, 0, 0]
-		},
-		{
-			"type": "sphere",
-			"radius": 10,
-			"origin": [5, 25, 0],
-			"color": [0, 0, 0]
-		},
-		{
-			"type": "light",
-			"radius": 0.5,
-			"origin": [5, 50, 0],
-			"rotation": [0, 0, 0],
 			"color": [255, 255, 255]
 		},
 		{
 			"type": "light",
-			"radius": 0.5,
+			"origin": [5, 50, 0],
+			"color": [255, 0, 0]
+		},
+		{
+			"type": "light",
 			"origin": [5, 25, 15],
-			"rotation": [0, 0, 0],
 			"color": [0, 255, 0]
 		},
 		{
 			"type": "light",
-			"radius": 0.5,
 			"origin": [-15, 25, 0],
-			"rotation": [0, 0, 0],
-			"color": [255, 255, 255]
+			"color": [0, 0, 255]
 		}
 	]
 }

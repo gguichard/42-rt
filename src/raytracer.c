@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:40:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 17:14:21 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 17:31:29 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ static t_vec3d		get_ray_dir(t_data *data, int x, int y)
 
 void				trace_rays(t_data *data)
 {
-	const int	skip_ratio = 1;
+	const int	skip_ratio = 2;
 	int			x;
 	int			y;
 	t_ray_inf	ray_inf;

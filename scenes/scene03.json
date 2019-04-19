@@ -15,9 +15,9 @@
 		{
 			"type": "sphere",
 			"radius": 7.5,
-			"origin": [15, 0, 15],
+			"origin": [15, 50, 15],
 			"rotation": [45, 90, 0],
-			"color": [255, 0, 0]
+			"color": [0, 255, 0]
 		},
 		{
 			"type": "sphere",

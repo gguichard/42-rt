@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 19:24:41 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:16:51 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 #include "lib.h"
 #include "parser.h"
 #include "ray_object.h"
+#include "quaternion.h"
 
 static void	init_camera(t_camera *camera)
 {
-	camera->right = vec3d_cross_product((t_vec3d){0, 1, 0}, camera->direction);
-	camera->up = vec3d_cross_product(camera->direction, camera->right);
+	camera->direction = vec3d_unit(camera->direction);
+	camera->right = rotate_by_quaternion(camera->direction
+			, (t_vec3d){0, 1, 0}, M_PI / 2);
+	printf("%lf, %lf, %lf\n", camera->right.x, camera->right.y, camera->right.z);
+	camera->up = rotate_by_quaternion(camera->right, camera->direction, M_PI / 2);
 }
 
 int			main(int argc, char **argv)

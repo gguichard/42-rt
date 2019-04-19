@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 11:55:24 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/19 11:29:59 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:32:02 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "vec3d.h"
 #include "lib.h"
 #include "raytracer.h"
+#include<stdio.h>
 
 void		camera_event(t_data *data)
 {

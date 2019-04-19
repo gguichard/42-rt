@@ -1,20 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_camera_events.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 11:55:24 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/19 17:53:05 by gguichar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <math.h>
 #include "camera.h"
 #include "vec3d.h"
 #include "lib.h"
 #include "raytracer.h"
+#include<stdio.h>
 
 void		camera_event(t_data *data)
 {

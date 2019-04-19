@@ -6,14 +6,13 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:07:03 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/18 13:26:06 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/19 13:51:25 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "quaternion.h"
 #include "vec3d.h"
-#include <stdio.h>
 
 double			quaternion_length(t_quaternion quat)
 {

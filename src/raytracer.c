@@ -6,6 +6,8 @@
 #include "vec3d.h"
 #include "color.h"
 
+#include <stdio.h>
+
 static int			trace_ray(t_data *data, t_ray_inf *ray_inf, double max_dist
 		, int force_closest_object)
 {
@@ -21,8 +23,8 @@ static int			trace_ray(t_data *data, t_ray_inf *ray_inf, double max_dist
 		dist = -1;
 		if (obj->type == RAYOBJ_SPHERE)
 			dist = get_sphere_intersect_dist(obj, ray_inf);
-		if (dist > .0001 && dist <= max_dist && (dist < ray_inf->dist
-					|| ray_inf->object == NULL))
+		if (dist >= .00001 && dist < max_dist && (ray_inf->object == NULL
+					|| dist < ray_inf->dist))
 		{
 			ray_inf->object = obj;
 			ray_inf->dist = dist;
@@ -45,6 +47,7 @@ static void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 	light_ray.origin = vec3d_add(ray_inf->origin
 			, vec3d_mul_by_scalar(ray_inf->direction, ray_inf->dist));
 	light_ray.normal = get_intersect_normal(ray_inf, light_ray.origin);
+	light_ray.object = NULL;
 	cur = data->lights;
 	while (cur != NULL)
 	{
@@ -52,12 +55,15 @@ static void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 		light_ray.direction = vec3d_sub(light->origin, light_ray.origin);
 		trace_max_dist = vec3d_length(light_ray.direction);
 		light_ray.direction = vec3d_unit(light_ray.direction);
-		if (trace_ray(data, &light_ray, trace_max_dist, 0))
+		if (!trace_ray(data, &light_ray, trace_max_dist, 0))
 		{
 			angle = vec3d_dot_product(light_ray.normal, light_ray.direction);
 			if (angle > .0)
+			{
 				ray_inf->color = color_add(ray_inf->color
-						, color_mul(light->color, angle));
+						, color_mul(ray_inf->object->color
+							, color_scale(light->color, angle)));
+			}
 		}
 		cur = cur->next;
 	}

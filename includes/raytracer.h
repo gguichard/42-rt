@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 22:05:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 17:41:29 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_data
 	t_camera	camera;
 	t_list		*objects;
 	t_list		*lights;
+	int			square_pixels_per_ray;
 }				t_data;
 
 void			trace_rays(t_data *data);

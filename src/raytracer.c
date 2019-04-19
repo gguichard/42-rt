@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raytracer.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 10:40:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 17:31:29 by roduquen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include "libft.h"
 #include "raytracer.h"
@@ -127,7 +115,6 @@ static t_vec3d		get_ray_dir(t_data *data, int x, int y)
 
 void				trace_rays(t_data *data)
 {
-	const int	skip_ratio = 2;
 	int			x;
 	int			y;
 	t_ray_inf	ray_inf;
@@ -138,12 +125,12 @@ void				trace_rays(t_data *data)
 		x = 0;
 		while (x < data->winsize.width)
 		{
-			if (y % skip_ratio != 0)
+			if (y % data->square_pixels_per_ray != 0)
 				data->lib.view[y * data->winsize.width + x] =
 					data->lib.view[(y - 1) * data->winsize.width + x];
 			else
 			{
-				if (x % skip_ratio == 0)
+				if (x % data->square_pixels_per_ray == 0)
 					ray_inf = trace_one_ray(data, get_ray_dir(data, x, y));
 				data->lib.view[y * data->winsize.width + x] = ray_inf.color;
 			}

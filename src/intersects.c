@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 15:24:41 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 20:10:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/18 20:21:41 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ double	get_sphere_intersect(t_camera *camera, t_vec3d ray_dir
 	calc.tmp2 = camera->origin.y - obj->origin.y;
 	calc.tmp3 = camera->origin.z - obj->origin.z;
 	calc.a = pow(ray_dir.x, 2) + pow(ray_dir.y, 2) + pow(ray_dir.z, 2);
-	calc.b = 2 * (ray_dir.x * calc.tmp1
-			+ ray_dir.y * calc.tmp2
+	calc.b = 2 * (ray_dir.x * calc.tmp1 + ray_dir.y * calc.tmp2
 			+ ray_dir.z * calc.tmp3);
 	calc.c = (pow(calc.tmp1, 2) + pow(calc.tmp2, 2) + pow(calc.tmp3, 2))
 		- pow(obj->radius, 2);

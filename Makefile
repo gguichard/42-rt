@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/18 19:17:48 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/19 10:33:29 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ quaternion.c	\
 vec3d.c			\
 raytracer.c		\
 camera_move.c	\
-key_event.c		\
+key_camera_events.c		\
 intersects.c
 
 OBJ_DIR		=	.obj

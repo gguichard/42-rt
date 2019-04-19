@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/18 16:20:54 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 10:49:50 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "raytracer.h"
 #include "error.h"
 #include "lib.h"
+#include "camera.h"
 
 static void	destroy_window(t_lib *lib)
 {
@@ -48,7 +49,7 @@ t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
 					, winsize.width, winsize.height, 0)) == NULL)
 		err = ERR_SDLINIT;
 	if (err == ERR_NOERROR
-			&& (lib->renderer = SDL_CreateRenderer(lib->window, -1, 0)) == NULL)
+			&& (lib->renderer = SDL_CreateRenderer(lib->window, -1, SDL_RENDERER_PRESENTVSYNC)) == NULL)
 		err = ERR_SDLINIT;
 	if (err == ERR_NOERROR
 			&& (lib->texture = SDL_CreateTexture(lib->renderer
@@ -72,15 +73,16 @@ void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 		{
 			if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
 				break ;
-			camera_event(&event, &(data->camera));
-			if (SDL_LockTexture(data->lib.texture, NULL
-						, (void **)&data->lib.view, &pitch) < 0)
-				break ;
-			draw_fn(data);
-			SDL_UnlockTexture(data->lib.texture);
-			SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);
-			SDL_RenderPresent(data->lib.renderer);
+			camera_press_key(&event, data);
 		}
+		camera_event(data);
+		if (SDL_LockTexture(data->lib.texture, NULL
+					, (void **)&data->lib.view, &pitch) < 0)
+			break ;
+		draw_fn(data);
+		SDL_UnlockTexture(data->lib.texture);
+		SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);
+		SDL_RenderPresent(data->lib.renderer);
 	}
 	data->running = 0;
 }

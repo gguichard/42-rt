@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   intersects.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 15:24:41 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/20 03:46:59 by roduquen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <math.h>
 #include "ray_object.h"
 #include "ray_inf.h"
@@ -18,9 +6,7 @@
 
 t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
 {
-	return ((t_vec3d){(intersect.x - ray_inf->object->origin.x) / ray_inf->object->radius
-			, (intersect.y - ray_inf->object->origin.y) / ray_inf->object->radius
-			, (intersect.z - ray_inf->object->origin.z) / ray_inf->object->radius});
+	return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
 }
 
 double	get_plan_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)

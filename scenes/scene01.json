@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [5, 5, -15],
+		"origin": [0, 0, -10],
 		"rotation": [0, 0, 0],
 		"direction": [0, 0, 1]
 	},
@@ -8,23 +8,31 @@
 		{
 			"type": "sphere",
 			"radius": 5,
-			"origin": [5, 5, 0],
+			"origin": [0, 0, 0],
 			"color": [255, 255, 255]
 		},
 		{
-			"type": "light",
-			"origin": [5, 50, 0],
-			"color": [255, 0, 0]
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.1
 		},
 		{
 			"type": "light",
-			"origin": [5, 25, 15],
-			"color": [0, 255, 0]
+			"origin": [0, 30, 0],
+			"color": [255, 0, 0],
+			"intensity": 1000
 		},
 		{
 			"type": "light",
-			"origin": [-15, 25, 0],
-			"color": [0, 0, 255]
+			"origin": [-10, 30, 0],
+			"color": [0, 255, 0],
+			"intensity": 1000
+		},
+		{
+			"type": "light",
+			"origin": [0, 30, 10],
+			"color": [0, 0, 255],
+			"intensity": 1000
 		}
 	]
 }

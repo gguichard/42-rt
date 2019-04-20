@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray_object.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 14:11:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/20 03:48:11 by roduquen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef RAYOBJECT_H
 # define RAYOBJECT_H
 
@@ -20,6 +8,7 @@
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
 # define RAYOBJ_LIGHT 2
+# define RAYOBJ_AMBIENTLIGHT 3
 
 typedef struct	s_ray_object
 {
@@ -28,6 +17,7 @@ typedef struct	s_ray_object
 	t_vec3d			rotation;
 	t_color			color;
 	double			radius;
+	double			intensity;
 }				t_ray_object;
 
 t_vec3d			get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect);

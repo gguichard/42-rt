@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 11:58:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 21:33:56 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static int			get_ray_object_type(t_json_token *token)
 			type = RAYOBJ_SPHERE;
 		else if (ft_strequ(token->value.str, "light"))
 			type = RAYOBJ_LIGHT;
+		else if (ft_strequ(token->value.str, "ambient_light"))
+			type = RAYOBJ_AMBIENTLIGHT;
 	}
 	return (type);
 }
@@ -76,6 +78,8 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 				obj.color = read_json_color(child, err);
 			else if (ft_strequ(child->key, "radius"))
 				obj.radius = read_json_double(child, err);
+			else if (ft_strequ(child->key, "intensity"))
+				obj.intensity = read_json_double(child, err);
 			child = child->next;
 		}
 		if (obj.type == RAYOBJ_UNKNOWN)
@@ -103,7 +107,7 @@ t_error				parse_ray_objects(t_data *data, t_json_token *token)
 			err = ERR_UNEXPECTED;
 		if (err == ERR_NOERROR)
 		{
-			if (obj.type == RAYOBJ_LIGHT)
+			if (obj.type == RAYOBJ_LIGHT || obj.type == RAYOBJ_AMBIENTLIGHT)
 				ft_lstadd(&data->lights, elem);
 			else
 				ft_lstadd(&data->objects, elem);

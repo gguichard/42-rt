@@ -3,10 +3,16 @@
 #include "ray_inf.h"
 #include "solver.h"
 #include "libft.h"
+#include "vec3d.h"
 
 t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
 {
-	return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
+	if (ray_inf->object->type == RAYOBJ_SPHERE)
+		return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
+	if (ray_inf->object->type == RAYOBJ_PLANE)
+		return (vec3d_unit(ray_inf->origin));
+	//if (ray_inf->object->type == RAYOBJ_CYLINDER)
+		return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
 }
 
 double	get_plane_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
@@ -15,6 +21,7 @@ double	get_plane_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 	t_vec3d		tmp;
 
 	ft_memset(&calc, 0, sizeof(t_compute));
+	object->origin = vec3d_unit(object->origin);
 	if ((calc.tmp1 = vec3d_dot_product(object->origin, ray_inf->direction))
 		== 0)
 		return (-1);
@@ -26,7 +33,11 @@ double	get_plane_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 	tmp = (t_vec3d){calc.a - ray_inf->origin.x, calc.b
 		- ray_inf->origin.y, calc.c - ray_inf->origin.z};
 	calc.tmp2 = vec3d_length(tmp);
-	if (vec3d_length(vec3d_add(tmp, ray_inf->direction)) <= calc.tmp2)
+	if (calc.tmp2 == 0)
+		return (-1);
+	if ((calc.tmp1 = vec3d_length(vec3d_add(tmp, ray_inf->direction))) <= calc.tmp2)
+		return (-1);
+	if (calc.tmp1 < 1)
 		return (-1);
 	return (calc.tmp2);
 }

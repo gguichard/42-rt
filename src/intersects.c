@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 15:24:41 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 12:51:53 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/20 03:46:59 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,31 @@ t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
 	return ((t_vec3d){(intersect.x - ray_inf->object->origin.x) / ray_inf->object->radius
 			, (intersect.y - ray_inf->object->origin.y) / ray_inf->object->radius
 			, (intersect.z - ray_inf->object->origin.z) / ray_inf->object->radius});
+}
+
+double	get_plan_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
+{
+	t_calcul	calc;
+	t_vec3d		tmp;
+
+	ft_memset(&calc, 0, sizeof(t_calcul));
+	if ((calc.tmp1 = vec3d_dot_product(object->origin, ray_inf->direction))
+		== 0)
+		return (-1);
+	calc.delta = (vec3d_dot_product(object->origin, ray_inf->origin)
+		+ object->radius) / calc.tmp1
+	calc.a = ray_inf->origin.x - calc.delta * ray_inf->direction.x;
+	calc.b = ray_inf->origin.y - calc.delta * ray_inf->direction.y;
+	calc.c = ray_inf->origin.z - calc.delta * ray_inf->direction.z;
+	calc.delta = vec3d_length((t_vec3d){calc.a, calc.b, calc.c});
+	tmp = vec3d_mul_by_scalar(ray_inf->direction, calc.delta);
+	if (tmp.x + ray_inf->origin.x != calc.a)
+		return (-1);
+	if (tmp.y + ray_inf->origin.y != calc.b)
+		return (-1);
+	if (tmp.z + ray_inf->origin.z != calc.c)
+		return (-1);
+	return (calc.delta);
 }
 
 double	get_sphere_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)

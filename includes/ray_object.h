@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:11:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 20:09:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/20 03:48:11 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct	s_ray_object
 
 t_vec3d			get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect);
 
+double			get_plan_intersect_dist(t_ray_object *object
+		, t_ray_inf *ray_inf);
 double			get_sphere_intersect_dist(t_ray_object *object
 		, t_ray_inf *ray_inf);
 

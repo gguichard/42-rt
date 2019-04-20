@@ -1,0 +1,75 @@
+{
+	"camera": {
+		"origin": [0, 15, 0],
+		"rotation": [0, 0, 0],
+		"direction": [0, 0, 1]
+	},
+	"objects": [
+		{
+			"type": "sphere",
+			"radius": 2000,
+			"origin": [2500, 0, 0],
+			"color": [0, 255, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2000,
+			"origin": [-2500, 0, 0],
+			"color": [0, 255, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2000,
+			"origin": [0, 2500, 0],
+			"color": [255, 0, 0]
+		},
+
+		{
+			"type": "sphere",
+			"radius": 2000,
+			"origin": [0, -2500, 0],
+			"color": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2000,
+			"origin": [0, 0, 2500],
+			"color": [0, 0, 255]
+		},
+
+		{
+			"type": "sphere",
+			"radius": 2000,
+			"origin": [0, 0, -2500],
+			"color": [0, 0, 255]
+		},
+		{
+			"type": "sphere",
+			"radius": 20,
+			"origin": [-10, 20, -10],
+			"color": [255, 255, 255]
+		},
+
+		{
+			"type": "sphere",
+			"radius": 20,
+			"origin": [20, 10, 10],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "light",
+			"origin": [5, 50, 0],
+			"color": [255, 0, 0]
+		},
+		{
+			"type": "light",
+			"origin": [5, 25, 15],
+			"color": [0, 255, 0]
+		},
+		{
+			"type": "light",
+			"origin": [-15, 25, 0],
+			"color": [0, 0, 255]
+		}
+	]
+}

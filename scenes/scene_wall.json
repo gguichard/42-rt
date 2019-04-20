@@ -45,13 +45,13 @@
 			"type": "sphere",
 			"radius": 20,
 			"origin": [-10, 20, -10],
-			"color": [255, 255, 255]
+			"color": [0, 255, 255]
 		},
 		{
 			"type": "sphere",
 			"radius": 20,
 			"origin": [20, 10, 10],
-			"color": [255, 255, 255]
+			"color": [255, 0, 255]
 		},
 		{
 			"type": "cylinder",

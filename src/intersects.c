@@ -11,7 +11,7 @@ t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
 		return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
 	if (ray_inf->object->type == RAYOBJ_PLANE)
 		return (vec3d_unit(ray_inf->origin));
-	//if (ray_inf->object->type == RAYOBJ_CYLINDER)
+//	if (ray_inf->object->type == RAYOBJ_CYLINDER)
 		return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
 }
 
@@ -20,7 +20,6 @@ double	get_plane_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 	t_compute	calc;
 	t_vec3d		tmp;
 
-	ft_memset(&calc, 0, sizeof(t_compute));
 	object->origin = vec3d_unit(object->origin);
 	if ((calc.tmp1 = vec3d_dot_product(object->origin, ray_inf->direction))
 		== 0)
@@ -46,7 +45,6 @@ double	get_sphere_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 {
 	t_compute	calc;
 
-	ft_memset(&calc, 0, sizeof(t_compute));
 	calc.tmp1 = ray_inf->origin.x - object->origin.x;
 	calc.tmp2 = ray_inf->origin.y - object->origin.y;
 	calc.tmp3 = ray_inf->origin.z - object->origin.z;
@@ -64,7 +62,6 @@ double	get_cylinder_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 {
 	t_compute	calc;
 
-	ft_memset(&calc, 0, sizeof(t_compute));
 	calc.tmp1 = ray_inf->origin.x - object->origin.x;
 	calc.tmp2 = ray_inf->origin.y - object->origin.y;
 	calc.a = pow(ray_inf->direction.x, 2) + pow(ray_inf->direction.y, 2);

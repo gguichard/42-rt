@@ -117,18 +117,17 @@ static t_ray_inf	trace_one_ray(t_data *data, t_vec3d ray_dir)
 
 static t_vec3d		get_ray_dir(t_data *data, int x, int y)
 {
-	t_vec3d	img_point;
-	t_vec3d	ray_dir;
+	double	pixel_x;
+	double	pixel_y;
+	t_vec3d	dir;
 
-	img_point = vec3d_mul_by_scalar(data->camera.right
-			, x / (double)data->winsize.width - .5);
-	img_point = vec3d_sub(img_point
-			, vec3d_mul_by_scalar(data->camera.up
-				, y / (double)data->winsize.height - .5));
-	img_point = vec3d_add(img_point, data->camera.origin);
-	img_point = vec3d_add(img_point, data->camera.direction);
-	ray_dir = vec3d_sub(img_point, data->camera.origin);
-	return (vec3d_unit(ray_dir));
+	pixel_x = (2 * (x + .5) / data->winsize.width - 1) * data->camera.fov
+		* data->winsize.aspect_ratio;
+	pixel_y = (1 - 2 * (y + .5) / data->winsize.height) * data->camera.fov;
+	dir = vec3d_mul_by_scalar(data->camera.right, pixel_x);
+	dir = vec3d_add(dir, vec3d_mul_by_scalar(data->camera.up, pixel_y));
+	dir = vec3d_add(dir, data->camera.direction);
+	return (vec3d_unit(dir));
 }
 
 void				trace_rays(t_data *data)

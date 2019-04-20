@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:56:10 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 10:26:53 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/20 18:50:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_data	t_data;
 
 typedef struct	s_camera
 {
-	int			fov;
+	double		fov;
 	t_vec3d		origin;
 	t_vec3d		direction;
 	t_vec3d		up;

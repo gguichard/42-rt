@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/20 15:10:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:09:00 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <math.h>
 #include "SDL.h"
 #include "libft.h"
 #include "raytracer.h"
@@ -22,6 +23,7 @@
 
 static void	init_camera(t_camera *camera)
 {
+	camera->fov = tan(90 * .5 / 180 * M_PI);
 	camera->direction = vec3d_unit(camera->direction);
 	camera->right = rotate_by_quaternion(camera->direction
 			, (t_vec3d){0, 1, 0}, M_PI / 2);
@@ -42,6 +44,8 @@ int			main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_data));
 	data.winsize.width = WIN_WIDTH;
 	data.winsize.height = WIN_HEIGHT;
+	data.winsize.aspect_ratio = data.winsize.width
+		/ (double)data.winsize.height;
 	err = parse_scene(&data, argv[1]);
 	if (err == ERR_NOERROR)
 	{

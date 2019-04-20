@@ -12,9 +12,9 @@ void		camera_event(t_data *data)
 	if (data->lib.cam_keys != 0)
 		data->square_pixels_per_ray = 8;
 	if (data->lib.cam_keys & CAMERA_RIGHT)
-		rotate_camera(&data->camera, data->camera.up, M_PI / 90);
+		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_LEFT)
-		rotate_camera(&data->camera, data->camera.up, -1 * M_PI / 90);
+		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, -1 * M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_DOWN)
 		rotate_camera(&data->camera, data->camera.right, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_UP)

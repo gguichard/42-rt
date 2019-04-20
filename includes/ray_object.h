@@ -7,8 +7,9 @@
 
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
-# define RAYOBJ_LIGHT 2
-# define RAYOBJ_AMBIENTLIGHT 3
+# define RAYOBJ_PLANE 2
+# define RAYOBJ_LIGHT 3
+# define RAYOBJ_AMBIENTLIGHT 4
 
 typedef struct	s_ray_object
 {
@@ -21,8 +22,7 @@ typedef struct	s_ray_object
 }				t_ray_object;
 
 t_vec3d			get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect);
-
-double			get_plan_intersect_dist(t_ray_object *object
+double			get_plane_intersect_dist(t_ray_object *object
 		, t_ray_inf *ray_inf);
 double			get_sphere_intersect_dist(t_ray_object *object
 		, t_ray_inf *ray_inf);

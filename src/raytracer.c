@@ -21,6 +21,8 @@ static int			trace_ray(t_data *data, t_ray_inf *ray_inf
 		dist = -1;
 		if (obj->type == RAYOBJ_SPHERE)
 			dist = get_sphere_intersect_dist(obj, ray_inf);
+		else if (obj->type == RAYOBJ_PLANE)
+			dist = get_plane_intersect_dist(obj, ray_inf);
 		if (dist >= .0)
 		{
 			if (!force_closest_object && dist < ray_inf->dist)

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/19 20:08:30 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/20 17:53:11 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ raytracer.c				\
 camera_move.c			\
 key_camera_events.c		\
 intersects.c			\
-color.c
+color.c					\
+solver.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

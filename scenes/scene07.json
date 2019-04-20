@@ -1,0 +1,38 @@
+{
+	"camera": {
+		"origin": [0, 0, -10],
+		"rotation": [0, 0, 0],
+		"direction": [0, 0, 1]
+	},
+	"objects": [
+		{
+			"type": "cylinder",
+			"radius": 5,
+			"origin": [0, 0, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.1
+		},
+		{
+			"type": "light",
+			"origin": [0, 30, 0],
+			"color": [255, 0, 0],
+			"intensity": 1000
+		},
+		{
+			"type": "light",
+			"origin": [-10, 30, 0],
+			"color": [0, 255, 0],
+			"intensity": 1000
+		},
+		{
+			"type": "light",
+			"origin": [0, 30, 10],
+			"color": [0, 0, 255],
+			"intensity": 1000
+		}
+	]
+}

@@ -54,9 +54,9 @@
 			"color": [255, 255, 255]
 		},
 		{
-			"type": "plane",
-			"radius": 20,
-			"origin": [20, 10, 10],
+			"type": "cylinder",
+			"radius": 50,
+			"origin": [0, 0, 0],
 			"color": [255, 255, 255]
 		},
 		{

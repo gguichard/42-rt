@@ -45,6 +45,7 @@ static void			compute_light_color(t_data *data, t_ray_object *light
 	double	angle;
 	double	light_power;
 	t_color	light_color;
+	t_color	diffuse_color;
 
 	if (light->type == RAYOBJ_AMBIENTLIGHT)
 	{
@@ -57,10 +58,10 @@ static void			compute_light_color(t_data *data, t_ray_object *light
 		angle = vec3d_dot_product(light_ray->normal, light_ray->direction);
 		if (angle >= .0)
 		{
-			light_power = (light->intensity * angle) / pow(light_ray->dist, 2);
+			light_power = angle * (light->intensity / pow(light_ray->dist, 2));
 			light_color = color_scale(light->color, light_power);
-			ray_inf->color = color_add(ray_inf->color
-					, color_mul(ray_inf->object->color, light_color));
+			diffuse_color = color_mul(ray_inf->object->color, light_color);
+			ray_inf->color = color_add(ray_inf->color, diffuse_color);
 		}
 	}
 }

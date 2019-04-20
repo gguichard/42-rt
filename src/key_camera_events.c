@@ -7,7 +7,7 @@
 
 void		camera_event(t_data *data)
 {
-	if (data->lib.cam_keys == 0 && data->square_pixels_per_ray > 1)
+	if (data->lib.cam_keys == 0 && data->square_pixels_per_ray > 0)
 		data->square_pixels_per_ray -= 1;
 	if (data->lib.cam_keys != 0)
 		data->square_pixels_per_ray = 8;

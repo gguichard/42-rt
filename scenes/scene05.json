@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 15, -20],
+		"origin": [0, 0, -20],
 		"rotation": [0, 0, 0],
 		"direction": [0, 0, 1]
 	},
@@ -45,7 +45,7 @@
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
-			"intensity": 0.1
+			"intensity": 0.2
 		},
 		{
 			"type": "light",
@@ -58,12 +58,6 @@
 			"radius": 5,
 			"origin": [0, 0, 0],
 			"color": [255, 255, 255]
-		},
-		{
-			"type": "light",
-			"origin": [0, 30, 0],
-			"color": [255, 0, 0],
-			"intensity": 1000
 		},
 		{
 			"type": "light",

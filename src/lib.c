@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 14:06:30 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/20 15:09:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,16 @@ void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 			camera_press_key(&event, data);
 		}
 		camera_event(data);
-		if (SDL_LockTexture(data->lib.texture, NULL
-					, (void **)&data->lib.view, &pitch) < 0)
-			break ;
-		draw_fn(data);
-		SDL_UnlockTexture(data->lib.texture);
-		SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);
-		SDL_RenderPresent(data->lib.renderer);
+		if (data->square_pixels_per_ray > 0)
+		{
+			if (SDL_LockTexture(data->lib.texture, NULL
+						, (void **)&data->lib.view, &pitch) < 0)
+				break ;
+			draw_fn(data);
+			SDL_UnlockTexture(data->lib.texture);
+			SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);
+			SDL_RenderPresent(data->lib.renderer);
+		}
 	}
 	data->running = 0;
 }

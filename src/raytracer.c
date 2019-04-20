@@ -43,23 +43,30 @@ static void			compute_light_color(t_data *data, t_ray_object *light
 		, t_ray_inf *ray_inf, t_ray_inf *light_ray)
 {
 	double	angle;
-	double	light_power;
 	t_color	light_color;
 	t_color	diffuse_color;
+	t_vec3d	reflect_vec;
+	double	light_specular;
 
 	if (light->type == RAYOBJ_AMBIENTLIGHT)
 	{
 		light_color = color_scale(light->color, light->intensity);
-		ray_inf->color = color_add(ray_inf->color
-				, color_mul(ray_inf->object->color, light_color));
+		ray_inf->color = color_add(ray_inf->color, color_mul(
+					ray_inf->object->color, light_color));
 	}
 	else if (!trace_ray(data, light_ray, 0))
 	{
 		angle = vec3d_dot_product(light_ray->normal, light_ray->direction);
-		if (angle >= .0)
+		if (angle > .0)
 		{
-			light_power = angle * (light->intensity / pow(light_ray->dist, 2));
-			light_color = color_scale(light->color, light_power);
+			reflect_vec = vec3d_sub(
+					vec3d_mul_by_scalar(light_ray->normal, 2 * angle)
+					, light_ray->direction);
+			light_specular = pow(-vec3d_dot_product(
+						reflect_vec, ray_inf->direction), 40);
+			light_color = color_scale(light->color, (light->intensity * angle
+						+ light->intensity * light_specular)
+					/ pow(light_ray->dist, 2));
 			diffuse_color = color_mul(ray_inf->object->color, light_color);
 			ray_inf->color = color_add(ray_inf->color, diffuse_color);
 		}

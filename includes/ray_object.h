@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:11:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 20:09:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/19 21:25:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
 # define RAYOBJ_LIGHT 2
+# define RAYOBJ_AMBIENTLIGHT 3
 
 typedef struct	s_ray_object
 {
@@ -28,6 +29,7 @@ typedef struct	s_ray_object
 	t_vec3d			rotation;
 	t_color			color;
 	double			radius;
+	double			intensity;
 }				t_ray_object;
 
 t_vec3d			get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect);

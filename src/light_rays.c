@@ -37,7 +37,7 @@ static void		compute_light_color(t_data *data, t_ray_object *light
 						light->color, light->intensity)));
 	else if (!has_object_in_ray(data, light_ray, light_ray->dist))
 	{
-		angle = vec3d_dot_product(light_ray->normal, light_ray->direction);
+		angle = vec3d_dot_product(ray_inf->normal, light_ray->direction);
 		if (angle > .0)
 			ray_inf->color = color_add(ray_inf->color, compute_shading_color(
 						light, ray_inf, light_ray, angle));
@@ -50,7 +50,6 @@ void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 	t_list			*cur;
 	t_ray_object	*light;
 
-	light_ray.normal = ray_inf->normal;
 	light_ray.origin = vec3d_add(ray_inf->intersect, vec3d_scalar(
 				ray_inf->normal, 1e-4));
 	cur = data->lights;

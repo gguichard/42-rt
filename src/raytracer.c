@@ -31,9 +31,9 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 	if (ray_inf->object != NULL)
 	{
-		ray_inf->intersect = vec3d_add(origin, vec3d_scalar(direction, ray_inf->dist));
+		direction = vec3d_scalar(direction, ray_inf->dist);
+		ray_inf->intersect = vec3d_add(ray_inf->origin, direction);
 		ray_inf->normal = get_intersect_normal(ray_inf->object, ray_inf->intersect);
-		ray_inf->intersect = vec3d_add(ray_inf->intersect, ray_inf->object->origin);
 	}
 }
 

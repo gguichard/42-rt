@@ -12,18 +12,33 @@
 			"color": [255, 255, 255]
 		},
 		{
+			"type": "cone",
+			"radius" : 0.1,
+			"origin" : [0, 50, 0],
+			"rotation" : [0, 0, 1],
+			"color" : [255, 255, 255]
+		},
+		{
+			"type": "ambient_light",
+			"origin": [3, 3, 0],
+			"color": [255, 0, 0],
+			"intensity" : 0.1
+		},
+		{
 			"type": "light",
 			"radius": 0.5,
-			"origin": [3, 3, 0],
+			"origin": [100, 100, 0],
 			"rotation": [0, 0, 0],
-			"color": [255, 0, 0]
+			"color": [255, 0, 0],
+			"intensity" : 10000
 		},
 		{
 			"type": "light",
 			"radius": 0.5,
 			"origin": [-3, 3, 0],
 			"rotation": [0, 0, 0],
-			"color": [0, 0, 255]
+			"color": [0, 0, 255],
+			"intensity" : 10000
 		}
 	]
 }

@@ -1,5 +1,6 @@
 {
 	"camera": {
-		"pos": [5.4, 12, "test"]
+		"origin": [0, 0, 0],
+		"direction": [0, 0, 0]
 	}
 }

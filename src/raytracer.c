@@ -29,12 +29,6 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 		}
 		cur = cur->next;
 	}
-	if (ray_inf->object != NULL)
-	{
-		direction = vec3d_scalar(direction, ray_inf->dist);
-		ray_inf->intersect = vec3d_add(ray_inf->origin, direction);
-		ray_inf->normal = get_intersect_normal(ray_inf->object, ray_inf->intersect);
-	}
 }
 
 static t_ray_inf	trace_one_ray(t_data *data, t_vec3d ray_dir)
@@ -48,11 +42,15 @@ static t_ray_inf	trace_one_ray(t_data *data, t_vec3d ray_dir)
 	trace_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)
 	{
+		ray_inf.intersect = vec3d_add(ray_inf.origin, vec3d_scalar(
+					ray_inf.direction, ray_inf.dist));
+		ray_inf.normal = get_intersect_normal(
+				ray_inf.object, ray_inf.intersect);
 		trace_light_rays(data, &ray_inf);
-		ray_inf.color = color_clamp(ray_inf.color);
 		ray_inf.color.r = pow(ray_inf.color.r, GAMMA_CORRECTION);
 		ray_inf.color.g = pow(ray_inf.color.g, GAMMA_CORRECTION);
 		ray_inf.color.b = pow(ray_inf.color.b, GAMMA_CORRECTION);
+		ray_inf.color = color_clamp(ray_inf.color);
 	}
 	return (ray_inf);
 }

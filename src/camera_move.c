@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   camera_move.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 09:50:23 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/19 14:09:43 by roduquen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 #include "quaternion.h"
 #include "camera.h"
 #include "vec3d.h"
 
-t_vec3d	rotate_by_quaternion(t_vec3d vec, t_vec3d rot_vec, double angle)
+t_vec3d		rotate_by_quaternion(t_vec3d vec, t_vec3d rot_vec, double angle)
 {
 	t_quaternion	quat_vec_dir;
 	t_quaternion	quat_rot_vec;

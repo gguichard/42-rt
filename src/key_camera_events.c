@@ -3,7 +3,6 @@
 #include "vec3d.h"
 #include "lib.h"
 #include "raytracer.h"
-#include<stdio.h>
 
 void		camera_event(t_data *data)
 {

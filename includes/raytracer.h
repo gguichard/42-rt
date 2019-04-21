@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/21 00:46:22 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/21 18:53:05 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_data
 
 t_vec3d			get_ray_dir(t_data *data, int x, int y);
 int				has_object_in_ray(t_data *data, t_ray_inf *ray_inf
-		, double max_dist);
+		, double max_dist_squared);
 
 void			trace_rays(t_data *data);
 void			trace_light_rays(t_data *data, t_ray_inf *ray_inf);

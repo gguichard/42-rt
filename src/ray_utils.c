@@ -20,7 +20,8 @@ t_vec3d	get_ray_dir(t_data *data, int x, int y)
 	return (vec3d_unit(dir));
 }
 
-int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf, double max_dist)
+int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
+		, double max_dist_squared)
 {
 	t_list			*cur;
 	t_ray_object	*obj;
@@ -35,7 +36,7 @@ int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf, double max_dist)
 		origin = vec3d_sub(ray_inf->origin, obj->origin);
 		direction = ray_inf->direction; // TODO: rotation
 		dist = get_intersect_dist(obj, origin, direction);
-		if (dist >= .0 && dist < max_dist)
+		if (dist >= .0 && (dist * dist) < max_dist_squared)
 			return (1);
 		cur = cur->next;
 	}

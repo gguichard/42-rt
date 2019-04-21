@@ -63,9 +63,9 @@
 		},
 		{
 			"type": "light",
-			"origin": [0, 100, 0],
+			"origin": [-50, 100, 0],
 			"color": [255, 255, 255],
-			"intensity": 1000
+			"intensity": 10000
 		}
 	]
 }

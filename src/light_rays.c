@@ -7,51 +7,53 @@
 #include "vec3d.h"
 #include "color.h"
 
-static t_color	compute_shading_color(t_ray_object *light, t_ray_inf *ray_inf
-		, t_ray_inf *light_ray, double angle)
+static t_color		compute_shading(t_ray_object *light, t_ray_inf *ray_inf
+		, t_ray_inf *light_ray, double cosine_angle)
 {
-	t_color	light_color;
-	t_vec3d	reflect_vec;
-	t_color	diffuse_color;
-	double	light_specular;
-	t_color	specular_color;
+	t_color	diffuse;
+	t_color	specular;
+	t_vec3d	reflection_dir;
+	double	shine_factor;
 
-	light_color = (t_color){.0, .0, .0};
-	reflect_vec = vec3d_sub(light_ray->direction, vec3d_scalar(
-				ray_inf->normal, 2 * angle));
-	if (angle > .0)
+	if (cosine_angle <= .0)
+		diffuse = (t_color){.0, .0, .0};
+	else
+		diffuse = color_scalar(color_mul(
+					light->color, ray_inf->object->color), cosine_angle);
+	specular = (t_color){.0, .0, .0};
+	if (cosine_angle >= .0)
 	{
-		diffuse_color = color_scalar(color_mul(
-					ray_inf->object->color, light->color), angle);
-		light_color = color_add(light_color, diffuse_color);
+		reflection_dir = vec3d_sub(vec3d_scalar(
+					light_ray->normal, 2 * cosine_angle), light_ray->direction);
+		shine_factor = -vec3d_dot_product(reflection_dir, ray_inf->direction);
+		if (shine_factor > 1)
+			shine_factor = 1;
+		if (shine_factor > 0)
+			specular = color_scalar(color_mul(
+						light->color, ray_inf->object->color), pow(
+							shine_factor, ray_inf->object->shininess)
+					* ray_inf->object->specular);
 	}
-	light_specular = vec3d_dot_product(reflect_vec, ray_inf->direction);
-	if (light_specular > 0)
-	{
-		light_specular = pow(light_specular, ray_inf->object->shininess)
-			* ray_inf->object->specular;
-		specular_color = color_scalar(light->color, light_specular);
-		light_color = color_add(light_color, specular_color);
-	}
-	light_color = color_scalar(light_color, light->intensity / pow(
-				light_ray->dist, 2));
-	return (light_color);
+	return (color_scalar(color_add(diffuse, specular)
+				, light->intensity / pow(light_ray->dist, 2)));
 }
 
 static void		compute_light_color(t_data *data, t_ray_object *light
 		, t_ray_inf *ray_inf, t_ray_inf *light_ray)
 {
-	double	angle;
+	double	cosine_angle;
 
 	if (light->type == RAYOBJ_AMBIENTLIGHT)
+	{
 		ray_inf->color = color_add(ray_inf->color, color_mul(
 					ray_inf->object->color, color_scalar(
 						light->color, light->intensity)));
+	}
 	else if (!has_object_in_ray(data, light_ray, light_ray->dist))
 	{
-		angle = vec3d_dot_product(ray_inf->normal, light_ray->direction);
-		ray_inf->color = color_add(ray_inf->color, compute_shading_color(
-					light, ray_inf, light_ray, angle));
+		cosine_angle = vec3d_dot_product(light_ray->normal, light_ray->direction);
+		ray_inf->color = color_add(ray_inf->color, compute_shading(
+					light, ray_inf, light_ray, cosine_angle));
 	}
 }
 
@@ -61,8 +63,9 @@ void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 	t_list			*cur;
 	t_ray_object	*light;
 
+	light_ray.normal = vec3d_unit(ray_inf->normal);
 	light_ray.origin = vec3d_add(ray_inf->intersect, vec3d_scalar(
-				ray_inf->normal, 1e-4));
+				light_ray.normal, 1e-4));
 	cur = data->lights;
 	while (cur != NULL)
 	{

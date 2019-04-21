@@ -1,0 +1,49 @@
+{
+	"camera": {
+		"origin": [0, 20, -20],
+		"direction": [0, 0, 1]
+	},
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.3
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 0],
+			"normal": [0, -1, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 0],
+			"normal": [0, 1, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "sphere",
+			"radius": 10,
+			"origin": [0, 20, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "sphere",
+			"radius": 10,
+			"origin": [10, 45, 0],
+			"color": [255, 255, 255]
+		},
+		{
+			"type": "light",
+			"origin": [100, 450, 0],
+			"color": [255, 0, 255],
+			"intensity": 15000
+		},
+		{
+			"type": "light",
+			"origin": [-40, 45, 0],
+			"color": [0, 255, 255],
+			"intensity": 300
+		}
+	]
+}

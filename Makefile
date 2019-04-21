@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/20 17:53:11 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/21 00:46:54 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ parser_utils.c			\
 error.c					\
 quaternion.c			\
 vec3d.c					\
+ray_utils.c				\
 raytracer.c				\
+light_rays.c			\
 camera_move.c			\
 key_camera_events.c		\
 intersects.c			\

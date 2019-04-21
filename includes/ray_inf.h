@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 19:08:26 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 20:12:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/20 23:57:24 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_ray_inf
 {
 	t_vec3d			origin;
 	t_vec3d			direction;
+	t_vec3d			intersect;
 	t_vec3d			normal;
 	t_ray_object	*object;
 	t_color			color;

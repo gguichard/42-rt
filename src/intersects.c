@@ -1,72 +1,71 @@
 #include <math.h>
 #include "ray_object.h"
-#include "ray_inf.h"
 #include "solver.h"
 #include "libft.h"
 #include "vec3d.h"
 
-t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
+static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
 {
-	if (ray_inf->object->type == RAYOBJ_SPHERE)
-		return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
-	if (ray_inf->object->type == RAYOBJ_PLANE)
-		return (vec3d_unit(ray_inf->origin));
-//	if (ray_inf->object->type == RAYOBJ_CYLINDER)
-		return (vec3d_unit(vec3d_sub(intersect, ray_inf->object->origin)));
+	double	denom;
+	t_vec3d	v;
+	double	distance;
+
+	denom = vec3d_dot_product(object->normal, direction);
+	if (fabs(denom) > 1e-6)
+	{
+		v = vec3d_sub(object->origin, origin);
+		distance = vec3d_dot_product(v, object->normal) / denom;
+		if (distance >= .0)
+			return (distance);
+	}
+	return (-1);
 }
 
-double	get_plane_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
+static double	get_sphere_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
 {
-	t_compute	calc;
-	t_vec3d		tmp;
+	double	a;
+	double	b;
+	double	c;
 
-	object->origin = vec3d_unit(object->origin);
-	if ((calc.tmp1 = vec3d_dot_product(object->origin, ray_inf->direction))
-		== 0)
-		return (-1);
-	calc.tmp2 = (vec3d_dot_product(object->origin, ray_inf->origin)
-		+ object->radius) / calc.tmp1;
-	calc.a = ray_inf->origin.x - calc.tmp2 * ray_inf->direction.x;
-	calc.b = ray_inf->origin.y - calc.tmp2 * ray_inf->direction.y;
-	calc.c = ray_inf->origin.z - calc.tmp2 * ray_inf->direction.z;
-	tmp = (t_vec3d){calc.a - ray_inf->origin.x, calc.b
-		- ray_inf->origin.y, calc.c - ray_inf->origin.z};
-	calc.tmp2 = vec3d_length(tmp);
-	if (calc.tmp2 == 0)
-		return (-1);
-	if ((calc.tmp1 = vec3d_length(vec3d_add(tmp, ray_inf->direction))) <= calc.tmp2)
-		return (-1);
-	if (calc.tmp1 < 1)
-		return (-1);
-	return (calc.tmp2);
+	a = vec3d_length_squared(direction);
+	b = 2 * vec3d_dot_product(origin, direction);
+	c = vec3d_length_squared(origin) - pow(object->radius, 2);
+	return (solve_quadratic_equation(a, b, c));
 }
 
-double	get_sphere_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
+static double	get_cylinder_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
 {
-	t_compute	calc;
+	double	a;
+	double	b;
+	double	c;
 
-	calc.tmp1 = ray_inf->origin.x - object->origin.x;
-	calc.tmp2 = ray_inf->origin.y - object->origin.y;
-	calc.tmp3 = ray_inf->origin.z - object->origin.z;
-	calc.a = pow(ray_inf->direction.x, 2) + pow(ray_inf->direction.y, 2)
-		+ pow(ray_inf->direction.z, 2);
-	calc.b = 2 * (ray_inf->direction.x * calc.tmp1
-			+ ray_inf->direction.y * calc.tmp2
-			+ ray_inf->direction.z * calc.tmp3);
-	calc.c = (pow(calc.tmp1, 2) + pow(calc.tmp2, 2) + pow(calc.tmp3, 2))
-		- pow(object->radius, 2);
-	return (solve_quadratic_equation(calc.a, calc.b, calc.c));
+	a = pow(direction.x, 2) + pow(direction.y, 2);
+	b = 2 * (direction.x * origin.x + direction.y * origin.y);
+	c = pow(origin.x, 2) + pow(origin.y, 2) - pow(object->radius, 2);
+	return (solve_quadratic_equation(a, b, c));
 }
 
-double	get_cylinder_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
+double			get_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
 {
-	t_compute	calc;
+	if (object->type == RAYOBJ_SPHERE)
+		return (get_sphere_intersect_dist(object, origin, direction));
+	else if (object->type == RAYOBJ_PLANE)
+		return (get_plane_intersect_dist(object, origin, direction));
+	else if (object->type == RAYOBJ_CYLINDER)
+		return (get_cylinder_intersect_dist(object, origin, direction));
+	else
+		return (-1);
+}
 
-	calc.tmp1 = ray_inf->origin.x - object->origin.x;
-	calc.tmp2 = ray_inf->origin.y - object->origin.y;
-	calc.a = pow(ray_inf->direction.x, 2) + pow(ray_inf->direction.y, 2);
-	calc.b = 2 * (ray_inf->direction.x * calc.tmp1
-		+ ray_inf->direction.y * calc.tmp2);
-	calc.c = (pow(calc.tmp1, 2) + pow(calc.tmp2, 2)) - pow(object->radius, 2);
-	return (solve_quadratic_equation(calc.a, calc.b, calc.c));
+t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect)
+{
+	if (object->type == RAYOBJ_PLANE)
+		intersect = vec3d_scalar(object->normal, -1);
+	else if (object->type == RAYOBJ_CYLINDER)
+		intersect.z = 0;
+	return (vec3d_unit(intersect));
 }

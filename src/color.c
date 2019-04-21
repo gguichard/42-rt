@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 20:02:01 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/19 20:44:01 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/21 03:22:45 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ t_color			color_mul(t_color color_a, t_color color_b)
 	return (new_color);
 }
 
-t_color			color_scale(t_color color, float scale)
+t_color			color_scalar(t_color color, float scalar)
 {
 	t_color	new_color;
 
-	new_color.r = color.r * scale;
-	new_color.g = color.g * scale;
-	new_color.b = color.b * scale;
+	new_color.r = color.r * scalar;
+	new_color.g = color.g * scalar;
+	new_color.b = color.b * scalar;
 	return (new_color);
 }

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/20 16:56:55 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/20 20:29:06 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 				obj.type = get_ray_object_type(child);
 			else if (ft_strequ(child->key, "origin"))
 				obj.origin = read_json_vec3d(child, err);
+			else if (ft_strequ(child->key, "normal"))
+				obj.normal = read_json_vec3d(child, err);
 			else if (ft_strequ(child->key, "rotation"))
 				obj.rotation = read_json_vec3d(child, err);
 			else if (ft_strequ(child->key, "color"))

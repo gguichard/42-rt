@@ -7,95 +7,33 @@
 #include "vec3d.h"
 #include "color.h"
 
-static int			trace_ray(t_data *data, t_ray_inf *ray_inf
-		, int force_closest_object)
+static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	t_list			*cur;
 	t_ray_object	*obj;
 	double			dist;
+	t_vec3d			origin;
+	t_vec3d			direction;
 
 	cur = data->objects;
 	while (cur != NULL)
 	{
 		obj = (t_ray_object *)cur->content;
-		dist = -1;
-		if (obj->type == RAYOBJ_SPHERE)
-			dist = get_sphere_intersect_dist(obj, ray_inf);
-		else if (obj->type == RAYOBJ_PLANE)
-			dist = get_plane_intersect_dist(obj, ray_inf);
-		else if (obj->type == RAYOBJ_CYLINDER)
-			dist = get_cylinder_intersect_dist(obj, ray_inf);
-		if (dist >= .0)
+		origin = vec3d_sub(ray_inf->origin, obj->origin);
+		direction = ray_inf->direction; // TODO: rotation
+		dist = get_intersect_dist(obj, origin, direction);
+		if (dist >= .0 && (ray_inf->object == NULL || dist < ray_inf->dist))
 		{
-			if (!force_closest_object && dist < ray_inf->dist)
-				return (1);
-			if (force_closest_object
-					&& (ray_inf->object == NULL || dist < ray_inf->dist))
-			{
-				ray_inf->object = obj;
-				ray_inf->dist = dist;
-			}
+			ray_inf->object = obj;
+			ray_inf->dist = dist;
 		}
 		cur = cur->next;
 	}
-	return (force_closest_object && ray_inf->object != NULL);
-}
-
-static void			compute_light_color(t_data *data, t_ray_object *light
-		, t_ray_inf *ray_inf, t_ray_inf *light_ray)
-{
-	double	angle;
-	t_color	light_color;
-	t_color	diffuse_color;
-	t_vec3d	reflect_vec;
-	double	light_specular;
-
-	if (light->type == RAYOBJ_AMBIENTLIGHT)
+	if (ray_inf->object != NULL)
 	{
-		light_color = color_scale(light->color, light->intensity);
-		ray_inf->color = color_add(ray_inf->color, color_mul(
-					ray_inf->object->color, light_color));
-	}
-	else if (!trace_ray(data, light_ray, 0))
-	{
-		angle = vec3d_dot_product(light_ray->normal, light_ray->direction);
-		if (angle > .0)
-		{
-			reflect_vec = vec3d_sub(
-					vec3d_mul_by_scalar(light_ray->normal, 2 * angle)
-					, light_ray->direction);
-			light_specular = pow(-vec3d_dot_product(
-						reflect_vec, ray_inf->direction), 40);
-			light_color = color_scale(light->color, (light->intensity * angle
-						+ light->intensity * light_specular)
-					/ pow(light_ray->dist, 2));
-			diffuse_color = color_mul(ray_inf->object->color, light_color);
-			ray_inf->color = color_add(ray_inf->color, diffuse_color);
-		}
-	}
-}
-
-static void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
-{
-	t_vec3d			origin;
-	t_ray_inf		light_ray;
-	t_list			*cur;
-	t_ray_object	*light;
-
-	origin = vec3d_add(ray_inf->origin
-			, vec3d_mul_by_scalar(ray_inf->direction, ray_inf->dist));
-	light_ray.normal = get_intersect_normal(ray_inf, origin);
-	light_ray.origin = vec3d_add(origin
-			, vec3d_mul_by_scalar(light_ray.normal, 1e-4));
-	cur = data->lights;
-	while (cur != NULL)
-	{
-		light = (t_ray_object *)cur->content;
-		light_ray.direction = vec3d_sub(light->origin, light_ray.origin);
-		light_ray.dist = vec3d_length(light_ray.direction);
-		light_ray.direction = vec3d_unit(light_ray.direction);
-		compute_light_color(data, light, ray_inf, &light_ray);
-		cur = cur->next;
+		ray_inf->intersect = vec3d_add(origin, vec3d_scalar(direction, ray_inf->dist));
+		ray_inf->normal = get_intersect_normal(ray_inf->object, ray_inf->intersect);
+		ray_inf->intersect = vec3d_add(ray_inf->intersect, ray_inf->object->origin);
 	}
 }
 
@@ -107,27 +45,16 @@ static t_ray_inf	trace_one_ray(t_data *data, t_vec3d ray_dir)
 	ray_inf.direction = ray_dir;
 	ray_inf.color = (t_color){.0, .0, .0};
 	ray_inf.object = NULL;
-	if (trace_ray(data, &ray_inf, 1))
+	trace_ray(data, &ray_inf);
+	if (ray_inf.object != NULL)
 	{
 		trace_light_rays(data, &ray_inf);
 		ray_inf.color = color_clamp(ray_inf.color);
+		ray_inf.color.r = pow(ray_inf.color.r, GAMMA_CORRECTION);
+		ray_inf.color.g = pow(ray_inf.color.g, GAMMA_CORRECTION);
+		ray_inf.color.b = pow(ray_inf.color.b, GAMMA_CORRECTION);
 	}
 	return (ray_inf);
-}
-
-static t_vec3d		get_ray_dir(t_data *data, int x, int y)
-{
-	double	pixel_x;
-	double	pixel_y;
-	t_vec3d	dir;
-
-	pixel_x = (2 * (x + .5) / data->winsize.width - 1) * data->camera.fov
-		* data->winsize.aspect_ratio;
-	pixel_y = (1 - 2 * (y + .5) / data->winsize.height) * data->camera.fov;
-	dir = vec3d_mul_by_scalar(data->camera.right, pixel_x);
-	dir = vec3d_add(dir, vec3d_mul_by_scalar(data->camera.up, pixel_y));
-	dir = vec3d_add(dir, data->camera.direction);
-	return (vec3d_unit(dir));
 }
 
 void				trace_rays(t_data *data)

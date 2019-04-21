@@ -6,18 +6,6 @@
 	},
 	"objects": [
 		{
-			"type": "ambient_light",
-			"origin": [0, 20, 0],
-			"color": [0, 255, 0],
-			"intensity": 1.0
-		},
-		{
-			"type": "light",
-			"origin": [0, 10, 0],
-			"color": [0, 0, 255],
-			"intensity": 1.0
-		},
-		{
 			"type": "sphere",
 			"radius": 5,
 			"origin": [0, 0, 5],
@@ -26,17 +14,10 @@
 		},
 		{
 			"type": "sphere",
-			"radius": 7.5,
-			"origin": [15, 50, 15],
+			"radius": 5,
+			"origin": [0, 15, -15],
 			"rotation": [45, 90, 0],
-			"color": [0, 0, 255]
-		},
-		{
-			"type": "sphere",
-			"radius": 7.5,
-			"origin": [-15, 0, -15],
-			"rotation": [45, 90, 0],
-			"color": [255, 0, 0]
+			"color": [255, 255, 255]
 		}
 	]
 }

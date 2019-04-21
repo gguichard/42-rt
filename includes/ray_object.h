@@ -20,6 +20,8 @@ typedef struct	s_ray_object
 	t_color			color;
 	double			radius;
 	double			intensity;
+	double			specular;
+	double			shininess;
 }				t_ray_object;
 
 double			get_intersect_dist(t_ray_object *object, t_vec3d origin

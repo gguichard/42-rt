@@ -19,13 +19,17 @@
 			"type": "sphere",
 			"radius": 10,
 			"origin": [0, 20, 0],
-			"color": [255, 255, 255]
+			"color": [255, 255, 255],
+			"specular": 1.0,
+			"shininess": 8
 		},
 		{
 			"type": "sphere",
 			"radius": 10,
 			"origin": [10, 45, 0],
-			"color": [255, 255, 255]
+			"color": [255, 255, 255],
+			"specular": 1.0,
+			"shininess": 8
 		},
 		{
 			"type": "light",

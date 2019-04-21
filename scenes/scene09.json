@@ -31,7 +31,9 @@
 			"type": "sphere",
 			"radius": 10,
 			"origin": [0, 20, 0],
-			"color": [230, 30, 30]
+			"color": [230, 30, 30],
+			"shininess": 64,
+			"specular": 0.3
 		},
 		{
 			"type": "cylinder",

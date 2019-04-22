@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/21 18:53:05 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 00:33:26 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "ray_inf.h"
 # include "vec3d.h"
 
+# define NEAR_PLANE_CLIPPING 1e-4
+# define SHADOW_BIAS 1e-4
 # define GAMMA_CORRECTION .45454545454
 
 typedef struct	s_data

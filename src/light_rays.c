@@ -24,7 +24,7 @@ static t_color	compute_shading(t_ray_object *light, t_ray_inf *ray_inf
 	{
 		reflection_dir = vec3d_sub(light_ray->direction, vec3d_scalar(
 					light_ray->normal, 2 * cosine_angle));
-		shine_factor = vec3d_dot_product(reflection_dir, ray_inf->direction);
+		shine_factor = vec3d_dot(reflection_dir, ray_inf->direction);
 		shine_factor = (shine_factor > 1 ? 1 : shine_factor);
 		if (shine_factor > 0)
 			specular = color_scalar(color_mul(
@@ -50,8 +50,7 @@ static void		compute_light_color(t_data *data, t_ray_object *light
 	}
 	else if (!has_object_in_ray(data, light_ray, light_ray->dist))
 	{
-		cosine_angle = vec3d_dot_product(
-				light_ray->direction, light_ray->normal);
+		cosine_angle = vec3d_dot(light_ray->direction, light_ray->normal);
 		ray_inf->color = color_add(ray_inf->color, compute_shading(
 					light, ray_inf, light_ray, cosine_angle));
 	}
@@ -63,15 +62,15 @@ void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 	t_list			*cur;
 	t_ray_object	*light;
 
-	light_ray.normal = vec3d_unit(ray_inf->normal);
+	light_ray.normal = ray_inf->normal;
 	light_ray.origin = vec3d_add(ray_inf->intersect, vec3d_scalar(
-				light_ray.normal, 1e-4));
+				light_ray.normal, SHADOW_BIAS));
 	cur = data->lights;
 	while (cur != NULL)
 	{
 		light = (t_ray_object *)cur->content;
 		light_ray.direction = vec3d_sub(light->origin, light_ray.origin);
-		light_ray.dist = vec3d_length_squared(light_ray.direction);
+		light_ray.dist = vec3d_length2(light_ray.direction);
 		if (light_ray.dist > 0)
 		{
 			light_ray.direction = vec3d_unit(light_ray.direction);

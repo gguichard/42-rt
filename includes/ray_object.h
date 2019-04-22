@@ -11,21 +11,28 @@
 # define RAYOBJ_LIGHT 4
 # define RAYOBJ_AMBIENTLIGHT 5
 
-typedef struct	s_ray_object
+typedef struct		s_obj_rotation
+{
+	t_vec3d			vector;
+	double			angle;
+}					t_obj_rotation;
+
+typedef struct		s_ray_object
 {
 	int				type;
 	t_vec3d			origin;
-	t_vec3d			rotation;
 	t_vec3d			normal;
 	t_color			color;
+	t_obj_rotation	rotation;
 	double			radius;
 	double			intensity;
 	double			specular;
 	double			shininess;
-}				t_ray_object;
+}					t_ray_object;
 
-double			get_intersect_dist(t_ray_object *object, t_vec3d origin
+double				get_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction);
-t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect);
+t_vec3d				get_intersect_normal(t_ray_object *object
+		, t_vec3d intersect);
 
 #endif

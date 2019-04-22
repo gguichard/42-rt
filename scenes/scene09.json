@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 40, 0],
+		"origin": [0, 40, -90],
 		"direction": [0, 0, 1]
 	},
 	"objects": [
@@ -17,7 +17,7 @@
 		},
 		{
 			"type": "plane",
-			"origin": [0, 100, 0],
+			"origin": [0, 50, 0],
 			"normal": [0, 1, 0],
 			"color": [30, 30, 30]
 		},
@@ -38,34 +38,99 @@
 		{
 			"type": "cylinder",
 			"radius": 15,
-			"origin": [-40, 0, -10],
+			"origin": [-60, 0, -10],
 			"rotation": [-90, 0, 0],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 1.5708
+			}
 		},
 		{
 			"type": "cylinder",
 			"radius": 15,
-			"origin": [40, 0, -10],
+			"origin": [60, 0, -10],
 			"rotation": [-90, 0, 0],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 1.5708
+			}
 		},
 		{
 			"type": "cylinder",
 			"radius": 15,
-			"origin": [-40, 0, 110],
+			"origin": [-60, 0, 110],
 			"rotation": [-90, 0, 0],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 1.5708
+			}
 		},
 		{
 			"type": "cylinder",
 			"radius": 15,
-			"origin": [40, 0, 110],
+			"origin": [60, 0, 110],
 			"rotation": [-90, 0, 0],
+			"color": [160, 160, 160],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 1.5708
+			}
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [-60, 0, -10],
 			"color": [160, 160, 160]
 		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [60, 0, -10],
+			"color": [160, 160, 160]
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [-60, 0, 110],
+			"color": [160, 160, 160]
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [60, 0, 110],
+			"color": [160, 160, 160]
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [-60, 100, -10],
+			"color": [160, 160, 160]
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [60, 100, -10],
+			"color": [160, 160, 160]
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [-60, 100, 110],
+			"color": [160, 160, 160]
+		},
+		{
+			"type": "sphere",
+			"radius": 25,
+			"origin": [60, 100, 110],
+			"color": [160, 160, 160]
+		},
+
 		{
 			"type": "light",
-			"origin": [-50, 100, 0],
+			"origin": [0, 90, 0],
 			"color": [255, 255, 255],
 			"intensity": 10000
 		}

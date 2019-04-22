@@ -3,6 +3,7 @@
 #include "raytracer.h"
 #include "ray_inf.h"
 #include "ray_object.h"
+#include "quaternion.h"
 #include "vec3d.h"
 
 t_vec3d	get_ray_dir(t_data *data, int x, int y)
@@ -13,7 +14,7 @@ t_vec3d	get_ray_dir(t_data *data, int x, int y)
 
 	pixel_x = (2 * (x + .5) / data->winsize.width - 1) * data->camera.fov
 		* data->winsize.aspect_ratio;
-	pixel_y = (1 - 2 * (y + .5) / data->winsize.height) * data->camera.fov;
+	pixel_y = (1 - (2 * (y + .5) / data->winsize.height)) * data->camera.fov;
 	dir = vec3d_scalar(data->camera.right, pixel_x);
 	dir = vec3d_add(dir, vec3d_scalar(data->camera.up, pixel_y));
 	dir = vec3d_add(dir, data->camera.direction);
@@ -34,9 +35,13 @@ int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 	{
 		obj = (t_ray_object *)cur->content;
 		origin = vec3d_sub(ray_inf->origin, obj->origin);
-		direction = ray_inf->direction; // TODO: rotation
+		origin = rotate_by_quaternion(origin
+				, obj->rotation.vector, -obj->rotation.angle);
+		direction = rotate_by_quaternion(ray_inf->direction
+				, obj->rotation.vector, -obj->rotation.angle);
+		direction = vec3d_unit(direction);
 		dist = get_intersect_dist(obj, origin, direction);
-		if (dist >= .0 && (dist * dist) < max_dist_squared)
+		if (dist > NEAR_PLANE_CLIPPING && (dist * dist) < max_dist_squared)
 			return (1);
 		cur = cur->next;
 	}

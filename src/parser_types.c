@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/21 06:41:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 00:23:45 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,30 @@ t_error				setup_camera_properties(t_data *data, t_json_token *token)
 		child = child->next;
 	}
 	return (err);
+}
+
+static t_obj_rotation	parse_obj_rotation(t_json_token *token, t_error *err)
+{
+	t_obj_rotation	rot;
+	t_json_token	*child;
+
+	ft_memset(&rot, 0, sizeof(t_obj_rotation));
+	if (token->type != JSON_OBJECT)
+		*err = ERR_SCENEBADFORMAT;
+	else
+	{
+		*err = ERR_NOERROR;
+		child = token->value.child;
+		while (*err == ERR_NOERROR && child != NULL)
+		{
+			if (ft_strequ(child->key, "vector"))
+				rot.vector = read_json_vec3d(child, err);
+			else if (ft_strequ(child->key, "angle"))
+				rot.angle = read_json_double(child, err);
+			child = child->next;
+		}
+	}
+	return (rot);
 }
 
 static int			get_ray_object_type(t_json_token *token)
@@ -79,7 +103,7 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 			else if (ft_strequ(child->key, "normal"))
 				obj.normal = read_json_vec3d(child, err);
 			else if (ft_strequ(child->key, "rotation"))
-				obj.rotation = read_json_vec3d(child, err);
+				obj.rotation = parse_obj_rotation(child, err);
 			else if (ft_strequ(child->key, "color"))
 				obj.color = read_json_color(child, err);
 			else if (ft_strequ(child->key, "radius"))

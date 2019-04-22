@@ -11,11 +11,11 @@ static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 	t_vec3d	v;
 	double	distance;
 
-	denom = vec3d_dot_product(object->normal, direction);
+	denom = vec3d_dot(object->normal, direction);
 	if (fabs(denom) > 1e-6)
 	{
 		v = vec3d_sub(object->origin, origin);
-		distance = vec3d_dot_product(v, object->normal) / denom;
+		distance = vec3d_dot(v, object->normal) / denom;
 		if (distance >= .0)
 			return (distance);
 	}
@@ -29,9 +29,9 @@ static double	get_sphere_intersect_dist(t_ray_object *object, t_vec3d origin
 	double	b;
 	double	c;
 
-	a = vec3d_length_squared(direction);
-	b = 2 * vec3d_dot_product(origin, direction);
-	c = vec3d_length_squared(origin) - pow(object->radius, 2);
+	a = vec3d_length2(direction);
+	b = 2 * vec3d_dot(origin, direction);
+	c = vec3d_length2(origin) - pow(object->radius, 2);
 	return (solve_quadratic_equation(a, b, c));
 }
 
@@ -63,9 +63,9 @@ double			get_intersect_dist(t_ray_object *object, t_vec3d origin
 
 t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 {
-	if (object->type == RAYOBJ_SPHERE || object->type == RAYOBJ_CYLINDER)
-		intersect = vec3d_sub(intersect, object->origin);
-	else if (object->type == RAYOBJ_PLANE)
+	//if (object->type == RAYOBJ_SPHERE || object->type == RAYOBJ_CYLINDER)
+	//	intersect = intersect;
+	if (object->type == RAYOBJ_PLANE)
 		intersect = vec3d_scalar(object->normal, -1);
 	if (object->type == RAYOBJ_CYLINDER)
 		intersect.z = 0;

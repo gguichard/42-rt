@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 23:11:17 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 23:51:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static t_error		parse_object_property(t_json_token *child
 		object->type = get_ray_object_type(child);
 	else if (ft_strequ(child->key, "origin"))
 		object->origin = read_json_vec3d(child, &err);
-	else if (ft_strequ(child->key, "rotation"))
-		object->rotation = parse_ray_object_rotation(child, &err);
 	else if (ft_strequ(child->key, "color"))
 		object->color = read_json_color(child, &err);
 	else if (ft_strequ(child->key, "radius"))
@@ -67,6 +65,10 @@ static t_error		parse_object_property(t_json_token *child
 		object->specular = read_json_double(child, &err);
 	else if (ft_strequ(child->key, "shininess"))
 		object->shininess = read_json_double(child, &err);
+	else if (ft_strequ(child->key, "rotation"))
+		err = parse_ray_object_rotation(child, &object->rotation);
+	else if (ft_strequ(child->key, "vertices"))
+		err = parse_ray_object_vertices(child, object->vertices);
 	return (err);
 }
 

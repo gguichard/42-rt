@@ -1,5 +1,6 @@
 #include <math.h>
 #include "vec3d.h"
+#include <stdio.h>
 
 double			solve_quadratic_equation(double a, double b, double c)
 {
@@ -27,11 +28,11 @@ double			solve_quadratic_equation(double a, double b, double c)
 
 static double	choose_min_positive(double a, double b)
 {
-	if (a <= 0 && b <= 0)
+	if (a < 0 && b < 0)
 		return (-1);
-	else if (a <= 0)
+	else if (a < 0)
 		return (b);
-	else if (b <= 0)
+	else if (b < 0)
 		return (a);
 	else
 		return (a > b ? b : a);
@@ -105,7 +106,7 @@ double			solve_four_degrees_equation(t_vec3d abc, double d, double e)
 	else if (tmp[2].x == 0.0)
 		tmp[2].z = 3.0 * (tmp[1].y / tmp[1].z);
 	else
-		tmp[2].z = 2.0 * sqrt(-(tmp[1].z / 3.0)) * cos(acos(-(tmp[1].y /
-							(2.0 * pow(-(tmp[1].z / 3.0) / 3.0, 3.0 / 2.0)))));
+		tmp[2].z = 2.0 * sqrt(-(tmp[1].z / 3.0)) * cos(1.0 / 3.0 * acos(-(tmp[1].y /
+							(2.0 * pow(-(tmp[1].z / 3.0), 3.0 / 2.0)))));
 	return (solve_four_degrees_equation2(abc, tmp));
 }

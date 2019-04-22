@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 02:11:08 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/22 17:44:30 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 				obj.color = read_json_color(child, err);
 			else if (ft_strequ(child->key, "radius"))
 				obj.radius = read_json_double(child, err);
-			else if (ft_strequ(child->key, "big radius"))
+			else if (ft_strequ(child->key, "big_radius"))
 				obj.big_radius = read_json_double(child, err);
 			else if (ft_strequ(child->key, "intensity"))
 				obj.intensity = read_json_double(child, err);

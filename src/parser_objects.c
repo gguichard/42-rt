@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 05:14:40 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 18:58:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
 				obj.specular = read_json_double(child, err);
 			else if (ft_strequ(child->key, "shininess"))
 				obj.shininess = read_json_double(child, err);
+			else if (ft_strequ(child->key, "length"))
+				obj.length = read_json_double(child, err);
 			child = child->next;
 		}
 		if (obj.type == RAYOBJ_UNKNOWN)

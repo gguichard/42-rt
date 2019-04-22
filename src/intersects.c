@@ -22,42 +22,61 @@ static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 static double	get_cone_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction)
 {
+	t_quad	quad;
 	double	cos_r2;
-	double	a;
-	double	b;
-	double	c;
 
 	cos_r2 = pow(cos(object->radius), 2);
-	a = pow(direction.z, 2) - cos_r2;
-	b = 2 * (direction.z * origin.z - vec3d_dot(direction, origin) * cos_r2);
-	c = pow(origin.z, 2) - vec3d_length2(origin) * cos_r2;
-	return (solve_quadratic_equation(a, b, c));
+	quad.a = pow(direction.z, 2) - cos_r2;
+	quad.b = 2 * (direction.z * origin.z - vec3d_dot(direction, origin)
+			* cos_r2);
+	quad.c = pow(origin.z, 2) - vec3d_length2(origin) * cos_r2;
+	return (solve_quadratic_equation(&quad));
 }
 
 static double	get_sphere_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction)
 {
-	double	a;
-	double	b;
-	double	c;
+	t_quad	quad;
 
-	a = vec3d_length2(direction);
-	b = 2 * vec3d_dot(origin, direction);
-	c = vec3d_length2(origin) - pow(object->radius, 2);
-	return (solve_quadratic_equation(a, b, c));
+	quad.a = vec3d_length2(direction);
+	quad.b = 2 * vec3d_dot(origin, direction);
+	quad.c = vec3d_length2(origin) - pow(object->radius, 2);
+	return (solve_quadratic_equation(&quad));
 }
 
 static double	get_cylinder_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction)
 {
-	double	a;
-	double	b;
-	double	c;
+	t_quad	quad;
+	double	t_min;
+	/*double	z1;
+	  double	z2;
+	  double	tmp;*/
 
-	a = pow(direction.x, 2) + pow(direction.y, 2);
-	b = 2 * (direction.x * origin.x + direction.y * origin.y);
-	c = pow(origin.x, 2) + pow(origin.y, 2) - pow(object->radius, 2);
-	return (solve_quadratic_equation(a, b, c));
+	quad.a = pow(direction.x, 2) + pow(direction.y, 2);
+	quad.b = 2 * (direction.x * origin.x + direction.y * origin.y);
+	quad.c = pow(origin.x, 2) + pow(origin.y, 2) - pow(object->radius, 2);
+	t_min = solve_quadratic_equation(&quad);
+	/*if (t_min < 0)
+	  return (-1);
+	  else if (object->length != 0)
+	  {
+	  if (quad.t1 > quad.t2)
+	  {
+	  tmp = quad.t1;
+	  quad.t1 = quad.t2;
+	  quad.t2 = tmp;
+	  }
+	  z1 = origin.z + quad.t1 * direction.z;
+	  z2 = origin.z + quad.t2 * direction.z;
+	  if ((z1 < 0 && z2 < 0) || (z1 > object->length && z2 > object->length))
+	  return (-1);
+	  else if (z1 < 0 && z2 >= 0)
+	  return (quad.t1 + (quad.t2 - quad.t1) * z1 / (z1 - z2));
+	  else if (z1 > object->length && z2 <= object->length)
+	  return (quad.t1 + (quad.t2 - quad.t1) * (z1 - object->length) / (z1 - z2));
+	  }*/
+	return (t_min);
 }
 
 double			get_intersect_dist(t_ray_object *object, t_vec3d origin

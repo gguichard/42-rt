@@ -28,6 +28,7 @@ typedef struct		s_ray_object
 	double			intensity;
 	double			specular;
 	double			shininess;
+	double			length;
 }					t_ray_object;
 
 double				get_intersect_dist(t_ray_object *object, t_vec3d origin

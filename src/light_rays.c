@@ -33,8 +33,8 @@ static t_color	compute_shading(t_ray_object *light, t_ray_inf *ray_inf
 					* (ray_inf->object->shininess + 2)
 					/ (2 * M_PI) * ray_inf->object->specular);
 	}
-	return (color_scalar(color_add(
-					diffuse, specular), light->intensity / light_ray->dist));
+	return (color_scalar(color_add(diffuse, specular), light->intensity
+				/ (M_PI * light_ray->dist)));
 }
 
 static void		compute_light_color(t_data *data, t_ray_object *light

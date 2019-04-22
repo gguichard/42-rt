@@ -4,6 +4,26 @@
 #include "lib.h"
 #include "raytracer.h"
 
+static void	camera_event_translate(t_data *data)
+{
+	if (data->lib.cam_keys & CAMERA_TR_LEFT)
+		data->camera.origin = vec3d_sub(data->camera.origin
+				, data->camera.right);
+	if (data->lib.cam_keys & CAMERA_TR_RIGHT)
+		data->camera.origin = vec3d_add(data->camera.origin
+				, data->camera.right);
+	if (data->lib.cam_keys & CAMERA_TR_FRONT)
+		data->camera.origin = vec3d_add(data->camera.origin
+				, data->camera.direction);
+	if (data->lib.cam_keys & CAMERA_TR_BACK)
+		data->camera.origin = vec3d_sub(data->camera.origin
+				, data->camera.direction);
+	if (data->lib.cam_keys & CAMERA_TR_UP)
+		data->camera.origin.y -= 1;
+	if (data->lib.cam_keys & CAMERA_TR_DOWN)
+		data->camera.origin.y += 1;
+}
+
 void		camera_event(t_data *data)
 {
 	if (data->lib.cam_keys == 0 && data->square_pixels_per_ray > 0)
@@ -18,18 +38,7 @@ void		camera_event(t_data *data)
 		rotate_camera(&data->camera, data->camera.right, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_UP)
 		rotate_camera(&data->camera, data->camera.right, -1 * M_PI / 90);
-	if (data->lib.cam_keys & CAMERA_TR_LEFT)
-		data->camera.origin = vec3d_sub(data->camera.origin, data->camera.right);
-	if (data->lib.cam_keys & CAMERA_TR_RIGHT)
-		data->camera.origin = vec3d_add(data->camera.origin, data->camera.right);
-	if (data->lib.cam_keys & CAMERA_TR_FRONT)
-		data->camera.origin = vec3d_add(data->camera.origin, data->camera.direction);
-	if (data->lib.cam_keys & CAMERA_TR_BACK)
-		data->camera.origin = vec3d_sub(data->camera.origin, data->camera.direction);
-	if (data->lib.cam_keys & CAMERA_TR_UP)
-		data->camera.origin.y -= 1;
-	if (data->lib.cam_keys & CAMERA_TR_DOWN)
-		data->camera.origin.y += 1;
+	camera_event_translate(data);
 }
 
 static void	camera_release_key(SDL_Event *event, t_data *data)

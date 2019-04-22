@@ -49,7 +49,8 @@ static double	result_quartic_equation(t_vec3d tmp[8])
 		tmp[7].x = -1.0;
 		tmp[7].y = -1.0;
 	}
-	return (choose_min_positive(tmp[5].y, choose_min_positive(tmp[5].z, choose_min_positive(tmp[7].x, tmp[7].y))));
+	return (choose_min_positive(tmp[5].y, choose_min_positive(tmp[5].z
+				, choose_min_positive(tmp[7].x, tmp[7].y))));
 }
 
 static double	solve_quartic_equation2(t_quartic *quartic, t_vec3d tmp[8])
@@ -84,9 +85,13 @@ double			solve_quartic_equation(t_quartic *quartic)
 
 	tmp[0].x = quartic->b / (2.0 * quartic->a);
 	tmp[0].y = (quartic->c / quartic->a) - ((3.0 * pow(tmp[0].x, 2.0)) / 2.0);
-	tmp[0].z = (quartic->d / quartic->a) + pow(tmp[0].x, 3.0) - (quartic->c * tmp[0].x) / quartic->a;
-	tmp[1].x = (quartic->e / quartic->a) - 3.0 * pow((tmp[0].x / 2.0), 4.0) + (quartic->c / quartic->a) * pow((tmp[0].x / 2.0), 2.0) - (quartic->d / quartic->a) * (tmp[0].x / 2.0);
-	tmp[1].y = -2.0 * pow((tmp[0].y / 3.0), 3.0) - pow(tmp[0].z, 2.0) + (8.0 / 3.0) * tmp[0].y * tmp[1].x;
+	tmp[0].z = (quartic->d / quartic->a) + pow(tmp[0].x, 3.0)
+		- (quartic->c * tmp[0].x) / quartic->a;
+	tmp[1].x = (quartic->e / quartic->a) - 3.0 * pow((tmp[0].x / 2.0), 4.0)
+		+ (quartic->c / quartic->a) * pow((tmp[0].x / 2.0), 2.0)
+		- (quartic->d / quartic->a) * (tmp[0].x / 2.0);
+	tmp[1].y = -2.0 * pow((tmp[0].y / 3.0), 3.0) - pow(tmp[0].z, 2.0)
+		+ (8.0 / 3.0) * tmp[0].y * tmp[1].x;
 	tmp[1].z = -(pow(tmp[0].y, 2.0) / 3.0) - 4.0 * tmp[1].x;
 	tmp[2].x = pow((tmp[1].z / 3.0), 3.0) + pow((tmp[1].y / 2.0), 2.0);
 	if (tmp[2].x > 0.0)
@@ -97,6 +102,8 @@ double			solve_quartic_equation(t_quartic *quartic)
 	else if (tmp[2].x == 0.0)
 		tmp[2].z = 3.0 * (tmp[1].y / tmp[1].z);
 	else
-		tmp[2].z = 2.0 * sqrt(-(tmp[1].z / 3.0)) * cos(1.0 / 3.0 * acos(-(tmp[1].y / (2.0 * pow(-(tmp[1].z / 3.0), 3.0 / 2.0)))));
+		tmp[2].z = 2.0 * sqrt(-(tmp[1].z / 3.0)) * cos(1.0 / 3.0
+				* acos(-(tmp[1].y / (2.0 * pow(-(tmp[1].z / 3.0)
+								, 3.0 / 2.0)))));
 	return (solve_quartic_equation2(quartic, tmp));
 }

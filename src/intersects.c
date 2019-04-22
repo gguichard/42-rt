@@ -48,9 +48,12 @@ static double	get_torus_intersect_dist(t_ray_object *object, t_vec3d origin
 	tmp[2] = tmp[0] + tmp[1];
 	quartic.a = pow(quartic.tmp1, 2);
 	quartic.b = 4 * quartic.tmp1 * quartic.tmp2;
-	quartic.c = 2 * quartic.tmp1 * (quartic.tmp3 - tmp[2]) + 4 * pow(quartic.tmp2, 2) + 4 * tmp[0] * pow(direction.y, 2);
-	quartic.d = 4 * (quartic.tmp3 - tmp[2]) * quartic.tmp2 + 8 * tmp[0] * (origin.y * direction.y);
-	quartic.e = pow(quartic.tmp3 - tmp[2], 2) - 4 * tmp[0] * (tmp[1] - pow(origin.y, 2));
+	quartic.c = 2 * quartic.tmp1 * (quartic.tmp3 - tmp[2]) + 4
+		* pow(quartic.tmp2, 2) + 4 * tmp[0] * pow(direction.y, 2);
+	quartic.d = 4 * (quartic.tmp3 - tmp[2]) * quartic.tmp2 + 8 * tmp[0]
+		* (origin.y * direction.y);
+	quartic.e = pow(quartic.tmp3 - tmp[2], 2) - 4 * tmp[0]
+		* (tmp[1] - pow(origin.y, 2));
 	return (solve_quartic_equation(&quartic));
 }
 

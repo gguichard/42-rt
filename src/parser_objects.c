@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 19:58:52 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 21:45:53 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "error.h"
 #include "ray_object.h"
 
-static int		get_ray_object_type(t_json_token *token)
+static int			get_ray_object_type(t_json_token *token)
 {
 	int	type;
 

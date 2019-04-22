@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread.h                                           :+:      :+:    :+:   */
+/*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/22 05:27:04 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 21:44:46 by gguichar         ###   ########.fr       */
+/*   Created: 2019/04/22 21:37:56 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/22 21:38:02 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef THREAD_H
-# define THREAD_H
+#include "color.h"
 
-# include <pthread.h>
-# include "vec3d.h"
-
-# define MAX_THREADS 4
-
-typedef struct s_data	t_data;
-
-typedef struct	s_thread
+unsigned int	color_get_rgb(t_color color)
 {
-	pthread_t	id;
-	int			y_offset;
-	int			height;
-	t_data		*data;
-}				t_thread;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 
-#endif
+	r = color.r * 255;
+	g = color.g * 255;
+	b = color.b * 255;
+	return ((r << 16) | (g << 8) | b);
+}

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/22 21:47:18 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/22 21:52:21 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ light_rays.c			\
 camera_move.c			\
 key_camera_events.c		\
 intersects.c			\
+intersects_shapes.c		\
 color.c					\
+color_utils.c			\
 solver.c
 
 OBJ_DIR		=	.obj

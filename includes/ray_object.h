@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/22 21:42:40 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/22 21:49:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ typedef struct		s_ray_object
 	double			shininess;
 	double			length;
 }					t_ray_object;
+
+double				get_plane_intersect_dist(t_ray_object *object
+		, t_vec3d origin, t_vec3d direction);
+double				get_cone_intersect_dist(t_ray_object *object
+		, t_vec3d origin, t_vec3d direction);
+double				get_torus_intersect_dist(t_ray_object *object
+		, t_vec3d origin, t_vec3d direction);
+double				get_sphere_intersect_dist(t_ray_object *object
+		, t_vec3d origin, t_vec3d direction);
+double				get_cylinder_intersect_dist(t_ray_object *object
+		, t_vec3d origin, t_vec3d direction);
 
 double				get_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction);

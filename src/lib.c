@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 07:30:45 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 21:54:39 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,23 @@ t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
 	return (err);
 }
 
+static void	draw_texture(t_data *data, void (*draw_fn)(t_data *))
+{
+	int	pitch;
+
+	if (SDL_LockTexture(data->lib.texture, NULL
+				, (void **)&data->lib.view, &pitch) == 0)
+	{
+		draw_fn(data);
+		SDL_UnlockTexture(data->lib.texture);
+		SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);
+		SDL_RenderPresent(data->lib.renderer);
+	}
+}
+
 void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 {
 	SDL_Event	event;
-	int			pitch;
 
 	data->running = 1;
 	while (data->running)
@@ -80,13 +93,7 @@ void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 		camera_event(data);
 		if (data->square_pixels_per_ray > 0)
 		{
-			if (SDL_LockTexture(data->lib.texture, NULL
-						, (void **)&data->lib.view, &pitch) < 0)
-				break ;
-			draw_fn(data);
-			SDL_UnlockTexture(data->lib.texture);
-			SDL_RenderCopy(data->lib.renderer, data->lib.texture, NULL, NULL);
-			SDL_RenderPresent(data->lib.renderer);
+			draw_texture(data, draw_fn);
 			usleep(1666);
 		}
 	}

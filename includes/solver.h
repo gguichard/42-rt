@@ -1,6 +1,8 @@
 #ifndef SOLVER_H
 # define SOLVER_H
 
+# include "vec3d.h"
+
 typedef struct	s_quad
 {
 	double		a;
@@ -11,10 +13,23 @@ typedef struct	s_quad
 	double		t2;
 }				t_quad;
 
+typedef struct	s_quartic
+{
+	double		a;
+	double		b;
+	double		c;
+	double		d;
+	double		e;
+	double		tmp1;
+	double		tmp2;
+	double		tmp3;
+}				t_quartic;
+
 /*
 ** PROTOTYPES
 */
 
 double			solve_quadratic_equation(t_quad *quad);
+double			solve_quartic_equation(t_quartic *quartic);
 
 #endif

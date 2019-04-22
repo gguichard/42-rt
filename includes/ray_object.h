@@ -9,8 +9,9 @@
 # define RAYOBJ_PLANE 2
 # define RAYOBJ_CYLINDER 3
 # define RAYOBJ_CONE 4
-# define RAYOBJ_LIGHT 5
-# define RAYOBJ_AMBIENTLIGHT 6
+# define RAYOBJ_TORUS 5
+# define RAYOBJ_LIGHT 6
+# define RAYOBJ_AMBIENTLIGHT 7
 
 typedef struct		s_obj_rotation
 {
@@ -25,6 +26,7 @@ typedef struct		s_ray_object
 	t_color			color;
 	t_obj_rotation	rotation;
 	double			radius;
+	double			big_radius;
 	double			intensity;
 	double			specular;
 	double			shininess;

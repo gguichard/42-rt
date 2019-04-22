@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/22 03:55:59 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/22 21:47:18 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ parser_types.c			\
 parser_utils.c			\
 error.c					\
 quaternion.c			\
+quaternion_2.c			\
 vec3d.c					\
 vec3d_2.c				\
 ray_utils.c				\

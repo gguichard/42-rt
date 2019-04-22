@@ -8,8 +8,9 @@
 # define RAYOBJ_SPHERE 1
 # define RAYOBJ_PLANE 2
 # define RAYOBJ_CYLINDER 3
-# define RAYOBJ_LIGHT 4
-# define RAYOBJ_AMBIENTLIGHT 5
+# define RAYOBJ_CONE 4
+# define RAYOBJ_LIGHT 5
+# define RAYOBJ_AMBIENTLIGHT 6
 
 typedef struct		s_obj_rotation
 {

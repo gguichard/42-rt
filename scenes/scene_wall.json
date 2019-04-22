@@ -63,17 +63,19 @@
 			"type": "ambient_light",
 			"origin": [5, 50, 0],
 			"color": [255, 255, 255],
-			"intensity": 1
+			"intensity": 0.12
 		},
 		{
 			"type": "light",
 			"origin": [5, 25, 15],
-			"color": [255, 255, 255]
+			"color": [255, 255, 255],
+			"intensity": 10000
 		},
 		{
 			"type": "light",
 			"origin": [-15, 25, 0],
-			"color": [0, 0, 255]
+			"color": [0, 0, 255],
+			"intensity": 10000
 		}
 	]
 }

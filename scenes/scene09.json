@@ -28,6 +28,13 @@
 			"color": [50, 30, 240]
 		},
 		{
+			"type": "cone",
+			"radius": 0.349,
+			"origin": [-60, 10, 40],
+			"normal": [0, 1, 0],
+			"color": [30, 230, 30]
+		},
+		{
 			"type": "sphere",
 			"radius": 10,
 			"origin": [0, 20, 0],

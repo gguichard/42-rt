@@ -22,6 +22,23 @@ static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 	return (-1);
 }
 
+static double	get_cone_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
+{
+	double	tmp[3];
+	double	a;
+	double	b;
+	double	c;
+
+	tmp[0] = vec3d_dot(direction, object->normal);
+	tmp[1] = vec3d_dot(origin, object->normal);
+	tmp[2] = pow(cos(object->radius), 2);
+	a = pow(tmp[0], 2) - tmp[2];
+	b = 2 * (tmp[0] * tmp[1] - vec3d_dot(direction, origin) * tmp[2]);
+	c = pow(tmp[1], 2) - vec3d_length2(origin) * tmp[2];
+	return (solve_quadratic_equation(a, b, c));
+}
+
 static double	get_sphere_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction)
 {
@@ -57,6 +74,8 @@ double			get_intersect_dist(t_ray_object *object, t_vec3d origin
 		return (get_plane_intersect_dist(object, origin, direction));
 	else if (object->type == RAYOBJ_CYLINDER)
 		return (get_cylinder_intersect_dist(object, origin, direction));
+	else if (object->type == RAYOBJ_CONE)
+		return (get_cone_intersect_dist(object, origin, direction));
 	else
 		return (-1);
 }
@@ -67,5 +86,6 @@ t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 		intersect = vec3d_scalar(object->normal, -1);
 	if (object->type == RAYOBJ_CYLINDER)
 		intersect.z = 0;
+	// TODO: cone normal
 	return (vec3d_unit(intersect));
 }

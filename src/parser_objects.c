@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 03:55:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 04:09:11 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int		get_ray_object_type(t_json_token *token)
 			type = RAYOBJ_PLANE;
 		else if (ft_strequ(token->value.str, "cylinder"))
 			type = RAYOBJ_CYLINDER;
+		else if (ft_strequ(token->value.str, "cone"))
+			type = RAYOBJ_CONE;
 		else if (ft_strequ(token->value.str, "light"))
 			type = RAYOBJ_LIGHT;
 		else if (ft_strequ(token->value.str, "ambient_light"))

@@ -25,7 +25,7 @@
 			"color": [50, 30, 240],
 			"rotation": {
 				"vector": [1, 0, 0],
-				"angle": 1.5708
+				"angle": 90
 			}
 		},
 		{
@@ -43,7 +43,7 @@
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
-				"angle": 1.5708
+				"angle": 90
 			}
 		},
 		{
@@ -53,7 +53,7 @@
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
-				"angle": 1.5708
+				"angle": 90
 			}
 		},
 		{
@@ -63,7 +63,7 @@
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
-				"angle": 1.5708
+				"angle": 90
 			}
 		},
 		{
@@ -73,7 +73,7 @@
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
-				"angle": 1.5708
+				"angle": 90
 			}
 		},
 		{

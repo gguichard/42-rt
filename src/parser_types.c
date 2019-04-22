@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <math.h>
 #include "libft.h"
 #include "json_parser.h"
 #include "parser.h"
@@ -19,7 +20,7 @@ t_error	setup_camera_properties(t_data *data, t_json_token *token)
 		if (ft_strequ(child->key, "origin"))
 			data->camera.origin = read_json_vec3d(child, &err);
 		else if (ft_strequ(child->key, "direction"))
-			data->camera.direction = read_json_vec3d(child, &err);
+			data->camera.direction = vec3d_unit(read_json_vec3d(child, &err));
 		child = child->next;
 	}
 	return (err);
@@ -39,9 +40,9 @@ t_error	parse_ray_object_rotation(t_json_token *token, t_obj_rotation *rot)
 		while (err == ERR_NOERROR && child != NULL)
 		{
 			if (ft_strequ(child->key, "vector"))
-				rot->vector = read_json_vec3d(child, &err);
+				rot->vector = vec3d_unit(read_json_vec3d(child, &err));
 			else if (ft_strequ(child->key, "angle"))
-				rot->angle = read_json_double(child, &err);
+				rot->angle = read_json_double(child, &err) / 180. * M_PI;
 			child = child->next;
 		}
 	}

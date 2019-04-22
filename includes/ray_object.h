@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/22 21:49:09 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 23:07:28 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_ray_object
 {
 	int				type;
 	t_vec3d			origin;
+	t_vec3d			vertices[3];
 	t_color			color;
 	t_obj_rotation	rotation;
 	double			radius;
@@ -43,7 +44,6 @@ typedef struct		s_ray_object
 	double			intensity;
 	double			specular;
 	double			shininess;
-	double			length;
 }					t_ray_object;
 
 double				get_plane_intersect_dist(t_ray_object *object

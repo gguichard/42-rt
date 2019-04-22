@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:21:38 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 03:56:20 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 22:58:59 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec3d			read_json_vec3d(t_json_token *token, t_error *err);
 t_color			read_json_color(t_json_token *token, t_error *err);
 
 t_error			setup_camera_properties(t_data *data, t_json_token *token);
-t_obj_rotation	parse_obj_rotation(t_json_token *token, t_error *err);
+t_obj_rotation	parse_ray_object_rotation(t_json_token *token, t_error *err);
 
 t_error			parse_ray_objects(t_data *data, t_json_token *token);
 

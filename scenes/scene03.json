@@ -61,7 +61,6 @@
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [-60, 0, -10],
-			"rotation": [-90, 0, 0],
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
@@ -72,7 +71,6 @@
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [60, 0, -10],
-			"rotation": [-90, 0, 0],
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
@@ -83,7 +81,6 @@
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [-60, 0, 110],
-			"rotation": [-90, 0, 0],
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],
@@ -94,7 +91,6 @@
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [60, 0, 110],
-			"rotation": [-90, 0, 0],
 			"color": [160, 160, 160],
 			"rotation": {
 				"vector": [1, 0, 0],

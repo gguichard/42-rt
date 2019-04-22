@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 07:08:42 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 22:39:57 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct	s_data
 }				t_data;
 
 t_vec3d			get_ray_dir(t_data *data, int x, int y);
+
+void			world_to_object_transform(t_ray_inf *ray_inf
+		, t_ray_object *object, t_vec3d *origin, t_vec3d *direction);
 int				has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 		, double max_dist_squared);
 

@@ -22,12 +22,7 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 	while (cur != NULL)
 	{
 		obj = (t_ray_object *)cur->content;
-		origin = vec3d_sub(ray_inf->origin, obj->origin);
-		origin = rotate_by_quaternion(origin
-				, obj->rotation.vector, -obj->rotation.angle);
-		direction = rotate_by_quaternion(ray_inf->direction
-				, obj->rotation.vector, -obj->rotation.angle);
-		direction = vec3d_unit(direction);
+		world_to_object_transform(ray_inf, obj, &origin, &direction);
 		dist = get_intersect_dist(obj, origin, direction);
 		if (dist > NEAR_PLANE_CLIPPING
 				&& (ray_inf->object == NULL || dist < ray_inf->dist))

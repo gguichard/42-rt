@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 21:45:53 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 23:11:17 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,53 +43,78 @@ static int			get_ray_object_type(t_json_token *token)
 	return (type);
 }
 
-static t_ray_object	parse_ray_object(t_json_token *token, t_error *err)
+static t_error		parse_object_property(t_json_token *child
+		, t_ray_object *object)
 {
-	t_ray_object	obj;
+	t_error	err;
+
+	err = ERR_NOERROR;
+	if (ft_strequ(child->key, "type"))
+		object->type = get_ray_object_type(child);
+	else if (ft_strequ(child->key, "origin"))
+		object->origin = read_json_vec3d(child, &err);
+	else if (ft_strequ(child->key, "rotation"))
+		object->rotation = parse_ray_object_rotation(child, &err);
+	else if (ft_strequ(child->key, "color"))
+		object->color = read_json_color(child, &err);
+	else if (ft_strequ(child->key, "radius"))
+		object->radius = read_json_double(child, &err);
+	else if (ft_strequ(child->key, "big_radius"))
+		object->big_radius = read_json_double(child, &err);
+	else if (ft_strequ(child->key, "intensity"))
+		object->intensity = read_json_double(child, &err);
+	else if (ft_strequ(child->key, "specular"))
+		object->specular = read_json_double(child, &err);
+	else if (ft_strequ(child->key, "shininess"))
+		object->shininess = read_json_double(child, &err);
+	return (err);
+}
+
+static t_error		parse_ray_object(t_json_token *token, t_ray_object *object)
+{
+	t_error			err;
 	t_json_token	*child;
 
-	ft_memset(&obj, 0, sizeof(t_ray_object));
 	if (token->type != JSON_OBJECT)
-		*err = ERR_SCENEBADFORMAT;
+		err = ERR_SCENEBADFORMAT;
 	else
 	{
+		err = ERR_NOERROR;
 		child = token->value.child;
-		while (child != NULL)
+		while (err == ERR_NOERROR && child != NULL)
 		{
-			if (ft_strequ(child->key, "type"))
-				obj.type = get_ray_object_type(child);
-			else if (ft_strequ(child->key, "origin"))
-				obj.origin = read_json_vec3d(child, err);
-			else if (ft_strequ(child->key, "rotation"))
-				obj.rotation = parse_obj_rotation(child, err);
-			else if (ft_strequ(child->key, "color"))
-				obj.color = read_json_color(child, err);
-			else if (ft_strequ(child->key, "radius"))
-				obj.radius = read_json_double(child, err);
-			else if (ft_strequ(child->key, "big_radius"))
-				obj.big_radius = read_json_double(child, err);
-			else if (ft_strequ(child->key, "intensity"))
-				obj.intensity = read_json_double(child, err);
-			else if (ft_strequ(child->key, "specular"))
-				obj.specular = read_json_double(child, err);
-			else if (ft_strequ(child->key, "shininess"))
-				obj.shininess = read_json_double(child, err);
-			else if (ft_strequ(child->key, "length"))
-				obj.length = read_json_double(child, err);
+			err = parse_object_property(child, object);
 			child = child->next;
 		}
-		if (obj.type == RAYOBJ_UNKNOWN)
-			*err = ERR_SCENEBADOBJECT;
+		if (object->type == RAYOBJ_UNKNOWN)
+			err = ERR_SCENEBADOBJECT;
 	}
-	return (obj);
+	return (err);
+}
+
+static t_error		create_object_and_add_to_scene(t_data *data
+		, t_json_token *child)
+{
+	t_error			err;
+	t_ray_object	obj;
+	t_list			*elem;
+
+	ft_memset(&obj, 0, sizeof(t_ray_object));
+	err = parse_ray_object(child, &obj);
+	if (err == ERR_NOERROR
+			&& (elem = ft_lstnew(&obj, sizeof(t_ray_object))) == NULL)
+		err = ERR_UNEXPECTED;
+	if (err == ERR_NOERROR)
+		ft_lstadd((obj.type == RAYOBJ_LIGHT
+					|| obj.type == RAYOBJ_AMBIENTLIGHT
+					? &data->lights : &data->objects), elem);
+	return (err);
 }
 
 t_error				parse_ray_objects(t_data *data, t_json_token *token)
 {
 	t_error			err;
 	t_json_token	*child;
-	t_ray_object	obj;
-	t_list			*elem;
 
 	if (token->type != JSON_ARRAY)
 		return (ERR_SCENEBADFORMAT);
@@ -97,17 +122,7 @@ t_error				parse_ray_objects(t_data *data, t_json_token *token)
 	child = token->value.child;
 	while (err == ERR_NOERROR && child != NULL)
 	{
-		obj = parse_ray_object(child, &err);
-		if (err == ERR_NOERROR
-				&& (elem = ft_lstnew(&obj, sizeof(t_ray_object))) == NULL)
-			err = ERR_UNEXPECTED;
-		if (err == ERR_NOERROR)
-		{
-			if (obj.type == RAYOBJ_LIGHT || obj.type == RAYOBJ_AMBIENTLIGHT)
-				ft_lstadd(&data->lights, elem);
-			else
-				ft_lstadd(&data->objects, elem);
-		}
+		err = create_object_and_add_to_scene(data, child);
 		child = child->next;
 	}
 	if (err != ERR_NOERROR)

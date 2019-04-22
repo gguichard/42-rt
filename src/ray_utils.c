@@ -21,6 +21,17 @@ t_vec3d	get_ray_dir(t_data *data, int x, int y)
 	return (vec3d_unit(dir));
 }
 
+void	world_to_object_transform(t_ray_inf *ray_inf, t_ray_object *object
+		, t_vec3d *origin, t_vec3d *direction)
+{
+	*origin = vec3d_sub(ray_inf->origin, object->origin);
+	*origin = rotate_by_quaternion(*origin, object->rotation.vector
+			, -object->rotation.angle);
+	*direction = rotate_by_quaternion(ray_inf->direction
+			, object->rotation.vector, -object->rotation.angle);
+	*direction = vec3d_unit(*direction);
+}
+
 int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 		, double max_dist_squared)
 {
@@ -34,12 +45,7 @@ int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 	while (cur != NULL)
 	{
 		obj = (t_ray_object *)cur->content;
-		origin = vec3d_sub(ray_inf->origin, obj->origin);
-		origin = rotate_by_quaternion(origin
-				, obj->rotation.vector, -obj->rotation.angle);
-		direction = rotate_by_quaternion(ray_inf->direction
-				, obj->rotation.vector, -obj->rotation.angle);
-		direction = vec3d_unit(direction);
+		world_to_object_transform(ray_inf, obj, &origin, &direction);
 		dist = get_intersect_dist(obj, origin, direction);
 		if (dist > NEAR_PLANE_CLIPPING && (dist * dist) < max_dist_squared)
 			return (1);

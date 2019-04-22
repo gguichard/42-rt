@@ -25,7 +25,7 @@ t_error			setup_camera_properties(t_data *data, t_json_token *token)
 	return (err);
 }
 
-t_obj_rotation	parse_obj_rotation(t_json_token *token, t_error *err)
+t_obj_rotation	parse_ray_object_rotation(t_json_token *token, t_error *err)
 {
 	t_obj_rotation	rot;
 	t_json_token	*child;

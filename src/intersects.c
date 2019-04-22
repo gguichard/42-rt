@@ -18,7 +18,7 @@ t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
 					, ray_inf->object->origin)));
 }
 
-/*double	get_torus_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
+double	get_torus_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 {
 	t_compute	calc;
 	t_vec3d		tmp[4];
@@ -27,22 +27,22 @@ t_vec3d	get_intersect_normal(t_ray_inf *ray_inf, t_vec3d intersect)
 	tmp[1].x = vec3d_dot_product(ray_inf->direction, ray_inf->direction);
 	tmp[1].y = vec3d_dot_product(ray_inf->direction, tmp[0]);
 	tmp[1].z = vec3d_dot_product(tmp[0], tmp[0]);
-	tmp[2].x = vec3d_dot_product(ray_inf->origin, object->rotation);
+	tmp[2].x = vec3d_dot_product(ray_inf->direction, object->rotation);
 	tmp[2].y = vec3d_dot_product(tmp[0], object->rotation);
-	tmp[2].z = pow(object->big_radius, 2);
-	tmp[3].x = pow(object->radius, 2);
+	tmp[2].z = pow(object->big_radius, 2.0);
+	tmp[3].x = pow(object->radius, 2.0);
 	tmp[3].y = tmp[2].z + tmp[3].x;
-	calc.a = pow(tmp[1].x, 2);
-	calc.b = 4 * tmp[1].x * tmp[1].y;
-	calc.c = 4 * calc.a + 2 * tmp[1].x * tmp[1].z - 2 * tmp[1].x * tmp[3].y
-		+ 4 * tmp[2].z * pow(tmp[2].x, 2);
-	calc.d = 4 * tmp[1].y * tmp[1].z - 4 * tmp[3].y * tmp[1].y + 8 * tmp[2].z
+	calc.a = pow(tmp[1].x, 2.0);
+	calc.b = 4.0 * tmp[1].x * tmp[1].y;
+	calc.c = 4.0 * calc.a + 2.0 * tmp[1].x * tmp[1].z - 2.0 * tmp[1].x * tmp[3].y
+		+ 4.0 * tmp[2].z * pow(tmp[2].x, 2.0);
+	calc.d = 4.0 * tmp[1].y * tmp[1].z - 4.0 * tmp[3].y * tmp[1].y + 8.0 * tmp[2].z
 		* tmp[2].x * tmp[2].y;
-	calc.e = pow(tmp[1].z, 2) - 2 * tmp[3].y * tmp[1].z + 4 * pow(tmp[2].y, 2)
-		* tmp[2].z + pow(pow(tmp[2].z, 2) - pow(tmp[3].x, 2), 2);
+	calc.e = pow(tmp[1].z, 2.0) - 2.0 * tmp[3].y * tmp[1].z + 4.0 * pow(tmp[2].y, 2.0)
+		* tmp[2].z + pow(tmp[2].z - tmp[3].x, 2.0);
 	tmp[0] = (t_vec3d){calc.a, calc.b, calc.c};
 	return (solve_four_degrees_equation(tmp[0], calc.d, calc.e));
-}*/
+}
 
 double	get_cone_intersect_dist(t_ray_object *object, t_ray_inf *ray_inf)
 {

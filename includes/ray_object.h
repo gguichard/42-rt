@@ -10,8 +10,9 @@
 # define RAYOBJ_PLANE 2
 # define RAYOBJ_CYLINDER 3
 # define RAYOBJ_CONE 4
-# define RAYOBJ_LIGHT 5
-# define RAYOBJ_AMBIENTLIGHT 6
+# define RAYOBJ_TORUS 5
+# define RAYOBJ_LIGHT 6
+# define RAYOBJ_AMBIENTLIGHT 7
 
 typedef struct	s_ray_object
 {
@@ -20,6 +21,7 @@ typedef struct	s_ray_object
 	t_vec3d			rotation;
 	t_color			color;
 	double			radius;
+	double			big_radius;
 	double			intensity;
 }				t_ray_object;
 
@@ -31,6 +33,8 @@ double			get_cone_intersect_dist(t_ray_object *object
 double			get_sphere_intersect_dist(t_ray_object *object
 		, t_ray_inf *ray_inf);
 double			get_cylinder_intersect_dist(t_ray_object *object
+		, t_ray_inf *ray_inf);
+double			get_torus_intersect_dist(t_ray_object *object
 		, t_ray_inf *ray_inf);
 
 #endif

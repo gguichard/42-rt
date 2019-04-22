@@ -60,6 +60,14 @@
 			"color": [255, 255, 255]
 		},
 		{
+			"type": "torus",
+			"radius": 5,
+			"big_radius": 20,
+			"origin" : [50, 50, 50],
+			"rotation":[1, 0, 0],
+			"color":[255, 255, 255]
+		},
+		{
 			"type": "ambient_light",
 			"origin": [5, 50, 0],
 			"color": [255, 255, 255],

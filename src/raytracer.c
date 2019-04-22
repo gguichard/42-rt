@@ -27,6 +27,8 @@ static int			trace_ray(t_data *data, t_ray_inf *ray_inf
 			dist = get_cylinder_intersect_dist(obj, ray_inf);
 		else if (obj->type == RAYOBJ_CONE)
 			dist = get_cone_intersect_dist(obj, ray_inf);
+		else if (obj->type == RAYOBJ_TORUS)
+			dist = get_torus_intersect_dist(obj, ray_inf);
 		if (dist >= .0)
 		{
 			if (!force_closest_object && dist < ray_inf->dist)

@@ -14,7 +14,7 @@ static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 	denom = vec3d_dot(object->normal, direction);
 	if (fabs(denom) > 1e-6)
 	{
-		v = vec3d_sub(object->origin, origin);
+		v = vec3d_scalar(origin, -1);
 		distance = vec3d_dot(v, object->normal) / denom;
 		if (distance >= .0)
 			return (distance);

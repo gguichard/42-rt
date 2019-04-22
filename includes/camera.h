@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:56:10 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/20 18:50:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 21:41:04 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ typedef struct	s_camera
 void			rotate_camera(t_camera *camera, t_vec3d rot_vec, double angle);
 void			camera_press_key(SDL_Event *event, t_data *data);
 void			camera_event(t_data *data);
-
 
 #endif

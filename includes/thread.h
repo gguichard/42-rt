@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 05:27:04 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 05:37:45 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 21:42:22 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 # include <pthread.h>
 # include "vec3d.h"
+# include "raytracer.h"
 
 # define MAX_THREADS 4
-
-typedef struct s_thread	t_thread;
 
 typedef struct	s_thread
 {

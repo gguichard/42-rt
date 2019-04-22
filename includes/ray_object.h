@@ -38,7 +38,5 @@ double				get_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction);
 t_vec3d				get_intersect_normal(t_ray_object *object
 		, t_vec3d intersect);
-t_vec3d				get_intersect_normal_torus(t_vec3d intersect
-		, t_ray_inf *ray_inf);
 
 #endif

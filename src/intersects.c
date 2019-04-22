@@ -5,20 +5,22 @@
 #include "vec3d.h"
 #include "ray_inf.h"
 
-t_vec3d	get_intersect_normal_torus(t_vec3d intersect, t_ray_inf *ray_inf)
+static t_vec3d	get_intersect_normal_torus(t_ray_object *object
+		, t_vec3d intersect)
 {
 	t_vec3d		tmp;
 	double		a;
 	double		b;
 
-	a = pow(ray_inf->object->big_radius, 2);
+	a = pow(object->big_radius, 2);
 	b = pow(intersect.x, 2) + pow(intersect.y, 2) + pow(intersect.z, 2)
-		- pow(ray_inf->object->radius, 2) + a;
+		- pow(object->radius, 2) + a;
 	tmp.x = 4 * intersect.x * b - 8 * a * intersect.x;
 	tmp.y = 4 * intersect.y * b;
 	tmp.z = 4 * intersect.z * 6 - 8 * a * intersect.z;
 	return (vec3d_unit(tmp));
 }
+
 static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction)
 {
@@ -133,6 +135,8 @@ double			get_intersect_dist(t_ray_object *object, t_vec3d origin
 
 t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 {
+	if (object->type == RAYOBJ_TORUS)
+		return (get_intersect_normal_torus(object, intersect));
 	if (object->type == RAYOBJ_PLANE)
 		intersect = (t_vec3d){0, 1, 0};
 	else if (object->type == RAYOBJ_CYLINDER || object->type == RAYOBJ_CONE)

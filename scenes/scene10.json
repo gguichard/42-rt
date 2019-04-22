@@ -47,6 +47,17 @@
 			"specular": 0.3
 		},
 		{
+			"type": "torus",
+			"radius": 4,
+			"big_radius": 20,
+			"origin" : [0, 20, 0],
+			"color":[0, 255, 255],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 1.5708
+			}
+		},
+		{
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [-60, 0, -10],

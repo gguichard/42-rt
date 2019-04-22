@@ -1,16 +1,27 @@
 {
 	"camera": {
-		"origin": [300, 300, 300],
+		"origin": [0, 0, 0],
 		"rotation": [0, 0, 0],
 		"direction": [0, 0, 1]
 	},
 	"objects": [
 		{
-			"type": "sphere",
-			"radius": 5,
-			"origin": [0, 0, -2500],
+			"type": "triangle",
 			"color": [0, 0, 255],
-			"vertices": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+			"origin": [0, 0, 0],
+			"vertices": [[-100, -110, -102], [105, 106, 106], [-120, 120, 60]]
+		},
+		{
+			"type": "sphere",
+			"color": [0, 0, 255],
+			"radius": 5,
+			"origin": [0, 0, 0],
+			"vertices": [[-100, -110, -102], [105, 106, 106], [-120, 120, 60]]
+		},
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 1
 		}
 	]
 }

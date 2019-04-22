@@ -12,12 +12,16 @@
 		{
 			"type": "plane",
 			"origin": [0, 0, 0],
-			"color": [130, 130, 130]
+			"color": [130, 130, 130],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "plane",
 			"origin": [0, 100, 0],
-			"color": [30, 30, 30]
+			"color": [30, 30, 30],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "plane",
@@ -101,49 +105,65 @@
 			"type": "sphere",
 			"radius": 25,
 			"origin": [-60, 0, -10],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [60, 0, -10],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [-60, 0, 110],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [60, 0, 110],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [-60, 100, -10],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [60, 100, -10],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [-60, 100, 110],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "sphere",
 			"radius": 25,
 			"origin": [60, 100, 110],
-			"color": [160, 160, 160]
+			"color": [160, 160, 160],
+			"shininess": 65,
+			"specular": 0.5
 		},
 		{
 			"type": "light",

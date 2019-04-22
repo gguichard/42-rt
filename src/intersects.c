@@ -15,6 +15,8 @@ double	get_intersect_dist(t_ray_object *object, t_vec3d origin
 		return (get_cone_intersect_dist(object, origin, direction));
 	else if (object->type == RAYOBJ_TORUS)
 		return (get_torus_intersect_dist(object, origin, direction));
+	else if (object->type == RAYOBJ_TRIANGLE)
+		return (get_triangle_intersect_dist(object, origin, direction));
 	else
 		return (-1);
 }

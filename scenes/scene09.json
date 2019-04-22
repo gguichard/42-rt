@@ -31,8 +31,11 @@
 			"type": "cone",
 			"radius": 0.349,
 			"origin": [-60, 10, 40],
-			"normal": [0, 1, 0],
-			"color": [30, 230, 30]
+			"color": [30, 230, 30],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 1.5708
+			}
 		},
 		{
 			"type": "sphere",

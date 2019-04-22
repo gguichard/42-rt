@@ -1,9 +1,11 @@
 #include <stdlib.h>
+#include <pthread.h>
 #include <math.h>
 #include "libft.h"
 #include "raytracer.h"
 #include "ray_object.h"
 #include "ray_inf.h"
+#include "thread.h"
 #include "quaternion.h"
 #include "vec3d.h"
 #include "color.h"
@@ -63,30 +65,67 @@ static t_ray_inf	trace_one_ray(t_data *data, t_vec3d ray_dir)
 	return (ray_inf);
 }
 
-void				trace_rays(t_data *data)
+static void			fill_ray_pixels(t_data *data, int x, int y, int color)
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->square_pixels_per_ray && (y + i) < data->winsize.height)
+	{
+		j = 0;
+		while (j < data->square_pixels_per_ray && (x + j) < data->winsize.width)
+		{
+			data->lib.view[(y + i) * data->winsize.width + (x + j)] = color;
+			j++;
+		}
+		i++;
+	}
+}
+
+static void			*trace_rays_thread(t_thread *thread)
+{
+	t_data		*data;
 	int			x;
 	int			y;
 	t_ray_inf	ray_inf;
 
-	y = 0;
-	while (y < data->winsize.height)
+	data = thread->data;
+	y = thread->y_offset;
+	while (y < thread->y_offset + thread->height)
 	{
-		x = 0;
-		while (x < data->winsize.width)
+		if (y % data->square_pixels_per_ray != 0)
+			y++;
+		else
 		{
-			if (y % data->square_pixels_per_ray != 0)
-				data->lib.view[y * data->winsize.width + x] =
-					data->lib.view[(y - 1) * data->winsize.width + x];
-			else
+			x = 0;
+			while (x < data->winsize.width)
 			{
-				if (x % data->square_pixels_per_ray == 0)
-					ray_inf = trace_one_ray(data, get_ray_dir(data, x, y));
-				data->lib.view[y * data->winsize.width + x] =
-					color_get_rgb(ray_inf.color);
+				ray_inf = trace_one_ray(data, get_ray_dir(data, x, y));
+				fill_ray_pixels(data, x, y, color_get_rgb(ray_inf.color));
+				x += data->square_pixels_per_ray;
 			}
-			x++;
+			y += data->square_pixels_per_ray;
 		}
-		y++;
+	}
+	return (NULL);
+}
+
+void				trace_rays(t_data *data)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx < MAX_THREADS)
+	{
+		pthread_create(&data->threads[idx].id, NULL, (void *)trace_rays_thread
+				, data->threads + idx);
+		idx++;
+	}
+	idx = 0;
+	while (idx < MAX_THREADS)
+	{
+		pthread_join(data->threads[idx].id, NULL);
+		idx++;
 	}
 }

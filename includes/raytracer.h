@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 00:33:26 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 07:08:42 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "winsize.h"
 # include "camera.h"
 # include "ray_inf.h"
+# include "thread.h"
 # include "vec3d.h"
 
 # define NEAR_PLANE_CLIPPING 1e-4
@@ -34,6 +35,7 @@ typedef struct	s_data
 	t_list		*objects;
 	t_list		*lights;
 	int			square_pixels_per_ray;
+	t_thread	threads[MAX_THREADS];
 }				t_data;
 
 t_vec3d			get_ray_dir(t_data *data, int x, int y);

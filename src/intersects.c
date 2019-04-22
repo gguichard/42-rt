@@ -7,15 +7,12 @@
 static double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction)
 {
-	double	denom;
-	t_vec3d	v;
 	double	distance;
 
-	denom = vec3d_dot(object->normal, direction);
-	if (fabs(denom) > 1e-6)
+	(void)object;
+	if (fabs(direction.y) > 1e-6)
 	{
-		v = vec3d_scalar(origin, -1);
-		distance = vec3d_dot(v, object->normal) / denom;
+		distance = origin.y / -direction.y;
 		if (distance >= .0)
 			return (distance);
 	}
@@ -81,8 +78,8 @@ double			get_intersect_dist(t_ray_object *object, t_vec3d origin
 t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 {
 	if (object->type == RAYOBJ_PLANE)
-		intersect = vec3d_scalar(object->normal, -1);
+		intersect = (t_vec3d){0, 1, 0};
 	else if (object->type == RAYOBJ_CYLINDER || object->type == RAYOBJ_CONE)
-		intersect.z = 0;
+		intersect.z = .0;
 	return (vec3d_unit(intersect));
 }

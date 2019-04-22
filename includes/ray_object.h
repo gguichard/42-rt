@@ -22,7 +22,6 @@ typedef struct		s_ray_object
 {
 	int				type;
 	t_vec3d			origin;
-	t_vec3d			normal;
 	t_color			color;
 	t_obj_rotation	rotation;
 	double			radius;

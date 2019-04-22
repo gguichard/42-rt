@@ -8,25 +8,6 @@
 #include "vec3d.h"
 #include "color.h"
 
-t_vec3d		lol_rotate_by_quaternion(t_vec3d vec, t_vec3d rot_vec, double angle)
-{
-	t_quaternion	quat_vec_dir;
-	t_quaternion	quat_rot_vec;
-	t_quaternion	quat_result;
-
-	quat_rot_vec = vec3d_to_rotate_quaternion(rot_vec, angle);
-	quat_vec_dir.x = vec.x;
-	quat_vec_dir.y = vec.y;
-	quat_vec_dir.z = vec.z;
-	quat_vec_dir.scalar = 0;
-	quat_result = quaternion_mul(quat_rot_vec, quat_vec_dir);
-	quat_result = quaternion_mul(quat_result, quaternion_conj(quat_rot_vec));
-	vec.x = quat_result.x;
-	vec.y = quat_result.y;
-	vec.z = quat_result.z;
-	return (vec);
-}
-
 static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	t_list			*cur;
@@ -51,8 +32,9 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 		{
 			ray_inf->object = obj;
 			ray_inf->dist = dist;
-			ray_inf->normal = rotate_by_quaternion(get_intersect_normal(
-						obj, vec3d_add(origin, vec3d_scalar(direction, dist)))
+			ray_inf->normal = get_intersect_normal(obj
+					, vec3d_add(origin, vec3d_scalar(direction, dist)));
+			ray_inf->normal = rotate_by_quaternion(ray_inf->normal
 					, obj->rotation.vector, obj->rotation.angle);
 		}
 		cur = cur->next;

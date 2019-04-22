@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/21 00:46:54 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/22 03:55:59 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,13 @@ SRC 		=			\
 main.c					\
 lib.c					\
 parser.c				\
+parser_objects.c		\
 parser_types.c			\
 parser_utils.c			\
 error.c					\
 quaternion.c			\
 vec3d.c					\
+vec3d_2.c				\
 ray_utils.c				\
 raytracer.c				\
 light_rays.c			\

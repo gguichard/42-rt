@@ -63,8 +63,6 @@ double			get_intersect_dist(t_ray_object *object, t_vec3d origin
 
 t_vec3d			get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 {
-	//if (object->type == RAYOBJ_SPHERE || object->type == RAYOBJ_CYLINDER)
-	//	intersect = intersect;
 	if (object->type == RAYOBJ_PLANE)
 		intersect = vec3d_scalar(object->normal, -1);
 	if (object->type == RAYOBJ_CYLINDER)

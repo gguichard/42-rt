@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/20 15:09:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 03:45:45 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
 					, winsize.width, winsize.height, 0)) == NULL)
 		err = ERR_SDLINIT;
 	if (err == ERR_NOERROR
-			&& (lib->renderer = SDL_CreateRenderer(lib->window, -1, SDL_RENDERER_PRESENTVSYNC)) == NULL)
+			&& (lib->renderer = SDL_CreateRenderer(lib->window, -1
+					, SDL_RENDERER_PRESENTVSYNC)) == NULL)
 		err = ERR_SDLINIT;
 	if (err == ERR_NOERROR
 			&& (lib->texture = SDL_CreateTexture(lib->renderer

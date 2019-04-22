@@ -6,13 +6,12 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 09:00:42 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/21 23:55:31 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/22 03:52:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "vec3d.h"
-#include "solver.h"
 
 double		vec3d_length2(t_vec3d vec)
 {
@@ -42,21 +41,4 @@ t_vec3d		vec3d_sub(t_vec3d vec_a, t_vec3d vec_b)
 {
 	return ((t_vec3d){vec_a.x - vec_b.x, vec_a.y - vec_b.y
 			, vec_a.z - vec_b.z});
-}
-
-t_vec3d		vec3d_cross(t_vec3d vec_a, t_vec3d vec_b)
-{
-	return ((t_vec3d){vec_a.y * vec_b.z - vec_a.z * vec_b.y
-			, vec_a.z * vec_b.x - vec_a.x * vec_b.z
-			, vec_a.x * vec_b.y - vec_a.y * vec_b.x});
-}
-
-t_vec3d		vec3d_scalar(t_vec3d vec, double scalar)
-{
-	return ((t_vec3d){vec.x * scalar, vec.y * scalar, vec.z * scalar});
-}
-
-double		vec3d_dot(t_vec3d vec_a, t_vec3d vec_b)
-{
-	return (vec_a.x * vec_b.x + vec_a.y * vec_b.y + vec_a.z * vec_b.z);
 }

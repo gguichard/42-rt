@@ -17,7 +17,11 @@
 		{
 			"type": "plane",
 			"origin": [0, 100, 0],
-			"color": [30, 30, 30]
+			"color": [30, 30, 30],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 180
+			}
 		},
 		{
 			"type": "plane",
@@ -26,7 +30,8 @@
 			"rotation": {
 				"vector": [1, 0, 0],
 				"angle": 90
-			}
+			},
+			"mirror": 1
 		},
 		{
 			"type": "sphere",

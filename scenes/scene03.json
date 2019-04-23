@@ -19,7 +19,10 @@
 			"type": "plane",
 			"origin": [0, 100, 0],
 			"color": [30, 30, 30],
-			"specular": 0.5
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 180
+			}
 		},
 		{
 			"type": "plane",

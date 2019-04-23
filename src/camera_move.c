@@ -6,11 +6,10 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:31 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 19:31:31 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:36:03 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "quaternion.h"
 #include "camera.h"
 #include "vec3d.h"

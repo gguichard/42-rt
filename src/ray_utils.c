@@ -6,12 +6,11 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:52 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:20:52 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:35:42 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 #include "raytracer.h"
 #include "ray_inf.h"
 #include "ray_object.h"

@@ -38,17 +38,17 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 }
 
-static t_ray_inf	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
+static unsigned int	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		, int depth)
 {
 	t_ray_inf	ray_inf;
 
+	if (depth <= 0)
+		return (0x0);
 	ray_inf.origin = origin;
 	ray_inf.direction = ray_dir;
 	ray_inf.color = (t_color){.0, .0, .0};
 	ray_inf.object = NULL;
-	if (depth <= 0)
-		return (ray_inf);
 	trace_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)
 	{
@@ -65,10 +65,11 @@ static t_ray_inf	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		ray_inf.color.b = pow(ray_inf.color.b, GAMMA_CORRECTION);
 		ray_inf.color = color_clamp(ray_inf.color);
 	}
-	return (ray_inf);
+	return (color_to_rgb(ray_inf.color));
 }
 
-static void			fill_ray_pixels(t_data *data, int x, int y, int color)
+static void			fill_ray_pixels(t_data *data, int x, int y
+		, unsigned int color)
 {
 	int	i;
 	int	j;
@@ -88,28 +89,26 @@ static void			fill_ray_pixels(t_data *data, int x, int y, int color)
 
 static void			*trace_rays_thread(t_thread *thread)
 {
-	t_data		*data;
-	int			incr;
-	int			x;
-	int			y;
-	t_ray_inf	ray_inf;
+	int				incr;
+	int				x;
+	int				y;
+	unsigned int	color;
 
-	data = thread->data;
-	incr = data->square_pixels_per_ray * MAX_THREADS;
-	y = data->square_pixels_per_ray * thread->id;
-	while (y < data->winsize.height)
+	incr = thread->data->square_pixels_per_ray * MAX_THREADS;
+	y = thread->data->square_pixels_per_ray * thread->id;
+	while (y < thread->data->winsize.height)
 	{
-		if (y % data->square_pixels_per_ray != 0)
+		if (y % thread->data->square_pixels_per_ray != 0)
 			y++;
 		else
 		{
 			x = 0;
-			while (x < data->winsize.width)
+			while (x < thread->data->winsize.width)
 			{
-				ray_inf = trace_one_ray(data, data->camera.origin
-						, get_ray_dir(data, x, y), 5);
-				fill_ray_pixels(data, x, y, color_get_rgb(ray_inf.color));
-				x += data->square_pixels_per_ray;
+				color = trace_one_ray(thread->data, thread->data->camera.origin
+						, get_ray_dir(thread->data, x, y), 5);
+				fill_ray_pixels(thread->data, x, y, color);
+				x += thread->data->square_pixels_per_ray;
 			}
 			y += incr;
 		}

@@ -6,13 +6,13 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:37:56 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 21:38:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:00:48 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-unsigned int	color_get_rgb(t_color color)
+unsigned int	color_to_rgb(t_color color)
 {
 	unsigned char	r;
 	unsigned char	g;

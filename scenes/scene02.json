@@ -12,7 +12,8 @@
 		{
 			"type": "plane",
 			"origin": [0, 0, 0],
-			"color": [130, 130, 130]
+			"color": [130, 130, 130],
+			"mirror": 1
 		},
 		{
 			"type": "plane",
@@ -21,7 +22,8 @@
 			"rotation": {
 				"vector": [1, 0, 0],
 				"angle": 180
-			}
+			},
+			"mirror": 1
 		},
 		{
 			"type": "plane",

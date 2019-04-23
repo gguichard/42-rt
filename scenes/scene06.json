@@ -10,10 +10,9 @@
 			"intensity": 0.5
 		},
 		{
-			"type": "ellipsoid",
-			"origin": [1, 1, 1],
-			"color": [255, 255, 255],
-			"size": [1, 5, 12]
+			"type": "holed_cube",
+			"origin": [0, 0, 0],
+			"color": [255, 255, 255]
 		},
 		{
 			"type": "light",

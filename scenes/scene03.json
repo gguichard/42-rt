@@ -16,6 +16,12 @@
 			"specular": 0.5
 		},
 		{
+			"type": "ellipsoid",
+			"origin": [0, 40, 62.5],
+			"color": [253, 233, 224],
+			"size": [10, 15, 10]
+		},
+		{
 			"type": "plane",
 			"origin": [0, 100, 0],
 			"color": [30, 30, 30],

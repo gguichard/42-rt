@@ -19,6 +19,8 @@ double	get_intersect_dist(t_ray_object *object, t_vec3d origin
 		return (get_triangle_intersect_dist(object, origin, direction));
 	else if (object->type == RAYOBJ_ELLIPSOID)
 		return (get_ellipsoid_intersect_dist(object, origin, direction));
+	else if (object->type == RAYOBJ_HOLED_CUBE)
+		return (get_holed_cube_intersect_dist(object, origin, direction));
 	else
 		return (-1);
 }

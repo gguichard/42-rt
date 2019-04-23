@@ -22,7 +22,7 @@
 		},
 		{
 			"type": "cone",
-			"radius": 0.785398,
+			"angle": 45,
 			"origin": [0, 5, 0],
 			"color": [245, 230, 66],
 			"rotation": {

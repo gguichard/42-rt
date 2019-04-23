@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:52 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:35:42 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 23:42:13 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 	{
 		obj = (t_ray_object *)cur->content;
 		world_to_object_transform(ray_inf, obj, &origin, &direction);
-		dist = get_intersect_dist(obj, origin, direction);
+		dist = obj->intersect(obj, origin, direction);
 		if (dist > NEAR_PLANE_CLIPPING && (dist * dist) < max_dist_squared)
 			return (1);
 		cur = cur->next;

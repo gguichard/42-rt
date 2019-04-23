@@ -6,72 +6,68 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:39 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 23:49:58 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/24 00:06:46 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "ray_object.h"
 #include "vec3d.h"
 
-double	get_intersect_dist(t_ray_object *object, t_vec3d origin
-		, t_vec3d direction)
+t_vec3d	get_intersect_as_normal(t_ray_object *object, t_vec3d intersect)
 {
-	if (object->type == RAYOBJ_SPHERE)
-		return (get_sphere_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_PLANE)
-		return (get_plane_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_CYLINDER)
-		return (get_cylinder_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_CONE)
-		return (get_cone_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_TORUS)
-		return (get_torus_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_TRIANGLE)
-		return (get_triangle_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_ELLIPSOID)
-		return (get_ellipsoid_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_HYPERBOLOID)
-		return (get_hyperboloid_intersect_dist(object, origin, direction));
-	else
-		return (-1);
+	(void)object;
+	return (vec3d_unit(intersect));
 }
 
-t_vec3d	get_intersect_normal_2(t_ray_object *object, t_vec3d intersect)
+t_vec3d	get_plane_normal(t_ray_object *object, t_vec3d intersect)
 {
-	double	tmp1;
-	double	tmp2;
-
-	if (object->type == RAYOBJ_TORUS)
-	{
-		tmp1 = pow(object->big_radius, 2);
-		tmp2 = vec3d_length2(intersect) - (pow(object->radius, 2) + tmp1);
-		intersect.x = intersect.x * tmp2;
-		intersect.y = intersect.y * (tmp2 + 2 * tmp1);
-		intersect.z = intersect.z * tmp2;
-	}
-	else if (object->type == RAYOBJ_TRIANGLE)
-	{
-		intersect = vec3d_cross(vec3d_sub(object->vertices[1]
-					, object->vertices[0]), vec3d_sub(object->vertices[2]
-						, object->vertices[0]));
-	}
-	else if (object->type == RAYOBJ_ELLIPSOID)
-	{
-		intersect.x = intersect.x / pow(object->size.x, 2);
-		intersect.y = intersect.y / pow(object->size.y, 2);
-		intersect.z = intersect.z / pow(object->size.z, 2);
-	}
-	return (intersect);
+	(void)object;
+	(void)intersect;
+	return ((t_vec3d){0, 1, 0});
 }
 
-t_vec3d	get_intersect_normal(t_ray_object *object, t_vec3d intersect)
+t_vec3d	get_cone_cylinder_normal(t_ray_object *object, t_vec3d intersect)
 {
-	if (object->type == RAYOBJ_PLANE)
-		intersect = (t_vec3d){0, 1, 0};
-	else if (object->type == RAYOBJ_CYLINDER || object->type == RAYOBJ_CONE)
-		intersect.z = .0;
-	else
-		intersect = get_intersect_normal_2(object, intersect);
+	(void)object;
+	intersect.z = .0;
+	return (vec3d_unit(intersect));
+}
+
+t_vec3d	get_torus_normal(t_ray_object *object, t_vec3d intersect)
+{
+	double	big_radius2;
+	double	tmp;
+
+	big_radius2 = object->big_radius * object->big_radius;
+	tmp = vec3d_length2(intersect)
+		- (object->radius * object->radius + big_radius2);
+	intersect.x *= tmp;
+	intersect.y *= (tmp + 2 * big_radius2);
+	intersect.z *= tmp;
+	return (vec3d_unit(intersect));
+}
+
+t_vec3d	get_triangle_normal(t_ray_object *object, t_vec3d intersect)
+{
+	t_vec3d	tmp1;
+	t_vec3d	tmp2;
+
+	tmp1 = vec3d_sub(object->vertices[1], object->vertices[0]);
+	tmp2 = vec3d_sub(object->vertices[2], object->vertices[0]);
+	intersect = vec3d_cross(tmp1, tmp2);
+	return (vec3d_unit(intersect));
+}
+
+t_vec3d	get_ellipsoid_normal(t_ray_object *object, t_vec3d intersect)
+{
+	intersect.x /= (object->size.x * object->size.x);
+	intersect.y /= (object->size.y * object->size.y);
+	intersect.z /= (object->size.z * object->size.z);
+	return (vec3d_unit(intersect));
+}
+
+t_vec3d	get_hyperboloid_nornal(t_ray_object *object, t_vec3d intersect)
+{
+	(void)object;
 	return (vec3d_unit(intersect));
 }

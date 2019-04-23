@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:20:14 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 23:58:21 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 	{
 		obj = (t_ray_object *)cur->content;
 		world_to_object_transform(ray_inf, obj, &origin, &direction);
-		dist = get_intersect_dist(obj, origin, direction);
+		dist = obj->intersect(obj, origin, direction);
 		if (dist > NEAR_PLANE_CLIPPING
 				&& (ray_inf->object == NULL || dist < ray_inf->dist))
 		{
 			ray_inf->object = obj;
 			ray_inf->dist = dist;
-			ray_inf->normal = get_intersect_normal(obj
+			ray_inf->normal = obj->normal(obj
 					, vec3d_add(origin, vec3d_scalar(direction, dist)));
 			ray_inf->normal = rotate_by_quaternion(ray_inf->normal
 					, obj->rotation.vector, obj->rotation.angle);

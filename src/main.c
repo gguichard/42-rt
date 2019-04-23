@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 21:55:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 06:12:58 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ static void	init_data(t_data *data)
 	data->square_pixels_per_ray = 5;
 	data->camera.fov = tan(90 * .5 / 180 * M_PI);
 	data->camera.direction = vec3d_unit(data->camera.direction);
-	data->camera.right = rotate_by_quaternion(data->camera.direction
-			, (t_vec3d){0, 1, 0}, M_PI / 2);
+	if (data->camera.direction.x == 0 && data->camera.direction.z == 0)
+		data->camera.right = (t_vec3d){0, 0, 1};
+	else
+		data->camera.right = rotate_by_quaternion(data->camera.direction
+				, (t_vec3d){0, 1, 0}, M_PI / 2);
 	data->camera.up = rotate_by_quaternion(data->camera.right
 			, data->camera.direction, M_PI / 2);
 	height_per_thread = data->winsize.height / MAX_THREADS;

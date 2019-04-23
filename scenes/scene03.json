@@ -81,11 +81,7 @@
 			"radius": -2,
 			"big_radius": 20,
 			"origin" : [0, 20, 0],
-			"color":[0, 255, 255],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			}
+			"color":[0, 255, 255]
 		},
 		{
 			"type": "cylinder",

@@ -29,7 +29,7 @@
 			"color": [50, 30, 240],
 			"rotation": {
 				"vector": [1, 0, 0],
-				"angle": 90
+				"angle": -90
 			},
 			"mirror": 1
 		},

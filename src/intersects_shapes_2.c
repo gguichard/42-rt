@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 22:34:46 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 01:13:06 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 07:02:47 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,24 @@ double	get_triangle_intersect_dist(t_ray_object *object, t_vec3d origin
 	if (var[0] > epsilon)
 		return (var[0]);
 	return (-1);
+}
+
+double	get_ellipsoid_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
+{
+	t_quad		quad;
+	t_vec3d		vec_center;
+	double		tmp[3];
+
+	vec_center = vec3d_sub(origin, object->origin);
+	tmp[0] = pow(object->vertices[0].x, 2);
+	tmp[1] = pow(object->vertices[0].y, 2);
+	tmp[2] = pow(object->vertices[0].z, 2);
+	quad.a = pow(direction.x, 2) / tmp[0] + pow(direction.y, 2) / tmp[1]
+		+ pow(direction.z, 2) / tmp[2];
+	quad.b = (2 * vec_center.x * direction.x) / tmp[0] + (2 * vec_center.y
+			* direction.y) / tmp[1] + (2 * vec_center.z * direction.z) / tmp[2];
+	quad.c = pow(vec_center.x, 2) / tmp[0] + pow(vec_center.y, 2) / tmp[1]
+		+ pow(vec_center.z, 2) / tmp[2] - 1;
+	return (solve_quadratic_equation(&quad));
 }

@@ -1,0 +1,31 @@
+{
+	"camera": {
+		"origin": [0, 0, -20],
+		"direction": [0, 0, 1]
+	},
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.5
+		},
+		{
+			"type": "ellipsoid",
+			"origin": [1, 1, 1],
+			"color": [255, 255, 255],
+			"vertices": [[1, 5, 12], [0, 0, 0], [0, 0, 0]]
+		},
+		{
+			"type": "light",
+			"origin": [100, 450, 0],
+			"color": [255, 0, 255],
+			"intensity": 15000
+		},
+		{
+			"type": "light",
+			"origin": [-40, 45, 0],
+			"color": [0, 255, 255],
+			"intensity": 2000
+		}
+	]
+}

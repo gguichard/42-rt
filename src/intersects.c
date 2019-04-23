@@ -17,8 +17,21 @@ double	get_intersect_dist(t_ray_object *object, t_vec3d origin
 		return (get_torus_intersect_dist(object, origin, direction));
 	else if (object->type == RAYOBJ_TRIANGLE)
 		return (get_triangle_intersect_dist(object, origin, direction));
+	else if (object->type == RAYOBJ_ELLIPSOID)
+		return (get_ellipsoid_intersect_dist(object, origin, direction));
 	else
 		return (-1);
+}
+
+t_vec3d	get_intersect_normal_2(t_ray_object *object, t_vec3d intersect)
+{
+	if (object->type == RAYOBJ_ELLIPSOID)
+	{
+		intersect.x = 2 * intersect.x / pow(object->vertices[0].x, 2);
+		intersect.y = 2 * intersect.y / pow(object->vertices[0].y, 2);
+		intersect.z = 2 * intersect.z / pow(object->vertices[0].z, 2);
+	}
+	return (vec3d_unit(intersect));
 }
 
 t_vec3d	get_intersect_normal(t_ray_object *object, t_vec3d intersect)
@@ -44,5 +57,7 @@ t_vec3d	get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 					, object->vertices[0]), vec3d_sub(object->vertices[2]
 						, object->vertices[0]));
 	}
+	else
+		return (get_intersect_normal_2(object, intersect));
 	return (vec3d_unit(intersect));
 }

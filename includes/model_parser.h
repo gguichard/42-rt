@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   winsize.h                                          :+:      :+:    :+:   */
+/*   model_parser.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/31 11:13:38 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 17:47:31 by gguichar         ###   ########.fr       */
+/*   Created: 2019/04/23 09:16:59 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/23 09:39:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINSIZE_H
-# define WINSIZE_H
+#ifndef MODEL_PARSER_H
+# define MODEL_PARSER_H
 
-# define WIN_TITLE "RTv1"
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 800
-
-typedef struct	s_winsize
+typedef struct	t_wf_obj
 {
-	int			width;
-	int			height;
-	double		aspect_ratio;
-}				t_winsize;
+	t_list			*vertices_list;
+	t_vec3d			**vertices;
+	t_wf_vertices	*vertices;
+}
+
+typedef struct	t_wf_vertices
+{
+	t_vec3d	vertex1;
+	t_vec3d	vertex2;
+	t_vec3d	vertex3;
+}
 
 #endif

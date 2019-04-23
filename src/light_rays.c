@@ -26,9 +26,8 @@ static t_color	compute_shading(t_ray_object *light, t_ray_inf *ray_inf
 		shine_factor = vec3d_dot(reflection_dir, ray_inf->direction);
 		shine_factor = (shine_factor > 1 ? 1 : shine_factor);
 		if (shine_factor > 0)
-			specular = color_scalar(color_mul(
-						light->color, ray_inf->object->color), pow(
-							shine_factor, ray_inf->object->shininess)
+			specular = color_scalar(light->color, pow(
+						shine_factor, ray_inf->object->shininess)
 					* (ray_inf->object->shininess + 2)
 					/ (2 * M_PI) * ray_inf->object->specular);
 	}

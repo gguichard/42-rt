@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 06:46:30 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 08:06:28 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_ray_object
 	int				type;
 	t_vec3d			origin;
 	t_vec3d			vertices[3];
+	t_vec3d			size;
 	t_color			color;
 	t_obj_rotation	rotation;
 	double			radius;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersects_shapes_2.c                              :+:      :+:    :+:   */
+/*   intersects_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 22:34:46 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 08:04:45 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 08:09:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ double	get_ellipsoid_intersect_dist(t_ray_object *object, t_vec3d origin
 	t_quad		quad;
 	double		tmp[3];
 
-	tmp[0] = pow(object->vertices[0].x, 2);
-	tmp[1] = pow(object->vertices[0].y, 2);
-	tmp[2] = pow(object->vertices[0].z, 2);
+	tmp[0] = pow(object->size.x, 2);
+	tmp[1] = pow(object->size.y, 2);
+	tmp[2] = pow(object->size.z, 2);
 	quad.a = pow(direction.x, 2) / tmp[0] + pow(direction.y, 2) / tmp[1]
 		+ pow(direction.z, 2) / tmp[2];
 	quad.b = (2 * origin.x * direction.x) / tmp[0]

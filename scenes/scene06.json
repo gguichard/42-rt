@@ -1,28 +1,63 @@
 {
 	"camera": {
-		"origin": [0, 0, -20],
+		"origin": [0, 0, -80],
 		"direction": [0, 0, 1]
 	},
 	"objects": [
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
-			"intensity": 0.5
+			"intensity": 0.2
 		},
 		{
-			"type": "holed_cube",
-			"origin": [0, 0, 0],
-			"color": [255, 255, 255]
+			"type": "sphere",
+			"origin": [5, 0, -10],
+			"radius": 10,
+			"color": [255, 0, 0],
+			"shininess": 50,
+			"specular": 0.3
+		},
+		{
+			"type": "cylinder",
+			"origin": [-5, 10, 0],
+			"radius": 10,
+			"rotation": {
+				"vector": [-1, 1, 1],
+				"angle": 47
+			},
+			"color": [180,255, 0],
+			"shininess": 50,
+			"specular": 0.3
+		},
+		{
+			"type": "cone",
+			"origin": [12, 0, 0],
+			"rotation": {
+				"vector": [1, 1, 0],
+				"angle": 47
+			},
+			"radius": 0.45,
+			"color": [255, 255, 0],
+			"shininess": 50,
+			"specular": 0.3
+		},
+		{
+			"type": "plane",
+			"origin": [0, -10, 0],
+			"color": [15, 32, 15]
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 50],
+			"rotation": {
+				"vector": [1, 0, 0],
+				"angle": 90
+			},
+			"color": [35, 35, 255]
 		},
 		{
 			"type": "light",
-			"origin": [100, 450, 0],
-			"color": [255, 0, 255],
-			"intensity": 15000
-		},
-		{
-			"type": "light",
-			"origin": [-40, 45, 0],
+			"origin": [30, 0, -45],
 			"color": [0, 255, 255],
 			"intensity": 2000
 		}

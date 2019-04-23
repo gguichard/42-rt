@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 21:52:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 05:10:07 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define CAMERA_TR_BACK (1 << 7)
 # define CAMERA_TR_UP (1 << 8)
 # define CAMERA_TR_DOWN (1 << 9)
+# define CAMERA_REVOLVE_R (1 << 10)
+# define CAMERA_REVOLVE_L (1 << 11)
 
 /*
 ** TYPEDEF & STRUCTURES

@@ -53,11 +53,8 @@ double				get_triangle_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
 double				get_ellipsoid_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
-<<<<<<< Updated upstream
-=======
 double				get_hyperboloid_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
->>>>>>> Stashed changes
 
 double				get_intersect_dist(t_ray_object *object, t_vec3d origin
 		, t_vec3d direction);

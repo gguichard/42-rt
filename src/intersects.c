@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:46:53 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 08:09:05 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/23 08:59:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	get_plane_intersect_dist(t_ray_object *object, t_vec3d origin
 	(void)object;
 	if (fabs(direction.y) > 1e-6)
 	{
-		distance = origin.y / -direction.y;
+		distance = -origin.y / direction.y;
 		if (distance >= .0)
 			return (distance);
 	}

@@ -89,13 +89,15 @@ static void			fill_ray_pixels(t_data *data, int x, int y, int color)
 static void			*trace_rays_thread(t_thread *thread)
 {
 	t_data		*data;
+	int			incr;
 	int			x;
 	int			y;
 	t_ray_inf	ray_inf;
 
 	data = thread->data;
-	y = thread->y_offset;
-	while (y < thread->y_offset + thread->height)
+	incr = data->square_pixels_per_ray * MAX_THREADS;
+	y = data->square_pixels_per_ray * thread->id;
+	while (y < data->winsize.height)
 	{
 		if (y % data->square_pixels_per_ray != 0)
 			y++;
@@ -109,7 +111,7 @@ static void			*trace_rays_thread(t_thread *thread)
 				fill_ray_pixels(data, x, y, color_get_rgb(ray_inf.color));
 				x += data->square_pixels_per_ray;
 			}
-			y += data->square_pixels_per_ray;
+			y += incr;
 		}
 	}
 	return (NULL);
@@ -122,14 +124,14 @@ void				trace_rays(t_data *data)
 	idx = 0;
 	while (idx < MAX_THREADS)
 	{
-		pthread_create(&data->threads[idx].id, NULL, (void *)trace_rays_thread
+		pthread_create(&data->threads[idx].pid, NULL, (void *)trace_rays_thread
 				, data->threads + idx);
 		idx++;
 	}
 	idx = 0;
 	while (idx < MAX_THREADS)
 	{
-		pthread_join(data->threads[idx].id, NULL);
+		pthread_join(data->threads[idx].pid, NULL);
 		idx++;
 	}
 }

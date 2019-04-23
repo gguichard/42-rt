@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 06:12:58 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 17:25:13 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 
 static void	init_data(t_data *data)
 {
-	int	height_per_thread;
-	int	y_offset;
 	int	idx;
 
 	data->square_pixels_per_ray = 5;
@@ -37,15 +35,11 @@ static void	init_data(t_data *data)
 				, (t_vec3d){0, 1, 0}, M_PI / 2);
 	data->camera.up = rotate_by_quaternion(data->camera.right
 			, data->camera.direction, M_PI / 2);
-	height_per_thread = data->winsize.height / MAX_THREADS;
-	y_offset = 0;
 	idx = 0;
 	while (idx < MAX_THREADS)
 	{
-		data->threads[idx].y_offset = y_offset;
-		data->threads[idx].height = height_per_thread;
+		data->threads[idx].id = idx;
 		data->threads[idx].data = data;
-		y_offset += height_per_thread;
 		idx++;
 	}
 }

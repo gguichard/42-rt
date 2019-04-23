@@ -22,8 +22,7 @@ static t_color	compute_shading(t_ray_object *light, t_ray_inf *ray_inf
 	specular = (t_color){.0, .0, .0};
 	if (cosine_angle > .0 && ray_inf->object->specular > .0)
 	{
-		reflection_dir = vec3d_sub(light_ray->direction, vec3d_scalar(
-					light_ray->normal, 2 * cosine_angle));
+		reflection_dir = vec3d_reflect(light_ray->direction, light_ray->normal);
 		shine_factor = vec3d_dot(reflection_dir, ray_inf->direction);
 		shine_factor = (shine_factor > 1 ? 1 : shine_factor);
 		if (shine_factor > 0)

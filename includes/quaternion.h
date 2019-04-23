@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:04:17 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/19 13:59:28 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 03:14:02 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 typedef struct		s_quaternion
 {
-	double		x;
-	double		y;
-	double		z;
-	double		scalar;
+	double			x;
+	double			y;
+	double			z;
+	double			w;
 }					t_quaternion;
 
 /*

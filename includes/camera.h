@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:56:10 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 21:41:04 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 03:12:43 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 ** INCLUDES
 */
 
-# include "vec3d.h"
 # include "SDL.h"
+# include "vec3d.h"
 
 /*
 ** TYPEDEF & STRUCTURES

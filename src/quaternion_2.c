@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:46:03 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/22 21:47:06 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 03:15:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vec3d			rotate_by_quaternion(t_vec3d vec, t_vec3d rot_vec, double angle)
 	quat_vec_dir.x = vec.x;
 	quat_vec_dir.y = vec.y;
 	quat_vec_dir.z = vec.z;
-	quat_vec_dir.scalar = 0;
+	quat_vec_dir.w = 0;
 	quat_result = quaternion_mul(quat_rot_vec, quat_vec_dir);
 	quat_result = quaternion_mul(quat_result, quaternion_conj(quat_rot_vec));
 	vec.x = quat_result.x;

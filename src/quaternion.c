@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:07:03 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/22 21:47:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 03:14:53 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 double			quaternion_length(t_quaternion quat)
 {
 	return (sqrt(quat.x * quat.x + quat.y * quat.y
-				+ quat.z * quat.z + quat.scalar * quat.scalar));
+				+ quat.z * quat.z + quat.w * quat.w));
 }
 
 t_quaternion	quaternion_unit(t_quaternion quat)
@@ -26,27 +26,27 @@ t_quaternion	quaternion_unit(t_quaternion quat)
 
 	length = quaternion_length(quat);
 	return ((t_quaternion){quat.x / length, quat.y / length, quat.z / length
-			, quat.scalar / length});
+			, quat.w / length});
 }
 
 t_quaternion	quaternion_mul(t_quaternion quat_a, t_quaternion quat_b)
 {
 	t_quaternion	new;
 
-	new.x = quat_a.scalar * quat_b.x + quat_a.x * quat_b.scalar
+	new.x = quat_a.w * quat_b.x + quat_a.x * quat_b.w
 		+ quat_a.y * quat_b.z - quat_a.z * quat_b.y;
-	new.y = quat_a.scalar * quat_b.y - quat_a.x * quat_b.z
-		+ quat_a.y * quat_b.scalar + quat_a.z * quat_b.x;
-	new.z = quat_a.scalar * quat_b.z + quat_a.x * quat_b.y
-		- quat_a.y * quat_b.x + quat_a.z * quat_b.scalar;
-	new.scalar = quat_a.scalar * quat_b.scalar - quat_a.x * quat_b.x
+	new.y = quat_a.w * quat_b.y - quat_a.x * quat_b.z
+		+ quat_a.y * quat_b.w + quat_a.z * quat_b.x;
+	new.z = quat_a.w * quat_b.z + quat_a.x * quat_b.y
+		- quat_a.y * quat_b.x + quat_a.z * quat_b.w;
+	new.w = quat_a.w * quat_b.w - quat_a.x * quat_b.x
 		- quat_a.y * quat_b.y - quat_a.z * quat_b.z;
 	return (new);
 }
 
 t_quaternion	quaternion_conj(t_quaternion quat)
 {
-	return ((t_quaternion){-quat.x, -quat.y, -quat.z, quat.scalar});
+	return ((t_quaternion){-quat.x, -quat.y, -quat.z, quat.w});
 }
 
 t_quaternion	vec3d_to_rotate_quaternion(t_vec3d vec, double angle)

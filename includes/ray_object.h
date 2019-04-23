@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/24 00:10:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 00:21:01 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define RAYOBJ_HYPERBOLOID 8
 # define RAYOBJ_LIGHT 9
 # define RAYOBJ_AMBIENTLIGHT 10
+
+typedef struct s_ray_object	t_ray_object;
 
 typedef struct s_ray_object	t_ray_object;
 

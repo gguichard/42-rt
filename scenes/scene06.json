@@ -10,12 +10,10 @@
 			"intensity": 0.05
 		},
 		{
-			"type": "sphere",
-			"origin": [5, -7, -10],
+			"type": "hyperboloid",
+			"origin": [0, 0, 0],
 			"radius": 10,
-			"color": [255, 0, 0],
-			"shininess": 50,
-			"specular": 0.2
+			"color": [255, 255, 255]
 		},
 		{
 			"type": "cylinder",

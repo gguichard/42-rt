@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser_objects.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:18:30 by gguichar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include "libft.h"
 #include "json_parser.h"
@@ -39,6 +27,8 @@ static int		get_ray_object_type(t_json_token *token)
 			type = RAYOBJ_TRIANGLE;
 		else if (ft_strequ(token->value.str, "ellipsoid"))
 			type = RAYOBJ_ELLIPSOID;
+		else if (ft_strequ(token->value.str, "hyperboloid"))
+			type = RAYOBJ_HYPERBOLOID;
 		else if (ft_strequ(token->value.str, "light"))
 			type = RAYOBJ_LIGHT;
 		else if (ft_strequ(token->value.str, "ambient_light"))

@@ -31,6 +31,11 @@ double	get_intersect_dist(t_ray_object *object, t_vec3d origin
 		return (get_triangle_intersect_dist(object, origin, direction));
 	else if (object->type == RAYOBJ_ELLIPSOID)
 		return (get_ellipsoid_intersect_dist(object, origin, direction));
+<<<<<<< Updated upstream
+=======
+	else if (object->type == RAYOBJ_HYPERBOLOID)
+		return (get_hyperboloid_intersect_dist(object, origin, direction));
+>>>>>>> Stashed changes
 	else
 		return (-1);
 }
@@ -69,6 +74,7 @@ t_vec3d	get_intersect_normal(t_ray_object *object, t_vec3d intersect)
 		intersect = (t_vec3d){0, 1, 0};
 	else if (object->type == RAYOBJ_CYLINDER || object->type == RAYOBJ_CONE)
 		intersect.z = .0;
+	else if (object->type == 
 	else
 		intersect = get_intersect_normal_2(object, intersect);
 	return (vec3d_unit(intersect));

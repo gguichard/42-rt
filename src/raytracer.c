@@ -38,19 +38,27 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 }
 
-static t_ray_inf	trace_one_ray(t_data *data, t_vec3d ray_dir)
+static t_ray_inf	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
+		, int depth)
 {
 	t_ray_inf	ray_inf;
 
-	ray_inf.origin = data->camera.origin;
+	ray_inf.origin = origin;
 	ray_inf.direction = ray_dir;
 	ray_inf.color = (t_color){.0, .0, .0};
 	ray_inf.object = NULL;
+	if (depth <= 0)
+		return (ray_inf);
 	trace_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)
 	{
 		ray_inf.intersect = vec3d_add(ray_inf.origin, vec3d_scalar(
 					ray_inf.direction, ray_inf.dist));
+		if (ray_inf.object->mirror)
+		{
+			return (trace_one_ray(data, ray_inf.intersect, vec3d_reflect(
+							ray_inf.direction, ray_inf.normal), depth - 1));
+		}
 		trace_light_rays(data, &ray_inf);
 		ray_inf.color.r = pow(ray_inf.color.r, GAMMA_CORRECTION);
 		ray_inf.color.g = pow(ray_inf.color.g, GAMMA_CORRECTION);
@@ -96,7 +104,8 @@ static void			*trace_rays_thread(t_thread *thread)
 			x = 0;
 			while (x < data->winsize.width)
 			{
-				ray_inf = trace_one_ray(data, get_ray_dir(data, x, y));
+				ray_inf = trace_one_ray(data, data->camera.origin
+						, get_ray_dir(data, x, y), 5);
 				fill_ray_pixels(data, x, y, color_get_rgb(ray_inf.color));
 				x += data->square_pixels_per_ray;
 			}

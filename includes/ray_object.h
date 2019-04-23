@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 00:01:21 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 04:18:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_ray_object
 	double			intensity;
 	double			specular;
 	double			shininess;
+	int				mirror;
 }					t_ray_object;
 
 double				get_plane_intersect_dist(t_ray_object *object

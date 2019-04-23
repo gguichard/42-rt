@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 23:57:18 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 04:45:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "error.h"
 #include "ray_object.h"
 
-static int			get_ray_object_type(t_json_token *token)
+static int		get_ray_object_type(t_json_token *token)
 {
 	int	type;
 
@@ -45,36 +45,35 @@ static int			get_ray_object_type(t_json_token *token)
 	return (type);
 }
 
-static t_error		parse_object_property(t_json_token *child
-		, t_ray_object *object)
+static void		parse_object_property(t_json_token *child
+		, t_ray_object *object, t_error *err)
 {
-	t_error	err;
-
-	err = ERR_NOERROR;
+	*err = ERR_NOERROR;
 	if (ft_strequ(child->key, "type"))
 		object->type = get_ray_object_type(child);
 	else if (ft_strequ(child->key, "origin"))
-		object->origin = read_json_vec3d(child, &err);
+		object->origin = read_json_vec3d(child, err);
 	else if (ft_strequ(child->key, "color"))
-		object->color = read_json_color(child, &err);
+		object->color = read_json_color(child, err);
 	else if (ft_strequ(child->key, "radius"))
-		object->radius = read_json_double(child, &err);
+		object->radius = read_json_double(child, err);
 	else if (ft_strequ(child->key, "big_radius"))
-		object->big_radius = read_json_double(child, &err);
+		object->big_radius = read_json_double(child, err);
 	else if (ft_strequ(child->key, "intensity"))
-		object->intensity = read_json_double(child, &err);
+		object->intensity = read_json_double(child, err);
 	else if (ft_strequ(child->key, "specular"))
-		object->specular = read_json_double(child, &err);
+		object->specular = read_json_double(child, err);
 	else if (ft_strequ(child->key, "shininess"))
-		object->shininess = read_json_double(child, &err);
+		object->shininess = read_json_double(child, err);
+	else if (ft_strequ(child->key, "mirror"))
+		object->mirror = (int)read_json_double(child, err);
 	else if (ft_strequ(child->key, "rotation"))
-		err = parse_ray_object_rotation(child, &object->rotation);
+		*err = parse_ray_object_rotation(child, &object->rotation);
 	else if (ft_strequ(child->key, "vertices"))
-		err = parse_ray_object_vertices(child, object->vertices);
-	return (err);
+		*err = parse_ray_object_vertices(child, object->vertices);
 }
 
-static t_error		parse_ray_object(t_json_token *token, t_ray_object *object)
+static t_error	parse_ray_object(t_json_token *token, t_ray_object *object)
 {
 	t_error			err;
 	t_json_token	*child;
@@ -87,7 +86,7 @@ static t_error		parse_ray_object(t_json_token *token, t_ray_object *object)
 		child = token->value.child;
 		while (err == ERR_NOERROR && child != NULL)
 		{
-			err = parse_object_property(child, object);
+			parse_object_property(child, object, &err);
 			child = child->next;
 		}
 		if (object->type == RAYOBJ_UNKNOWN)
@@ -96,7 +95,7 @@ static t_error		parse_ray_object(t_json_token *token, t_ray_object *object)
 	return (err);
 }
 
-static t_error		create_object_and_add_to_scene(t_data *data
+static t_error	create_object_and_add_to_scene(t_data *data
 		, t_json_token *child)
 {
 	t_error			err;
@@ -115,7 +114,7 @@ static t_error		create_object_and_add_to_scene(t_data *data
 	return (err);
 }
 
-t_error				parse_ray_objects(t_data *data, t_json_token *token)
+t_error			parse_ray_objects(t_data *data, t_json_token *token)
 {
 	t_error			err;
 	t_json_token	*child;

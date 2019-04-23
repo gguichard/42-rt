@@ -1,8 +1,7 @@
 {
 	"camera": {
-		"origin": [0, 0, 0],
-		"rotation": [0, 0, 0],
-		"direction": [0, 1, 0]
+		"origin": [10, 0, -40],
+		"direction": [0, 0, 1]
 	},
 	"objects": [
 		{

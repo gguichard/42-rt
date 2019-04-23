@@ -3,7 +3,7 @@
 #include "vec3d.h"
 #include "lib.h"
 #include "raytracer.h"
-#include <stdio.h>
+
 static void	camera_event_translate(t_data *data)
 {
 	if (data->lib.cam_keys & CAMERA_TR_LEFT)
@@ -45,6 +45,24 @@ void		camera_event(t_data *data)
 	camera_event_translate(data);
 }
 
+static void	camera_revolve_key(SDL_Event *event, t_data *data)
+{
+	if (event->key.type == SDL_KEYUP)
+	{
+		if (event->key.keysym.sym == SDLK_e)
+			data->lib.cam_keys &= ~CAMERA_REVOLVE_L;
+		if (event->key.keysym.sym == SDLK_q)
+			data->lib.cam_keys &= ~CAMERA_REVOLVE_R;
+	}
+	if (event->key.type == SDL_KEYDOWN)
+	{
+		if (event->key.keysym.sym == SDLK_e)
+			data->lib.cam_keys |= CAMERA_REVOLVE_L;
+		if (event->key.keysym.sym == SDLK_q)
+			data->lib.cam_keys |= CAMERA_REVOLVE_R;
+	}
+}
+
 static void	camera_release_key(SDL_Event *event, t_data *data)
 {
 	if (event->key.type == SDL_KEYUP)
@@ -69,11 +87,8 @@ static void	camera_release_key(SDL_Event *event, t_data *data)
 			data->lib.cam_keys &= ~CAMERA_TR_UP;
 		if (event->key.keysym.sym == SDLK_KP_MINUS)
 			data->lib.cam_keys &= ~CAMERA_TR_DOWN;
-		if (event->key.keysym.sym == SDLK_e)
-			data->lib.cam_keys &= ~CAMERA_REVOLVE_L;
-		if (event->key.keysym.sym == SDLK_q)
-			data->lib.cam_keys &= ~CAMERA_REVOLVE_R;
 	}
+	camera_revolve_key(event, data);
 }
 
 void		camera_press_key(SDL_Event *event, t_data *data)
@@ -100,10 +115,6 @@ void		camera_press_key(SDL_Event *event, t_data *data)
 			data->lib.cam_keys |= CAMERA_TR_UP;
 		if (event->key.keysym.sym == SDLK_KP_MINUS)
 			data->lib.cam_keys |= CAMERA_TR_DOWN;
-		if (event->key.keysym.sym == SDLK_e)
-			data->lib.cam_keys |= CAMERA_REVOLVE_L;
-		if (event->key.keysym.sym == SDLK_q)
-			data->lib.cam_keys |= CAMERA_REVOLVE_R;
 	}
 	camera_release_key(event, data);
 }

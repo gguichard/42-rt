@@ -2,21 +2,80 @@
 	"camera": {
 		"origin": [0, 0, 0],
 		"rotation": [0, 0, 0],
-		"direction": [0, 0, 1]
+		"direction": [0, 1, 0]
 	},
 	"objects": [
 		{
 			"type": "triangle",
 			"color": [0, 0, 255],
 			"origin": [0, 0, 0],
-			"vertices": [[-100, -110, -102], [105, 106, 106], [-120, 120, 60]]
+			"vertices": [[0, 0, 0], [10, 0, 0], [0, 10, 0]]
 		},
 		{
-			"type": "sphere",
+			"type": "triangle",
 			"color": [0, 0, 255],
-			"radius": 5,
 			"origin": [0, 0, 0],
-			"vertices": [[-100, -110, -102], [105, 106, 106], [-120, 120, 60]]
+			"vertices": [[10, 10, 0], [0, 10, 0], [10, 0, 0]]
+		},
+		{
+			"type": "triangle",
+			"color": [0, 255, 255],
+			"origin": [0, 0, 0],
+			"vertices": [[0, 0, 10], [10, 0, 10], [0, 10, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [0, 255, 255],
+			"origin": [0, 0, 0],
+			"vertices": [[10, 10, 10], [0, 10, 10], [10, 0, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [255, 0, 255],
+			"origin": [0, 0, 0],
+			"vertices": [[0, 10, 0], [10, 10, 0], [0, 10, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [255, 0, 255],
+			"origin": [0, 0, 0],
+			"vertices": [[10, 10, 10], [10, 10, 0], [0, 10, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [255, 255, 255],
+			"origin": [0, 0, 0],
+			"vertices": [[0, 0, 0], [10, 0, 0], [0, 0, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [255, 255, 255],
+			"origin": [0, 0, 0],
+			"vertices": [[10, 0, 10], [10, 0, 0], [0, 0, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [255, 255, 0],
+			"origin": [0, 0, 0],
+			"vertices": [[0, 10, 0], [0, 10, 10], [0, 0, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [255, 255, 0],
+			"origin": [0, 0, 0],
+			"vertices": [[0, 10, 0], [0, 0, 0], [0, 0, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [135, 151, 27],
+			"origin": [0, 0, 0],
+			"vertices": [[10, 10, 0], [10, 10, 10], [10, 0, 10]]
+		},
+		{
+			"type": "triangle",
+			"color": [135, 151, 27],
+			"origin": [0, 0, 0],
+			"vertices": [[10, 10, 0], [10, 0, 0], [10, 0, 10]]
 		},
 		{
 			"type": "ambient_light",

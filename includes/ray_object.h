@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 09:27:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/23 19:18:45 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@
 # define RAYOBJ_TORUS 5
 # define RAYOBJ_TRIANGLE 6
 # define RAYOBJ_ELLIPSOID 7
-# define RAYOBJ_HOLED_CUBE 8
-# define RAYOBJ_LIGHT 9
-# define RAYOBJ_AMBIENTLIGHT 10
+# define RAYOBJ_LIGHT 8
+# define RAYOBJ_AMBIENTLIGHT 9
 
 typedef struct		s_obj_rotation
 {
@@ -64,8 +63,6 @@ double				get_cylinder_intersect_dist(t_ray_object *object
 double				get_triangle_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
 double				get_ellipsoid_intersect_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
-double				get_holed_cube_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
 
 double				get_intersect_dist(t_ray_object *object, t_vec3d origin

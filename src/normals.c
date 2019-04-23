@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/23 19:20:39 by gguichar          #+#    #+#             */
+/*   Updated: 2019/04/23 19:20:42 by gguichar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include "ray_object.h"
 #include "vec3d.h"
@@ -19,13 +31,10 @@ double	get_intersect_dist(t_ray_object *object, t_vec3d origin
 		return (get_triangle_intersect_dist(object, origin, direction));
 	else if (object->type == RAYOBJ_ELLIPSOID)
 		return (get_ellipsoid_intersect_dist(object, origin, direction));
-	else if (object->type == RAYOBJ_HOLED_CUBE)
-		return (get_holed_cube_intersect_dist(object, origin, direction));
 	else
 		return (-1);
 }
 
-#include <stdio.h>
 t_vec3d	get_intersect_normal_2(t_ray_object *object, t_vec3d intersect)
 {
 	double	tmp1;

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:52 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 23:42:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 19:07:29 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,21 @@ void	world_to_object_transform(t_ray_inf *ray_inf, t_ray_object *object
 int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 		, double max_dist_squared)
 {
-	t_list			*cur;
+	size_t			index;
 	t_ray_object	*obj;
 	t_vec3d			origin;
 	t_vec3d			direction;
 	double			dist;
 
-	cur = data->objects;
-	while (cur != NULL)
+	index = 0;
+	while (index < data->objects.size)
 	{
-		obj = (t_ray_object *)cur->content;
+		obj = (t_ray_object *)data->objects.data[index];
 		world_to_object_transform(ray_inf, obj, &origin, &direction);
 		dist = obj->intersect(obj, origin, direction);
 		if (dist > NEAR_PLANE_CLIPPING && (dist * dist) < max_dist_squared)
 			return (1);
-		cur = cur->next;
+		index++;
 	}
 	return (0);
 }

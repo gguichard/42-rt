@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 00:21:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 23:00:06 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,25 @@ static t_error	create_object_and_add_to_scene(t_data *data
 		, t_json_token *child)
 {
 	t_error			err;
-	t_ray_object	obj;
-	t_list			*elem;
+	t_ray_object	*obj;
+	t_vector		*vector;
 
-	ft_memset(&obj, 0, sizeof(t_ray_object));
-	err = parse_ray_object(child, &obj);
-	if (err == ERR_NOERROR
-			&& (elem = ft_lstnew(&obj, sizeof(t_ray_object))) == NULL)
+	if ((obj = ft_memalloc(sizeof(t_ray_object))) == NULL)
 		err = ERR_UNEXPECTED;
-	if (err == ERR_NOERROR)
-		ft_lstadd((obj.type == RAYOBJ_LIGHT
-					|| obj.type == RAYOBJ_AMBIENTLIGHT
-					? &data->lights : &data->objects), elem);
+	else
+	{
+		err = parse_ray_object(child, obj);
+		if (err == ERR_NOERROR)
+		{
+			vector = (obj->type == RAYOBJ_LIGHT
+					|| obj->type == RAYOBJ_AMBIENTLIGHT)
+				? &data->lights : &data->objects;
+			if (!ft_vecpush(vector, obj))
+				err = ERR_UNEXPECTED;
+		}
+		if (err != ERR_NOERROR)
+			free(obj);
+	}
 	return (err);
 }
 
@@ -141,8 +148,8 @@ t_error			parse_ray_objects(t_data *data, t_json_token *token)
 	}
 	if (err != ERR_NOERROR)
 	{
-		ft_lstfree(&data->objects);
-		ft_lstfree(&data->lights);
+		ft_vecfree(&data->objects);
+		ft_vecfree(&data->lights);
 	}
 	return (err);
 }

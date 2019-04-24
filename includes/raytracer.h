@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/22 22:39:57 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 19:07:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct	s_data
 	t_winsize	winsize;
 	t_lib		lib;
 	t_camera	camera;
-	t_list		*objects;
-	t_list		*lights;
+	t_vector	objects;
+	t_vector	lights;
 	int			square_pixels_per_ray;
 	t_thread	threads[MAX_THREADS];
 }				t_data;

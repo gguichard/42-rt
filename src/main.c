@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 22:36:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 21:25:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			main(int argc, char **av)
 	init_data(&data);
 	run_event_loop(&data, trace_rays);
 	destroy_lib(&data.lib);
-	ft_lstfree(&data.objects);
-	ft_lstfree(&data.lights);
+	ft_vecfree(&data.objects);
+	ft_vecfree(&data.lights);
 	return (0);
 }

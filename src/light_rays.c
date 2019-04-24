@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:20:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 23:00:02 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ static void		compute_light_color(t_data *data, t_ray_object *light
 void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 {
 	t_ray_inf		light_ray;
-	t_list			*cur;
+	size_t			index;
 	t_ray_object	*light;
 
 	light_ray.normal = ray_inf->normal;
 	light_ray.origin = vec3d_add(ray_inf->intersect, vec3d_scalar(
 				light_ray.normal, SHADOW_BIAS));
-	cur = data->lights;
-	while (cur != NULL)
+	index = 0;
+	while (index < data->lights.size)
 	{
-		light = (t_ray_object *)cur->content;
+		light = (t_ray_object *)data->lights.data[index];
 		light_ray.direction = vec3d_sub(light->origin, light_ray.origin);
 		light_ray.dist = vec3d_length2(light_ray.direction);
 		if (light_ray.dist > 0)
@@ -86,6 +86,6 @@ void			trace_light_rays(t_data *data, t_ray_inf *ray_inf)
 			light_ray.direction = vec3d_unit(light_ray.direction);
 			compute_light_color(data, light, ray_inf, &light_ray);
 		}
-		cur = cur->next;
+		index++;
 	}
 }

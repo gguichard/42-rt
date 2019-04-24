@@ -6,44 +6,47 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 18:43:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/24 23:14:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "libft.h"
 #include "get_next_line.h"
+#include "model_parser.h"
 #include "vec3d.h"
+#include "error.h"
 
-static t_list	*parse_wf_obj_vertices(t_wf_obj *obj, char **split
-		, t_error *err)
+static t_vec3d	*parse_wf_obj_vertex(char **split, t_error *err)
 {
-	t_list	*elem;
-	t_vec3d	vec;
-	char	*split;
+	t_vec3d	*vertex;
 
-	elem = NULL;
+	vertex = NULL;
 	*err = ERR_NOERROR;
 	if (ft_strtab_count(split) < 4)
 		*err = ERR_BADOBJFILE;
 	else
 	{
-		vec.x = ft_bad_atof(split[1]);
-		vec.y = ft_bad_atof(split[2]);
-		vec.z = ft_bad_atof(split[3]);
-		elem = ft_lstnew(&vec, sizeof(t_vec3d));
-		if (elem == NULL)
+		vertex = (t_vec3d *)malloc(sizeof(t_vec3d));
+		if (vertex == NULL)
 			*err = ERR_UNEXPECTED;
+		else
+		{
+			vertex->x = ft_bad_atof(split[1]);
+			vertex->y = ft_bad_atof(split[2]);
+			vertex->z = ft_bad_atof(split[3]);
+		}
 	}
-	return (elem);
+	return (vertex);
 }
 
 static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
 {
 	t_error	err;
 	char	**split;
-	t_list	*elem;
+	t_vec3d	*vertex;
 
 	err = ERR_NOERROR;
 	split = ft_strsplit(line, ' ');
@@ -51,12 +54,13 @@ static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
 		return (ERR_UNEXPECTED);
 	else if (ft_strequ(split[0], "v"))
 	{
-		elem = parse_wf_obj_file(obj, split, &err);
-		if (elem != NULL)
-			ft_lstadd(&obj->vertices_list, elem);
-		if (err != ERR_NOERROR)
-			ft_lstfree(&obj->vertices_list);
+		vertex = parse_wf_obj_vertex(split, &err);
+		if (vertex != NULL && err == ERR_NOERROR
+				&& !ft_vecpush(&obj->vertices, vertex))
+			err = ERR_UNEXPECTED;
 	}
+	if (err != ERR_NOERROR)
+		ft_vecfree(&obj->vertices);
 	ft_strtab_free(split);
 	return (err);
 }
@@ -68,6 +72,7 @@ t_error			parse_wf_obj_file(const char *file, t_wf_obj *obj)
 	int		ret;
 	t_error	err;
 
+	ft_memset(obj, 0, sizeof(t_wf_obj));
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (ERR_ERRNO);

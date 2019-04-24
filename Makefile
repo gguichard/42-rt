@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/23 23:42:29 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/24 03:35:53 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ intersects_2.c			\
 normals.c				\
 color.c					\
 color_utils.c			\
-solver.c
+solver.c				\
+model_parser.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

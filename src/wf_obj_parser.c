@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   model_parser.c                                     :+:      :+:    :+:   */
+/*   wf_obj_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 02:01:43 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 03:11:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include "libft.h"
 #include "get_next_line.h"
-#include "model_parser.h"
+#include "wf_obj_parser.h"
 #include "vec3d.h"
 #include "error.h"
 

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 02:31:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 03:11:45 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include "parser.h"
 #include "ray_object.h"
 #include "quaternion.h"
-#include "model_parser.h"
 
 static void	init_winsize(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/25 02:30:59 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 03:52:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct				s_ray_object
 	double			specular;
 	double			shininess;
 	int				mirror;
+	double			refractive;
 	t_quaternion	quat_rotate;
 	t_quaternion	quat_invert_rotate;
 };

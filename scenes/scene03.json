@@ -19,7 +19,8 @@
 			"type": "ellipsoid",
 			"origin": [0, 40, 62.5],
 			"color": [253, 233, 224],
-			"size": [10, 15, 10]
+			"size": [10, 15, 10],
+			"refractive": 1.5
 		},
 		{
 			"type": "plane",
@@ -41,7 +42,7 @@
 		},
 		{
 			"type": "cone",
-			"radius": 0.349,
+			"angle": 10,
 			"origin": [0, 20, 0],
 			"color": [30, 230, 30],
 			"rotation": {

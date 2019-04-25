@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 02:29:38 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 05:03:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "vec3d.h"
 #include "color.h"
 
-static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
+static void		trace_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	size_t			index;
 	t_ray_object	*obj;
@@ -50,7 +50,7 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 }
 
-static unsigned int	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
+unsigned int	trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		, int depth)
 {
 	t_ray_inf	ray_inf;
@@ -64,23 +64,25 @@ static unsigned int	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 	trace_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)
 	{
-		ray_inf.intersect = vec3d_add(ray_inf.origin, vec3d_scalar(
-					ray_inf.direction, ray_inf.dist));
+		ray_inf.intersect = vec3d_add(ray_inf.origin
+				, vec3d_scalar(ray_inf.direction, ray_inf.dist));
 		if (ray_inf.object->mirror)
+			return (trace_reflect_ray(data, &ray_inf, depth));
+		else if (ray_inf.object->refractive != 0)
+			return (trace_refract_ray(data, &ray_inf, depth));
+		else
 		{
-			return (trace_one_ray(data, ray_inf.intersect, vec3d_reflect(
-							ray_inf.direction, ray_inf.normal), depth - 1));
+			trace_light_rays(data, &ray_inf);
+			ray_inf.color.r = pow(ray_inf.color.r, GAMMA_CORRECTION);
+			ray_inf.color.g = pow(ray_inf.color.g, GAMMA_CORRECTION);
+			ray_inf.color.b = pow(ray_inf.color.b, GAMMA_CORRECTION);
+			ray_inf.color = color_clamp(ray_inf.color);
 		}
-		trace_light_rays(data, &ray_inf);
-		ray_inf.color.r = pow(ray_inf.color.r, GAMMA_CORRECTION);
-		ray_inf.color.g = pow(ray_inf.color.g, GAMMA_CORRECTION);
-		ray_inf.color.b = pow(ray_inf.color.b, GAMMA_CORRECTION);
-		ray_inf.color = color_clamp(ray_inf.color);
 	}
 	return (color_to_rgb(ray_inf.color));
 }
 
-static void			fill_ray_pixels(t_data *data, int x, int y
+static void		fill_ray_pixels(t_data *data, int x, int y
 		, unsigned int color)
 {
 	int	i;
@@ -99,7 +101,7 @@ static void			fill_ray_pixels(t_data *data, int x, int y
 	}
 }
 
-static void			*trace_rays_thread(t_thread *thread)
+static void		*trace_rays_thread(t_thread *thread)
 {
 	int				incr;
 	int				x;
@@ -117,7 +119,8 @@ static void			*trace_rays_thread(t_thread *thread)
 			x = 0;
 			while (x < thread->data->winsize.width)
 			{
-				color = trace_one_ray(thread->data, thread->data->camera.origin
+				color = trace_primary_ray(thread->data
+						, thread->data->camera.origin
 						, get_ray_dir(thread->data, x, y), 5);
 				fill_ray_pixels(thread->data, x, y, color);
 				x += thread->data->square_pixels_per_ray;
@@ -128,7 +131,7 @@ static void			*trace_rays_thread(t_thread *thread)
 	return (NULL);
 }
 
-void				trace_rays(t_data *data)
+void			trace_rays(t_data *data)
 {
 	int	idx;
 

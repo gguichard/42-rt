@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/25 03:11:18 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/25 04:57:03 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ vec3d.c					\
 vec3d_2.c				\
 ray_utils.c				\
 raytracer.c				\
+trace_rays.c			\
 light_rays.c			\
 camera_move.c			\
 key_camera_events.c		\

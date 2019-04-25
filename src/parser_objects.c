@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 23:00:06 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 03:55:23 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static void		parse_object_property(t_json_token *child
 		object->shininess = read_json_double(child, err);
 	else if (ft_strequ(child->key, "mirror"))
 		object->mirror = (int)read_json_double(child, err);
+	else if (ft_strequ(child->key, "refractive"))
+		object->refractive = read_json_double(child, err);
 	else if (ft_strequ(child->key, "rotation"))
 		*err = parse_ray_object_rotation(child, &object->rotation);
 	else if (ft_strequ(child->key, "vertices"))

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 03:11:45 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 03:55:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static void	create_rotate_quaternions(t_data *data)
 		object = (t_ray_object *)data->objects.data[index];
 		object->quat_rotate = vec3d_to_rotate_quaternion(
 				object->rotation.vector, -object->rotation.angle);
-		object->quat_invert_rotate = vec3d_to_rotate_quaternion
-			(object->rotation.vector, object->rotation.angle);
+		object->quat_invert_rotate = vec3d_to_rotate_quaternion(
+				object->rotation.vector, object->rotation.angle);
 		index++;
 	}
 }

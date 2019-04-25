@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 19:07:55 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 04:58:01 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void			world_to_object_transform(t_ray_inf *ray_inf
 		, t_ray_object *object, t_vec3d *origin, t_vec3d *direction);
 int				has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 		, double max_dist_squared);
+
+unsigned int	trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth);
+unsigned int	trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth);
+unsigned int	trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
+		, int depth);
 
 void			trace_rays(t_data *data);
 void			trace_light_rays(t_data *data, t_ray_inf *ray_inf);

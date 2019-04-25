@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 05:03:35 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 05:32:24 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "vec3d.h"
 #include "color.h"
 
-static void		trace_ray(t_data *data, t_ray_inf *ray_inf)
+static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	size_t			index;
 	t_ray_object	*obj;
@@ -61,7 +61,7 @@ unsigned int	trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 	ray_inf.direction = ray_dir;
 	ray_inf.color = (t_color){.0f, .0f, .0f};
 	ray_inf.object = NULL;
-	trace_ray(data, &ray_inf);
+	intersect_primary_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)
 	{
 		ray_inf.intersect = vec3d_add(ray_inf.origin

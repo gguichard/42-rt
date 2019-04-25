@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 21:25:35 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 02:31:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 #include "parser.h"
 #include "ray_object.h"
 #include "quaternion.h"
+#include "model_parser.h"
+
+static void	init_winsize(t_data *data)
+{
+	data->winsize.width = WIN_WIDTH;
+	data->winsize.height = WIN_HEIGHT;
+	data->winsize.aspect_ratio = data->winsize.width
+		/ (double)data->winsize.height;
+}
 
 static void	init_data(t_data *data)
 {
@@ -44,6 +53,23 @@ static void	init_data(t_data *data)
 	}
 }
 
+static void	create_rotate_quaternions(t_data *data)
+{
+	size_t			index;
+	t_ray_object	*object;
+
+	index = 0;
+	while (index < data->objects.size)
+	{
+		object = (t_ray_object *)data->objects.data[index];
+		object->quat_rotate = vec3d_to_rotate_quaternion(
+				object->rotation.vector, -object->rotation.angle);
+		object->quat_invert_rotate = vec3d_to_rotate_quaternion
+			(object->rotation.vector, object->rotation.angle);
+		index++;
+	}
+}
+
 int			main(int argc, char **av)
 {
 	t_data	data;
@@ -55,13 +81,13 @@ int			main(int argc, char **av)
 		return (1);
 	}
 	ft_memset(&data, 0, sizeof(t_data));
-	data.winsize.width = WIN_WIDTH;
-	data.winsize.height = WIN_HEIGHT;
-	data.winsize.aspect_ratio = data.winsize.width
-		/ (double)data.winsize.height;
+	init_winsize(&data);
 	err = parse_scene(&data, av[1]);
 	if (err == ERR_NOERROR)
+	{
+		create_rotate_quaternions(&data);
 		err = init_and_create_window(&data.lib, data.winsize);
+	}
 	if (err != ERR_NOERROR)
 	{
 		ft_dprintf(STDERR_FILENO, "%s: error: %s\n", av[0], error_to_str(err));

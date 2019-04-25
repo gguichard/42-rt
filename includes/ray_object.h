@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/24 00:21:01 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 02:30:59 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "vec3d.h"
 # include "color.h"
 # include "ray_inf.h"
+# include "quaternion.h"
 
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
@@ -28,8 +29,6 @@
 # define RAYOBJ_HYPERBOLOID 8
 # define RAYOBJ_LIGHT 9
 # define RAYOBJ_AMBIENTLIGHT 10
-
-typedef struct s_ray_object	t_ray_object;
 
 typedef struct s_ray_object	t_ray_object;
 
@@ -56,6 +55,8 @@ struct				s_ray_object
 	double			specular;
 	double			shininess;
 	int				mirror;
+	t_quaternion	quat_rotate;
+	t_quaternion	quat_invert_rotate;
 };
 
 void				assign_object_functions(t_ray_object *object);

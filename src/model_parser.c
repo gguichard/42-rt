@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 23:14:32 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 02:01:43 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,17 @@ static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
 				&& !ft_vecpush(&obj->vertices, vertex))
 			err = ERR_UNEXPECTED;
 	}
+	else if (ft_strequ(split[0], "f"))
+	{
+		ft_vecpush(&obj->indices, obj->vertices.data[ft_atoi(split[1]) - 1]);
+		ft_vecpush(&obj->indices, obj->vertices.data[ft_atoi(split[2]) - 1]);
+		ft_vecpush(&obj->indices, obj->vertices.data[ft_atoi(split[3]) - 1]);
+	}
 	if (err != ERR_NOERROR)
+	{
 		ft_vecfree(&obj->vertices);
+		ft_vecfree(&obj->indices);
+	}
 	ft_strtab_free(split);
 	return (err);
 }

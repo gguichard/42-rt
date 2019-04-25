@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:04:17 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 03:14:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 02:20:20 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ t_quaternion		quaternion_unit(t_quaternion quat);
 t_quaternion		quaternion_mul(t_quaternion quat_a, t_quaternion quat_b);
 t_quaternion		quaternion_conj(t_quaternion quat);
 t_quaternion		vec3d_to_rotate_quaternion(t_vec3d vec, double angle);
+
+t_vec3d				rotate_by_quaternion_with_quaternion(t_vec3d vec
+		, t_quaternion quat_rot_vec);
 t_vec3d				rotate_by_quaternion(t_vec3d vec, t_vec3d rot_vec
 		, double angle);
 

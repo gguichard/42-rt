@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 21:20:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 02:29:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void			trace_ray(t_data *data, t_ray_inf *ray_inf)
 			ray_inf->dist = dist;
 			ray_inf->normal = obj->normal(obj
 					, vec3d_add(origin, vec3d_scalar(direction, dist)));
-			ray_inf->normal = rotate_by_quaternion(ray_inf->normal
-					, obj->rotation.vector, obj->rotation.angle);
+			ray_inf->normal = rotate_by_quaternion_with_quaternion(
+					ray_inf->normal, obj->quat_invert_rotate);
 		}
 		index++;
 	}
@@ -59,7 +59,7 @@ static unsigned int	trace_one_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		return (0x0);
 	ray_inf.origin = origin;
 	ray_inf.direction = ray_dir;
-	ray_inf.color = (t_color){.0, .0, .0};
+	ray_inf.color = (t_color){.0f, .0f, .0f};
 	ray_inf.object = NULL;
 	trace_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)

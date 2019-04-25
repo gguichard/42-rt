@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 03:55:23 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 22:45:54 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,30 @@
 
 static int		get_ray_object_type(t_json_token *token)
 {
-	int	type;
-
-	type = RAYOBJ_UNKNOWN;
 	if (token->type == JSON_STRING)
 	{
 		if (ft_strequ(token->value.str, "sphere"))
-			type = RAYOBJ_SPHERE;
+			return (RAYOBJ_SPHERE);
 		else if (ft_strequ(token->value.str, "plane"))
-			type = RAYOBJ_PLANE;
+			return (RAYOBJ_PLANE);
 		else if (ft_strequ(token->value.str, "cylinder"))
-			type = RAYOBJ_CYLINDER;
+			return (RAYOBJ_CYLINDER);
 		else if (ft_strequ(token->value.str, "cone"))
-			type = RAYOBJ_CONE;
+			return (RAYOBJ_CONE);
 		else if (ft_strequ(token->value.str, "torus"))
-			type = RAYOBJ_TORUS;
+			return (RAYOBJ_TORUS);
 		else if (ft_strequ(token->value.str, "triangle"))
-			type = RAYOBJ_TRIANGLE;
+			return (RAYOBJ_TRIANGLE);
 		else if (ft_strequ(token->value.str, "ellipsoid"))
-			type = RAYOBJ_ELLIPSOID;
+			return (RAYOBJ_ELLIPSOID);
 		else if (ft_strequ(token->value.str, "hyperboloid"))
-			type = RAYOBJ_HYPERBOLOID;
+			return (RAYOBJ_HYPERBOLOID);
 		else if (ft_strequ(token->value.str, "light"))
-			type = RAYOBJ_LIGHT;
+			return (RAYOBJ_LIGHT);
 		else if (ft_strequ(token->value.str, "ambient_light"))
-			type = RAYOBJ_AMBIENTLIGHT;
+			return (RAYOBJ_AMBIENTLIGHT);
 	}
-	return (type);
+	return (RAYOBJ_UNKNOWN);
 }
 
 static void		parse_object_property(t_json_token *child

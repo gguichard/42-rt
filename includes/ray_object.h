@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/25 03:52:44 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 22:36:57 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_vec3d				get_triangle_normal(t_ray_object *object
 		, t_vec3d intersect);
 t_vec3d				get_ellipsoid_normal(t_ray_object *object
 		, t_vec3d intersect);
-t_vec3d				get_hyperboloid_nornal(t_ray_object *object
+t_vec3d				get_hyperboloid_normal(t_ray_object *object
 		, t_vec3d intersect);
 
 #endif

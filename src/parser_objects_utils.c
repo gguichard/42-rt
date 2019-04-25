@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 00:08:39 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 22:37:40 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	assign_object_functions2(t_ray_object *object)
 	else if (object->type == RAYOBJ_HYPERBOLOID)
 	{
 		object->intersect = get_hyperboloid_intersect_dist;
-		object->normal = get_hyperboloid_nornal;
+		object->normal = get_hyperboloid_normal;
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/25 04:57:03 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/25 22:36:40 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ key_camera_events.c		\
 intersects.c			\
 intersects_2.c			\
 normals.c				\
+normals_2.c				\
 color.c					\
 color_utils.c			\
 solver.c				\

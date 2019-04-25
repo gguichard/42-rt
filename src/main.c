@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 03:55:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 22:38:21 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ static void	create_rotate_quaternions(t_data *data)
 	}
 }
 
+static int	exit_with_error(t_error err, char *prog)
+{
+	ft_dprintf(STDERR_FILENO, "%s: error: %s\n", prog, error_to_str(err));
+	return (1);
+}
+
 int			main(int argc, char **av)
 {
 	t_data	data;
@@ -88,10 +94,7 @@ int			main(int argc, char **av)
 		err = init_and_create_window(&data.lib, data.winsize);
 	}
 	if (err != ERR_NOERROR)
-	{
-		ft_dprintf(STDERR_FILENO, "%s: error: %s\n", av[0], error_to_str(err));
-		return (1);
-	}
+		return (exit_with_error(err, av[0]));
 	init_data(&data);
 	run_event_loop(&data, trace_rays);
 	destroy_lib(&data.lib);

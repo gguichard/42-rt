@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 05:32:24 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 18:43:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ unsigned int	trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 	intersect_primary_ray(data, &ray_inf);
 	if (ray_inf.object != NULL)
 	{
+		ray_inf.normal = vec3d_unit(ray_inf.normal);
 		ray_inf.intersect = vec3d_add(ray_inf.origin
 				, vec3d_scalar(ray_inf.direction, ray_inf.dist));
 		if (ray_inf.object->mirror)

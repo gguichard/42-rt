@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:54:08 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 05:16:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 18:57:50 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,21 @@ unsigned int	trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 	t_vec3d	reflect_dir;
 
 	new_origin = ray_inf->intersect;
-//	new_origin = vec3d_add(new_origin
-//			, vec3d_scalar(ray_inf->normal, SHADOW_BIAS));
+	new_origin = vec3d_add(new_origin
+			, vec3d_scalar(ray_inf->normal, SHADOW_BIAS));
 	reflect_dir = vec3d_reflect(ray_inf->direction, ray_inf->normal);
 	return (trace_primary_ray(data, new_origin, reflect_dir, depth - 1));
 }
+
+/*double			fresnel(t_vec3d *direction, t_vec3d *normal, double ior)
+  {
+  double	cosi;
+
+  cosi = vec3d_dot(direction, normal);
+  if (cosi < 0)
+  cosi = -cosi;
+
+  }*/
 
 static t_vec3d	get_refract_dir(t_ray_inf *ray_inf, t_vec3d normal_refract
 		, double n1, double n2)

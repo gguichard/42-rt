@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 18:43:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 19:25:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 }
 
-unsigned int	trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
+t_color			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		, int depth)
 {
 	t_ray_inf	ray_inf;
 
 	if (depth <= 0)
-		return (0x0);
+		return ((t_color){.0f, .0f, .0f});
 	ray_inf.origin = origin;
 	ray_inf.direction = ray_dir;
 	ray_inf.color = (t_color){.0f, .0f, .0f};
@@ -80,7 +80,7 @@ unsigned int	trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 			ray_inf.color = color_clamp(ray_inf.color);
 		}
 	}
-	return (color_to_rgb(ray_inf.color));
+	return (ray_inf.color);
 }
 
 static void		fill_ray_pixels(t_data *data, int x, int y
@@ -120,9 +120,9 @@ static void		*trace_rays_thread(t_thread *thread)
 			x = 0;
 			while (x < thread->data->winsize.width)
 			{
-				color = trace_primary_ray(thread->data
+				color = color_to_rgb(trace_primary_ray(thread->data
 						, thread->data->camera.origin
-						, get_ray_dir(thread->data, x, y), 5);
+						, get_ray_dir(thread->data, x, y), 5));
 				fill_ray_pixels(thread->data, x, y, color);
 				x += thread->data->square_pixels_per_ray;
 			}

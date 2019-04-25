@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/25 22:36:40 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/25 22:56:04 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ normals_2.c				\
 color.c					\
 color_utils.c			\
 solver.c				\
-wf_obj_parser.c
+wf_obj_parser.c			\
+utils.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

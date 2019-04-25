@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:54:08 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 18:57:50 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 22:55:07 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include "ray_inf.h"
 #include "ray_object.h"
 #include "vec3d.h"
+#include "shading.h"
+#include "utils.h"
 
-unsigned int	trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
+t_color			trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 {
 	t_vec3d	new_origin;
 	t_vec3d	reflect_dir;
@@ -27,59 +29,85 @@ unsigned int	trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 	return (trace_primary_ray(data, new_origin, reflect_dir, depth - 1));
 }
 
-/*double			fresnel(t_vec3d *direction, t_vec3d *normal, double ior)
-  {
-  double	cosi;
-
-  cosi = vec3d_dot(direction, normal);
-  if (cosi < 0)
-  cosi = -cosi;
-
-  }*/
-
-static t_vec3d	get_refract_dir(t_ray_inf *ray_inf, t_vec3d normal_refract
-		, double n1, double n2)
+static double	fresnel(t_vec3d direction, t_vec3d normal, double ior)
 {
-	double	radical;
-	t_vec3d	refract_dir;
+	t_shading	shading;
+	double		tmp;
 
-	radical = 1 - pow(n1 / n2, 2)
-		* (1 - pow(vec3d_dot(normal_refract, ray_inf->direction), 2));
-	if (radical > .0)
+	shading.etai = 1.0;
+	shading.etat = ior;
+	shading.cosi = clamp(vec3d_dot(direction, normal), -1, 1);
+	if (shading.cosi > 0)
 	{
-		refract_dir = vec3d_scalar(normal_refract
-				, vec3d_dot(ray_inf->direction, normal_refract));
-		refract_dir = vec3d_scalar(vec3d_sub(ray_inf->direction, refract_dir)
-				, n1 / n2);
-		refract_dir = vec3d_sub(refract_dir
-				, vec3d_scalar(normal_refract, sqrt(radical)));
-		return (refract_dir);
+		tmp = shading.etai;
+		shading.etai = shading.etat;
+		shading.etat = tmp;
 	}
-	return ((t_vec3d){.0, .0, .0});
+	shading.sint = shading.etai / shading.etat
+		* sqrt(fmax(1 - shading.cosi * shading.cosi, 0));
+	if (shading.sint >= 1)
+		return (1);
+	shading.cost = sqrt(fmax(1 - shading.sint * shading.sint, 0));
+	shading.cosi = fabs(shading.cosi);
+	shading.rs = ((shading.etat * shading.cosi) - (shading.etai * shading.cost))
+		/ ((shading.etat * shading.cosi) + (shading.etai * shading.cost));
+	shading.rp = ((shading.etai * shading.cosi) - (shading.etat * shading.cost))
+		/ ((shading.etai * shading.cosi) + (shading.etat * shading.cost));
+	return ((shading.rs * shading.rs + shading.rp * shading.rp) / 2);
 }
 
-unsigned int	trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth)
+static int		get_refract_dir(t_vec3d direction, t_vec3d normal, double ior
+		, t_vec3d *refract)
 {
-	double	n1;
-	double	n2;
-	t_vec3d	normal_refract;
-	t_vec3d	refract_dir;
+	t_shading	shading;
+	t_vec3d		ref_normal;
+	double		k;
+	double		tmp;
 
-	n1 = 1.0;
-	n2 = ray_inf->object->refractive;
-	normal_refract = ray_inf->normal;
-	if (vec3d_dot(ray_inf->direction, ray_inf->normal) > 0)
+	shading.cosi = clamp(vec3d_dot(direction, normal), -1, 1);
+	shading.etai = 1.0;
+	shading.etat = ior;
+	ref_normal = normal;
+	if (shading.cosi < 0)
+		shading.cosi = -shading.cosi;
+	else
 	{
-		n1 = ray_inf->object->refractive;
-		n2 = 1.0;
-		normal_refract = vec3d_scalar(normal_refract, -1);
+		tmp = shading.etai;
+		shading.etai = shading.etat;
+		shading.etat = tmp;
+		ref_normal = vec3d_scalar(ref_normal, -1);
 	}
-	refract_dir = get_refract_dir(ray_inf, normal_refract, n1, n2);
-	if (refract_dir.x != .0 || refract_dir.y != .0 || refract_dir.z != .0)
+	shading.eta = shading.etai / shading.etat;
+	k = 1 - shading.eta * shading.eta * (1 - shading.cosi * shading.cosi);
+	if (k < 0)
+		return (0);
+	*refract = vec3d_add(vec3d_scalar(direction, shading.eta)
+			, vec3d_scalar(ref_normal, shading.eta * shading.cosi - sqrt(k)));
+	return (1);
+}
+
+t_color			trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth)
+{
+	t_vec3d	bias;
+	t_color	refract_color;
+	t_color	reflect_color;
+	t_vec3d	refract_dir;
+	double	kr;
+
+	bias = vec3d_scalar(ray_inf->normal, SHADOW_BIAS);
+	if (vec3d_dot(ray_inf->direction, ray_inf->normal) < 0)
+		bias = vec3d_scalar(bias, -1);
+	refract_color = (t_color){.0f, .0f, .0f};
+	kr = fresnel(ray_inf->direction, ray_inf->normal
+			, ray_inf->object->refractive);
+	if (kr < 1 && get_refract_dir(ray_inf->direction, ray_inf->normal
+				, ray_inf->object->refractive, &refract_dir))
 	{
-		return (trace_primary_ray(data, vec3d_sub(ray_inf->intersect
-						, vec3d_scalar(normal_refract, SHADOW_BIAS))
-					, refract_dir, depth - 1));
+		refract_color = trace_primary_ray(data
+				, vec3d_add(ray_inf->intersect, bias), refract_dir, depth - 1);
 	}
-	return (0x0);
+	reflect_color = trace_primary_ray(data, vec3d_add(ray_inf->intersect, bias)
+			, vec3d_reflect(ray_inf->direction, ray_inf->normal), depth - 1);
+	return (color_add(color_scalar(refract_color, 1 - kr)
+				, color_scalar(reflect_color, kr)));
 }

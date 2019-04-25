@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   model_parser.h                                     :+:      :+:    :+:   */
+/*   wf_obj_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:16:59 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 01:42:35 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/25 05:37:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MODEL_PARSER_H
-# define MODEL_PARSER_H
+#ifndef WF_OBJ_PARSER_H
+# define WF_OBJ_PARSER_H
 
 # include <string.h>
 # include "libft.h"

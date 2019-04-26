@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perlin.h                                           :+:      :+:    :+:   */
+/*   perturbations.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 04:49:00 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 05:18:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 11:08:08 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PERLIN_H
-# define PERLIN_H
+#ifndef PERTURBATIONS_H
+# define PERTURBATIONS_H
 
 /*
 ** INCLUDES
@@ -42,5 +42,9 @@ typedef struct	s_perlin
 
 double			perlin_noise(t_vec3d intersect);
 void			perlin_permutation_tab(t_perlin *perlin);
+t_vec3d			normal_sin_perturbation(t_vec3d normal);
+t_vec3d			uniform_bump_mapping(t_vec3d normal, double epsilon);
+t_vec3d			plane_bump_mapping(t_vec3d normal, t_vec3d intersect
+	, double epsilon);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:39:06 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 05:58:12 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 11:27:21 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "vec3d.h"
 #include "libft.h"
-#include "perlin.h"
+#include "perturbations.h"
 
 static double	fade(double nbr)
 {
@@ -63,8 +63,8 @@ static double	perlin_result(t_perlin perlin, t_vec3d intersect)
 				, linear_interpolation(perlin.u, gradient(
 					perlin.permut[perlin.hash[3] + 1], intersect.x
 					, intersect.y - 1, intersect.z - 1), gradient(
-					perlin.permut[perlin.hash[5] + 1], intersect.x -1
-					, intersect.y -1, intersect.z - 1))));
+					perlin.permut[perlin.hash[5] + 1], intersect.x - 1
+					, intersect.y - 1, intersect.z - 1))));
 	return (perlin.result);
 }
 

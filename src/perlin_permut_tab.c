@@ -6,11 +6,11 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 05:13:19 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 05:17:02 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 11:06:33 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "perlin.h"
+#include "perturbations.h"
 #include <stdlib.h>
 
 void	perlin_permutation_tab(t_perlin *perlin)

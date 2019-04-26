@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:27:42 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:54:29 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		, int depth);
 t_vec3d			trace_light_rays(t_data *data, t_ray_inf *ray_inf);
 
-void			trace_rays(t_data *data);
+void			draw_trace_rays(t_data *data);
 
 #endif

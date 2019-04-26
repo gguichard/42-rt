@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:39 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 22:37:09 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 17:10:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_vec3d	get_torus_normal(t_ray_object *object, t_vec3d intersect)
 	big_radius2 = object->big_radius * object->big_radius;
 	tmp = vec3d_length2(intersect)
 		- (object->radius * object->radius + big_radius2);
-	intersect.x *= sin(tmp);
-	intersect.y *= cos(tmp + 2 * big_radius2);
-	intersect.z *= -sin(tmp);
+	intersect.x *= tmp;
+	intersect.y *= tmp + 2 * big_radius2;
+	intersect.z *= tmp;
 	return (vec3d_unit(intersect));
 }

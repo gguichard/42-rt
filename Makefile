@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/26 11:04:39 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/26 21:45:49 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,34 +30,35 @@ LDLIBS		=	-lft
 
 SRC_DIR		=	src
 SRC 		=			\
-main.c					\
+camera_move.c			\
+draw.c					\
+error.c					\
+intersects.c			\
+intersects_2.c			\
+key_camera_events.c		\
 lib.c					\
+light_rays.c			\
+main.c					\
+normals.c				\
+normals_2.c				\
 parser.c				\
 parser_objects.c		\
 parser_objects_utils.c	\
 parser_types.c			\
 parser_utils.c			\
-error.c					\
-quaternion.c			\
-quaternion_2.c			\
-vec3d.c					\
-vec3d_2.c				\
-ray_utils.c				\
-raytracer.c				\
-trace_rays.c			\
-light_rays.c			\
-camera_move.c			\
-key_camera_events.c		\
-intersects.c			\
-intersects_2.c			\
-normals.c				\
-normals_2.c				\
-solver.c				\
-wf_obj_parser.c			\
-utils.c					\
 perlin_noise.c			\
 perlin_permut_tab.c		\
-perturbations.c
+perturbations.c			\
+quaternion.c			\
+quaternion_2.c			\
+ray_utils.c				\
+raytracer.c				\
+solver.c				\
+trace_rays.c			\
+utils.c					\
+vec3d.c					\
+vec3d_2.c				\
+wf_obj_parser.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

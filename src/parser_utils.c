@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:40:04 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 04:49:00 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_vec3d		read_json_color(t_json_token *token, t_error *err)
 	unsigned char	b;
 	t_vec3d			color;
 
+	color = (t_vec3d){0, 0, 0};
 	if (token->type != JSON_ARRAY)
 		*err = ERR_BADCOLOR;
 	else
@@ -95,8 +96,7 @@ t_vec3d		read_json_color(t_json_token *token, t_error *err)
 		child = token->value.child;
 		if (!write_json_color_field(&child, &r)
 				|| !write_json_color_field(&child, &g)
-				|| !write_json_color_field(&child, &b)
-				|| child != NULL)
+				|| !write_json_color_field(&child, &b) || child != NULL)
 			*err = ERR_BADCOLOR;
 		else
 		{

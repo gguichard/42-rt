@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/26 04:33:15 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/26 05:19:14 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,9 @@ normals.c				\
 normals_2.c				\
 solver.c				\
 wf_obj_parser.c			\
-utils.c
+utils.c					\
+perlin_noise.c			\
+perlin_permut_tab.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

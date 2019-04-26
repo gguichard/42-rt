@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:33:42 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 05:42:54 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "parser.h"
 #include "error.h"
 #include "ray_object.h"
+#include "utils.h"
 
 static int		get_ray_object_type(t_json_token *token)
 {
@@ -68,11 +69,11 @@ static void		parse_object_property(t_json_token *child
 	else if (ft_strequ(child->key, "intensity"))
 		object->intensity = read_json_double(child, err);
 	else if (ft_strequ(child->key, "specular"))
-		object->specular = read_json_double(child, err);
+		object->specular = clamp(read_json_double(child, err), 0, 1);
 	else if (ft_strequ(child->key, "shininess"))
 		object->shininess = read_json_double(child, err);
 	else if (ft_strequ(child->key, "reflective"))
-		object->reflective = read_json_double(child, err);
+		object->reflective = clamp(read_json_double(child, err), 0, 1);
 	else if (ft_strequ(child->key, "refractive"))
 		object->refractive = read_json_double(child, err);
 	else if (ft_strequ(child->key, "rotation"))

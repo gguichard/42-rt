@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:39:06 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 05:33:12 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 05:58:12 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,4 @@ double			perlin_noise(t_vec3d intersect)
 	perlin.hash[4] = perlin.permut[perlin.hash[1]] + perlin.z;
 	perlin.hash[5] = perlin.permut[perlin.hash[1] + 1] + perlin.z;
 	return (perlin_result(perlin, intersect));
-}
-
-#include <stdio.h>
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-	printf("%lf\n", perlin_noise((t_vec3d){0, 73.6, 10}));
-	return (0);
 }

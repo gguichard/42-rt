@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:46:44 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 05:42:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,9 @@ t_vec3d		trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 			else
 			{
 				if (ray_inf.object->reflective != 0)
-					color = vec3d_scalar(trace_reflect_ray(data, &ray_inf
-								, depth), ray_inf.object->reflective);
+					color = trace_reflect_ray(data, &ray_inf, depth);
 				else if (ray_inf.object->refractive != 0)
-					color = vec3d_scalar(trace_refract_ray(data, &ray_inf
-								, depth), ray_inf.object->refractive);
-				color = vec3d_add(ray_inf.object->color, color);
+					color = trace_refract_ray(data, &ray_inf, depth);
 			}
 		}
 	}

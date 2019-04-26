@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 07:13:59 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 11:26:41 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 22:37:06 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,22 @@ t_vec3d		normal_sin_perturbation(t_vec3d normal)
 	return (normal);
 }
 
-t_vec3d		uniform_bump_mapping(t_vec3d normal, double epsilon)
+t_vec3d		bump_mapping(t_vec3d normal, t_vec3d intersect, double bump)
 {
-	double	x;
-	double	y;
-	double	z;
+	double		noise_coef[3];
+	double		tmp;
 
-	x = perlin_noise((t_vec3d){normal.x - epsilon, normal.y, normal.z})
-		- perlin_noise((t_vec3d){normal.x + epsilon, normal.y, normal.z});
-	y = perlin_noise((t_vec3d){normal.x, normal.y - epsilon, normal.z})
-		- perlin_noise((t_vec3d){normal.x, normal.y + epsilon, normal.z});
-	z = perlin_noise((t_vec3d){normal.x, normal.y, normal.z - epsilon})
-		- perlin_noise((t_vec3d){normal.x, normal.y, normal.z + epsilon});
-	return ((t_vec3d){normal.x + x, normal.y + y, normal.z + z});
-}
-
-t_vec3d		plane_bump_mapping(t_vec3d normal, t_vec3d intersect
-	, double epsilon)
-{
-	double	x;
-	double	y;
-	double	z;
-
-	x = normal.x + intersect.x;
-	y = normal.y * 50 + 100 * intersect.y;
-	z = normal.z + intersect.z;
-	return (uniform_bump_mapping((t_vec3d){x, y, z}, epsilon));
+	noise_coef[0] = perlin_noise(vec3d_scalar(intersect, 0.1));
+	noise_coef[1] = perlin_noise(vec3d_scalar((t_vec3d){intersect.y, intersect.z
+				, intersect.x}, 0.1));
+	noise_coef[2] = perlin_noise(vec3d_scalar((t_vec3d){intersect.z, intersect.x
+				, intersect.y}, 0.1));
+	normal.x = (1.0 - bump) * normal.x + bump * noise_coef[0];
+	normal.y = (1.0 - bump) * normal.y + bump * noise_coef[1];
+	normal.z = (1.0 - bump) * normal.z + bump * noise_coef[2];
+	tmp = vec3d_dot(normal, normal);
+	if (tmp == 0.0)
+		return (normal);
+	tmp = 1 / sqrt(tmp);
+	return (vec3d_unit(vec3d_scalar(normal, tmp)));
 }

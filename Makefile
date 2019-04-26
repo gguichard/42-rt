@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/25 22:56:04 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/26 04:33:15 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,6 @@ intersects.c			\
 intersects_2.c			\
 normals.c				\
 normals_2.c				\
-color.c					\
-color_utils.c			\
 solver.c				\
 wf_obj_parser.c			\
 utils.c

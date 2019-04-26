@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 19:25:38 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 04:46:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 #include "thread.h"
 #include "quaternion.h"
 #include "vec3d.h"
-#include "color.h"
+#include "utils.h"
 
-static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
+static void	intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	size_t			index;
 	t_ray_object	*obj;
@@ -50,41 +50,43 @@ static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 }
 
-t_color			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
+t_vec3d		trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		, int depth)
 {
 	t_ray_inf	ray_inf;
+	t_vec3d		color;
 
-	if (depth <= 0)
-		return ((t_color){.0f, .0f, .0f});
-	ray_inf.origin = origin;
-	ray_inf.direction = ray_dir;
-	ray_inf.color = (t_color){.0f, .0f, .0f};
-	ray_inf.object = NULL;
-	intersect_primary_ray(data, &ray_inf);
-	if (ray_inf.object != NULL)
+	color = (t_vec3d){0, 0, 0};
+	if (depth > 0)
 	{
-		ray_inf.normal = vec3d_unit(ray_inf.normal);
-		ray_inf.intersect = vec3d_add(ray_inf.origin
-				, vec3d_scalar(ray_inf.direction, ray_inf.dist));
-		if (ray_inf.object->mirror)
-			return (trace_reflect_ray(data, &ray_inf, depth));
-		else if (ray_inf.object->refractive != 0)
-			return (trace_refract_ray(data, &ray_inf, depth));
-		else
+		ray_inf.origin = origin;
+		ray_inf.direction = ray_dir;
+		ray_inf.object = NULL;
+		intersect_primary_ray(data, &ray_inf);
+		if (ray_inf.object != NULL)
 		{
-			trace_light_rays(data, &ray_inf);
-			ray_inf.color.r = pow(ray_inf.color.r, GAMMA_CORRECTION);
-			ray_inf.color.g = pow(ray_inf.color.g, GAMMA_CORRECTION);
-			ray_inf.color.b = pow(ray_inf.color.b, GAMMA_CORRECTION);
-			ray_inf.color = color_clamp(ray_inf.color);
+			ray_inf.normal = vec3d_unit(ray_inf.normal);
+			ray_inf.intersect = vec3d_add(ray_inf.origin
+					, vec3d_scalar(ray_inf.direction, ray_inf.dist));
+			if (ray_inf.object->reflective == 0
+					&& ray_inf.object->refractive == 0)
+				color = trace_light_rays(data, &ray_inf);
+			else
+			{
+				if (ray_inf.object->reflective != 0)
+					color = vec3d_scalar(trace_reflect_ray(data, &ray_inf
+								, depth), ray_inf.object->reflective);
+				else if (ray_inf.object->refractive != 0)
+					color = vec3d_scalar(trace_refract_ray(data, &ray_inf
+								, depth), ray_inf.object->refractive);
+				color = vec3d_add(ray_inf.object->color, color);
+			}
 		}
 	}
-	return (ray_inf.color);
+	return (color);
 }
 
-static void		fill_ray_pixels(t_data *data, int x, int y
-		, unsigned int color)
+static void	fill_ray_pixels(t_data *data, int x, int y, unsigned int color)
 {
 	int	i;
 	int	j;
@@ -102,12 +104,12 @@ static void		fill_ray_pixels(t_data *data, int x, int y
 	}
 }
 
-static void		*trace_rays_thread(t_thread *thread)
+static void	*trace_rays_thread(t_thread *thread)
 {
-	int				incr;
-	int				x;
-	int				y;
-	unsigned int	color;
+	int		incr;
+	int		x;
+	int		y;
+	t_vec3d	vec_color;
 
 	incr = thread->data->square_pixels_per_ray * MAX_THREADS;
 	y = thread->data->square_pixels_per_ray * thread->id;
@@ -120,10 +122,11 @@ static void		*trace_rays_thread(t_thread *thread)
 			x = 0;
 			while (x < thread->data->winsize.width)
 			{
-				color = color_to_rgb(trace_primary_ray(thread->data
+				vec_color = trace_primary_ray(thread->data
 						, thread->data->camera.origin
-						, get_ray_dir(thread->data, x, y), 5));
-				fill_ray_pixels(thread->data, x, y, color);
+						, get_ray_dir(thread->data, x, y), 5);
+				fill_ray_pixels(thread->data, x, y
+						, get_color_with_gamma_correction(vec_color));
 				x += thread->data->square_pixels_per_ray;
 			}
 			y += incr;
@@ -132,7 +135,7 @@ static void		*trace_rays_thread(t_thread *thread)
 	return (NULL);
 }
 
-void			trace_rays(t_data *data)
+void		trace_rays(t_data *data)
 {
 	int	idx;
 

@@ -51,31 +51,27 @@
 		},
 		{
 			"type": "triangle",
-			"color": [255, 255, 255],
 			"origin": [0, 0, 50],
 			"vertices": [[-12.5, 0, 0], [0, 25, 12.5], [12.5, 0, 0]],
-			"mirror": 1
+			"reflective": 1.0
 		},
 		{
 			"type": "triangle",
-			"color": [255, 255, 255],
 			"origin": [0, 0, 50],
 			"vertices": [[-12.5, 0, 0], [-12.5, 0, 25], [0, 25, 12.5]],
-			"mirror": 1
+			"reflective": 1.0
 		},
 		{
 			"type": "triangle",
-			"color": [255, 255, 255],
 			"origin": [0, 0, 50],
 			"vertices": [[12.5, 0, 25], [0, 25, 12.5], [-12.5, 0, 25]],
-			"mirror": 1
+			"reflective": 1.0
 		},
 		{
 			"type": "triangle",
-			"color": [255, 255, 255],
 			"origin": [0, 0, 50],
 			"vertices": [[12.5, 0, 25], [12.5, 0, 0], [0, 25, 12.5]],
-			"mirror": 1
+			"reflective": 1.0
 		},
 		{
 			"type": "sphere",
@@ -87,10 +83,10 @@
 		},
 		{
 			"type": "torus",
-			"radius": -2,
+			"radius": 2,
 			"big_radius": 20,
 			"origin" : [0, 20, 0],
-			"color":[0, 255, 255]
+			"color": [0, 255, 255]
 		},
 		{
 			"type": "cylinder",

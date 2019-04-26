@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/25 22:36:57 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/26 04:26:59 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RAY_OBJECT_H
 
 # include "vec3d.h"
-# include "color.h"
 # include "ray_inf.h"
 # include "quaternion.h"
 
@@ -46,7 +45,7 @@ struct				s_ray_object
 	t_vec3d			origin;
 	t_vec3d			vertices[3];
 	t_vec3d			size;
-	t_color			color;
+	t_vec3d			color;
 	t_obj_rotation	rotation;
 	double			angle;
 	double			radius;
@@ -54,7 +53,7 @@ struct				s_ray_object
 	double			intensity;
 	double			specular;
 	double			shininess;
-	int				mirror;
+	double			reflective;
 	double			refractive;
 	t_quaternion	quat_rotate;
 	t_quaternion	quat_invert_rotate;

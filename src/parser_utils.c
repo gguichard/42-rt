@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:20:26 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 04:40:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include "parser.h"
 #include "error.h"
 #include "vec3d.h"
-#include "color.h"
+#include "utils.h"
 
-double			read_json_double(t_json_token *token, t_error *err)
+double		read_json_double(t_json_token *token, t_error *err)
 {
 	*err = ERR_NOERROR;
 	if (token->type == JSON_FLOAT)
@@ -32,7 +32,7 @@ double			read_json_double(t_json_token *token, t_error *err)
 	}
 }
 
-static int		write_json_vec3d_field(t_json_token **token, double *f)
+static int	write_json_vec3d_field(t_json_token **token, double *f)
 {
 	if (*token == NULL)
 		return (0);
@@ -45,7 +45,7 @@ static int		write_json_vec3d_field(t_json_token **token, double *f)
 	return (1);
 }
 
-t_vec3d			read_json_vec3d(t_json_token *token, t_error *err)
+t_vec3d		read_json_vec3d(t_json_token *token, t_error *err)
 {
 	t_vec3d			vec;
 	t_json_token	*child;
@@ -66,28 +66,27 @@ t_vec3d			read_json_vec3d(t_json_token *token, t_error *err)
 	return (vec);
 }
 
-static int		write_json_color_field(t_json_token **token, unsigned char *i)
+static int	write_json_color_field(t_json_token **token, unsigned char *i)
 {
 	if (*token == NULL)
 		return (0);
 	if ((*token)->type != JSON_INTEGER && (*token)->type != JSON_FLOAT)
 		return (0);
 	*i = (unsigned char)((*token)->type == JSON_INTEGER
-		? (*token)->value.i
-		: (*token)->value.f);
+			? (*token)->value.i
+			: (*token)->value.f);
 	*token = (*token)->next;
 	return (1);
 }
 
-t_color			read_json_color(t_json_token *token, t_error *err)
+t_vec3d		read_json_color(t_json_token *token, t_error *err)
 {
 	t_json_token	*child;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned int	color;
+	t_vec3d			color;
 
-	color = 0;
 	if (token->type != JSON_ARRAY)
 		*err = ERR_BADCOLOR;
 	else
@@ -100,7 +99,11 @@ t_color			read_json_color(t_json_token *token, t_error *err)
 				|| child != NULL)
 			*err = ERR_BADCOLOR;
 		else
-			color = (r << 16) | (g << 8) | b;
+		{
+			color.x = clamp(r / 255., 0, 1);
+			color.y = clamp(g / 255., 0, 1);
+			color.z = clamp(b / 255., 0, 1);
+		}
 	}
-	return (color_create_from_rgb(color));
+	return (color);
 }

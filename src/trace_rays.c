@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:54:08 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 22:55:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/26 04:37:08 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "shading.h"
 #include "utils.h"
 
-t_color			trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
+t_vec3d			trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 {
 	t_vec3d	new_origin;
 	t_vec3d	reflect_dir;
@@ -86,18 +86,18 @@ static int		get_refract_dir(t_vec3d direction, t_vec3d normal, double ior
 	return (1);
 }
 
-t_color			trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth)
+t_vec3d			trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 {
 	t_vec3d	bias;
-	t_color	refract_color;
-	t_color	reflect_color;
+	t_vec3d	refract_color;
+	t_vec3d	reflect_color;
 	t_vec3d	refract_dir;
 	double	kr;
 
 	bias = vec3d_scalar(ray_inf->normal, SHADOW_BIAS);
 	if (vec3d_dot(ray_inf->direction, ray_inf->normal) < 0)
 		bias = vec3d_scalar(bias, -1);
-	refract_color = (t_color){.0f, .0f, .0f};
+	refract_color = (t_vec3d){0, 0, 0};
 	kr = fresnel(ray_inf->direction, ray_inf->normal
 			, ray_inf->object->refractive);
 	if (kr < 1 && get_refract_dir(ray_inf->direction, ray_inf->normal
@@ -108,6 +108,6 @@ t_color			trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 	}
 	reflect_color = trace_primary_ray(data, vec3d_add(ray_inf->intersect, bias)
 			, vec3d_reflect(ray_inf->direction, ray_inf->normal), depth - 1);
-	return (color_add(color_scalar(refract_color, 1 - kr)
-				, color_scalar(reflect_color, kr)));
+	return (vec3d_add(vec3d_scalar(refract_color, 1 - kr)
+				, vec3d_scalar(reflect_color, kr)));
 }

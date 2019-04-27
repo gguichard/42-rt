@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 06:37:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 07:15:49 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ray_inf.h"
 #include "quaternion.h"
 #include "vec3d.h"
+#include "perturbations.h"
 
 static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 {
@@ -49,14 +50,18 @@ static t_vec3d	trace_light_or_recursive_rays(t_data *data, t_ray_inf *ray_inf
 		, int depth)
 {
 	t_vec3d	color;
+	t_vec3d	base_color;
 
-	if (ray_inf->object->reflective == 0
-			&& ray_inf->object->refractive == 0)
-		color = trace_light_rays(data, ray_inf, ray_inf->object->color);
-	else if (ray_inf->object->reflective != 0)
+	add_normal_perturbation(ray_inf);
+	if (ray_inf->object->reflective != 0)
 		color = trace_reflect_ray(data, ray_inf, depth);
-	else
+	else if (ray_inf->object->refractive != 0)
 		color = trace_refract_ray(data, ray_inf, depth);
+	else
+	{
+		base_color = add_color_perturbation(ray_inf, ray_inf->object->color);
+		color = trace_light_rays(data, ray_inf, base_color);
+	}
 	return (color);
 }
 

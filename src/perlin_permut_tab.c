@@ -6,14 +6,14 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 05:13:19 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 16:22:00 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/27 01:04:23 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perturbations.h"
 #include <stdlib.h>
 
-void		perlin_permutation_tab(t_perlin *perlin)
+void		perlin_random_permutation(t_perlin *perlin)
 {
 	size_t	i;
 	int		tmp;

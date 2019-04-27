@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/26 21:45:49 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/27 03:15:41 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ parser_utils.c			\
 perlin_noise.c			\
 perlin_permut_tab.c		\
 perturbations.c			\
+normal_perturbations.c	\
+color_perturbations.c	\
 quaternion.c			\
 quaternion_2.c			\
 ray_utils.c				\

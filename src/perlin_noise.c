@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:39:06 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 16:10:32 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/27 05:38:05 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,14 @@ static double	perlin_result(t_perlin perlin, t_vec3d intersect)
 	return (perlin.result);
 }
 
-double			perlin_noise(t_vec3d intersect)
+double			perlin_noise(t_vec3d intersect, int type)
 {
 	t_perlin	perlin;
 
 	ft_memset(&perlin, 0, sizeof(t_perlin));
 	perlin_basic_permutation(&perlin);
+	if (type == 1)
+		perlin_random_permutation(&perlin);
 	perlin.x = (int)floor(intersect.x) & 255;
 	perlin.y = (int)floor(intersect.y) & 255;
 	perlin.z = (int)floor(intersect.z) & 255;

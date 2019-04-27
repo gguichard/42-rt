@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 04:26:59 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 05:43:05 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "vec3d.h"
 # include "ray_inf.h"
 # include "quaternion.h"
+# include "perturbations.h"
 
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
@@ -47,14 +48,18 @@ struct				s_ray_object
 	t_vec3d			size;
 	t_vec3d			color;
 	t_obj_rotation	rotation;
+	t_checkerboard	checkerboard;
+	double			roughness;
 	double			angle;
 	double			radius;
 	double			big_radius;
+	double			bump;
 	double			intensity;
 	double			specular;
 	double			shininess;
 	double			reflective;
 	double			refractive;
+	double			normal_circle;
 	t_quaternion	quat_rotate;
 	t_quaternion	quat_invert_rotate;
 };

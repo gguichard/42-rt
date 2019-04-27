@@ -5,37 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/26 07:13:59 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/26 22:37:06 by roduquen         ###   ########.fr       */
+/*   Created: 2019/04/27 01:47:15 by roduquen          #+#    #+#             */
+/*   Updated: 2019/04/27 05:43:32 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3d.h"
 #include "perturbations.h"
-#include <math.h>
+#include "ray_inf.h"
+#include "ray_object.h"
+#include "vec3d.h"
 
-t_vec3d		normal_sin_perturbation(t_vec3d normal)
+void	add_normal_perturbation(t_ray_inf *ray_inf)
 {
-	normal.x *= sin(normal.x);
-	return (normal);
+	if (ray_inf->object->bump != 0.0)
+		ray_inf->normal = bump_mapping(ray_inf->normal, ray_inf->intersect
+				, ray_inf->object->bump, 0);
+	else if (ray_inf->object->roughness != 0.0)
+		ray_inf->normal = bump_mapping(ray_inf->normal, ray_inf->intersect
+				, ray_inf->object->roughness, 1);
+	else if (ray_inf->object->normal_circle != 0.0)
+		ray_inf->normal = normal_sin_perturbation(ray_inf->normal);
 }
 
-t_vec3d		bump_mapping(t_vec3d normal, t_vec3d intersect, double bump)
+t_vec3d	add_color_perturbation(t_ray_inf *ray_inf, t_vec3d color)
 {
-	double		noise_coef[3];
-	double		tmp;
-
-	noise_coef[0] = perlin_noise(vec3d_scalar(intersect, 0.1));
-	noise_coef[1] = perlin_noise(vec3d_scalar((t_vec3d){intersect.y, intersect.z
-				, intersect.x}, 0.1));
-	noise_coef[2] = perlin_noise(vec3d_scalar((t_vec3d){intersect.z, intersect.x
-				, intersect.y}, 0.1));
-	normal.x = (1.0 - bump) * normal.x + bump * noise_coef[0];
-	normal.y = (1.0 - bump) * normal.y + bump * noise_coef[1];
-	normal.z = (1.0 - bump) * normal.z + bump * noise_coef[2];
-	tmp = vec3d_dot(normal, normal);
-	if (tmp == 0.0)
-		return (normal);
-	tmp = 1 / sqrt(tmp);
-	return (vec3d_unit(vec3d_scalar(normal, tmp)));
+	if (ray_inf->object->checkerboard.on)
+	{
+		return (checkerboard(ray_inf->intersect
+				, ray_inf->object->checkerboard.color, color));
+	}
+	return (color);
 }

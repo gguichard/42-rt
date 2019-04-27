@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:41:48 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 21:54:21 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 05:20:40 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	draw_ray_sampling(t_data *data, int x, int y, unsigned int color)
 	int	j;
 
 	i = 0;
-	while (i < data->square_pixels_per_ray && (y + i) < data->winsize.height)
+	while (i < data->sampling && (y + i) < data->winsize.height)
 	{
 		j = 0;
-		while (j < data->square_pixels_per_ray && (x + j) < data->winsize.width)
+		while (j < data->sampling && (x + j) < data->winsize.width)
 		{
 			data->lib.view[(y + i) * data->winsize.width + (x + j)] = color;
 			j++;
@@ -53,11 +53,11 @@ static void	*draw_trace_rays_thread(t_thread *thread)
 	int	x;
 	int	y;
 
-	incr = thread->data->square_pixels_per_ray * MAX_THREADS;
-	y = thread->data->square_pixels_per_ray * thread->id;
+	incr = thread->data->sampling * MAX_THREADS;
+	y = thread->data->sampling * thread->id;
 	while (y < thread->data->winsize.height)
 	{
-		if (y % thread->data->square_pixels_per_ray != 0)
+		if (y % thread->data->sampling != 0)
 			y++;
 		else
 		{
@@ -65,7 +65,7 @@ static void	*draw_trace_rays_thread(t_thread *thread)
 			while (x < thread->data->winsize.width)
 			{
 				draw_trace_ray(thread, x, y);
-				x += thread->data->square_pixels_per_ray;
+				x += thread->data->sampling;
 			}
 			y += incr;
 		}

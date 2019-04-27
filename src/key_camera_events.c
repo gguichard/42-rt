@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:26 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 19:31:27 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/27 05:15:59 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void	camera_event_translate(t_data *data)
 
 void		camera_event(t_data *data)
 {
-	if (data->lib.cam_keys == 0 && data->square_pixels_per_ray > 0)
-		data->square_pixels_per_ray -= 1;
+	if (data->lib.cam_keys == 0 && data->sampling > 0)
+		data->sampling -= 1;
 	if (data->lib.cam_keys != 0)
-		data->square_pixels_per_ray = 10;
+		data->sampling = 10;
 	if (data->lib.cam_keys & CAMERA_RIGHT)
 		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_LEFT)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 21:54:39 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 05:35:07 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_data(t_data *data)
 {
 	int	idx;
 
-	data->square_pixels_per_ray = 5;
+	data->sampling = 5;
 	data->camera.fov = tan(90 * .5 / 180 * M_PI);
 	data->camera.direction = vec3d_unit(data->camera.direction);
 	if (data->camera.direction.x == 0 && data->camera.direction.z == 0)
@@ -75,26 +75,26 @@ static int	exit_with_error(t_error err, char *prog)
 	return (1);
 }
 
-int			main(int argc, char **av)
+int			main(int argc, char **argv)
 {
 	t_data	data;
 	t_error	err;
 
 	if (argc < 2)
 	{
-		ft_dprintf(STDERR_FILENO, "%s: please specify a scene file\n", av[0]);
+		ft_dprintf(STDERR_FILENO, "%s: please specify a scene file\n", argv[0]);
 		return (1);
 	}
 	ft_memset(&data, 0, sizeof(t_data));
 	init_winsize(&data);
-	err = parse_scene(&data, av[1]);
+	err = parse_scene(&data, argv[1]);
 	if (err == ERR_NOERROR)
 	{
 		create_rotate_quaternions(&data);
 		err = init_and_create_window(&data.lib, data.winsize);
 	}
 	if (err != ERR_NOERROR)
-		return (exit_with_error(err, av[0]));
+		return (exit_with_error(err, argv[0]));
 	init_data(&data);
 	run_event_loop(&data, draw_trace_rays);
 	destroy_lib(&data.lib);

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 06:39:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 19:03:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ static t_vec3d	compute_light_color(t_data *data, t_ray_inf *light_ray
 t_vec3d			trace_light_rays(t_data *data, t_ray_inf *ray_inf
 		, t_vec3d base_color)
 {
-	t_vec3d			color;
-	t_vec3d			bias;
-	t_ray_inf		light_ray;
-	size_t			index;
+	t_vec3d		color;
+	t_vec3d		bias;
+	t_ray_inf	light_ray;
+	size_t		index;
 
 	color = (t_vec3d){0, 0, 0};
 	bias = vec3d_scalar(ray_inf->normal, SHADOW_BIAS);

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 21:50:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 06:37:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_vec3d	trace_light_or_recursive_rays(t_data *data, t_ray_inf *ray_inf
 
 	if (ray_inf->object->reflective == 0
 			&& ray_inf->object->refractive == 0)
-		color = trace_light_rays(data, ray_inf);
+		color = trace_light_rays(data, ray_inf, ray_inf->object->color);
 	else if (ray_inf->object->reflective != 0)
 		color = trace_reflect_ray(data, ray_inf, depth);
 	else

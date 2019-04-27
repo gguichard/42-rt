@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 07:15:49 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/28 00:19:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static t_vec3d	trace_light_or_recursive_rays(t_data *data, t_ray_inf *ray_inf
 {
 	t_vec3d	color;
 	t_vec3d	base_color;
+	double	fog_scalar;
 
 	add_normal_perturbation(ray_inf);
 	if (ray_inf->object->reflective != 0)
@@ -61,6 +62,12 @@ static t_vec3d	trace_light_or_recursive_rays(t_data *data, t_ray_inf *ray_inf
 	{
 		base_color = add_color_perturbation(ray_inf, ray_inf->object->color);
 		color = trace_light_rays(data, ray_inf, base_color);
+	}
+	if (data->fog != 0)
+	{
+		fog_scalar = exp(-pow(ray_inf->dist / data->fog, 2));
+		color = vec3d_add(vec3d_scalar((t_vec3d){1, 1, 1}, 1 - fog_scalar)
+				, vec3d_scalar(color, fog_scalar));
 	}
 	return (color);
 }

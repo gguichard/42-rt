@@ -18,8 +18,8 @@
 		},
 		{
 			"type": "plane",
-			"origin": [0, 0, 0],
-			"color": [135, 206, 235]
+			"origin": [0, -5, 0],
+			"color": [135, 206, 250]
 		},
 		{
 			"type": "ellipsoid",

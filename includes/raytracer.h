@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 06:36:33 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 23:07:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_data
 	t_vector	objects;
 	t_vector	lights;
 	int			sampling;
+	double		fog;
 	t_thread	threads[MAX_THREADS];
 }				t_data;
 

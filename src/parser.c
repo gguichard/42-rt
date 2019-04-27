@@ -50,6 +50,8 @@ static t_error		read_json_scene(t_data *data, t_json_token *root)
 		{
 			if (ft_strequ(child->key, "camera"))
 				err = setup_camera_properties(data, child);
+			else if (ft_strequ(child->key, "fog"))
+				data->fog = read_json_double(child, &err);
 			else if (ft_strequ(child->key, "objects"))
 				err = parse_ray_objects(data, child);
 			child = child->next;

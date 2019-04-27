@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 19:03:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/27 19:44:07 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "ray_object.h"
 #include "ray_inf.h"
 #include "vec3d.h"
+#include "utils.h"
 
 static t_vec3d	get_specular_color(t_ray_object *light, t_ray_object *object
 		, double shine_factor)
@@ -38,8 +39,7 @@ static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
 	double	shine_factor;
 
 	cosine_angle = vec3d_dot(light_ray->direction, light_ray->normal);
-	if (cosine_angle < .0)
-		cosine_angle = 0;
+	cosine_angle = clamp(cosine_angle, 0, 1);
 	diffuse = vec3d_scalar(vec3d_mul(light_ray->object->color, base_color)
 			, cosine_angle);
 	specular = (t_vec3d){0, 0, 0};
@@ -47,7 +47,7 @@ static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
 	{
 		reflection_dir = vec3d_reflect(light_ray->direction, light_ray->normal);
 		shine_factor = vec3d_dot(reflection_dir, ray_inf->direction);
-		shine_factor = (shine_factor > 1 ? 1 : shine_factor);
+		shine_factor = clamp(shine_factor, 0, 1);
 		if (shine_factor > 0)
 			specular = get_specular_color(light_ray->object, ray_inf->object
 					, shine_factor);

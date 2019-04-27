@@ -24,5 +24,6 @@ t_vec3d	get_ellipsoid_normal(t_ray_object *object, t_vec3d intersect)
 t_vec3d	get_hyperboloid_normal(t_ray_object *object, t_vec3d intersect)
 {
 	(void)object;
+	intersect.z = .0;
 	return (vec3d_unit(intersect));
 }

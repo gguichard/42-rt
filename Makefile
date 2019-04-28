@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/27 03:15:41 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/28 01:48:54 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SDL_DIR		=	SDL2
 SDL_TAR		=	$(SDL_LIB).tar.gz
 SDL_BUILD	=	$(SDL_DIR)/lib/libSDL2.a
 
-CC			=	gcc -O2 -g
+CC			=	gcc -O2 -g -fsanitize=address
 CPPFLAGS	=	-Ilibft/includes -I$(INC_DIR)
 CFLAGS 		=	-Wall -Werror -Wextra $(shell ./SDL2/bin/sdl2-config --cflags)
 LDFLAGS		=	-Llibft $(shell ./$(SDL_DIR)/bin/sdl2-config --libs)

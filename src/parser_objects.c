@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 05:46:58 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/28 02:34:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void		parse_object_property(t_json_token *child
 		object->big_radius = read_json_double(child, err);
 	else if (ft_strequ(child->key, "intensity"))
 		object->intensity = read_json_double(child, err);
+	else if (ft_strequ(child->key, "diffuse"))
+		object->diffuse = clamp(read_json_double(child, err), 0, 1);
 	else if (ft_strequ(child->key, "specular"))
 		object->specular = clamp(read_json_double(child, err), 0, 1);
 	else if (ft_strequ(child->key, "shininess"))
@@ -128,6 +130,7 @@ static t_error	create_object_and_add_to_scene(t_data *data
 		err = ERR_UNEXPECTED;
 	else
 	{
+		obj->diffuse = 1.0;
 		err = parse_ray_object(child, obj);
 		if (err == ERR_NOERROR)
 		{

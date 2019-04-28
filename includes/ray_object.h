@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/27 05:43:05 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/28 02:29:00 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct				s_ray_object
 	double			big_radius;
 	double			bump;
 	double			intensity;
+	double			diffuse;
 	double			specular;
 	double			shininess;
 	double			reflective;

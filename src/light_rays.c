@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 19:44:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 02:34:07 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 static t_vec3d	get_specular_color(t_ray_object *light, t_ray_object *object
 		, double shine_factor)
 {
-	double	shine_f;
+	double	shine_scalar;
 
-	shine_f = pow(shine_factor, object->shininess);
-	shine_f *= (object->shininess + 2) / (2 * M_PI) * object->specular;
-	return (vec3d_scalar(light->color, shine_f));
+	shine_scalar = pow(shine_factor, object->shininess);
+	shine_scalar *= (object->shininess + 2) / (2 * M_PI);
+	return (vec3d_scalar(light->color, shine_scalar * object->specular));
 }
 
 static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
@@ -41,7 +41,7 @@ static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
 	cosine_angle = vec3d_dot(light_ray->direction, light_ray->normal);
 	cosine_angle = clamp(cosine_angle, 0, 1);
 	diffuse = vec3d_scalar(vec3d_mul(light_ray->object->color, base_color)
-			, cosine_angle);
+			, cosine_angle * ray_inf->object->diffuse);
 	specular = (t_vec3d){0, 0, 0};
 	if (cosine_angle > .0 && ray_inf->object->specular > .0)
 	{

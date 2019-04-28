@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 02:57:32 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 03:28:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ static t_vec3d	trace_light_or_recursive_rays(t_data *data, t_ray_inf *ray_inf
 	base_color = add_color_perturbation(ray_inf, ray_inf->object->color);
 	color = trace_light_rays(data, ray_inf, base_color);
 	if (ray_inf->object->refractive != 0)
-		color = vec3d_add(color, trace_refract_ray(data, ray_inf, depth));
+	{
+		new_color = trace_refract_ray(data, ray_inf, depth);
+		color = vec3d_add(vec3d_scalar(color, 1 - ray_inf->object->rf_factor)
+				, vec3d_scalar(new_color, ray_inf->object->rf_factor));
+	}
 	else if (ray_inf->object->reflective != 0)
 	{
 		new_color = trace_reflect_ray(data, ray_inf, depth);

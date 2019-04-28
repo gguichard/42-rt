@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 03:28:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 03:36:49 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 	}
 }
 
-static t_vec3d	trace_light_or_recursive_rays(t_data *data, t_ray_inf *ray_inf
+static t_vec3d	trace_light_and_recursive_rays(t_data *data, t_ray_inf *ray_inf
 		, int depth)
 {
 	t_vec3d	color;
@@ -96,7 +96,7 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 			ray_inf.normal = vec3d_unit(ray_inf.normal);
 			ray_inf.intersect = vec3d_add(ray_inf.origin
 					, vec3d_scalar(ray_inf.direction, ray_inf.dist));
-			color = trace_light_or_recursive_rays(data, &ray_inf, depth);
+			color = trace_light_and_recursive_rays(data, &ray_inf, depth);
 		}
 	}
 	return (color);

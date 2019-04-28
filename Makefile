@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/28 04:45:24 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/28 16:56:49 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,45 +22,50 @@ SDL_DIR		=	SDL2
 SDL_TAR		=	$(SDL_LIB).tar.gz
 SDL_BUILD	=	$(SDL_DIR)/lib/libSDL2.a
 
-CC			=	gcc -O2 
+CC			=	gcc -O2
 CPPFLAGS	=	-Ilibft/includes -I$(INC_DIR)
 CFLAGS 		=	-Wall -Werror -Wextra $(shell ./SDL2/bin/sdl2-config --cflags)
 LDFLAGS		=	-Llibft $(shell ./$(SDL_DIR)/bin/sdl2-config --libs)
 LDLIBS		=	-lft
 
 SRC_DIR		=	src
-SRC 		=			\
-camera_move.c			\
-draw.c					\
-error.c					\
-intersects.c			\
-intersects_2.c			\
-key_camera_events.c		\
-lib.c					\
-light_rays.c			\
-main.c					\
-normals.c				\
-normals_2.c				\
-parser.c				\
-parser_objects.c		\
-parser_objects_utils.c	\
-parser_types.c			\
-parser_utils.c			\
-perlin_noise.c			\
-perlin_permut_tab.c		\
-perturbations.c			\
-normal_perturbations.c	\
-color_perturbations.c	\
-quaternion.c			\
-quaternion_2.c			\
-ray_utils.c				\
-raytracer.c				\
-solver.c				\
-trace_rays.c			\
-utils.c					\
-vec3d.c					\
-vec3d_2.c				\
-wf_obj_parser.c
+SRC 		=					\
+camera_move.c					\
+draw.c							\
+key_camera_events.c				\
+lib.c							\
+main.c							\
+perlin_noise.c					\
+perlin_permut_tab.c				\
+perturbations.c					\
+normal_perturbations.c			\
+color_perturbations.c			\
+maths/quaternion.c				\
+maths/quaternion_2.c			\
+maths/solver.c					\
+maths/utils.c					\
+maths/vec3d.c					\
+maths/vec3d_2.c					\
+misc/error.c					\
+parser/parser.c					\
+parser/parser_objects.c			\
+parser/parser_objects_utils.c	\
+parser/parser_types.c			\
+parser/parser_utils.c			\
+parser/wf_obj_parser.c			\
+raytracing/light_rays.c			\
+raytracing/ray_utils.c			\
+raytracing/raytracer.c			\
+raytracing/trace_rays.c			\
+shapes/cone.c					\
+shapes/cylinder.c				\
+shapes/ellipsoid.c				\
+shapes/holed_cube.c				\
+shapes/hyperboloid.c			\
+shapes/plane.c					\
+shapes/sphere.c					\
+shapes/torus.c					\
+shapes/triangle.c				\
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)
@@ -87,6 +92,11 @@ $(SDL_BUILD): | $(SDL_DIR)
 
 $(SDL_DIR) $(OBJ_DIR):
 	@/bin/mkdir $@ 2> /dev/null || true
+	@/bin/mkdir $@/misc 2> /dev/null || true
+	@/bin/mkdir $@/maths 2> /dev/null || true
+	@/bin/mkdir $@/parser 2> /dev/null || true
+	@/bin/mkdir $@/raytracing 2> /dev/null || true
+	@/bin/mkdir $@/shapes 2> /dev/null || true
 
 clean:
 	$(MAKE) -C libft clean

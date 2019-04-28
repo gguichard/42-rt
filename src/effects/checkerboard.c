@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_perturbations.c                              :+:      :+:    :+:   */
+/*   checkerboard.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 02:43:23 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/27 04:38:32 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:12:26 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "ray_object.h"
-#include "ray_inf.h"
-#include "vec3d.h"
 #include "perturbations.h"
+#include "vec3d.h"
 
 t_vec3d		checkerboard(t_vec3d intersect, t_vec3d color1, t_vec3d color2)
 {

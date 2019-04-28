@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 05:10:07 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 00:49:59 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@
 # define CAMERA_REVOLVE_R (1 << 10)
 # define CAMERA_REVOLVE_L (1 << 11)
 
+# define UI_SHAPE_LEFT (1)
+# define UI_SHAPE_RIGHT (1 << 1)
+# define UI_SHAPE_UP (1 << 2)
+# define UI_SHAPE_DOWN (1 << 3)
+
 /*
 ** TYPEDEF & STRUCTURES
 */
@@ -46,6 +51,7 @@ typedef struct		s_lib
 	SDL_Renderer	*renderer;
 	SDL_Texture		*texture;
 	unsigned int	cam_keys;
+	unsigned int	ui_keys;
 	unsigned int	*view;
 }					t_lib;
 
@@ -54,7 +60,7 @@ typedef struct		s_lib
 */
 
 t_error				init_and_create_window(t_lib *lib, t_winsize winsize);
-void				run_event_loop(t_data *data, void (*draw_fn)(t_data *));
+void				run_event_loop(t_data *data);
 void				destroy_lib(t_lib *lib);
 
 #endif

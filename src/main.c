@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 20:29:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 00:49:49 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			main(int argc, char **argv)
 	if (err != ERR_NOERROR)
 		return (exit_with_error(err, argv[0]));
 	init_data(&data);
-	run_event_loop(&data, draw_trace_rays);
+	run_event_loop(&data);
 	destroy_lib(&data.lib);
 	ft_vecfree(&data.objects);
 	ft_vecfree(&data.lights);

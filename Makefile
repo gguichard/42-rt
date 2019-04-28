@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/28 17:17:16 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/29 00:47:19 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,9 @@ shapes/plane.c					\
 shapes/sphere.c					\
 shapes/torus.c					\
 shapes/triangle.c				\
+ui/lib_hooks.c					\
+ui/shape_keys.c					\
+ui/shape_transforms.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)
@@ -100,6 +103,7 @@ $(SDL_DIR) $(OBJ_DIR):
 	@/bin/mkdir $@/parser 2> /dev/null || true
 	@/bin/mkdir $@/raytracing 2> /dev/null || true
 	@/bin/mkdir $@/shapes 2> /dev/null || true
+	@/bin/mkdir $@/ui 2> /dev/null || true
 
 clean:
 	$(MAKE) -C libft clean

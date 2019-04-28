@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 05:50:28 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 00:13:52 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "vec3d.h"
 #include "perturbations.h"
 
-static void		intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
+void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	size_t			index;
 	t_ray_object	*obj;

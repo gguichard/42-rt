@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 03:28:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:07:15 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int		get_ray_object_type(t_json_token *token)
 			return (RAYOBJ_ELLIPSOID);
 		else if (ft_strequ(token->value.str, "hyperboloid"))
 			return (RAYOBJ_HYPERBOLOID);
+		else if (ft_strequ(token->value.str, "holed_cube"))
+			return (RAYOBJ_HOLED_CUBE);
 		else if (ft_strequ(token->value.str, "light"))
 			return (RAYOBJ_LIGHT);
 		else if (ft_strequ(token->value.str, "ambient_light"))

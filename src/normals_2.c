@@ -27,3 +27,12 @@ t_vec3d	get_hyperboloid_normal(t_ray_object *object, t_vec3d intersect)
 	intersect.z = .0;
 	return (vec3d_unit(intersect));
 }
+
+t_vec3d	get_holed_cube_normal(t_ray_object *object, t_vec3d intersect)
+{
+	(void)object;
+	intersect.x = 4 * pow(intersect.x, 3) - 10.0 * intersect.x;
+	intersect.y = 4 * pow(intersect.y, 3) -	10.0 * intersect.y;
+	intersect.z = 4 * pow(intersect.z, 3) - 10.0 * intersect.z;
+	return (vec3d_unit(intersect));
+}

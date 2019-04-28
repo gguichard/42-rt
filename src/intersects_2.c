@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 22:34:46 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/24 00:20:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:34:04 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,26 @@ double	get_hyperboloid_intersect_dist(t_ray_object *object, t_vec3d origin
 	quad.c = pow(origin.z, 2) + object->radius - pow(origin.x, 2)
 		- pow(origin.y, 2);
 	return (solve_quadratic_equation(&quad));
+}
+
+double	get_holed_cube_intersect_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
+{
+	t_quartic	quartic;
+
+	quartic.a = pow(direction.x, 4) + pow(direction.y, 4) + pow(direction.z, 4);
+	quartic.b = 4.0 * ((pow(direction.x, 3) * origin.x)
+			+ (pow(direction.y, 3) * origin.y)
+			+ (pow(direction.z, 3) * origin.z));
+	quartic.c = 6.0 * ((pow(direction.x, 2) * pow(origin.x, 2))
+			+ (pow(direction.y, 2) * pow(origin.y, 2))
+			+ (pow(direction.z, 2) * pow(origin.z, 2)))
+		- 5.0 *	(pow(direction.x, 2) + pow(direction.y, 2)
+			+ pow(direction.z, 2));
+	quartic.d = (4.0 * (pow(origin.x, 3) * direction.x
+			+ pow(origin.y, 3) * direction.y + pow(origin.z, 3) * direction.z)
+		- 10.0 * vec3d_dot(origin, direction));
+	quartic.e = pow(origin.x, 4) + pow(origin.y, 4) + pow(origin.z, 4)
+		- 5.0 * vec3d_length2(origin) + object->radius;
+	return (solve_quartic_equation(&quartic));
 }

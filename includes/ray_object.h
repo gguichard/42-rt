@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/28 03:28:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:05:29 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 # define RAYOBJ_TRIANGLE 6
 # define RAYOBJ_ELLIPSOID 7
 # define RAYOBJ_HYPERBOLOID 8
-# define RAYOBJ_LIGHT 9
-# define RAYOBJ_AMBIENTLIGHT 10
+# define RAYOBJ_HOLED_CUBE 9
+# define RAYOBJ_LIGHT 10
+# define RAYOBJ_AMBIENTLIGHT 11
 
 typedef struct s_ray_object	t_ray_object;
 
@@ -84,6 +85,8 @@ double				get_ellipsoid_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
 double				get_hyperboloid_intersect_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
+double				get_holed_cube_intersect_dist(t_ray_object *object
+		, t_vec3d origin, t_vec3d direction);
 
 t_vec3d				get_intersect_as_normal(t_ray_object *object
 		, t_vec3d intersect);
@@ -98,6 +101,8 @@ t_vec3d				get_triangle_normal(t_ray_object *object
 t_vec3d				get_ellipsoid_normal(t_ray_object *object
 		, t_vec3d intersect);
 t_vec3d				get_hyperboloid_normal(t_ray_object *object
+		, t_vec3d intersect);
+t_vec3d				get_holed_cube_normal(t_ray_object *object
 		, t_vec3d intersect);
 
 #endif

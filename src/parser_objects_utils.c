@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/25 22:37:40 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:00:48 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void		assign_object_functions(t_ray_object *object)
 	{
 		object->intersect = get_cylinder_intersect_dist;
 		object->normal = get_cone_cylinder_normal;
+	}
+	else if (object->type == RAYOBJ_HOLED_CUBE)
+	{
+		object->intersect = get_holed_cube_intersect_dist;
+		object->normal = get_holed_cube_normal;
 	}
 	else
 		assign_object_functions2(object);

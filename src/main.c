@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 05:35:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 20:29:13 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_data(t_data *data)
 {
 	int	idx;
 
-	data->sampling = 5;
+	data->sampling = 32;
 	data->camera.fov = tan(90 * .5 / 180 * M_PI);
 	data->camera.direction = vec3d_unit(data->camera.direction);
 	if (data->camera.direction.x == 0 && data->camera.direction.z == 0)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/27 05:16:29 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/28 20:44:57 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,17 @@ void		run_event_loop(t_data *data, void (*draw_fn)(t_data *))
 				break ;
 			camera_press_key(&event, data);
 		}
+		if (data->lib.cam_keys == 0 && data->sampling > 1)
+			data->sampling /= 2;
+		if (data->lib.cam_keys != 0)
+			data->sampling = 16;
 		camera_event(data);
 		if (data->sampling > 0)
+		{
 			draw_texture(data, draw_fn);
+			if (data->sampling == 1)
+				data->sampling = 0;
+		}
 	}
 	data->running = 0;
 }

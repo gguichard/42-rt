@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/29 02:17:05 by roduquen         ###   ########.fr        #
+#    Updated: 2019/04/29 21:00:00 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,15 +42,13 @@ effects/perlin_noise.c			\
 effects/perlin_permut_tab.c		\
 effects/perturbations.c			\
 effects/sin_perturbation.c		\
-events/camera_move.c			\
-events/key_camera_events.c		\
-events/key_filter_events.c		\
+maths/maths_utils.c				\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
 maths/solver.c					\
-maths/utils.c					\
 maths/vec3d.c					\
 maths/vec3d_2.c					\
+misc/camera.c					\
 misc/error.c					\
 parser/parser.c					\
 parser/parser_objects.c			\
@@ -71,6 +69,8 @@ shapes/plane.c					\
 shapes/sphere.c					\
 shapes/torus.c					\
 shapes/triangle.c				\
+ui/key_camera_events.c			\
+ui/key_filter_events.c			\
 ui/lib_hooks.c					\
 ui/shape_keys.c					\
 ui/shape_transforms.c

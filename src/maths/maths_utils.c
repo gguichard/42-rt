@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   maths_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 22:01:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:46:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:19:57 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include <math.h>
+#include "math_utils.h"
 #include "vec3d.h"
-#include "raytracer.h"
 
 double			clamp(double value, double lo, double hi)
 {

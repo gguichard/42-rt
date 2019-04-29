@@ -6,20 +6,22 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 00:49:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:59:21 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <math.h>
-#include "SDL.h"
 #include "libft.h"
 #include "raytracer.h"
 #include "error.h"
 #include "lib.h"
 #include "parser.h"
-#include "ray_object.h"
-#include "quaternion.h"
+
+static int	exit_with_error(t_error err, char *prog)
+{
+	ft_dprintf(STDERR_FILENO, "%s: error: %s\n", prog, error_to_str(err));
+	return (1);
+}
 
 static void	init_winsize(t_data *data)
 {
@@ -29,73 +31,22 @@ static void	init_winsize(t_data *data)
 		/ (double)data->winsize.height;
 }
 
-static void	init_data(t_data *data)
-{
-	int	idx;
-
-	data->sampling = 32;
-	data->camera.fov = tan(90 * .5 / 180 * M_PI);
-	data->camera.direction = vec3d_unit(data->camera.direction);
-	if (data->camera.direction.x == 0 && data->camera.direction.z == 0)
-		data->camera.right = (t_vec3d){0, 0, 1};
-	else
-		data->camera.right = rotate_by_quaternion(data->camera.direction
-				, (t_vec3d){0, 1, 0}, M_PI / 2);
-	data->camera.up = rotate_by_quaternion(data->camera.right
-			, data->camera.direction, M_PI / 2);
-	idx = 0;
-	while (idx < MAX_THREADS)
-	{
-		data->threads[idx].id = idx;
-		data->threads[idx].data = data;
-		idx++;
-	}
-}
-
-static void	create_rotate_quaternions(t_data *data)
-{
-	size_t			index;
-	t_ray_object	*object;
-
-	index = 0;
-	while (index < data->objects.size)
-	{
-		object = (t_ray_object *)data->objects.data[index];
-		object->quat_rotate = vec3d_to_rotate_quaternion(
-				object->rotation.vector, -object->rotation.angle);
-		object->quat_invert_rotate = vec3d_to_rotate_quaternion(
-				object->rotation.vector, object->rotation.angle);
-		index++;
-	}
-}
-
-static int	exit_with_error(t_error err, char *prog)
-{
-	ft_dprintf(STDERR_FILENO, "%s: error: %s\n", prog, error_to_str(err));
-	return (1);
-}
-
 int			main(int argc, char **argv)
 {
 	t_data	data;
 	t_error	err;
 
 	if (argc < 2)
-	{
-		ft_dprintf(STDERR_FILENO, "%s: please specify a scene file\n", argv[0]);
-		return (1);
-	}
+		return (exit_with_error(ERR_NOSCENEFILE, argv[0]));
 	ft_memset(&data, 0, sizeof(t_data));
 	init_winsize(&data);
 	err = parse_scene(&data, argv[1]);
 	if (err == ERR_NOERROR)
-	{
-		create_rotate_quaternions(&data);
 		err = init_and_create_window(&data.lib, data.winsize);
-	}
 	if (err != ERR_NOERROR)
 		return (exit_with_error(err, argv[0]));
-	init_data(&data);
+	data.sampling = 32;
+	init_camera(&data.camera);
 	run_event_loop(&data);
 	destroy_lib(&data.lib);
 	ft_vecfree(&data.objects);

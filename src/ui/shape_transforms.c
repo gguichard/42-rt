@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:41:49 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 03:25:34 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:18:26 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ray_object.h"
 #include "ray_inf.h"
 #include "vec3d.h"
-#include "utils.h"
+#include "math_utils.h"
 
 static void	ui_refresh(t_data *data)
 {

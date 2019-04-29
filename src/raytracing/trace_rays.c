@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:54:08 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 02:52:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:18:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ray_object.h"
 #include "vec3d.h"
 #include "shading.h"
-#include "utils.h"
+#include "math_utils.h"
 
 t_vec3d			trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 {

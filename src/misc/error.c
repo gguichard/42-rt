@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:55:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/24 03:38:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:58:16 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ const char	*error_to_str(t_error error)
 		return (strerror(errno));
 	else if (error == ERR_SDLINIT)
 		return (SDL_GetError());
+	else if (error == ERR_NOSCENEFILE)
+		return ("Please specify a scene file");
 	else if (error == ERR_INVALIDSCENE)
 		return ("Scene file contains invalid characters");
 	else if (error == ERR_SCENEBADFORMAT)

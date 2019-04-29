@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:07:15 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:52:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "parser.h"
 #include "error.h"
 #include "ray_object.h"
-#include "utils.h"
+#include "math_utils.h"
+#include "quaternion.h"
 
 static int		get_ray_object_type(t_json_token *token)
 {
@@ -118,7 +119,13 @@ static t_error	parse_ray_object(t_json_token *token, t_ray_object *object)
 		if (object->type == RAYOBJ_UNKNOWN)
 			err = ERR_SCENEBADOBJECT;
 		else
+		{
+			object->quat_rotate = vec3d_to_rotate_quaternion(
+					object->rotation.vector, -object->rotation.angle);
+			object->quat_invert_rotate = vec3d_to_rotate_quaternion(
+					object->rotation.vector, object->rotation.angle);
 			assign_object_functions(object);
+		}
 	}
 	return (err);
 }

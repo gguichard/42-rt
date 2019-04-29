@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 05:13:19 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/29 00:08:17 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 10:39:01 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	g_noise[] = {151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53
 	, 14, 239, 107, 49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176
 	, 115, 121, 50, 45, 127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67
 	, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180};
-/*
+
 void		perlin_random_permutation(t_perlin *perlin)
 {
 	size_t	i;
@@ -59,7 +59,7 @@ void		perlin_random_permutation(t_perlin *perlin)
 		perlin->permut[i] = perlin->permut[i - 256];
 		i++;
 	}
-}*/
+}
 
 void		perlin_basic_permutation(t_perlin *perlin)
 {
@@ -69,35 +69,6 @@ void		perlin_basic_permutation(t_perlin *perlin)
 	while (i < 512)
 	{
 		perlin->permut[i] = g_noise[i % 256];
-		i++;
-	}
-}
-
-void		perlin_random_permutation(t_perlin *perlin)
-{
-	size_t	i;
-	int		tmp;
-	size_t	random;
-
-	i = 0;
-	while (i < 256)
-	{
-		perlin->permut[i] = i;
-		i++;
-	}
-	i = 0;
-	srand(time(NULL));
-	while (i < 256)
-	{
-		random = rand() % 256;
-		tmp = perlin->permut[i];
-		perlin->permut[i] = perlin->permut[random];
-		perlin->permut[random] = tmp;
-		i++;
-	}
-	while (i < 512)
-	{
-		perlin->permut[i] = perlin->permut[i - 256];
 		i++;
 	}
 }

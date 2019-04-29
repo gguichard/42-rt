@@ -1,0 +1,51 @@
+{
+	"camera": {
+		"origin": [0, 0, 0],
+		"direction": [0, 0, 1]
+	},
+	"fog": 400,
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.05
+		},
+		{
+			"type": "light",
+			"origin": [-5000, 12000, -5000],
+			"color": [255, 255, 255],
+			"intensity": 300000000000000
+		},
+		{
+			"type": "plane",
+			"origin": [0, -1, 0],
+			"color": [70, 136, 242],
+			"bump": 0.3,
+			"refractive": 1.5,
+			"refractive_factor": 0.7
+		},
+		{
+			"type": "plane",
+			"origin": [0, -5, 0],
+			"color": [70, 136, 242]
+		},
+		{
+			"type": "sphere",
+			"origin": [20, 4, -20],
+			"radius": 10,
+			"color": [240, 55, 55],
+			"reflective": 0.25,
+			"specular": 0.1,
+			"shininess": 64
+		},
+		{
+			"type": "sphere",
+			"origin": [30, 6, 20],
+			"radius": 10,
+			"color": [132, 246, 70],
+			"reflective": 0.25,
+			"specular": 0.1,
+			"shininess": 64
+		}
+	]
+}

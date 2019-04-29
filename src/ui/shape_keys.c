@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:34:43 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 01:13:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 02:18:52 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void		ui_loop_keys(t_data *data)
 {
 	if (data->lib.ui_keys & UI_SHAPE_LEFT)
 		ui_translate_shape(data, vec3d_scalar(data->camera.right, -1));
-	else if (data->lib.ui_keys & UI_SHAPE_RIGHT)
+	if (data->lib.ui_keys & UI_SHAPE_RIGHT)
 		ui_translate_shape(data, data->camera.right);
-	else if (data->lib.ui_keys & UI_SHAPE_UP)
+	if (data->lib.ui_keys & UI_SHAPE_UP)
 		ui_translate_shape(data, (t_vec3d){0, 1, 0});
-	else if (data->lib.ui_keys & UI_SHAPE_DOWN)
+	if (data->lib.ui_keys & UI_SHAPE_DOWN)
 		ui_translate_shape(data, (t_vec3d){0, -1, 0});
 }
 

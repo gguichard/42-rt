@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:41:49 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 01:38:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 03:22:18 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		ui_radius_shape(t_data *data, SDL_Event *event)
 {
 	if (data->current != NULL)
 	{
-		data->current->radius += clamp(event->wheel.y / 2, 1, 10);
+		data->current->radius += clamp(event->wheel.y, -1.5, 1.5);
 		if (data->current->radius < 0)
 			data->current->radius = 1;
 		ui_refresh(data);

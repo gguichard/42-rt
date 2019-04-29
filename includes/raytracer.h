@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 02:08:35 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:19:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 # define NEAR_PLANE_CLIPPING 1e-4
 # define SHADOW_BIAS 1e-4
-# define GAMMA_CORRECTION .45454545454
 
 # define NONE_FILTER (0)
 # define GRAY_FILTER (1)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:41:48 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 02:43:57 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:17:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "raytracer.h"
 #include "thread.h"
 #include "vec3d.h"
-#include "utils.h"
+#include "math_utils.h"
 
 static void	draw_ray_sampling(t_data *data, int x, int y, unsigned int color)
 {

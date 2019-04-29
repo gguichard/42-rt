@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 02:34:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:38:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ray_object.h"
 #include "ray_inf.h"
 #include "vec3d.h"
-#include "utils.h"
+#include "math_utils.h"
 
 static t_vec3d	get_specular_color(t_ray_object *light, t_ray_object *object
 		, double shine_factor)

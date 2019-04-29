@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:49:00 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:18:47 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "parser.h"
 #include "error.h"
 #include "vec3d.h"
-#include "utils.h"
+#include "math_utils.h"
 
 double		read_json_double(t_json_token *token, t_error *err)
 {

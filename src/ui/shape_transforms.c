@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:41:49 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 03:22:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 03:25:34 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ void		ui_select_object(t_data *data, SDL_Event *event)
 	t_vec3d		ray_dir;
 	t_ray_inf	ray_inf;
 
-	ray_dir = get_ray_dir(data, event->button.x, event->button.y);
-	ray_inf.origin = data->camera.origin;
-	ray_inf.direction = ray_dir;
-	ray_inf.object = NULL;
-	intersect_primary_ray(data, &ray_inf);
-	data->current = ray_inf.object;
+	if (event->button.button == SDL_BUTTON_RIGHT)
+		data->current = NULL;
+	else if (event->button.button == SDL_BUTTON_LEFT)
+	{
+		ray_dir = get_ray_dir(data, event->button.x, event->button.y);
+		ray_inf.origin = data->camera.origin;
+		ray_inf.direction = ray_dir;
+		ray_inf.object = NULL;
+		intersect_primary_ray(data, &ray_inf);
+		data->current = ray_inf.object;
+	}
 }
 
 void		ui_radius_shape(t_data *data, SDL_Event *event)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:30 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/23 19:20:31 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 23:10:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,30 @@ t_error	parse_ray_object_rotation(t_json_token *token, t_obj_rotation *rot)
 				rot->vector = vec3d_unit(read_json_vec3d(child, &err));
 			else if (ft_strequ(child->key, "angle"))
 				rot->angle = read_json_double(child, &err) / 180. * M_PI;
+			child = child->next;
+		}
+	}
+	return (err);
+}
+
+t_error	parse_ray_object_checkerboard(t_json_token *token
+		, t_checkerboard *board)
+{
+	t_error			err;
+	t_json_token	*child;
+
+	if (token->type != JSON_OBJECT)
+		err = ERR_SCENEBADFORMAT;
+	else
+	{
+		err = ERR_NOERROR;
+		child = token->value.child;
+		while (err == ERR_NOERROR && child != NULL)
+		{
+			if (ft_strequ(child->key, "color"))
+				board->color = read_json_color(child, &err);
+			else if (ft_strequ(child->key, "size"))
+				board->size = read_json_double(child, &err);
 			child = child->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/29 01:59:06 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 23:01:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "vec3d.h"
 # include "ray_inf.h"
 # include "quaternion.h"
-# include "perturbations.h"
 
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
@@ -38,6 +37,12 @@ typedef struct		s_obj_rotation
 	t_vec3d			vector;
 	double			angle;
 }					t_obj_rotation;
+
+typedef struct		s_checkerboard
+{
+	t_vec3d		color;
+	double		size;
+}					t_checkerboard;
 
 struct				s_ray_object
 {

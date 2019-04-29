@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:21:38 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:27:20 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 23:15:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_error			parse_ray_object_rotation(t_json_token *token
 		, t_obj_rotation *rot);
 t_error			parse_ray_object_vertices(t_json_token *token
 		, t_vec3d *vertices);
+t_error			parse_ray_object_checkerboard(t_json_token *token
+		, t_checkerboard *board);
 
 t_error			parse_ray_objects(t_data *data, t_json_token *token);
 

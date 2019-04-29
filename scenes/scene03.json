@@ -27,7 +27,10 @@
 			"origin": [0, 40, 62.5],
 			"color": [253, 233, 224],
 			"size": [10, 15, 10],
-			"checkerboard": [250, 200, 0],
+			"checkerboard": {
+				"color": [250, 200, 0],
+				"size": 20
+			},
 			"bump": 0.2
 		},
 		{

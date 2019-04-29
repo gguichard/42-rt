@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:52:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 23:11:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,12 @@ static void		parse_object_property(t_json_token *child
 		*err = parse_ray_object_rotation(child, &object->rotation);
 	else if (ft_strequ(child->key, "vertices"))
 		*err = parse_ray_object_vertices(child, object->vertices);
+	else if (ft_strequ(child->key, "checkerboard"))
+		*err = parse_ray_object_checkerboard(child, &object->checkerboard);
 	else if (ft_strequ(child->key, "bump"))
 		object->bump = read_json_double(child, err);
 	else if (ft_strequ(child->key, "normal_circle"))
 		object->normal_circle = read_json_double(child, err);
-	else if (ft_strequ(child->key, "checkerboard"))
-	{
-		object->checkerboard.color = read_json_color(child, err);
-		object->checkerboard.on = 1;
-	}
 	else if (ft_strequ(child->key, "roughness"))
 		object->roughness = read_json_double(child, err);
 }

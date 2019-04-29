@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:41:48 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:17:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 20:51:50 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void		draw_trace_rays(t_data *data)
 	idx = 0;
 	while (idx < MAX_THREADS)
 	{
+		data->threads[idx].id = idx;
+		data->threads[idx].data = data;
 		pthread_create(&data->threads[idx].pid, NULL
 				, (void *)draw_trace_rays_thread, data->threads + idx);
 		idx++;

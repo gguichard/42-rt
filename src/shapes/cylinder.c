@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:28:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:29:31 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 21:01:02 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_vec3d	get_cylinder_normal(t_ray_object *object, t_vec3d intersect)
 	return (vec3d_unit(intersect));
 }
 
-double	get_cylinder_dist(t_ray_object *object, t_vec3d origin, t_vec3d direction)
+double	get_cylinder_dist(t_ray_object *object, t_vec3d origin
+		, t_vec3d direction)
 {
 	t_quad	quad;
 

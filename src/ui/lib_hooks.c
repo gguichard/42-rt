@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:02:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 02:16:15 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 03:54:37 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void		draw_texture(t_data *data)
 static void	handle_loop(t_data *data)
 {
 	ui_loop_keys(data);
-	if (data->lib.cam_keys == 0 && data->sampling > 1)
-		data->sampling /= 2;
 	if (data->lib.cam_keys != 0)
 		data->sampling = 16;
+	else if (data->sampling > 1)
+		data->sampling /= 2;
 	camera_event(data);
 	if (data->sampling > 0)
 	{

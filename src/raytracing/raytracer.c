@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 01:49:46 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/29 03:55:07 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,18 @@ static t_vec3d	trace_light_and_recursive_rays(t_data *data, t_ray_inf *ray_inf
 	return (color);
 }
 
+static t_vec3d	get_sky_color(t_vec3d ray_dir)
+{
+	double	factor;
+	t_vec3d	color;
+	t_vec3d	sky_color;
+
+	factor = 0.5 * (ray_dir.y + 1.0);
+	color = vec3d_scalar((t_vec3d){1, 1, 1}, 1.0 - factor);
+	sky_color = vec3d_scalar((t_vec3d){0.5, 0.7, 1.0}, factor);
+	return (vec3d_add(color, sky_color));
+}
+
 t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		, int depth)
 {
@@ -91,7 +103,9 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		ray_inf.direction = ray_dir;
 		ray_inf.object = NULL;
 		intersect_primary_ray(data, &ray_inf);
-		if (ray_inf.object != NULL)
+		if (ray_inf.object == NULL)
+			color = get_sky_color(ray_dir);
+		else
 		{
 			ray_inf.normal = vec3d_unit(ray_inf.normal);
 			ray_inf.intersect = vec3d_add(ray_inf.origin

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 21:33:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 02:08:35 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define SHADOW_BIAS 1e-4
 # define GAMMA_CORRECTION .45454545454
 
+# define NONE_FILTER (0)
+# define GRAY_FILTER (1)
+# define CARTOON_FILTER (1 << 1)
+
 typedef struct	s_data
 {
 	int				running;
@@ -37,6 +41,7 @@ typedef struct	s_data
 	t_vector		lights;
 	int				sampling;
 	double			fog;
+	int				effect;
 	t_thread		threads[MAX_THREADS];
 	t_ray_object	*current;
 }				t_data;

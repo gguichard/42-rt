@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:02:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 01:03:34 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 02:16:15 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "lib.h"
 #include "ui.h"
 #include "raytracer.h"
+#include "perturbations.h"
 #include "camera.h"
 
 void		draw_texture(t_data *data)
@@ -64,6 +65,7 @@ void		run_event_loop(t_data *data)
 			}
 			ui_shapes_keys(&event, data);
 			camera_press_key(&event, data);
+			filter_key_apply(&event, data);
 		}
 		if (data->running)
 			handle_loop(data);

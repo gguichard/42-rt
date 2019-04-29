@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/29 00:47:19 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/29 02:17:05 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,18 +30,21 @@ LDLIBS		=	-lft
 
 SRC_DIR		=	src
 SRC 		=					\
-camera_move.c					\
 draw.c							\
-key_camera_events.c				\
 lib.c							\
 main.c							\
-effects/black_and_white.c		\
 effects/bump_mapping.c			\
+effects/cartoon_filter.c		\
 effects/checkerboard.c			\
+effects/effects.c				\
+effects/gray_filter.c			\
 effects/perlin_noise.c			\
 effects/perlin_permut_tab.c		\
 effects/perturbations.c			\
 effects/sin_perturbation.c		\
+events/camera_move.c			\
+events/key_camera_events.c		\
+events/key_filter_events.c		\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
 maths/solver.c					\
@@ -98,6 +101,7 @@ $(SDL_BUILD): | $(SDL_DIR)
 $(SDL_DIR) $(OBJ_DIR):
 	@/bin/mkdir $@ 2> /dev/null || true
 	@/bin/mkdir $@/effects 2> /dev/null || true
+	@/bin/mkdir $@/events 2> /dev/null || true
 	@/bin/mkdir $@/maths 2> /dev/null || true
 	@/bin/mkdir $@/misc 2> /dev/null || true
 	@/bin/mkdir $@/parser 2> /dev/null || true

@@ -110,7 +110,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.3
+			"roughness": 0.8
 		},
 		{
 			"type": "cylinder",
@@ -121,7 +121,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.3
+			"roughness": 0.6
 		},
 		{
 			"type": "cylinder",
@@ -132,7 +132,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.3
+			"roughness": 0.7
 		},
 		{
 			"type": "cylinder",
@@ -143,7 +143,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.3
+			"roughness": 0.5
 		},
 		{
 			"type": "sphere",

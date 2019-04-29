@@ -10,37 +10,14 @@
 			"intensity": 0.05
 		},
 		{
-			"type": "hyperboloid",
+			"type": "torus",
 			"origin": [0, 0, 0],
 			"radius": 10,
-			"color": [255, 255, 255],
-			"bump": 1000
+			"big_radius": 100,
+			"color": [255, 255, 100],
+			"roughness": 1000
 		},
-		{
-			"type": "cylinder",
-			"origin": [-5, 10, 0],
-			"radius": 10,
-			"rotation": {
-				"vector": [-1, 1, 1],
-				"angle": 47
-			},
-			"color": [20, 200, 30],
-			"shininess": 80,
-			"specular": 0.1
-		},
-		{
-			"type": "cone",
-			"origin": [10, -3, 0],
-			"rotation": {
-				"vector": [1, 1, 0],
-				"angle": 60
-			},
-			"angle": 25,
-			"color": [255, 255, 0],
-			"shininess": 80,
-			"specular": 0.1,
-			"normal_circle": 1
-		},
+
 		{
 			"type": "plane",
 			"origin": [0, -15, 0],
@@ -56,10 +33,10 @@
 			"color": [35, 35, 255]
 		},
 		{
-			"type": "light",
-			"origin": [120, 20, -40],
+			"type": "ambient_light",
+			"origin": [0, 400, 40],
 			"color": [255, 255, 255],
-			"intensity": 25000
+			"intensity": 1
 		}
 	]
 }

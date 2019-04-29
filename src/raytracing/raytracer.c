@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 00:13:52 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/29 01:49:46 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 			ray_inf.intersect = vec3d_add(ray_inf.origin
 					, vec3d_scalar(ray_inf.direction, ray_inf.dist));
 			color = trace_light_and_recursive_rays(data, &ray_inf, depth);
+			color = apply_effects(data, color, ray_inf.object->color);
 		}
 	}
 	return (color);

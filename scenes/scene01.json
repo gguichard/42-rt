@@ -24,7 +24,7 @@
 			"shininess": 50
 		},
 		{
-			"type": "sphere",
+			"type": "holed_cube",
 			"radius": 10,
 			"origin": [10, 45, 0],
 			"color": [255, 255, 255],

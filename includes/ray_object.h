@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 02:39:23 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:11:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ typedef struct		s_obj_rotation
 	double			angle;
 }					t_obj_rotation;
 
-typedef struct		s_checkerboard
+typedef struct		s_obj_checker
 {
 	t_vec3d		color;
 	double		size;
-}					t_checkerboard;
+}					t_obj_checker;
 
 typedef struct		s_perlin_filter
 {
@@ -68,7 +68,7 @@ struct				s_ray_object
 	t_perlin_filter	perlin;
 	t_wood			wood;
 	t_obj_rotation	rotation;
-	t_checkerboard	checkerboard;
+	t_obj_checker	checker;
 	double			roughness;
 	double			angle;
 	double			radius;

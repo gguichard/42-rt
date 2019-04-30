@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 01:47:15 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 03:06:05 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:20:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	add_normal_perturbation(t_ray_inf *ray_inf)
 
 t_vec3d	add_color_perturbation(t_ray_inf *ray_inf, t_vec3d base_color)
 {
-	if (ray_inf->object->checkerboard.size != 0)
+	if (ray_inf->object->checker.size != 0)
 	{
 		return (apply_checkerboard(ray_inf->intersect, base_color
-					, ray_inf->object->checkerboard));
+					, ray_inf->object->checker));
 	}
 	if (ray_inf->object->perlin.perlin != 0)
 	{

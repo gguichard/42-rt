@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_objects.c                                   :+:      :+:    :+:   */
+/*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 02:40:26 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:19:22 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void		parse_object_property(t_json_token *child
 	else if (ft_strequ(child->key, "vertices"))
 		*err = parse_ray_object_vertices(child, object->vertices);
 	else if (ft_strequ(child->key, "checkerboard"))
-		*err = parse_ray_object_checkerboard(child, &object->checkerboard);
+		*err = parse_ray_object_checker(child, &object->checker);
 	else if (ft_strequ(child->key, "bump"))
 		object->bump = read_json_double(child, err);
 	else if (ft_strequ(child->key, "normal_circle"))

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 04:49:00 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 02:37:45 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:21:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec3d			bump_mapping(t_vec3d normal, t_vec3d intersect, double bump
 	, int type);
 
 t_vec3d			apply_checkerboard(t_vec3d intersect, t_vec3d base_color
-	, t_checkerboard checkerboard);
+	, t_obj_checker board);
 t_vec3d			gray_filter(t_vec3d color);
 t_vec3d			cartoon_filter(t_vec3d color, t_vec3d init_color);
 

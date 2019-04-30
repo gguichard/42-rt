@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 04:04:16 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:40:00 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ray_inf.h"
 #include "quaternion.h"
 #include "vec3d.h"
-#include "perturbations.h"
+#include "effects.h"
 
 void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 {
@@ -52,7 +52,6 @@ static t_vec3d	trace_light_and_recursive_rays(t_data *data, t_ray_inf *ray_inf
 	t_vec3d	color;
 	t_vec3d	base_color;
 	t_vec3d	new_color;
-	double	fog_scalar;
 
 	add_normal_perturbation(ray_inf);
 	base_color = add_color_perturbation(ray_inf, ray_inf->object->color);
@@ -68,12 +67,6 @@ static t_vec3d	trace_light_and_recursive_rays(t_data *data, t_ray_inf *ray_inf
 		new_color = trace_reflect_ray(data, ray_inf, depth);
 		color = vec3d_add(vec3d_scalar(color, 1 - ray_inf->object->reflective)
 				, vec3d_scalar(new_color, ray_inf->object->reflective));
-	}
-	if (data->fog != 0)
-	{
-		fog_scalar = exp(-pow(ray_inf->dist / data->fog, 2));
-		color = vec3d_add(vec3d_scalar((t_vec3d){1, 1, 1}, 1 - fog_scalar)
-				, vec3d_scalar(color, fog_scalar));
 	}
 	return (color);
 }
@@ -102,6 +95,7 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 		ray_inf.origin = origin;
 		ray_inf.direction = ray_dir;
 		ray_inf.object = NULL;
+		ray_inf.dist = INFINITY;
 		intersect_primary_ray(data, &ray_inf);
 		if (ray_inf.object == NULL)
 			color = get_sky_color(ray_dir);
@@ -112,7 +106,7 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 					, vec3d_scalar(ray_inf.direction, ray_inf.dist));
 			color = trace_light_and_recursive_rays(data, &ray_inf, depth);
 		}
-		color = apply_effects(data, color
+		color = apply_effects(data, &ray_inf, color
 				, (ray_inf.object == NULL ? color : ray_inf.object->color));
 	}
 	return (color);

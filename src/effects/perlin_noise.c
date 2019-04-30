@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perlin.c                                           :+:      :+:    :+:   */
+/*   perlin_noise.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:39:06 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/27 05:38:05 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:36:56 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "vec3d.h"
 #include "libft.h"
-#include "perturbations.h"
+#include "effects.h"
+#include "vec3d.h"
 
 static double	fade(double nbr)
 {

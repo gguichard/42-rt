@@ -6,12 +6,12 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 17:07:11 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/29 02:00:33 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:36:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "perturbations.h"
+#include "effects.h"
 #include "vec3d.h"
 
 t_vec3d		bump_mapping(t_vec3d normal, t_vec3d intersect, double bump

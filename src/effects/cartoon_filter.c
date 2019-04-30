@@ -6,17 +6,17 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 17:15:01 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/29 02:56:34 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:36:26 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "perturbations.h"
+#include "effects.h"
 #include "vec3d.h"
 
 t_vec3d		cartoon_filter(t_vec3d color, t_vec3d init_color)
 {
-	double		init_c;
-	double		c;
+	double	init_c;
+	double	c;
 
 	init_c = (init_color.x + init_color.y + init_color.z);
 	c = (color.x + color.y + color.z);

@@ -6,11 +6,11 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 01:47:15 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:20:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:38:50 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "perturbations.h"
+#include "effects.h"
 #include "ray_inf.h"
 #include "ray_object.h"
 #include "vec3d.h"

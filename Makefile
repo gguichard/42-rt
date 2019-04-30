@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/30 17:21:12 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/30 17:35:31 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ effects/bump_mapping.c			\
 effects/cartoon_filter.c		\
 effects/checkerboard.c			\
 effects/effects.c				\
+effects/fog.c					\
 effects/gray_filter.c			\
 effects/perlin_noise.c			\
 effects/perlin_noise_filter.c	\

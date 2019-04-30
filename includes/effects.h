@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perturbations.h                                    :+:      :+:    :+:   */
+/*   effects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 04:49:00 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:21:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:39:37 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PERTURBATIONS_H
-# define PERTURBATIONS_H
+#ifndef EFFECTS_H
+# define EFFECTS_H
 
 /*
 ** INCLUDES
@@ -45,9 +45,11 @@ typedef struct	s_perlin
 ** PROTOTYPES
 */
 
+t_vec3d			apply_effects(t_data *data, t_ray_inf *ray_inf, t_vec3d color
+		, t_vec3d init_color);
+
 void			add_normal_perturbation(t_ray_inf *ray_inf);
 t_vec3d			add_color_perturbation(t_ray_inf *ray_inf, t_vec3d base_color);
-t_vec3d			apply_effects(t_data *data, t_vec3d color, t_vec3d init_color);
 
 double			perlin_noise(t_vec3d intersect, int type);
 void			perlin_random_permutation(t_perlin *perlin);
@@ -62,6 +64,9 @@ t_vec3d			bump_mapping(t_vec3d normal, t_vec3d intersect, double bump
 
 t_vec3d			apply_checkerboard(t_vec3d intersect, t_vec3d base_color
 	, t_obj_checker board);
+t_vec3d			apply_fog_effect(t_data *data, t_ray_inf *ray_inf
+	, t_vec3d color);
+
 t_vec3d			gray_filter(t_vec3d color);
 t_vec3d			cartoon_filter(t_vec3d color, t_vec3d init_color);
 

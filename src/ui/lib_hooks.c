@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:02:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 03:54:37 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:37:28 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "lib.h"
 #include "ui.h"
 #include "raytracer.h"
-#include "perturbations.h"
+#include "effects.h"
 #include "camera.h"
 
 void		draw_texture(t_data *data)

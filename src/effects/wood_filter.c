@@ -6,12 +6,12 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 02:29:27 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 03:06:29 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:37:07 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "perturbations.h"
+#include "effects.h"
 #include "vec3d.h"
 
 t_vec3d		wood_filter(t_vec3d intersect, t_vec3d color1, t_vec3d color2

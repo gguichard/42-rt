@@ -6,20 +6,23 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 00:27:20 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 01:59:55 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:36:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "perturbations.h"
+#include "effects.h"
 #include "raytracer.h"
+#include "ray_inf.h"
 #include "vec3d.h"
 
-t_vec3d		apply_effects(t_data *data, t_vec3d color, t_vec3d init_color)
+t_vec3d		apply_effects(t_data *data, t_ray_inf *ray_inf, t_vec3d color
+		, t_vec3d init_color)
 {
-	if (data->effect == NONE_FILTER)
-		return (color);
-	else if (data->effect == GRAY_FILTER)
-		return (gray_filter(color));
-	else
-		return (cartoon_filter(color, init_color));
+	if (data->effect == GRAY_FILTER)
+		color = gray_filter(color);
+	else if (data->effect == CARTOON_FILTER)
+		color = cartoon_filter(color, init_color);
+	if (data->fog != 0)
+		color = apply_fog_effect(data, ray_inf, color);
+	return (color);
 }

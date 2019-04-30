@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/29 21:00:00 by gguichar         ###   ########.fr        #
+#    Updated: 2019/04/30 02:38:34 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,11 @@ effects/checkerboard.c			\
 effects/effects.c				\
 effects/gray_filter.c			\
 effects/perlin_noise.c			\
+effects/perlin_noise_filter.c	\
 effects/perlin_permut_tab.c		\
 effects/perturbations.c			\
 effects/sin_perturbation.c		\
+effects/wood_filter.c			\
 maths/maths_utils.c				\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
@@ -69,6 +71,7 @@ shapes/plane.c					\
 shapes/sphere.c					\
 shapes/torus.c					\
 shapes/triangle.c				\
+ui/convert_to_ppm.c				\
 ui/key_camera_events.c			\
 ui/key_filter_events.c			\
 ui/lib_hooks.c					\

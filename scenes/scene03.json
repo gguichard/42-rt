@@ -20,7 +20,7 @@
 		{
 			"type": "plane",
 			"origin": [0, -5, 0],
-			"color": [135, 206, 250]
+			"color": [0, 0, 250]
 		},
 		{
 			"type": "ellipsoid",
@@ -113,7 +113,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.8
+			"roughness": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -124,7 +124,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.6
+			"roughness": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -135,7 +135,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.7
+			"roughness": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -146,7 +146,7 @@
 				"vector": [1, 0, 0],
 				"angle": 90
 			},
-			"roughness": 0.5
+			"roughness": 0.3
 		},
 		{
 			"type": "sphere",

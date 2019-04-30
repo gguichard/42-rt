@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:14:09 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/29 02:18:26 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 00:46:18 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void		filter_key_apply(SDL_Event *event, t_data *data)
 			data->effect = GRAY_FILTER;
 		if (event->key.keysym.sym == SDLK_c)
 			data->effect = CARTOON_FILTER;
+		if (event->key.keysym.sym == SDLK_p)
+			convert_to_ppm(data->lib.view, data);
 	}
 }

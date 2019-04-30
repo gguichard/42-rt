@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:19:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/30 01:58:59 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define NONE_FILTER (0)
 # define GRAY_FILTER (1)
 # define CARTOON_FILTER (1 << 1)
+# define PERLIN_FILTER (1 << 2)
 
 typedef struct	s_data
 {
@@ -62,5 +63,7 @@ t_vec3d			trace_light_rays(t_data *data, t_ray_inf *ray_inf
 		, t_vec3d base_color);
 
 void			draw_trace_rays(t_data *data);
+
+int				convert_to_ppm(unsigned int *view, t_data *data);
 
 #endif

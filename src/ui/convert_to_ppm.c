@@ -6,56 +6,64 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 10:59:14 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/29 21:39:32 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/04/30 00:59:42 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <time.h>
+#include <unistd.h>
 #include "libft.h"
-#include "lib.h"
+#include "raytracer.h"
 
 static int	create_name_screen(char name[30])
 {
-	char	*time_clock;
+	time_t	actual_time;
 
-	if (!(ctime_r(time(NULL), time_clock)))
+	time(&actual_time);
+	if (!(ctime_r(&actual_time, name)))
 		return (1);
-	ft_strcpy(name, time_clock);
 	ft_strcat(name, ".ppm");
 	return (0);
 }
 
-int			convert_to_ppm(unsigned int *view, t_data *data)
+static void	fill_ppm_file(unsigned int *view, int fd, t_data *data)
 {
-	unsigned int	i;
-	unsigned int	j;
-	int				fd;
-	char			name[30];
+	int				i;
+	int				j;
 	unsigned char	color[3];
 
-	ft_memset(&name, 0, 30);
-	if (create_name_screen(name))
-		return (1);
-	fd = open(name, O_CREATE | O_WRONLY | O_TRUNC, 0644);
-	if (fd <= 0)
-		return (1);
 	i = 0;
-	ft_dprintf(fd, "P3\n%d %d\n255\n", data->winsize.width
-		, data->winsize.heigth);
-	while (i < data->winsize.heigth)
+	while (i < data->winsize.height)
 	{
 		j = 0;
 		while (j < data->winsize.width)
 		{
-			color[1] = view[i * data->winsize.heigth + j] >> 6 % 256;
-			color[2] = view[i * data->winsize.heigth + j] >> 3 % 256;
-			color[3] = view[i * data->winsize.heigth + j] % 256;
-			ft_dprintf(fd, "%3d %3d %3d  ", color[1], color[2], color[3]);
+			color[0] = (view[i * data->winsize.width + j] >> 16) % 256;
+			color[1] = (view[i * data->winsize.width + j] >> 8) % 256;
+			color[2] = (view[i * data->winsize.width + j]) % 256;
+			ft_dprintf(fd, "%3d %3d %3d  ", color[0], color[1], color[2]);
 			j++;
 		}
 		ft_dprintf(fd, "\n");
 		i++;
 	}
+}
+
+int			convert_to_ppm(unsigned int *view, t_data *data)
+{
+	int		fd;
+	char	name[30];
+
+	ft_memset(&name, 0, 30);
+	if (create_name_screen(name))
+		return (1);
+	fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd < 0)
+		return (1);
+	ft_dprintf(fd, "P3\n%d %d\n255\n", data->winsize.width
+		, data->winsize.height);
+	fill_ppm_file(view, fd, data);
+	close(fd);
 	return (0);
 }

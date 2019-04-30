@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   effects.c                                          :+:      :+:    :+:   */
+/*   wood_filter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/28 00:27:20 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 01:59:55 by roduquen         ###   ########.fr       */
+/*   Created: 2019/04/30 02:29:27 by roduquen          #+#    #+#             */
+/*   Updated: 2019/04/30 03:06:29 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "perturbations.h"
-#include "raytracer.h"
 #include "vec3d.h"
 
-t_vec3d		apply_effects(t_data *data, t_vec3d color, t_vec3d init_color)
+t_vec3d		wood_filter(t_vec3d intersect, t_vec3d color1, t_vec3d color2
+		, t_vec3d color3)
 {
-	if (data->effect == NONE_FILTER)
-		return (color);
-	else if (data->effect == GRAY_FILTER)
-		return (gray_filter(color));
-	else
-		return (cartoon_filter(color, init_color));
+	double		result;
+	double		tmp;
+
+	(void)color1;
+	result = 20 * perlin_noise(intersect, 0);
+	result = fabs(result - (int)result);
+	tmp = (1 - cos(result * M_PI)) * 0.5;
+	return (vec3d_add(vec3d_scalar(color2, 1 - tmp)
+			, vec3d_scalar(color3, tmp)));
 }

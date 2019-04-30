@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_objects_utils.c                             :+:      :+:    :+:   */
+/*   parse_objects_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:44:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/30 23:43:42 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void		assign_object_functions(t_ray_object *object)
 		object->intersect = get_cylinder_dist;
 		object->normal = get_cylinder_normal;
 	}
-	else if (object->type == RAYOBJ_HOLED_CUBE)
+	else if (object->type == RAYOBJ_TANGLECUBE)
 	{
-		object->intersect = get_holed_cube_dist;
-		object->normal = get_holed_cube_normal;
+		object->intersect = get_tanglecube_dist;
+		object->normal = get_tanglecube_normal;
 	}
 	else
 		assign_object_functions2(object);

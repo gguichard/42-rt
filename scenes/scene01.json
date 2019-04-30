@@ -23,7 +23,7 @@
 			"wood": [0, 0, 0]
 		},
 		{
-			"type": "holed_cube",
+			"type": "tanglecube",
 			"radius": 10,
 			"origin": [10, 45, 0],
 			"color": [255, 255, 255],

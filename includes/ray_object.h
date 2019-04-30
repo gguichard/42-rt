@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 19:04:45 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/04/30 23:40:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define RAYOBJ_TRIANGLE 6
 # define RAYOBJ_ELLIPSOID 7
 # define RAYOBJ_HYPERBOLOID 8
-# define RAYOBJ_HOLED_CUBE 9
+# define RAYOBJ_TANGLECUBE 9
 # define RAYOBJ_LIGHT 10
 # define RAYOBJ_AMBIENTLIGHT 11
 
@@ -104,7 +104,7 @@ double				get_ellipsoid_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
 double				get_hyperboloid_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
-double				get_holed_cube_dist(t_ray_object *object
+double				get_tanglecube_dist(t_ray_object *object
 		, t_vec3d origin, t_vec3d direction);
 
 t_vec3d				get_sphere_normal(t_ray_object *object
@@ -123,7 +123,7 @@ t_vec3d				get_ellipsoid_normal(t_ray_object *object
 		, t_vec3d intersect);
 t_vec3d				get_hyperboloid_normal(t_ray_object *object
 		, t_vec3d intersect);
-t_vec3d				get_holed_cube_normal(t_ray_object *object
+t_vec3d				get_tanglecube_normal(t_ray_object *object
 		, t_vec3d intersect);
 
 #endif

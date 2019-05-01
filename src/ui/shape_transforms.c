@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:41:49 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:14:21 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:54:30 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 #include "ray_inf.h"
 #include "vec3d.h"
 #include "math_utils.h"
-
-static void	ui_refresh(t_data *data)
-{
-	data->sampling = 16;
-}
 
 void		ui_select_object(t_data *data, SDL_Event *event)
 {

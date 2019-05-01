@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 04:23:54 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:14:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ int			main(int argc, char **argv)
 	err = parse_scene(&data, argv[1]);
 	if (err == ERR_NOERROR)
 		err = init_and_create_window(&data.lib, data.winsize);
-	if (err != ERR_NOERROR)
-		return (exit_with_error(err, argv[0]));
-	data.sampling = 32;
-	run_event_loop(&data);
+	if (err == ERR_NOERROR)
+	{
+		data.sampling = 32;
+		run_event_loop(&data);
+	}
 	destroy_lib(&data.lib);
 	ft_vecfree(&data.objects);
 	ft_vecfree(&data.lights);
+	if (err != ERR_NOERROR)
+		return (exit_with_error(err, argv[0]));
 	return (0);
 }

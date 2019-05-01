@@ -37,30 +37,21 @@
 			"type": "plane",
 			"origin": [0, 100, 0],
 			"color": [135, 206, 250],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 180
-			},
+			"rotation": [180, 0, 0],
 			"bump": 0.1
 		},
 		{
 			"type": "plane",
 			"origin": [0, 0, 150],
 			"color": [50, 30, 240],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": -90
-			}
+			"rotation": [-90, 0, 0]
 		},
 		{
 			"type": "cone",
 			"angle": 10,
 			"origin": [0, 20, 0],
 			"color": [30, 230, 30],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			}
+			"rotation": [90, 0, 0]
 		},
 		{
 			"type": "triangle",
@@ -109,10 +100,7 @@
 			"radius": 15,
 			"origin": [-60, 0, -10],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			},
+			"rotation": [90, 0, 0],
 			"roughness": 0.3
 		},
 		{
@@ -120,10 +108,7 @@
 			"radius": 15,
 			"origin": [60, 0, -10],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			},
+			"rotation": [90, 0, 0],
 			"roughness": 0.3
 		},
 		{
@@ -131,10 +116,7 @@
 			"radius": 15,
 			"origin": [-60, 0, 110],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			},
+			"rotation": [90, 0, 0],
 			"roughness": 0.3
 		},
 		{
@@ -142,10 +124,7 @@
 			"radius": 15,
 			"origin": [60, 0, 110],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			},
+			"rotation": [90, 0, 0],
 			"roughness": 0.3
 		},
 		{

@@ -17,7 +17,6 @@
 			"color": [255, 255, 100],
 			"roughness": 1000
 		},
-
 		{
 			"type": "plane",
 			"origin": [0, -15, 0],
@@ -26,10 +25,6 @@
 		{
 			"type": "plane",
 			"origin": [0, 0, 50],
-			"rotation": {
-				"vector": [1, 0, 1],
-				"angle": -90
-			},
 			"color": [35, 35, 255]
 		},
 		{

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 23:40:32 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 03:12:33 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@
 
 typedef struct s_ray_object	t_ray_object;
 
-typedef struct		s_obj_rotation
-{
-	t_vec3d			vector;
-	double			angle;
-}					t_obj_rotation;
-
 typedef struct		s_obj_checker
 {
 	t_vec3d			color;
@@ -62,12 +56,12 @@ struct				s_ray_object
 	double			(*intersect)(t_ray_object *, t_vec3d, t_vec3d);
 	t_vec3d			(*normal)(t_ray_object *, t_vec3d);
 	t_vec3d			origin;
+	t_vec3d			rotation;
 	t_vec3d			vertices[3];
 	t_vec3d			size;
 	t_vec3d			color;
 	t_obj_perlin	perlin;
 	t_obj_wood		wood;
-	t_obj_rotation	rotation;
 	t_obj_checker	checker;
 	double			roughness;
 	double			angle;

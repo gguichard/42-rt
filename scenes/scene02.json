@@ -19,20 +19,14 @@
 			"type": "plane",
 			"origin": [0, 100, 0],
 			"color": [30, 30, 30],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 180
-			},
+			"rotation": [180, 0, 0],
 			"mirror": 1
 		},
 		{
 			"type": "plane",
 			"origin": [0, 0, 150],
 			"color": [50, 30, 240],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": -90
-			},
+			"rotation": [-90, 0, 0],
 			"mirror": 1
 		},
 		{
@@ -48,40 +42,28 @@
 			"radius": 15,
 			"origin": [-60, 0, -10],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			}
+			"rotation": [90, 0, 0]
 		},
 		{
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [60, 0, -10],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			}
+			"rotation": [90, 0, 0]
 		},
 		{
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [-60, 0, 110],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			}
+			"rotation": [90, 0, 0]
 		},
 		{
 			"type": "cylinder",
 			"radius": 15,
 			"origin": [60, 0, 110],
 			"color": [160, 160, 160],
-			"rotation": {
-				"vector": [1, 0, 0],
-				"angle": 90
-			}
+			"rotation": [90, 0, 0]
 		},
 		{
 			"type": "sphere",

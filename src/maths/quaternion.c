@@ -6,28 +6,13 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 10:07:03 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/23 03:14:53 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 04:04:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "quaternion.h"
 #include "vec3d.h"
-
-double			quaternion_length(t_quaternion quat)
-{
-	return (sqrt(quat.x * quat.x + quat.y * quat.y
-				+ quat.z * quat.z + quat.w * quat.w));
-}
-
-t_quaternion	quaternion_unit(t_quaternion quat)
-{
-	double	length;
-
-	length = quaternion_length(quat);
-	return ((t_quaternion){quat.x / length, quat.y / length, quat.z / length
-			, quat.w / length});
-}
 
 t_quaternion	quaternion_mul(t_quaternion quat_a, t_quaternion quat_b)
 {

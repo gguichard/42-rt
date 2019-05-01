@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 02:05:00 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/01 21:33:23 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data	t_data;
 typedef struct		s_lib
 {
 	SDL_Window		*window;
+	SDL_Window		*panel;
 	SDL_Renderer	*renderer;
 	SDL_Texture		*texture;
 	unsigned int	cam_keys;

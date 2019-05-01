@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 13:03:14 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:42:45 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:24:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,16 @@ size_t			create_primitive_lexeme(t_list **lst, const char *str)
 
 	offset = 0;
 	if (*str == 't'
-			&& ft_strnequ(str, TRUE_PRIMITIVE, ft_strlen(TRUE_PRIMITIVE)))
+		&& ft_strnequ(str, TRUE_PRIMITIVE, ft_strlen(TRUE_PRIMITIVE)))
 		offset = ft_strlen(TRUE_PRIMITIVE);
 	else if (*str == 'f'
-			&& ft_strnequ(str, FALSE_PRIMITIVE, ft_strlen(FALSE_PRIMITIVE)))
+		&& ft_strnequ(str, FALSE_PRIMITIVE, ft_strlen(FALSE_PRIMITIVE)))
 		offset = ft_strlen(FALSE_PRIMITIVE);
 	else if (*str == 'n'
-			&& ft_strnequ(str, NULL_PRIMITIVE, ft_strlen(NULL_PRIMITIVE)))
+		&& ft_strnequ(str, NULL_PRIMITIVE, ft_strlen(NULL_PRIMITIVE)))
 		offset = ft_strlen(NULL_PRIMITIVE);
 	if (offset > 0
-			&& create_lexeme_with_type(lst, TK_PRIMITIVE, str, offset) == NULL)
+		&& create_lexeme_with_type(lst, TK_PRIMITIVE, str, offset) == NULL)
 		return (0);
 	return (offset);
 }

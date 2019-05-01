@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/29 17:35:18 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/24 16:46:24 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/01 16:16:52 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,9 +122,6 @@ OBJ_DIR		=	.obj
 PF_DIR		=	printf
 PF_LIB		=	$(PF_DIR)/printf.a
 
-OPT_DIR		=	options
-OPT_LIB		=	$(OPT_DIR)/options.a
-
 JSON_DIR	=	json_parser
 JSON_LIB	=	$(JSON_DIR)/json_parser.a
 
@@ -134,14 +131,11 @@ CPPFLAGS	=	-Iincludes
 
 all: $(NAME)
 
-$(NAME): $(PF_LIB) $(OPT_LIB) $(JSON_LIB) $(addprefix $(OBJ_DIR)/,$(OBJ))
+$(NAME): $(PF_LIB) $(JSON_LIB) $(addprefix $(OBJ_DIR)/,$(OBJ))
 	libtool -static -o $(NAME) $^
 
 $(PF_LIB):
 	$(MAKE) -C $(PF_DIR)
-
-$(OPT_LIB):
-	$(MAKE) -C $(OPT_DIR)
 
 $(JSON_LIB):
 	$(MAKE) -C $(JSON_DIR)
@@ -154,13 +148,11 @@ $(OBJ_DIR):
 
 clean:
 	$(MAKE) -C $(PF_DIR) clean
-	$(MAKE) -C $(OPT_DIR) clean
 	$(MAKE) -C $(JSON_DIR) clean
 	/bin/rm -rf $(OBJ_DIR)
 
 fclean: clean
 	$(MAKE) -C $(PF_DIR) fclean
-	$(MAKE) -C $(OPT_DIR) fclean
 	$(MAKE) -C $(JSON_DIR) fclean
 	/bin/rm -f $(NAME)
 

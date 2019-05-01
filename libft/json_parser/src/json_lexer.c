@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 16:01:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:40:20 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:23:47 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_list			*split_str_into_json_lexemes(const char *str)
 	{
 		ret = analyze_json_str(&lst, str + idx);
 		if (ret == 0 && create_lexeme_with_type(&lst, TK_UNKNOWN, str + idx
-					, ft_strlen(str + idx)) == NULL)
+				, ft_strlen(str + idx)) == NULL)
 			ft_lstdel(&lst, del_json_lexeme);
 		if (ret == 0)
 			break ;

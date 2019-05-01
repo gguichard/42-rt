@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 12:03:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:40:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:24:49 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				read_json_object_or_array(t_list **lst, int depth_level
 	while (*lst != NULL)
 	{
 		if (((t_json_lexeme *)(*lst)->content)->type
-				== (is_object ? TK_CLOSE_OBJECT : TK_CLOSE_ARRAY))
+			== (is_object ? TK_CLOSE_OBJECT : TK_CLOSE_ARRAY))
 			return (1);
 		if (token->value.child != NULL && !expect_json_sep(lst, ","))
 			break ;
@@ -79,7 +79,7 @@ t_json_token	*read_json_key_pair(t_list **lst, int depth_level)
 		return (NULL);
 	key = ft_strdup(((t_json_lexeme *)(*lst)->content)->value);
 	if (key != NULL && (*lst = (*lst)->next) != NULL
-			&& expect_json_sep(lst, ":"))
+		&& expect_json_sep(lst, ":"))
 	{
 		token = eat_json_lexemes(lst, depth_level);
 		if (token != NULL)

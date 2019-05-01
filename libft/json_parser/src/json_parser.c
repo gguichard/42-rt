@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 22:09:47 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:40:38 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:24:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_json_token	*eat_json_lexemes(t_list **lst, int depth_level)
 	t_json_lexeme	*lexeme;
 
 	if (depth_level > JSON_MAX_DEPTH
-			|| !(token = (t_json_token *)ft_memalloc(sizeof(t_json_token))))
+		|| !(token = (t_json_token *)ft_memalloc(sizeof(t_json_token))))
 		return (NULL);
 	lexeme = (t_json_lexeme *)(*lst)->content;
 	if (lexeme->type == TK_STRING)
@@ -60,7 +60,7 @@ t_json_token	*eat_json_lexemes(t_list **lst, int depth_level)
 	{
 		*lst = (*lst)->next;
 		if (read_json_object_or_array(lst, depth_level + 1, token
-					, lexeme->type == TK_OPEN_OBJECT))
+				, lexeme->type == TK_OPEN_OBJECT))
 			token->type = (lexeme->type == TK_OPEN_OBJECT
 					? JSON_OBJECT : JSON_ARRAY);
 	}

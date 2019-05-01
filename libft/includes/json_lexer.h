@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 15:41:41 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/17 14:42:10 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:22:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_json_lexeme
 }				t_json_lexeme;
 
 t_json_lexeme	*create_lexeme_with_type(t_list **lst, int type, const char *str
-		, size_t len);
+	, size_t len);
 size_t			create_bracket_lexeme(t_list **lst, char bracket_char);
 size_t			create_string_lexeme(t_list **lst, const char *str);
 size_t			create_number_lexeme(t_list **lst, const char *str);

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 17:17:48 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 17:17:56 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:08:09 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char			*read_scene_file(const char *file_path, t_error *err)
 		{
 			buffer[ret] = '\0';
 			if (ft_strlen(buffer) != (size_t)ret
-					&& (*err = ERR_INVALIDSCENE) == ERR_INVALIDSCENE)
+				&& (*err = ERR_INVALIDSCENE) == ERR_INVALIDSCENE)
 				break ;
 			str = ft_strjoin_free(str, buffer);
 		}

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:21:01 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/26 04:21:42 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:05:35 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_vec3d		vec3d_mul(t_vec3d vec_a, t_vec3d vec_b)
 t_vec3d		vec3d_cross(t_vec3d vec_a, t_vec3d vec_b)
 {
 	return ((t_vec3d){vec_a.y * vec_b.z - vec_a.z * vec_b.y
-			, vec_a.z * vec_b.x - vec_a.x * vec_b.z
-			, vec_a.x * vec_b.y - vec_a.y * vec_b.x});
+		, vec_a.z * vec_b.x - vec_a.x * vec_b.z
+		, vec_a.x * vec_b.y - vec_a.y * vec_b.x});
 }
 
 t_vec3d		vec3d_scalar(t_vec3d vec, double scalar)

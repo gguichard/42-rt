@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:38:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:09:03 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
 					, shine_factor);
 	}
 	return (vec3d_scalar(vec3d_add(diffuse, specular)
-				, light_ray->object->intensity / (M_PI * light_ray->dist)));
+			, light_ray->object->intensity / (M_PI * light_ray->dist)));
 }
 
 static t_vec3d	compute_light_color(t_data *data, t_ray_inf *light_ray

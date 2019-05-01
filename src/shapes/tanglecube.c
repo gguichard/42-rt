@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:41:19 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 00:21:51 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:13:01 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ double	get_tanglecube_dist(t_ray_object *object, t_vec3d origin
 			+ pow(direction.y, 2) * pow(origin.y, 2)
 			+ pow(direction.z, 2) * pow(origin.z, 2))
 		- 5.0 * (pow(direction.x, 2) + pow(direction.y, 2)
-				+ pow(direction.z, 2));
+			+ pow(direction.z, 2));
 	quartic.d = 4.0 * (pow(origin.x, 3) * direction.x
 			+ pow(origin.y, 3) * direction.y + pow(origin.z, 3) * direction.z)
 		- 10.0 * vec3d_dot(origin, direction);

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 21:41:48 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:51:50 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:59:50 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		draw_trace_rays(t_data *data)
 		data->threads[idx].id = idx;
 		data->threads[idx].data = data;
 		pthread_create(&data->threads[idx].pid, NULL
-				, (void *)draw_trace_rays_thread, data->threads + idx);
+			, (void *)draw_trace_rays_thread, data->threads + idx);
 		idx++;
 	}
 	idx = 0;

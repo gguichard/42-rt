@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:56:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 01:58:59 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:16:31 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ typedef struct	s_data
 t_vec3d			get_ray_dir(t_data *data, int x, int y);
 
 void			world_to_object_transform(t_ray_inf *ray_inf
-		, t_ray_object *object, t_vec3d *origin, t_vec3d *direction);
+	, t_ray_object *object, t_vec3d *origin, t_vec3d *direction);
 int				has_object_in_ray(t_data *data, t_ray_inf *ray_inf
-		, double max_dist_squared);
+	, double max_dist_squared);
 
 void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf);
 
 t_vec3d			trace_reflect_ray(t_data *data, t_ray_inf *ray_inf, int depth);
 t_vec3d			trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth);
 t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
-		, int depth);
+	, int depth);
 t_vec3d			trace_light_rays(t_data *data, t_ray_inf *ray_inf
-		, t_vec3d base_color);
+	, t_vec3d base_color);
 
 void			draw_trace_rays(t_data *data);
 

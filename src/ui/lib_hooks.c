@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:02:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 17:37:28 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:14:10 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void		run_event_loop(t_data *data)
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT
-					|| (event.type == SDL_KEYDOWN
-						&& event.key.keysym.sym == SDLK_ESCAPE))
+				|| (event.type == SDL_KEYDOWN
+					&& event.key.keysym.sym == SDLK_ESCAPE))
 			{
 				data->running = 0;
 				break ;

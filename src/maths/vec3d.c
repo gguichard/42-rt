@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 09:00:42 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/22 03:52:04 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:05:21 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ t_vec3d		vec3d_unit(t_vec3d vec)
 t_vec3d		vec3d_add(t_vec3d vec_a, t_vec3d vec_b)
 {
 	return ((t_vec3d){vec_a.x + vec_b.x, vec_a.y + vec_b.y
-			, vec_a.z + vec_b.z});
+		, vec_a.z + vec_b.z});
 }
 
 t_vec3d		vec3d_sub(t_vec3d vec_a, t_vec3d vec_b)
 {
 	return ((t_vec3d){vec_a.x - vec_b.x, vec_a.y - vec_b.y
-			, vec_a.z - vec_b.z});
+		, vec_a.z - vec_b.z});
 }

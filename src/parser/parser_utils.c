@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:18:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:07:43 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ t_vec3d		read_json_vec3d(t_json_token *token, t_error *err)
 		*err = ERR_NOERROR;
 		child = token->value.child;
 		if (!write_json_vec3d_field(&child, &vec.x)
-				|| !write_json_vec3d_field(&child, &vec.y)
-				|| !write_json_vec3d_field(&child, &vec.z)
-				|| child != NULL)
+			|| !write_json_vec3d_field(&child, &vec.y)
+			|| !write_json_vec3d_field(&child, &vec.z)
+			|| child != NULL)
 			*err = ERR_BADVEC3D;
 	}
 	return (vec);
@@ -95,8 +95,8 @@ t_vec3d		read_json_color(t_json_token *token, t_error *err)
 		*err = ERR_NOERROR;
 		child = token->value.child;
 		if (!write_json_color_field(&child, &r)
-				|| !write_json_color_field(&child, &g)
-				|| !write_json_color_field(&child, &b) || child != NULL)
+			|| !write_json_color_field(&child, &g)
+			|| !write_json_color_field(&child, &b) || child != NULL)
 			*err = ERR_BADCOLOR;
 		else
 		{

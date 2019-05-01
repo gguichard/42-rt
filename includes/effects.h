@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 04:49:00 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:39:37 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:15:39 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	s_perlin
 */
 
 t_vec3d			apply_effects(t_data *data, t_ray_inf *ray_inf, t_vec3d color
-		, t_vec3d init_color);
+	, t_vec3d init_color);
 
 void			add_normal_perturbation(t_ray_inf *ray_inf);
 t_vec3d			add_color_perturbation(t_ray_inf *ray_inf, t_vec3d base_color);

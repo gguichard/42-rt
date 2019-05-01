@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/01 03:12:33 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:16:20 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,41 +83,41 @@ struct				s_ray_object
 void				assign_object_functions(t_ray_object *object);
 
 double				get_plane_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_cone_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_torus_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_sphere_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_cylinder_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_triangle_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_ellipsoid_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_hyperboloid_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 double				get_tanglecube_dist(t_ray_object *object
-		, t_vec3d origin, t_vec3d direction);
+	, t_vec3d origin, t_vec3d direction);
 
 t_vec3d				get_sphere_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_plane_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_cone_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_cylinder_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_torus_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_triangle_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_ellipsoid_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_hyperboloid_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 t_vec3d				get_tanglecube_normal(t_ray_object *object
-		, t_vec3d intersect);
+	, t_vec3d intersect);
 
 #endif

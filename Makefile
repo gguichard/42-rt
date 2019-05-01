@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/01 04:37:21 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/01 04:58:41 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,6 @@ parser/parse_vertices.c			\
 parser/parser_utils.c			\
 parser/scene_parser.c			\
 parser/setup_camera.c			\
-parser/wf_obj_parser.c			\
 raytracing/light_rays.c			\
 raytracing/ray_utils.c			\
 raytracing/raytracer.c			\

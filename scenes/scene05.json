@@ -1,7 +1,6 @@
 {
 	"camera": {
-		"origin": [10, 0, -40],
-		"direction": [0, 0, 1]
+		"origin": [10, 0, -40]
 	},
 	"objects": [
 		{

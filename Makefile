@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/04/30 23:41:04 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/01 04:37:21 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ maths/vec3d.c					\
 maths/vec3d_2.c					\
 misc/camera.c					\
 misc/error.c					\
-parser/parse_camera.c			\
 parser/parse_checker.c			\
 parser/parse_objects.c			\
 parser/parse_objects_utils.c	\
@@ -61,6 +60,7 @@ parser/parse_rotation.c			\
 parser/parse_vertices.c			\
 parser/parser_utils.c			\
 parser/scene_parser.c			\
+parser/setup_camera.c			\
 parser/wf_obj_parser.c			\
 raytracing/light_rays.c			\
 raytracing/ray_utils.c			\

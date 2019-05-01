@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:52 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 03:58:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 04:34:45 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ void	world_to_object_transform(t_ray_inf *ray_inf, t_ray_object *object
 		, t_vec3d *origin, t_vec3d *direction)
 {
 	*origin = vec3d_sub(ray_inf->origin, object->origin);
-	*origin = rotate_by_quaternion_with_quaternion(*origin
-			, object->quat_rotate);
-	*direction = rotate_by_quaternion_with_quaternion(ray_inf->direction
-			, object->quat_rotate);
+	*origin = quat_rot_with_quat(*origin, object->quat_rotate);
+	*direction = quat_rot_with_quat(ray_inf->direction, object->quat_rotate);
 	*direction = vec3d_unit(*direction);
 }
 

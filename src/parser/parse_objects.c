@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 04:09:48 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/01 04:32:49 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ static t_error	parse_ray_object(t_json_token *token, t_ray_object *object)
 			err = ERR_SCENEBADOBJECT;
 		else
 		{
-			object->quat_rotate = xyz_rotation_to_quaternion(-object->rotation.x
-					, -object->rotation.y, -object->rotation.z);
+			object->quat_rotate = xyz_rot_to_quat(vec3d_scalar(object->rotation
+						, -1));
 			object->quat_invert_rotate = quaternion_conj(object->quat_rotate);
 			assign_object_functions(object);
 		}

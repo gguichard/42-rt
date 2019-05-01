@@ -11,13 +11,13 @@
 		{
 			"type": "light",
 			"origin": [-50, 120, -50],
-			"color": [250, 250, 190],
+			"color": [255, 255, 255],
 			"intensity": 100000
 		},
 		{
 			"type": "plane",
 			"origin": [0, -1, 0],
-			"color": [0, 0, 0],
+			"color": [10, 10, 10],
 			"reflective": 0.1
 		},
 		{

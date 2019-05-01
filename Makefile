@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/01 04:58:41 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/01 12:32:50 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ misc/error.c					\
 parser/parse_checker.c			\
 parser/parse_objects.c			\
 parser/parse_objects_utils.c	\
+parser/parse_propertys.c		\
 parser/parse_rotation.c			\
 parser/parse_vertices.c			\
 parser/parser_utils.c			\

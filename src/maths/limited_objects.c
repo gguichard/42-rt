@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:03:38 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 14:56:38 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/03 00:46:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ static double	check_if_coef_is_neg(t_ray_object *object, double result
 	return (result);
 }
 
-double	add_limit_to_object(t_ray_object *object, t_quad quad, t_vec3d origin
-	, t_vec3d direction)
+double			add_limit_to_object(t_ray_object *object, t_quad quad
+		, t_ray_hit *hit)
 {
-	double		tmp[2];
-	t_vec3d		intersect1;
-	t_vec3d		intersect2;
+	double	tmp[2];
+	t_vec3d	intersect1;
+	t_vec3d	intersect2;
 
 	if (quad.t1 < 0 && quad.t2 < 0)
 		return (-1);
 	if (quad.t1 < 0)
 	{
-		intersect2 = vec3d_add(origin, vec3d_scalar(direction, quad.t2));
+		intersect2 = vec3d_add(hit->origin, vec3d_scalar(hit->direction, quad.t2));
 		return (check_if_coef_is_neg(object, quad.t2, intersect2));
 	}
 	if (quad.t2 < 0)
 	{
-		intersect1 = vec3d_add(origin, vec3d_scalar(direction, quad.t1));
+		intersect1 = vec3d_add(hit->origin, vec3d_scalar(hit->direction, quad.t1));
 		return (check_if_coef_is_neg(object, quad.t1, intersect1));
 	}
-	intersect1 = vec3d_add(origin, vec3d_scalar(direction, quad.t1));
-	intersect2 = vec3d_add(origin, vec3d_scalar(direction, quad.t2));
+	intersect1 = vec3d_add(hit->origin, vec3d_scalar(hit->direction, quad.t1));
+	intersect2 = vec3d_add(hit->origin, vec3d_scalar(hit->direction, quad.t2));
 	tmp[0] = check_if_coef_is_neg(object, quad.t1, intersect1);
 	tmp[1] = check_if_coef_is_neg(object, quad.t2, intersect2);
 	if (tmp[0] < 0 && tmp[1] < 0)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 21:28:09 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/02 23:48:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,32 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 {
 	size_t			index;
 	t_ray_object	*obj;
-	double			dist;
-	t_vec3d			origin;
-	t_vec3d			direction;
-	double			side;
+	t_ray_hit		hit;
 
 	index = 0;
-	side = 1;
 	while (index < data->objects.size)
 	{
 		obj = (t_ray_object *)data->objects.data[index];
-		world_to_object_transform(ray_inf, obj, &origin, &direction);
-		dist = obj->intersect(obj, origin, direction, &side);
-		if (dist > NEAR_PLANE_CLIPPING
-				&& (ray_inf->object == NULL || dist < ray_inf->dist))
+		world_to_object_transform(obj, ray_inf, &hit);
+		hit.dist = -1;
+		hit.inside = 0;
+		obj->intersect(obj, &hit);
+		if (hit.dist > NEAR_PLANE_CLIPPING
+				&& (ray_inf->object == NULL || hit.dist < ray_inf->dist))
 		{
 			ray_inf->object = obj;
-			ray_inf->dist = dist;
-			ray_inf->normal = obj->normal(obj
-					, vec3d_add(origin, vec3d_scalar(direction, dist)), side);
-			ray_inf->normal = quat_rot_with_quat(ray_inf->normal
+			ray_inf->dist = hit.dist;
+			ray_inf->normal = quat_rot_with_quat(hit.normal
 					, obj->quat_invert_rotate);
+			if (hit.inside)
+				ray_inf->normal = vec3d_scalar(ray_inf->normal, -1);
 		}
 		index++;
 	}
 }
 
 static t_vec3d	trace_light_and_recursive_rays(t_data *data, t_ray_inf *ray_inf
-		, int depth)
+	, int depth)
 {
 	t_vec3d	color;
 	t_vec3d	base_color;
@@ -86,7 +84,7 @@ static t_vec3d	get_sky_color(t_vec3d ray_dir)
 }
 
 t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
-		, int depth)
+	, int depth)
 {
 	t_ray_inf	ray_inf;
 	t_vec3d		color;

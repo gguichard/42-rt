@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 15:01:40 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/03 01:06:17 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	parse_limits_2(t_json_token *child, t_ray_object *object
 	}
 }
 
-void		parse_limits(t_json_token *child
-		, t_ray_object *object, t_error *err)
+void		parse_limits(t_json_token *child, t_ray_object *object
+	, t_error *err)
 {
 	if (ft_strequ(child->key, "x_max"))
 	{

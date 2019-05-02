@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 21:28:46 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/03 01:05:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,21 @@ typedef struct		s_cut_plane
 	t_vec3d			max;
 }					t_cut_plane;
 
+typedef struct		s_ray_hit
+{
+	t_vec3d			origin;
+	t_vec3d			direction;
+	double			dist;
+	t_vec3d			intersect;
+	t_vec3d			normal;
+	int				inside;
+}					t_ray_hit;
+
 struct				s_ray_object
 {
 	int				type;
-	double			(*intersect)(t_ray_object *, t_vec3d, t_vec3d, double *);
+	void			(*intersect)(t_ray_object *, t_ray_hit *);
 	t_cut_plane		cut_plane;
-	t_vec3d			(*normal)(t_ray_object *, t_vec3d, double);
 	t_vec3d			origin;
 	t_vec3d			rotation;
 	t_vec3d			vertices[3];
@@ -93,44 +102,14 @@ struct				s_ray_object
 	t_quaternion	quat_invert_rotate;
 };
 
-void				assign_object_functions(t_ray_object *object);
-
-double				get_plane_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_cone_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_torus_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_sphere_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_cylinder_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_triangle_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_ellipsoid_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_hyperboloid_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-double				get_tanglecube_dist(t_ray_object *object
-	, t_vec3d origin, t_vec3d direction, double *side);
-
-t_vec3d				get_sphere_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_plane_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_cone_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_cylinder_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_torus_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_triangle_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_ellipsoid_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_hyperboloid_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
-t_vec3d				get_tanglecube_normal(t_ray_object *object
-	, t_vec3d intersect, double side);
+void				get_plane_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_cone_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_torus_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_sphere_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_cylinder_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_triangle_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_ellipsoid_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_hyperboloid_dist(t_ray_object *object, t_ray_hit *hit);
+void				get_tanglecube_dist(t_ray_object *object, t_ray_hit *hit);
 
 #endif

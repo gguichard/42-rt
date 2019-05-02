@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:21:38 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 15:00:28 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/03 01:04:01 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void			parse_object_property(t_json_token *child
 void			parse_limits(t_json_token *child, t_ray_object *object
 	, t_error *err);
 int				get_ray_object_type(t_json_token *token);
+
+void			assign_object_functions(t_ray_object *object);
 
 t_error			parse_scene(t_data *data, const char *file_path);
 

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:52 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 21:29:49 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/02 23:46:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,33 @@ t_vec3d	get_ray_dir(t_data *data, int x, int y)
 	return (vec3d_unit(dir));
 }
 
-void	world_to_object_transform(t_ray_inf *ray_inf, t_ray_object *object
-		, t_vec3d *origin, t_vec3d *direction)
+void	world_to_object_transform(t_ray_object *object, t_ray_inf *ray_inf
+	, t_ray_hit *hit)
 {
-	*origin = vec3d_sub(ray_inf->origin, object->origin);
-	*origin = quat_rot_with_quat(*origin, object->quat_rotate);
-	*direction = quat_rot_with_quat(ray_inf->direction, object->quat_rotate);
-	*direction = vec3d_unit(*direction);
+	hit->origin = vec3d_sub(ray_inf->origin, object->origin);
+	hit->origin = quat_rot_with_quat(hit->origin, object->quat_rotate);
+	hit->direction = quat_rot_with_quat(ray_inf->direction
+			, object->quat_rotate);
+	hit->direction = vec3d_unit(hit->direction);
 }
 
 int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
-		, double max_dist_squared)
+	, double max_dist_squared)
 {
 	size_t			index;
 	t_ray_object	*obj;
-	t_vec3d			origin;
-	t_vec3d			direction;
-	double			dist;
-	double			side;
+	t_ray_hit		hit;
 
 	index = 0;
-	side = 1;
 	while (index < data->objects.size)
 	{
 		obj = (t_ray_object *)data->objects.data[index];
-		world_to_object_transform(ray_inf, obj, &origin, &direction);
-		dist = obj->intersect(obj, origin, direction, &side);
-		if (dist > NEAR_PLANE_CLIPPING && (dist * dist) < max_dist_squared)
+		world_to_object_transform(obj, ray_inf, &hit);
+		hit.dist = -1;
+		hit.inside = 0;
+		obj->intersect(obj, &hit);
+		if (hit.dist > NEAR_PLANE_CLIPPING
+				&& (hit.dist * hit.dist) < max_dist_squared)
 			return (1);
 		index++;
 	}

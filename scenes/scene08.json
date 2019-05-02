@@ -30,7 +30,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [20, 4, -20],
+			"origin": [-20, 4, 20],
 			"radius": 10,
 			"color": [240, 55, 55],
 			"reflective": 0.25,
@@ -39,7 +39,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [30, 6, 20],
+			"origin": [20, 6, 30],
 			"radius": 10,
 			"color": [132, 246, 70],
 			"reflective": 0.25,

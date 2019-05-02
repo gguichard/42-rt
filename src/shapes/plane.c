@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:26:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:27:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:47:30 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ double	get_plane_dist(t_ray_object *object, t_vec3d origin, t_vec3d direction)
 	double	distance;
 
 	(void)object;
+	if (object->cut_plane.on_xmax && object->cut_plane.on_ymax)
+	{
+		object->type = RAYOBJ_TRIANGLE;
+		object->vertices[0] = (t_vec3d){object->cut_plane.max.x, 0
+			, object->cut_plane.max.y};
+		object->vertices[2] = (t_vec3d){0, 0, object->cut_plane.max.y};
+		return (get_triangle_dist(object, origin, direction));
+	}
 	if (fabs(direction.y) > 1e-6)
 	{
 		distance = -origin.y / direction.y;

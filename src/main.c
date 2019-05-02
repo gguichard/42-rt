@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 19:14:44 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:55:21 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "error.h"
 #include "lib.h"
 #include "parser.h"
+#include "camera.h"
 
 static int	exit_with_error(t_error err, char *prog)
 {

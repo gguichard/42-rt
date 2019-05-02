@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/01 16:16:20 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/02 11:40:00 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,23 @@ typedef struct		s_obj_wood
 	t_vec3d			color;
 }					t_obj_wood;
 
+typedef struct		s_cut_plane
+{
+	char			on_xmax;
+	char			on_xmin;
+	char			on_ymax;
+	char			on_ymin;
+	char			on_zmax;
+	char			on_zmin;
+	t_vec3d			min;
+	t_vec3d			max;
+}					t_cut_plane;
+
 struct				s_ray_object
 {
 	int				type;
 	double			(*intersect)(t_ray_object *, t_vec3d, t_vec3d);
+	t_cut_plane		cut_plane;
 	t_vec3d			(*normal)(t_ray_object *, t_vec3d);
 	t_vec3d			origin;
 	t_vec3d			rotation;

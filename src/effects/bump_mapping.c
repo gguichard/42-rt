@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 17:07:11 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/01 16:01:36 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/02 04:52:39 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 t_vec3d		bump_mapping(t_vec3d normal, t_vec3d intersect, double bump
 	, int type)
 {
-	double		noise[3];
-	double		tmp;
+	double	noise[3];
+	double	tmp;
 
 	noise[0] = perlin_noise(vec3d_scalar(intersect, 0.1), type);
 	noise[1] = perlin_noise(vec3d_scalar((t_vec3d){intersect.y, intersect.z

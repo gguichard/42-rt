@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:32:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:33:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 15:03:43 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ double	get_ellipsoid_dist(t_ray_object *object, t_vec3d origin
 		+ (2 * origin.z * direction.z) / tmp[2];
 	quad.c = pow(origin.x, 2) / tmp[0] + pow(origin.y, 2) / tmp[1]
 		+ pow(origin.z, 2) / tmp[2] - 1;
-	return (solve_quadratic_equation(&quad));
+	solve_quadratic_equation(&quad);
+	return (add_limit_to_object(object, quad, origin, direction));
 }

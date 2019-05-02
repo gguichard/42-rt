@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:35 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/01 16:05:07 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/02 11:00:48 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ double			solve_quadratic_equation(t_quad *quad)
 		quad->t2 = (quad->delta == 0
 				? quad->t1 : (-quad->b - sqrt_delta) / tmp);
 		return (choose_min_positive(quad->t1, quad->t2));
+	}
+	else
+	{
+		quad->t1 = -1;
+		quad->t2 = -1;
 	}
 	return (-1);
 }

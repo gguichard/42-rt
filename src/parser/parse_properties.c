@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 15:23:46 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 14:58:52 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static void		parse_object_property_3(t_json_token *child
 		object->wood.enabled = 1;
 		object->wood.color = read_json_color(child, err);
 	}
+	else
+		parse_limits(child, object, err);
 }
 
 static void		parse_object_property_2(t_json_token *child

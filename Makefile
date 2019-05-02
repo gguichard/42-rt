@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/01 15:34:58 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/02 15:01:21 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,12 +48,14 @@ effects/wood_filter.c			\
 maths/maths_utils.c				\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
+maths/limited_objects.c			\
 maths/solver.c					\
 maths/vec3d.c					\
 maths/vec3d_2.c					\
 misc/camera.c					\
 misc/error.c					\
 parser/parse_checker.c			\
+parser/parse_limits.c			\
 parser/parse_objects.c			\
 parser/parse_objects_utils.c	\
 parser/parse_properties.c		\

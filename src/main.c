@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 04:23:54 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 04:44:47 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "error.h"
 #include "lib.h"
 #include "parser.h"
+#include "camera.h"
 
 static int	exit_with_error(t_error err, char *prog)
 {
@@ -45,6 +46,7 @@ int			main(int argc, char **argv)
 		err = init_and_create_window(&data.lib, data.winsize);
 	if (err != ERR_NOERROR)
 		return (exit_with_error(err, argv[0]));
+	init_camera(&data.camera);
 	data.sampling = 32;
 	run_event_loop(&data);
 	destroy_lib(&data.lib);

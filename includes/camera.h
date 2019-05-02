@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:56:10 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 04:23:48 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 04:45:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_camera
 {
 	double		fov;
 	t_vec3d		origin;
+	t_vec3d		rotation;
 	t_vec3d		direction;
 	t_vec3d		up;
 	t_vec3d		right;
@@ -39,7 +40,7 @@ typedef struct	s_camera
 ** PROTOTYPES
 */
 
-void			init_camera(t_camera *camera, t_vec3d rotation);
+void			init_camera(t_camera *camera);
 void			rotate_camera(t_camera *camera, t_vec3d rot_vec, double angle);
 void			camera_press_key(SDL_Event *event, t_data *data);
 void			camera_event(t_data *data);

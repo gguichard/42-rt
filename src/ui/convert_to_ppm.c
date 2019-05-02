@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 10:59:14 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 00:59:42 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/02 04:46:41 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			convert_to_ppm(unsigned int *view, t_data *data)
 	int		fd;
 	char	name[30];
 
-	ft_memset(&name, 0, 30);
+	ft_memset(&name, 0, sizeof(name));
 	if (create_name_screen(name))
 		return (1);
 	fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0644);

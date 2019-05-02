@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:30:44 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 21:26:42 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 #include "vec3d.h"
 #include "solver.h"
 
-t_vec3d	get_torus_normal(t_ray_object *object, t_vec3d intersect)
+t_vec3d	get_torus_normal(t_ray_object *object, t_vec3d intersect, double side)
 {
 	double	big_radius2;
 	double	tmp;
 
+	side++;
 	big_radius2 = object->big_radius * object->big_radius;
 	tmp = vec3d_length2(intersect)
 		- (object->radius * object->radius + big_radius2);
@@ -29,11 +30,13 @@ t_vec3d	get_torus_normal(t_ray_object *object, t_vec3d intersect)
 	return (vec3d_unit(intersect));
 }
 
-double	get_torus_dist(t_ray_object *object, t_vec3d origin, t_vec3d direction)
+double	get_torus_dist(t_ray_object *object, t_vec3d origin, t_vec3d direction
+	, double *side)
 {
 	t_quartic	quartic;
 	double		tmp[3];
 
+	(void)side;
 	quartic.tmp1 = vec3d_length2(direction);
 	quartic.tmp2 = vec3d_dot(direction, origin);
 	quartic.tmp3 = vec3d_length2(origin);

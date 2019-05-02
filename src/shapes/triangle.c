@@ -6,18 +6,20 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:59 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:31:50 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 21:27:12 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray_object.h"
 #include "vec3d.h"
 
-t_vec3d	get_triangle_normal(t_ray_object *object, t_vec3d intersect)
+t_vec3d	get_triangle_normal(t_ray_object *object, t_vec3d intersect
+	, double side)
 {
 	t_vec3d	tmp1;
 	t_vec3d	tmp2;
 
+	side++;
 	tmp1 = vec3d_sub(object->vertices[1], object->vertices[0]);
 	tmp2 = vec3d_sub(object->vertices[2], object->vertices[0]);
 	intersect = vec3d_cross(tmp1, tmp2);
@@ -25,12 +27,13 @@ t_vec3d	get_triangle_normal(t_ray_object *object, t_vec3d intersect)
 }
 
 double	get_triangle_dist(t_ray_object *object, t_vec3d origin
-		, t_vec3d direction)
+		, t_vec3d direction, double *side)
 {
 	t_vec3d	tmp[5];
 	double	var[4];
 	double	epsilon;
 
+	(void)side;
 	epsilon = 1e-6;
 	tmp[0] = vec3d_sub(object->vertices[1], object->vertices[0]);
 	tmp[1] = vec3d_sub(object->vertices[2], object->vertices[0]);

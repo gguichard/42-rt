@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 04:35:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/02 21:28:09 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,22 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 	double			dist;
 	t_vec3d			origin;
 	t_vec3d			direction;
+	double			side;
 
 	index = 0;
+	side = 1;
 	while (index < data->objects.size)
 	{
 		obj = (t_ray_object *)data->objects.data[index];
 		world_to_object_transform(ray_inf, obj, &origin, &direction);
-		dist = obj->intersect(obj, origin, direction);
+		dist = obj->intersect(obj, origin, direction, &side);
 		if (dist > NEAR_PLANE_CLIPPING
 				&& (ray_inf->object == NULL || dist < ray_inf->dist))
 		{
 			ray_inf->object = obj;
 			ray_inf->dist = dist;
 			ray_inf->normal = obj->normal(obj
-					, vec3d_add(origin, vec3d_scalar(direction, dist)));
+					, vec3d_add(origin, vec3d_scalar(direction, dist)), side);
 			ray_inf->normal = quat_rot_with_quat(ray_inf->normal
 					, obj->quat_invert_rotate);
 		}

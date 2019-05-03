@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 23:48:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:35:47 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 		{
 			ray_inf->object = obj;
 			ray_inf->dist = hit.dist;
-			ray_inf->normal = quat_rot_with_quat(hit.normal
-					, obj->quat_invert_rotate);
+			ray_inf->normal = quat_rot_with_quat(hit.normal, obj->inv_rot_quat);
 			if (hit.inside)
 				ray_inf->normal = vec3d_scalar(ray_inf->normal, -1);
 		}

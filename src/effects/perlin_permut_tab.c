@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 05:13:19 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:38:31 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:42:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,40 +33,40 @@ static int	g_noise[] = {151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53
 
 void		perlin_random_permutation(t_perlin *perlin)
 {
-	size_t	i;
-	int		tmp;
+	size_t	idx;
 	size_t	random;
+	int		tmp;
 
-	i = 0;
-	while (i < 256)
+	idx = 0;
+	while (idx < 256)
 	{
-		perlin->permut[i] = i;
-		i++;
+		perlin->permut[idx] = idx;
+		idx++;
 	}
-	i = 0;
-	while (i < 256)
+	idx = 0;
+	while (idx < 256)
 	{
 		random = rand() % 256;
-		tmp = perlin->permut[i];
-		perlin->permut[i] = perlin->permut[random];
+		tmp = perlin->permut[idx];
+		perlin->permut[idx] = perlin->permut[random];
 		perlin->permut[random] = tmp;
-		i++;
+		idx++;
 	}
-	while (i < 512)
+	while (idx < 512)
 	{
-		perlin->permut[i] = perlin->permut[i - 256];
-		i++;
+		perlin->permut[idx] = perlin->permut[idx - 256];
+		idx++;
 	}
 }
 
 void		perlin_basic_permutation(t_perlin *perlin)
 {
-	int			i;
+	size_t	idx;
 
-	i = 0;
-	while (i < 512)
+	idx = 0;
+	while (idx < 512)
 	{
-		perlin->permut[i] = g_noise[i % 256];
-		i++;
+		perlin->permut[idx] = g_noise[idx % 256];
+		idx++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 01:47:15 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/01 16:02:48 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:43:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ t_vec3d	add_color_perturbation(t_ray_inf *ray_inf, t_vec3d base_color)
 		return (apply_checkerboard(ray_inf->intersect, base_color
 				, ray_inf->object->checker));
 	}
-	if (ray_inf->object->perlin.enabled != 0)
+	else if (ray_inf->object->perlin.enabled != 0)
 	{
 		return (perlin_noise_filter(ray_inf->intersect, (t_vec3d){0, 0, 0}
 				, base_color, ray_inf->object->perlin.color));
 	}
-	if (ray_inf->object->wood.enabled != 0)
+	else if (ray_inf->object->wood.enabled != 0)
 	{
 		return (wood_filter(ray_inf->intersect, (t_vec3d){0, 0, 0}
 				, ray_inf->object->wood.color, (t_vec3d){0.737, 0.560, 0.560}));

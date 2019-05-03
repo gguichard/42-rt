@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:51:25 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:38:10 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:40:43 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_vec3d		perlin_noise_filter(t_vec3d intersect, t_vec3d color1
 		return (color1);
 	else if (result <= 0.55)
 		return (color2);
-	return (color3);
+	else
+		return (color3);
 }

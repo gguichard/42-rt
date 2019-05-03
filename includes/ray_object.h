@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 02:00:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:36:02 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ struct				s_ray_object
 	double			refractive;
 	double			rf_factor;
 	double			normal_circle;
-	t_quaternion	quat_rotate;
-	t_quaternion	quat_invert_rotate;
+	t_quaternion	rot_quat;
+	t_quaternion	inv_rot_quat;
 };
 
 void				get_plane_dist(t_ray_object *object, t_ray_hit *hit);

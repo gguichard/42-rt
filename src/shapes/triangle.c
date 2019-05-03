@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:59 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:00:06 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:50:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_vec3d	get_triangle_normal(t_ray_object *object, t_ray_hit *hit)
 	return (vec3d_unit(vec3d_cross(tmp1, tmp2)));
 }
 
-void			get_triangle_dist(t_ray_object *object, t_ray_hit *hit)
+void			hit_triangle(t_ray_object *object, t_ray_hit *hit)
 {
 	t_vec3d	tmp[5];
 	double	var[4];

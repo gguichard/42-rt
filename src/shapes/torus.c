@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 01:57:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:50:19 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_vec3d	get_torus_normal(t_ray_object *object, t_ray_hit *hit)
 	return (vec3d_unit(normal));
 }
 
-void			get_torus_dist(t_ray_object *object, t_ray_hit *hit)
+void			hit_torus(t_ray_object *object, t_ray_hit *hit)
 {
 	t_quartic	quartic;
 	double		tmp[3];

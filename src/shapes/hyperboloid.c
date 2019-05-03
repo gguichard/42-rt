@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:33:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 01:57:14 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:49:51 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_vec3d	get_hyperboloid_normal(t_ray_object *object, t_ray_hit *hit)
 	return (vec3d_unit(normal));
 }
 
-void			get_hyperboloid_dist(t_ray_object *object, t_ray_hit *hit)
+void			hit_hyperboloid(t_ray_object *object, t_ray_hit *hit)
 {
 	t_quad	quad;
 

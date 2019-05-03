@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:35:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:53:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <math.h>
 #include "raytracer.h"
 #include "ray_object.h"
 #include "ray_inf.h"
@@ -29,9 +30,9 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 	{
 		obj = (t_ray_object *)data->objects.data[index];
 		world_to_object_transform(obj, ray_inf, &hit);
-		hit.dist = -1;
+		hit.dist = -INFINITY;
 		hit.inside = 0;
-		obj->intersect(obj, &hit);
+		obj->hit_fn(obj, &hit);
 		if (hit.dist > NEAR_PLANE_CLIPPING
 				&& (ray_inf->object == NULL || hit.dist < ray_inf->dist))
 		{

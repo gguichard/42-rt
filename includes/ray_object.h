@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 02:36:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:51:06 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct		s_ray_hit
 struct				s_ray_object
 {
 	int				type;
-	void			(*intersect)(t_ray_object *, t_ray_hit *);
+	void			(*hit_fn)(t_ray_object *, t_ray_hit *);
 	t_cut_plane		cut_plane;
 	t_vec3d			origin;
 	t_vec3d			rotation;
@@ -103,14 +103,14 @@ struct				s_ray_object
 	t_quaternion	inv_rot_quat;
 };
 
-void				get_plane_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_cone_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_torus_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_sphere_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_cylinder_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_triangle_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_ellipsoid_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_hyperboloid_dist(t_ray_object *object, t_ray_hit *hit);
-void				get_tanglecube_dist(t_ray_object *object, t_ray_hit *hit);
+void				hit_plane(t_ray_object *object, t_ray_hit *hit);
+void				hit_cone(t_ray_object *object, t_ray_hit *hit);
+void				hit_torus(t_ray_object *object, t_ray_hit *hit);
+void				hit_sphere(t_ray_object *object, t_ray_hit *hit);
+void				hit_cylinder(t_ray_object *object, t_ray_hit *hit);
+void				hit_triangle(t_ray_object *object, t_ray_hit *hit);
+void				hit_ellipsoid(t_ray_object *object, t_ray_hit *hit);
+void				hit_hyperboloid(t_ray_object *object, t_ray_hit *hit);
+void				hit_tanglecube(t_ray_object *object, t_ray_hit *hit);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:52 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:36:26 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:53:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <math.h>
 #include "raytracer.h"
 #include "ray_inf.h"
 #include "ray_object.h"
@@ -53,9 +54,9 @@ int		has_object_in_ray(t_data *data, t_ray_inf *ray_inf
 	{
 		obj = (t_ray_object *)data->objects.data[index];
 		world_to_object_transform(obj, ray_inf, &hit);
-		hit.dist = -1;
+		hit.dist = -INFINITY;
 		hit.inside = 0;
-		obj->intersect(obj, &hit);
+		obj->hit_fn(obj, &hit);
 		if (hit.dist > NEAR_PLANE_CLIPPING
 				&& (hit.dist * hit.dist) < max_dist_squared)
 			return (1);

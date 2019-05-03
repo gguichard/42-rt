@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 23:16:57 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:51:57 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 void	assign_object_functions(t_ray_object *object)
 {
 	if (object->type == RAYOBJ_CONE)
-		object->intersect = get_cone_dist;
+		object->hit_fn = hit_cone;
 	else if (object->type == RAYOBJ_TORUS)
-		object->intersect = get_torus_dist;
+		object->hit_fn = hit_torus;
 	else if (object->type == RAYOBJ_TRIANGLE)
-		object->intersect = get_triangle_dist;
+		object->hit_fn = hit_triangle;
 	else if (object->type == RAYOBJ_ELLIPSOID)
-		object->intersect = get_ellipsoid_dist;
+		object->hit_fn = hit_ellipsoid;
 	else if (object->type == RAYOBJ_HYPERBOLOID)
-		object->intersect = get_hyperboloid_dist;
+		object->hit_fn = hit_hyperboloid;
 	else if (object->type == RAYOBJ_SPHERE)
-		object->intersect = get_sphere_dist;
+		object->hit_fn = hit_sphere;
 	else if (object->type == RAYOBJ_PLANE)
-		object->intersect = get_plane_dist;
+		object->hit_fn = hit_plane;
 	else if (object->type == RAYOBJ_CYLINDER)
-		object->intersect = get_cylinder_dist;
+		object->hit_fn = hit_cylinder;
 	else if (object->type == RAYOBJ_TANGLECUBE)
-		object->intersect = get_tanglecube_dist;
+		object->hit_fn = hit_tanglecube;
 }

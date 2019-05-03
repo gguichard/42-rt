@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:26:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:38:22 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:49:59 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ray_object.h"
 #include "vec3d.h"
 
-void	get_plane_dist(t_ray_object *object, t_ray_hit *hit)
+void	hit_plane(t_ray_object *object, t_ray_hit *hit)
 {
 	double	distance;
 

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:27:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 01:57:29 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:50:05 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_vec3d	get_sphere_normal(t_ray_object *object, t_ray_hit *hit)
 	return (vec3d_unit(normal));
 }
 
-void			get_sphere_dist(t_ray_object *object, t_ray_hit *hit)
+void			hit_sphere(t_ray_object *object, t_ray_hit *hit)
 {
 	t_quad	quad;
 

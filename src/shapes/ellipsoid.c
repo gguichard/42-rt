@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:32:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 01:19:02 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:49:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_vec3d	get_ellipsoid_normal(t_ray_object *object, t_ray_hit *hit)
 	return (vec3d_unit(normal));
 }
 
-void			get_ellipsoid_dist(t_ray_object *object, t_ray_hit *hit)
+void			hit_ellipsoid(t_ray_object *object, t_ray_hit *hit)
 {
 	t_quad	quad;
 	double	tmp[3];

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/02 15:01:21 by roduquen         ###   ########.fr        #
+#    Updated: 2019/05/03 04:13:24 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ effects/perlin_permut_tab.c		\
 effects/perturbations.c			\
 effects/sin_perturbation.c		\
 effects/wood_filter.c			\
-maths/maths_utils.c				\
+maths/math_utils.c				\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
 maths/limited_objects.c			\

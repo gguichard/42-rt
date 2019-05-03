@@ -6,10 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/03 08:13:35 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 09:58:00 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "raytracer.h"
 #include "panel.h"
 
 int		write_text(t_text *msg)
@@ -17,7 +18,7 @@ int		write_text(t_text *msg)
 	/* a deplacer au debut du programme */ 
 	if (TTF_Init() == -1)
 		return (0);
-	if (!(msg->police = TTF_OpenFont("/Library/Fonts/Arial.ttf", 20)))
+	if (!(msg->police = TTF_OpenFont("/Library/Fonts/Arial.ttf", 15)))
 	{
 		TTF_Quit();
 		return (0);
@@ -43,13 +44,13 @@ int		write_text(t_text *msg)
 
 void	set_rgba_text(SDL_Color *color, int value)
 {
-	color->a = value % (16 * 16);
-	value /= (16 * 16);
-	color->b = value % (16 * 16);
-	value /= (16 * 16);
-	color->g = value % (16 * 16);
-	value /= (16 * 16);
-	color->r = value % (16 * 16);
+	color->b = value % (256);
+	value /= (256);
+	color->g = value % (256);
+	value /= (256);
+	color->r = value % (256);
+	value /= (256);
+	color->a = 0;
 }
 
 
@@ -57,12 +58,13 @@ int		draw_panel(t_data *data)
 {
 	t_text	msg;
 	
-	SDL_SetRenderDrawColor(data->lib->panel.renderer, 0x87, 0x83, 0x7d, 0);
-	SDL_RenderClear(data->lib->panel.renderer);
+	SDL_SetRenderDrawColor(data->lib.panel.renderer, 0x87, 0x83, 0x7d, 0);
+	SDL_RenderClear(data->lib.panel.renderer);
 
-	msg.renderer = data->lib->panel.renderer;	
-	draw_camera_menu(&msg);
-	SDL_RenderPresent(data->lib->panel.renderer);
+	msg.renderer = data->lib.panel.renderer;	
+	draw_camera_menu(&msg);	
+	draw_camera_value(&msg, &(data->camera));
+	SDL_RenderPresent(data->lib.panel.renderer);
 
 	return (1);
 }

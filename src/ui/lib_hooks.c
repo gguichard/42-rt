@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:02:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:54:38 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 08:19:47 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		run_event_loop(t_data *data)
 {
 	SDL_Event	event;
 
+	draw_panel(data);
 	data->running = 1;
 	while (data->running)
 	{

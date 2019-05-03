@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 08:12:59 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 08:22:28 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIB_H
 
 # include "SDL.h"
-# include "raytracer.h"
 # include "error.h"
 # include "winsize.h"
 # include "panel.h"
@@ -45,6 +44,7 @@
 ** TYPEDEF & STRUCTURES
 */
 
+typedef struct	s_data t_data;
 typedef struct		s_panel
 {
 	SDL_Window		*window;

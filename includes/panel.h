@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 02:50:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/03 08:13:31 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 08:54:01 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "error.h"
 # include "winsize.h"
 # include "lib.h"
-
+# include "camera.h"
 /*
 ** MACROS
 */
@@ -48,4 +48,5 @@ typedef struct		s_text
 int					write_text(t_text *msg);
 void				set_rgba_text(SDL_Color *color, int value);
 void				draw_camera_menu(t_text *msg);
+void				draw_camera_value(t_text *msg, t_camera *cam);
 #endif

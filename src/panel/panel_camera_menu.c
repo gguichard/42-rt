@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 04:41:07 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/03 06:26:43 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 09:58:22 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	draw_camera_titles(t_text *msg)
 {
-	set_rgba_text(&(msg->fg_color), 0xFF);
-	set_rgba_text(&(msg->bg_color), 0x87837D00);	
 	msg->pos.x = 60;
 	msg->pos.y = 5;
 	msg->pos.w = 80;
@@ -82,6 +80,8 @@ void	draw_camera_angle_title(t_text *msg)
 
 void	draw_camera_menu(t_text *msg)
 {
+	set_rgba_text(&(msg->fg_color), 0x0);
+	set_rgba_text(&(msg->bg_color), 0x87837d);	
 	draw_camera_titles(msg);
 	draw_camera_pos_title(msg);
 	draw_camera_angle_title(msg);

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:25:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:49:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 03:05:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void			hit_cone(t_ray_object *object, t_ray_hit *hit)
 		- pow(hit->origin.z, 2) * tan_r2;
 	solve_quadratic_equation(&quad);
 	hit->dist = add_limit_to_object(object, quad, hit);
-	hit->inside = hit->dist > 0 && quad.t1 >= 0 && hit->dist != quad.t2;
 	hit->normal = get_cone_normal(object, hit);
+	hit->inside = hit->dist > 0 && quad.t1 >= 0 && hit->dist != quad.t2;
 }

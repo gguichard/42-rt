@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 01:05:38 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 02:00:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "vec3d.h"
 # include "ray_inf.h"
 # include "quaternion.h"
+
+# define EPSILON 1e-6
 
 # define RAYOBJ_UNKNOWN 0
 # define RAYOBJ_SPHERE 1
@@ -67,7 +69,6 @@ typedef struct		s_ray_hit
 	t_vec3d			origin;
 	t_vec3d			direction;
 	double			dist;
-	t_vec3d			intersect;
 	t_vec3d			normal;
 	int				inside;
 }					t_ray_hit;

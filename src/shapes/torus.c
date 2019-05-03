@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 23:45:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 01:57:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 #include "vec3d.h"
 #include "solver.h"
 
-static t_vec3d	get_torus_normal(t_ray_object *object, t_vec3d intersect)
+static t_vec3d	get_torus_normal(t_ray_object *object, t_ray_hit *hit)
 {
+	t_vec3d	normal;
 	double	big_radius2;
 	double	tmp;
 
+	normal = vec3d_add(hit->origin, vec3d_scalar(hit->direction, hit->dist));
 	big_radius2 = object->big_radius * object->big_radius;
-	tmp = vec3d_length2(intersect)
+	tmp = vec3d_length2(normal)
 		- (object->radius * object->radius + big_radius2);
-	intersect.x *= tmp;
-	intersect.y *= tmp + 2 * big_radius2;
-	intersect.z *= tmp;
-	return (vec3d_unit(intersect));
+	normal.x *= tmp;
+	normal.y *= (tmp + 2 * big_radius2);
+	normal.z *= tmp;
+	return (vec3d_unit(normal));
 }
 
 void			get_torus_dist(t_ray_object *object, t_ray_hit *hit)
@@ -49,7 +51,5 @@ void			get_torus_dist(t_ray_object *object, t_ray_hit *hit)
 	quartic.e = pow(quartic.tmp3 - tmp[2], 2) - 4 * tmp[0]
 		* (tmp[1] - pow(hit->origin.y, 2));
 	hit->dist = solve_quartic_equation(&quartic);
-	hit->intersect = vec3d_add(hit->origin
-			, vec3d_scalar(hit->direction, hit->dist));
-	hit->normal = get_torus_normal(object, hit->intersect);
+	hit->normal = get_torus_normal(object, hit);
 }

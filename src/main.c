@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 16:56:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 04:05:11 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <math.h>
 #include "libft.h"
 #include "raytracer.h"
 #include "error.h"
@@ -24,12 +25,13 @@ static int	exit_with_error(t_error err, char *prog)
 	return (1);
 }
 
-static void	init_winsize(t_data *data)
+static void	init_default_values(t_data *data)
 {
 	data->winsize.width = WIN_WIDTH;
 	data->winsize.height = WIN_HEIGHT;
 	data->winsize.aspect_ratio = data->winsize.width
 		/ (double)data->winsize.height;
+	data->camera.fov = tan(90 * .5 / 180 * M_PI);
 }
 
 int			main(int argc, char **argv)
@@ -40,7 +42,7 @@ int			main(int argc, char **argv)
 	if (argc < 2)
 		return (exit_with_error(ERR_NOSCENEFILE, argv[0]));
 	ft_memset(&data, 0, sizeof(t_data));
-	init_winsize(&data);
+	init_default_values(&data);
 	err = parse_scene(&data, argv[1]);
 	if (err == ERR_NOERROR)
 		err = init_and_create_window(&data.lib, data.winsize);

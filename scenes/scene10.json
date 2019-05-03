@@ -1,6 +1,7 @@
 {
 	"camera": {
-		"origin": [0, 10, -40]
+		"origin": [0, 10, -40],
+		"fov": 120
 	},
 	"objects": [
 		{

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/03 04:13:24 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/03 08:16:07 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ all: $(NAME)
 
 $(NAME): $(addprefix $(OBJ_DIR)/,$(OBJ))
 	$(MAKE) -C libft
-	$(CC) $(LDFLAGS) $(LDLIBS) -o $@ $^
+	$(CC) $(LDFLAGS) $(LDLIBS) -o $@ $^ libft/libftsprintf.a
 	@echo "\n$(NAME):\t\t\t$(GREEN)[READY]\n\t\t¯\_(ツ)_/¯$(END)"
 
 -include $(addprefix $(OBJ_DIR)/,$(DEP))

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/03 04:13:24 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/03 05:02:57 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ parser/parse_vertices.c			\
 parser/parser_utils.c			\
 parser/scene_parser.c			\
 parser/setup_camera.c			\
+parser/wf_obj_parser.c			\
 raytracing/light_rays.c			\
 raytracing/ray_utils.c			\
 raytracing/raytracer.c			\
@@ -77,6 +78,7 @@ shapes/sphere.c					\
 shapes/tanglecube.c				\
 shapes/torus.c					\
 shapes/triangle.c				\
+shapes/trianglemesh.c			\
 ui/convert_to_ppm.c				\
 ui/key_camera_events.c			\
 ui/key_filter_events.c			\

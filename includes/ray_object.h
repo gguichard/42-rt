@@ -6,13 +6,14 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 02:51:06 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 05:02:30 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_OBJECT_H
 # define RAY_OBJECT_H
 
+# include "libft.h"
 # include "vec3d.h"
 # include "ray_inf.h"
 # include "quaternion.h"
@@ -29,8 +30,9 @@
 # define RAYOBJ_ELLIPSOID 7
 # define RAYOBJ_HYPERBOLOID 8
 # define RAYOBJ_TANGLECUBE 9
-# define RAYOBJ_LIGHT 10
-# define RAYOBJ_AMBIENTLIGHT 11
+# define RAYOBJ_TRIANGLEMESH 10
+# define RAYOBJ_LIGHT 11
+# define RAYOBJ_AMBIENTLIGHT 12
 
 typedef struct s_ray_object	t_ray_object;
 
@@ -83,6 +85,9 @@ struct				s_ray_object
 	t_vec3d			vertices[3];
 	t_vec3d			size;
 	t_vec3d			color;
+	t_vec3d			bbox_min;
+	t_vec3d			bbox_max;
+	t_vector		triangles;
 	t_obj_perlin	perlin;
 	t_obj_wood		wood;
 	t_obj_checker	checker;
@@ -112,5 +117,6 @@ void				hit_triangle(t_ray_object *object, t_ray_hit *hit);
 void				hit_ellipsoid(t_ray_object *object, t_ray_hit *hit);
 void				hit_hyperboloid(t_ray_object *object, t_ray_hit *hit);
 void				hit_tanglecube(t_ray_object *object, t_ray_hit *hit);
+void				hit_trianglemesh(t_ray_object *object, t_ray_hit *hit);
 
 #endif

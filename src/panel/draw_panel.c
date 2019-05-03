@@ -6,57 +6,63 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/02 23:13:38 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 08:13:35 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
-#include "../../SDL_text/ttf_build/include/SDL2/SDL_ttf.h"
+#include "panel.h"
 
-void	panel_background(SDL_Surface *screen)
+int		write_text(t_text *msg)
 {
-	int i;
-	int area;
-	
-	area = (int)(PANEL_WIDTH * PANEL_HEIGHT);
-	
-	i = -1;
-	while (++i < area)
-		((int*)(screen->pixels))[i]= 0x00FEDCC1;
-}
-
-int		test(t_lib *lib)
-{
-	TTF_Font *police;
-	SDL_Surface *texte;
-	SDL_Color Noire = {0, 0, 0, 0};
-	SDL_Color Blanche = {255, 255, 255, 255};
-	SDL_Texture *texture;
-//	SDL_Rect rect;
-	char *str;
-
+	/* a deplacer au debut du programme */ 
 	if (TTF_Init() == -1)
 		return (0);
-	if (!(police = TTF_OpenFont("/Library/Fonts/Arial.ttf", 20)))
-		return (0); //proper quit to do
-	str = "hello world";
-	if(!(texte = TTF_RenderText_Shaded(police, str, Noire, Blanche)))
-		printf("samere");
-	texture = SDL_CreateTextureFromSurface(lib->panel.renderer, texte);
-	SDL_Rect rect1 = {20, 10, 100, 20};
-	SDL_RenderCopy(lib->panel.renderer, texture, NULL, &rect1);
-	SDL_FreeSurface(texte);
-	TTF_CloseFont(police);
+	if (!(msg->police = TTF_OpenFont("/Library/Fonts/Arial.ttf", 20)))
+	{
+		TTF_Quit();
+		return (0);
+	}
+
+	/* function core a conserver */
+	if(!(msg->texte = TTF_RenderText_Shaded(msg->police, msg->str, msg->fg_color, msg->bg_color)))
+	{
+		TTF_CloseFont(msg->police);
+		TTF_Quit();
+		return (0);	
+	}
+	msg->texture = SDL_CreateTextureFromSurface(msg->renderer, msg->texte);
+	SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos));
+	SDL_FreeSurface(msg->texte);
+	SDL_DestroyTexture(msg->texture);
+
+	/* a deplacer a la fin du programme */ 
+	TTF_CloseFont(msg->police); 
 	TTF_Quit();
 	return (1);
 }
 
-int		draw_panel(t_lib *lib)
+void	set_rgba_text(SDL_Color *color, int value)
 {
-	SDL_SetRenderDrawColor(lib->panel.renderer, 0xF2, 0xE7, 0xBF, 0);
-	SDL_RenderClear(lib->panel.renderer);
-	test(lib);
+	color->a = value % (16 * 16);
+	value /= (16 * 16);
+	color->b = value % (16 * 16);
+	value /= (16 * 16);
+	color->g = value % (16 * 16);
+	value /= (16 * 16);
+	color->r = value % (16 * 16);
+}
 
-	SDL_RenderPresent(lib->panel.renderer);
+
+int		draw_panel(t_data *data)
+{
+	t_text	msg;
+	
+	SDL_SetRenderDrawColor(data->lib->panel.renderer, 0x87, 0x83, 0x7d, 0);
+	SDL_RenderClear(data->lib->panel.renderer);
+
+	msg.renderer = data->lib->panel.renderer;	
+	draw_camera_menu(&msg);
+	SDL_RenderPresent(data->lib->panel.renderer);
+
 	return (1);
 }

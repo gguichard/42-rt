@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 07:10:53 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 04:37:09 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int			init_panel(t_panel *panel)
 {
 	if (SDL_CreateWindowAndRenderer(PANEL_WIDTH, PANEL_HEIGHT, 0, &(panel->window), &(panel->renderer)) < 0)
 		return (0);
-//	panel->screen = SDL_GetWindowSurface(panel->window);
 	return (1);
 }
 

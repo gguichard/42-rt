@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 00:32:47 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/03 07:43:47 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			main(int argc, char **argv)
 	if (err != ERR_NOERROR)
 		return (exit_with_error(err, argv[0]));
 	data.sampling = 32;
-	draw_panel(&data.lib);
+	draw_panel(&data);
 	run_event_loop(&data);
 	destroy_lib(&data.lib);
 	ft_vecfree(&data.objects);

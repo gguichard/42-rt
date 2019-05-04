@@ -1,14 +1,20 @@
 {
 	"camera": {
-		"origin": [-20, 20, -10],
-		"rotation": [0, 0, 0],
+		"origin": [0, 40, 0],
+		"rotation": [90, 0, 0],
 		"fov": 120
 	},
 	"objects": [
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
-			"intensity": 0.3
+			"intensity": 0.05
+		},
+		{
+			"type": "light",
+			"color": [255, 255, 255],
+			"origin": [0, 40, 0],
+			"intensity": 20000
 		}
 	]
 }

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 05:02:30 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 02:21:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,34 @@ typedef struct		s_ray_hit
 	int				inside;
 }					t_ray_hit;
 
+typedef struct s_mesh_tree	t_mesh_tree;
+
+typedef struct		s_triangle
+{
+	t_vec3d			vertices[3];
+	t_vec3d			normals[3];
+}					t_triangle;
+
+struct				s_mesh_tree
+{
+	t_vec3d			bbox_min;
+	t_vec3d			bbox_max;
+	t_vector		triangles;
+	t_mesh_tree		*left;
+	t_mesh_tree		*right;
+};
+
 struct				s_ray_object
 {
 	int				type;
 	void			(*hit_fn)(t_ray_object *, t_ray_hit *);
+	t_mesh_tree		mesh_tree;
 	t_cut_plane		cut_plane;
 	t_vec3d			origin;
 	t_vec3d			rotation;
 	t_vec3d			vertices[3];
 	t_vec3d			size;
 	t_vec3d			color;
-	t_vec3d			bbox_min;
-	t_vec3d			bbox_max;
-	t_vector		triangles;
 	t_obj_perlin	perlin;
 	t_obj_wood		wood;
 	t_obj_checker	checker;
@@ -107,6 +122,8 @@ struct				s_ray_object
 	t_quaternion	rot_quat;
 	t_quaternion	inv_rot_quat;
 };
+
+int					create_mesh_tree(t_mesh_tree *tree, char axis, int depth);
 
 void				hit_plane(t_ray_object *object, t_ray_hit *hit);
 void				hit_cone(t_ray_object *object, t_ray_hit *hit);

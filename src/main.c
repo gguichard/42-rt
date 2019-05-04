@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 04:45:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 18:31:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	parse_wf_obj_file_degueux(t_data *data)
 		obj = ft_memalloc(sizeof(t_ray_object));
 		obj->type = RAYOBJ_TRIANGLEMESH;
 		obj->hit_fn = hit_trianglemesh;
-		obj->color = (t_vec3d){0, 1, 1};
+		obj->color = (t_vec3d){1, 0.5, 0};
 		obj->diffuse = 1.0;
 		obj->rot_quat = xyz_rot_to_quat((t_vec3d){0, 0, 0});
 		obj->inv_rot_quat = quaternion_conj(obj->rot_quat);

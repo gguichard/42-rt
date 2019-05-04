@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 40, 0],
+		"origin": [0, 40, -50],
 		"rotation": [90, 0, 0],
 		"fov": 120
 	},
@@ -13,7 +13,7 @@
 		{
 			"type": "light",
 			"color": [255, 255, 255],
-			"origin": [0, 40, 0],
+			"origin": [0, 40, -50],
 			"intensity": 20000
 		}
 	]

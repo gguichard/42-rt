@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:51:57 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 23:36:18 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void	assign_object_functions(t_ray_object *object)
 		object->hit_fn = hit_cylinder;
 	else if (object->type == RAYOBJ_TANGLECUBE)
 		object->hit_fn = hit_tanglecube;
+	else if (object->type == RAYOBJ_TRIANGLEMESH)
+		object->hit_fn = hit_trianglemesh;
 }

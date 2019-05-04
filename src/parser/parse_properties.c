@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 14:58:52 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/04 23:22:26 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <limits.h>
 #include "libft.h"
 #include "json_parser.h"
 #include "parser.h"
@@ -52,6 +53,8 @@ int				get_ray_object_type(t_json_token *token)
 			return (RAYOBJ_HYPERBOLOID);
 		else if (ft_strequ(token->value.str, "tanglecube"))
 			return (RAYOBJ_TANGLECUBE);
+		else if (ft_strequ(token->value.str, "trianglemesh"))
+			return (RAYOBJ_TRIANGLEMESH);
 	}
 	return (get_ray_light_type(token));
 }
@@ -68,6 +71,14 @@ static void		parse_object_property_3(t_json_token *child
 	{
 		object->wood.enabled = 1;
 		object->wood.color = read_json_color(child, err);
+	}
+	else if (ft_strequ(child->key, "objfile_path"))
+	{
+		if (child->type != JSON_STRING
+				|| ft_strlen(child->value.str) > PATH_MAX)
+			*err = ERR_INVALIDSCENE;
+		else
+			ft_strcpy(object->objfile_path, child->value.str);
 	}
 	else
 		parse_limits(child, object, err);

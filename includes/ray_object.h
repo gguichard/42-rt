@@ -6,17 +6,19 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/04 02:21:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 23:40:46 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_OBJECT_H
 # define RAY_OBJECT_H
 
+# include <limits.h>
 # include "libft.h"
 # include "vec3d.h"
 # include "ray_inf.h"
 # include "quaternion.h"
+# include "mesh_tree.h"
 
 # define EPSILON 1e-6
 
@@ -75,23 +77,6 @@ typedef struct		s_ray_hit
 	int				inside;
 }					t_ray_hit;
 
-typedef struct s_mesh_tree	t_mesh_tree;
-
-typedef struct		s_triangle
-{
-	t_vec3d			vertices[3];
-	t_vec3d			normals[3];
-}					t_triangle;
-
-struct				s_mesh_tree
-{
-	t_vec3d			bbox_min;
-	t_vec3d			bbox_max;
-	t_vector		triangles;
-	t_mesh_tree		*left;
-	t_mesh_tree		*right;
-};
-
 struct				s_ray_object
 {
 	int				type;
@@ -119,11 +104,10 @@ struct				s_ray_object
 	double			refractive;
 	double			rf_factor;
 	double			normal_circle;
+	char			objfile_path[PATH_MAX + 1];
 	t_quaternion	rot_quat;
 	t_quaternion	inv_rot_quat;
 };
-
-int					create_mesh_tree(t_mesh_tree *tree, char axis, int depth);
 
 void				hit_plane(t_ray_object *object, t_ray_hit *hit);
 void				hit_cone(t_ray_object *object, t_ray_hit *hit);

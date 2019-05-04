@@ -15,6 +15,11 @@
 			"color": [255, 255, 255],
 			"origin": [0, 40, -50],
 			"intensity": 20000
+		},
+		{
+			"type": "trianglemesh",
+			"color": [255, 127, 0],
+			"objfile_path": "dragon.obj"
 		}
 	]
 }

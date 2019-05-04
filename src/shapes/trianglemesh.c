@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 05:01:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 22:45:00 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 23:17:19 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "mesh_tree.h"
 #include "ray_object.h"
 #include "vec3d.h"
 #include "math_utils.h"

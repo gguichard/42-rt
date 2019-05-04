@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 05:01:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 22:21:53 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 22:45:00 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,30 @@
 #include "math_utils.h"
 
 static double	hit_triangle_for_mesh(t_vec3d origin, t_vec3d direction
-		, t_vec3d *vertices, double barycentric[2])
+		, t_vec3d *vertices, double data[3])
 {
 	t_vec3d	tmp[5];
-	double	var[2];
+	double	inv_det;
+	double	dist;
 
 	tmp[0] = vec3d_sub(vertices[1], vertices[0]);
 	tmp[1] = vec3d_sub(vertices[2], vertices[0]);
 	tmp[2] = vec3d_cross(direction, tmp[1]);
-	var[0] = vec3d_dot(tmp[0], tmp[2]);
-	if (var[0] > -EPSILON && var[0] < EPSILON)
+	data[0] = vec3d_dot(tmp[0], tmp[2]);
+	if (fabs(data[0]) < EPSILON)
 		return (-INFINITY);
-	var[1] = 1.0 / var[0];
+	inv_det = 1.0 / data[0];
 	tmp[3] = vec3d_sub(origin, vertices[0]);
-	barycentric[0] = var[1] * vec3d_dot(tmp[3], tmp[2]);
-	if (barycentric[0] < 0.0 || barycentric[0] > 1.0)
+	data[1] = inv_det * vec3d_dot(tmp[3], tmp[2]);
+	if (data[1] < 0.0 || data[1] > 1.0)
 		return (-INFINITY);
 	tmp[4] = vec3d_cross(tmp[3], tmp[0]);
-	barycentric[1] = var[1] * vec3d_dot(direction, tmp[4]);
-	if (barycentric[1] < 0.0 || barycentric[0] + barycentric[1] > 1.0)
+	data[2] = inv_det * vec3d_dot(direction, tmp[4]);
+	if (data[2] < 0.0 || data[1] + data[2] > 1.0)
 		return (-INFINITY);
-	var[0] = var[1] * vec3d_dot(tmp[1], tmp[4]);
-	if (var[0] > EPSILON)
-		return (var[0]);
+	dist = inv_det * vec3d_dot(tmp[1], tmp[4]);
+	if (dist > EPSILON)
+		return (dist);
 	return (-INFINITY);
 }
 
@@ -90,7 +91,7 @@ static int		hit_trianglemesh_depth(t_mesh_tree *tree, t_ray_hit *hit)
 	size_t		idx;
 	double		dist;
 	t_triangle	*triangle;
-	double		barycentric[2];
+	double		data[3];
 
 	if (tree != NULL && hit_boundingbox(tree->bbox_min, tree->bbox_max, hit))
 	{
@@ -104,13 +105,14 @@ static int		hit_trianglemesh_depth(t_mesh_tree *tree, t_ray_hit *hit)
 			{
 				triangle = (t_triangle *)tree->triangles.data[idx];
 				dist = hit_triangle_for_mesh(hit->origin, hit->direction
-						, triangle->vertices, barycentric);
+						, triangle->vertices, data);
 				if (dist > EPSILON
 					&& (hit->dist == -INFINITY || dist < hit->dist))
 				{
-					hit->normal = get_triangle_normal_for_mesh(barycentric
-						, triangle->normals);
 					hit->dist = dist;
+					hit->normal = get_triangle_normal_for_mesh(data + 1
+						, triangle->normals);
+					hit->inside = (data[0] < EPSILON);
 				}
 				idx++;
 			}
@@ -122,5 +124,4 @@ static int		hit_trianglemesh_depth(t_mesh_tree *tree, t_ray_hit *hit)
 void			hit_trianglemesh(t_ray_object *object, t_ray_hit *hit)
 {
 	hit_trianglemesh_depth(&object->mesh_tree, hit);
-	hit->inside = 0;
 }

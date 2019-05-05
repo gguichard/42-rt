@@ -25,7 +25,8 @@
 			"type": "trianglemesh",
 			"color": [255, 127, 0],
 			"origin": [-25, 50, 0],
-			"objfile_path": "mobius.obj"
+			"objfile_path": "mobius.obj",
+			"scale": 0.5
 		}
 	]
 }

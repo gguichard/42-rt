@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 05:37:44 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:25:29 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 19:22:51 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_error	create_mesh_tree_from_obj(t_ray_object *object)
 	t_wf_obj	wf_obj;
 
 	ft_printf("Loading \"%s\" file...\n", object->objfile_path);
-	err = parse_wf_obj_file(object->objfile_path, &wf_obj);
+	err = parse_wf_obj_file(object->objfile_path, &wf_obj, object->scale);
 	if (err == ERR_NOERROR)
 	{
 		err = create_triangle_mesh_root(&wf_obj, &object->mesh_tree);
@@ -45,7 +45,7 @@ t_error			create_meshes_from_objects(t_vector *objects)
 	while (err == ERR_NOERROR && idx < objects->size)
 	{
 		obj = (t_ray_object *)objects->data[idx];
-		if (obj->type == RAYOBJ_TRIANGLEMESH)
+		if (obj->type == RAYOBJ_TRIANGLEMESH && obj->scale != 0)
 			err = create_mesh_tree_from_obj(obj);
 		idx++;
 	}

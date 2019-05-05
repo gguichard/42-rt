@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/05 06:20:47 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 19:03:48 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ struct				s_ray_object
 	t_obj_perlin	perlin;
 	t_obj_wood		wood;
 	t_obj_checker	checker;
+	double			scale;
 	double			roughness;
 	double			angle;
 	double			radius;

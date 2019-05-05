@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:21:07 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 19:05:39 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ void			parse_object_property(t_json_token *child
 		object->size = read_json_vec3d(child, err);
 	else if (ft_strequ(child->key, "color"))
 		object->color = read_json_color(child, err);
+	else if (ft_strequ(child->key, "scale"))
+		object->scale = read_json_double(child, err);
 	else if (ft_strequ(child->key, "angle"))
 		object->angle = read_json_double(child, err) / 180 * M_PI;
 	else if (ft_strequ(child->key, "radius"))

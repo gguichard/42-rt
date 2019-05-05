@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:16:59 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 18:07:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 19:18:52 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void				free_wf_obj(t_wf_obj *obj);
 
 t_vec3d				*parse_wf_obj_vertex(char **split, t_error *err);
 void				wf_add_vertex_to_vector(t_vector *vector, char **split
-	, t_error *err);
-t_error				parse_wf_obj_file(const char *file, t_wf_obj *obj);
+	, double scale, t_error *err);
+t_error				parse_wf_obj_file(const char *file, t_wf_obj *obj
+	, double scale);
 
 #endif

@@ -6,10 +6,11 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:33:14 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 06:38:28 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
 #include "libft.h"

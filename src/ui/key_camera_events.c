@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:26 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/28 20:44:51 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 05:31:37 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,5 @@ void		camera_press_key(SDL_Event *event, t_data *data)
 			data->lib.cam_keys |= CAMERA_TR_DOWN;
 	}
 	camera_release_key(event, data);
+	draw_panel(data);
 }

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/04 11:18:53 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/05 04:27:01 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,47 @@ int		draw_panel(t_data *data)
 	if (!(bg = SDL_LoadBMP("src/panel/test.bmp")))
 		printf("fuck");
 	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
+	SDL_FreeSurface(bg);
 	msg.pos.x = 0;
 	msg.pos.y = 0;
 	msg.pos.w = 1000;
 	msg.pos.h = 150;
 	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
-	
+	SDL_DestroyTexture(msg.texture);
+
+	if (!(bg = SDL_LoadBMP("src/panel/attribute.bmp")))
+		printf("fuck");
+	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
+	SDL_FreeSurface(bg);
+	msg.pos.x = 843;
+	msg.pos.y = 8;
+	SDL_QueryTexture(msg.texture, NULL, NULL, &(msg.pos.w), &(msg.pos.h));
+	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
+	SDL_DestroyTexture(msg.texture);
+
+	if (!(bg = SDL_LoadBMP("src/panel/effect_attribute.bmp")))
+		printf("fuck");
+	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
+	SDL_FreeSurface(bg);
+	msg.pos.x = 693;
+	msg.pos.y = 8;
+	SDL_QueryTexture(msg.texture, NULL, NULL, &(msg.pos.w), &(msg.pos.h));
+	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
+	SDL_DestroyTexture(msg.texture);
+
+	if (!(bg = SDL_LoadBMP("src/panel/object.bmp")))
+		printf("fuck");
+	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
+	SDL_FreeSurface(bg);
+	msg.pos.x = 342;
+	msg.pos.y = 8;
+	SDL_QueryTexture(msg.texture, NULL, NULL, &(msg.pos.w), &(msg.pos.h));
+	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
+	SDL_DestroyTexture(msg.texture);
+
+
+
 	draw_camera_value(&msg, &(data->camera));
-
-
 	SDL_RenderPresent(data->lib.panel.renderer);
 
 	return (1);

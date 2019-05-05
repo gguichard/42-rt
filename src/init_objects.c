@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 05:37:44 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:19:11 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 06:25:29 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ static t_error	create_mesh_tree_from_obj(t_ray_object *object)
 		if (err == ERR_NOERROR && !build_mesh_tree(&object->mesh_tree, 'x', 0))
 			err = ERR_UNEXPECTED;
 		free_wf_obj(&wf_obj);
-		if (err != ERR_NOERROR)
-		{
-			del_kd_tree(&object->mesh_tree);
-			ft_memset(&object->mesh_tree, 0, sizeof(t_kd_tree));
-		}
 	}
 	ft_printf("\"%s\" finished.\n", object->objfile_path);
 	return (err);

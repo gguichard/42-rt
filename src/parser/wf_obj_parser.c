@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 04:39:37 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 06:07:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,31 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include "wf_obj_parser.h"
-#include "vec3d.h"
 #include "error.h"
 
-static t_vec3d	*parse_wf_obj_vertex(char **split, t_error *err)
-{
-	t_vec3d	*vertex;
-
-	vertex = NULL;
-	*err = ERR_NOERROR;
-	if (ft_strtab_count(split) < 4)
-		*err = ERR_BADOBJFILE;
-	else
-	{
-		vertex = (t_vec3d *)malloc(sizeof(t_vec3d));
-		if (vertex == NULL)
-			*err = ERR_UNEXPECTED;
-		else
-		{
-			vertex->x = atof(split[1]);
-			vertex->y = atof(split[2]);
-			vertex->z = atof(split[3]);
-		}
-	}
-	return (vertex);
-}
-
-static void		parse_wf_f_line_part(t_wf_obj *obj, const char *part
+static size_t	parse_wf_f_line_normal(t_wf_obj *obj, const char *part
 	, t_error *err)
 {
 	char	*endptr;
-	size_t	vertex_indice;
-	size_t	normal_indice;
-	int		ret;
+	size_t	n_indice;
+
+	n_indice = ft_strtol(part, &endptr, 10);
+	if ((*endptr != '\0' && *endptr != '/')
+		|| n_indice < 1 || n_indice > obj->tmp_normals.size)
+		*err = ERR_BADOBJFILE;
+	return (n_indice);
+}
+
+static void		parse_wf_f_line(t_wf_obj *obj, const char *part
+	, t_error *err)
+{
+	char	*endptr;
+	size_t	v_indice;
+	size_t	n_indice;
 
 	*err = ERR_NOERROR;
-	vertex_indice = ft_strtol(part, &endptr, 10);
-	ret = 1;
-	if (vertex_indice < 1 || vertex_indice > obj->vertices.size
-		|| *endptr != '/')
+	v_indice = ft_strtol(part, &endptr, 10);
+	if (v_indice < 1 || v_indice > obj->tmp_vertices.size || *endptr != '/')
 		*err = ERR_BADOBJFILE;
 	else
 	{
@@ -63,14 +49,12 @@ static void		parse_wf_f_line_part(t_wf_obj *obj, const char *part
 			*err = ERR_BADOBJFILE;
 		else
 		{
-			normal_indice = ft_strtol(endptr + 1, &endptr, 10);
-			if ((*endptr != '\0' && *endptr != '/')
-				|| normal_indice < 1 || normal_indice > obj->normals.size)
-				*err = ERR_BADOBJFILE;
-			else if (!ft_vecpush(&obj->normal_indices
-					, obj->normals.data[normal_indice - 1])
-				|| !ft_vecpush(&obj->vertex_indices
-					, obj->vertices.data[vertex_indice - 1]))
+			n_indice = parse_wf_f_line_normal(obj, endptr + 1, err);
+			if (*err == ERR_NOERROR
+				&& (!ft_vecpush(&obj->normals
+						, obj->tmp_normals.data[n_indice - 1])
+					|| !ft_vecpush(&obj->vertices
+						, obj->tmp_vertices.data[v_indice - 1])))
 				*err = ERR_UNEXPECTED;
 		}
 	}
@@ -88,21 +72,10 @@ static void		push_wf_obj_indices(t_wf_obj *obj, char **split, t_error *err)
 		idx = 0;
 		while (*err == ERR_NOERROR && idx < 3)
 		{
-			parse_wf_f_line_part(obj, split[idx + 1], err);
+			parse_wf_f_line(obj, split[idx + 1], err);
 			idx++;
 		}
 	}
-}
-
-static void		wf_add_vertex_to_vector(t_vector *vector, char **split
-		, t_error *err)
-{
-	t_vec3d	*vertex;
-
-	*err = ERR_NOERROR;
-	vertex = parse_wf_obj_vertex(split, err);
-	if (vertex != NULL && *err == ERR_NOERROR && !ft_vecpush(vector, vertex))
-		*err = ERR_UNEXPECTED;
 }
 
 static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
@@ -117,14 +90,9 @@ static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
 	else if (ft_strequ(split[0], "f"))
 		push_wf_obj_indices(obj, split, &err);
 	else if (ft_strequ(split[0], "vn"))
-		wf_add_vertex_to_vector(&obj->normals, split, &err);
+		wf_add_vertex_to_vector(&obj->tmp_normals, split, &err);
 	else if (ft_strequ(split[0], "v"))
-		wf_add_vertex_to_vector(&obj->vertices, split, &err);
-	if (err != ERR_NOERROR)
-	{
-		ft_vecfree(&obj->vertices);
-		ft_vecfree(&obj->vertex_indices);
-	}
+		wf_add_vertex_to_vector(&obj->tmp_vertices, split, &err);
 	ft_strtab_free(split);
 	return (err);
 }
@@ -149,6 +117,8 @@ t_error			parse_wf_obj_file(const char *file, t_wf_obj *obj)
 	}
 	if (ret != 0 && err == ERR_NOERROR)
 		err = ERR_UNEXPECTED;
+	if (err != ERR_NOERROR)
+		free_wf_obj(obj);
 	close(fd);
 	return (err);
 }

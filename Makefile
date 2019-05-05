@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/04 23:32:14 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/05 05:58:20 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ LDLIBS		=	-lft
 SRC_DIR		=	src
 SRC 		=					\
 draw.c							\
+init_objects.c					\
 lib.c							\
 main.c							\
 effects/bump_mapping.c			\
@@ -46,8 +47,10 @@ effects/perturbations.c			\
 effects/sin_perturbation.c		\
 effects/wood_filter.c			\
 maths/bbox.c					\
+maths/kd_tree.c					\
 maths/limited_objects.c			\
 maths/math_utils.c				\
+maths/mesh_tree.c				\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
 maths/solver.c					\
@@ -55,7 +58,6 @@ maths/vec3d.c					\
 maths/vec3d_2.c					\
 misc/camera.c					\
 misc/error.c					\
-misc/kd_tree.c					\
 parser/parse_checker.c			\
 parser/parse_limits.c			\
 parser/parse_objects.c			\
@@ -67,10 +69,12 @@ parser/parser_utils.c			\
 parser/scene_parser.c			\
 parser/setup_camera.c			\
 parser/wf_obj_parser.c			\
+parser/wf_obj_parser_helper.c	\
 raytracing/light_rays.c			\
 raytracing/ray_utils.c			\
 raytracing/raytracer.c			\
 raytracing/trace_rays.c			\
+shapes/bbox.c					\
 shapes/cone.c					\
 shapes/cylinder.c				\
 shapes/ellipsoid.c				\

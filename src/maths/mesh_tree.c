@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kd_tree.c                                          :+:      :+:    :+:   */
+/*   mesh_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 22:03:39 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 21:39:10 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 05:38:30 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <math.h>
-#include "ray_object.h"
+#include "libft.h"
+#include "kd_tree.h"
+#include "mesh_tree.h"
 #include "vec3d.h"
 #include "math_utils.h"
-
-static char		get_next_axis(char axis)
-{
-	if (axis == 'x')
-		return ('y');
-	else if (axis == 'y')
-		return ('z');
-	else if (axis == 'z')
-		return ('x');
-	else
-		return ('?');
-}
+#include "wf_obj_parser.h"
+#include "error.h"
 
 static double	get_midpoint_vertices(t_vec3d *vertices, char axis)
 {
@@ -41,17 +34,7 @@ static double	get_midpoint_vertices(t_vec3d *vertices, char axis)
 	return (total / 3);
 }
 
-static int		push_triangle_to_leaf(t_mesh_tree **root, t_triangle *triangle)
-{
-	if (*root == NULL)
-	{
-		if ((*root = ft_memalloc(sizeof(t_mesh_tree))) == NULL)
-			return (0);
-	}
-	return (ft_vecpush(&(*root)->triangles, triangle));
-}
-
-static double	get_midpoint_and_compute_bbox(t_mesh_tree *tree, char axis)
+static double	get_midpoint_and_compute_bbox(t_kd_tree *tree, char axis)
 {
 	size_t	idx;
 	double	midpoint;
@@ -61,19 +44,29 @@ static double	get_midpoint_and_compute_bbox(t_mesh_tree *tree, char axis)
 	midpoint = 0;
 	tree->bbox_min = (t_vec3d){INFINITY, INFINITY, INFINITY};
 	tree->bbox_max = (t_vec3d){-INFINITY, -INFINITY, -INFINITY};
-	while (idx < tree->triangles.size)
+	while (idx < tree->objects.size)
 	{
-		vertices = ((t_triangle *)tree->triangles.data[idx])->vertices;
+		vertices = ((t_triangle *)tree->objects.data[idx])->vertices;
 		midpoint += get_midpoint_vertices(vertices, axis);
 		grow_bbox(&tree->bbox_min, &tree->bbox_max, vertices);
 		grow_bbox(&tree->bbox_min, &tree->bbox_max, vertices + 1);
 		grow_bbox(&tree->bbox_min, &tree->bbox_max, vertices + 2);
 		idx++;
 	}
-	return (midpoint / tree->triangles.size);
+	return (midpoint / tree->objects.size);
 }
 
-int				create_mesh_tree(t_mesh_tree *tree, char axis, int depth)
+static int		push_triangle_to_leaf(t_kd_tree **root, t_triangle *triangle)
+{
+	if (*root == NULL)
+	{
+		if ((*root = ft_memalloc(sizeof(t_kd_tree))) == NULL)
+			return (0);
+	}
+	return (ft_vecpush(&(*root)->objects, triangle));
+}
+
+int				build_mesh_tree(t_kd_tree *tree, char axis, int depth)
 {
 	int			ret;
 	size_t		idx;
@@ -88,16 +81,45 @@ int				create_mesh_tree(t_mesh_tree *tree, char axis, int depth)
 		midpoint = get_midpoint_and_compute_bbox(tree, axis);
 		if (depth++ > 10)
 			return (1);
-		while (ret && idx < tree->triangles.size)
+		while (ret && idx < tree->objects.size)
 		{
-			triangle = (t_triangle *)tree->triangles.data[idx];
+			triangle = (t_triangle *)tree->objects.data[idx];
 			triangle_midpoint = get_midpoint_vertices(triangle->vertices, axis);
 			ret = push_triangle_to_leaf((triangle_midpoint < midpoint
 						? &tree->left : &tree->right), triangle);
 			idx++;
 		}
-		ret = ret && create_mesh_tree(tree->left, get_next_axis(axis), depth);
-		ret = ret && create_mesh_tree(tree->right, get_next_axis(axis), depth);
+		ret = ret && build_mesh_tree(tree->left, get_next_axis(axis), depth);
+		ret = ret && build_mesh_tree(tree->right, get_next_axis(axis), depth);
 	}
 	return (ret);
+}
+
+t_error			create_triangle_mesh_root(t_wf_obj *wf_obj, t_kd_tree *root)
+{
+	t_error		err;
+	size_t		idx;
+	t_triangle	*trgl;
+
+	err = ERR_NOERROR;
+	idx = 0;
+	while (err == ERR_NOERROR && (idx + 3) <= wf_obj->vertices.size)
+	{
+		if ((trgl = (t_triangle *)malloc(sizeof(t_triangle))) == NULL)
+			err = ERR_UNEXPECTED;
+		else
+		{
+			trgl->vertices[0] = *((t_vec3d *)wf_obj->vertices.data[idx]);
+			trgl->vertices[1] = *((t_vec3d *)wf_obj->vertices.data[idx + 1]);
+			trgl->vertices[2] = *((t_vec3d *)wf_obj->vertices.data[idx + 2]);
+			trgl->normals[0] = *((t_vec3d *)wf_obj->normals.data[idx]);
+			trgl->normals[1] = *((t_vec3d *)wf_obj->normals.data[idx + 1]);
+			trgl->normals[2] = *((t_vec3d *)wf_obj->normals.data[idx + 2]);
+			if (!ft_vecpush(&root->objects, trgl)
+				&& (err = ERR_UNEXPECTED) == ERR_UNEXPECTED)
+				free(trgl);
+			idx += 3;
+		}
+	}
+	return (err);
 }

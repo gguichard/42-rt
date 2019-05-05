@@ -6,15 +6,15 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 05:01:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 23:17:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 04:31:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "kd_tree.h"
 #include "mesh_tree.h"
 #include "ray_object.h"
 #include "vec3d.h"
-#include "math_utils.h"
 
 static double	hit_triangle_for_mesh(t_vec3d origin, t_vec3d direction
 		, t_vec3d *vertices, double data[3])
@@ -44,32 +44,6 @@ static double	hit_triangle_for_mesh(t_vec3d origin, t_vec3d direction
 	return (-INFINITY);
 }
 
-static int		hit_boundingbox(t_vec3d min, t_vec3d max, t_ray_hit *hit)
-{
-	double	xyz_min[3];
-	double	xyz_max[3];
-
-	xyz_min[0] = (min.x - hit->origin.x) / hit->direction.x;
-	xyz_max[0] = (max.x - hit->origin.x) / hit->direction.x;
-	if (xyz_min[0] > xyz_max[0])
-		swap_f(&xyz_min[0], &xyz_max[0]);
-	xyz_min[1] = (min.y - hit->origin.y) / hit->direction.y;
-	xyz_max[1] = (max.y - hit->origin.y) / hit->direction.y;
-	if (xyz_min[1] > xyz_max[1])
-		swap_f(&xyz_min[1], &xyz_max[1]);
-	if ((xyz_min[0] > xyz_max[1]) || (xyz_min[1] > xyz_max[0]))
-		return (0);
-	if (xyz_min[1] > xyz_min[0])
-		xyz_min[0] = xyz_min[1];
-	if (xyz_max[1] < xyz_max[0])
-		xyz_max[0] = xyz_max[1];
-	xyz_min[2] = (min.z - hit->origin.z) / hit->direction.z;
-	xyz_max[2] = (max.z - hit->origin.z) / hit->direction.z;
-	if (xyz_min[2] > xyz_max[2])
-		swap_f(&xyz_min[2], &xyz_max[2]);
-	return (!(xyz_min[0] > xyz_max[2] || xyz_min[2] > xyz_max[0]));
-}
-
 static t_vec3d	get_triangle_normal_for_mesh(double barycentric[2]
 	, t_vec3d *normals)
 {
@@ -87,37 +61,40 @@ static t_vec3d	get_triangle_normal_for_mesh(double barycentric[2]
 	return (vec3d_unit(normal));
 }
 
-static int		hit_trianglemesh_depth(t_mesh_tree *tree, t_ray_hit *hit)
+static void		hit_triangle_in_mesh(t_kd_tree *tree, t_ray_hit *hit)
 {
 	size_t		idx;
 	double		dist;
 	t_triangle	*triangle;
 	double		data[3];
 
+	idx = 0;
+	while (idx < tree->objects.size)
+	{
+		triangle = (t_triangle *)tree->objects.data[idx];
+		dist = hit_triangle_for_mesh(hit->origin, hit->direction
+				, triangle->vertices, data);
+		if (dist > EPSILON
+			&& (hit->dist == -INFINITY || dist < hit->dist))
+		{
+			hit->dist = dist;
+			hit->normal = get_triangle_normal_for_mesh(data + 1
+					, triangle->normals);
+			hit->inside = (data[0] < EPSILON);
+		}
+		idx++;
+	}
+}
+
+static int		hit_trianglemesh_depth(t_kd_tree *tree, t_ray_hit *hit)
+{
 	if (tree != NULL && hit_boundingbox(tree->bbox_min, tree->bbox_max, hit))
 	{
 		if (tree->left != NULL || tree->right != NULL)
 			return (hit_trianglemesh_depth(tree->left, hit)
 				|| hit_trianglemesh_depth(tree->right, hit));
 		else
-		{
-			idx = 0;
-			while (idx < tree->triangles.size)
-			{
-				triangle = (t_triangle *)tree->triangles.data[idx];
-				dist = hit_triangle_for_mesh(hit->origin, hit->direction
-						, triangle->vertices, data);
-				if (dist > EPSILON
-					&& (hit->dist == -INFINITY || dist < hit->dist))
-				{
-					hit->dist = dist;
-					hit->normal = get_triangle_normal_for_mesh(data + 1
-						, triangle->normals);
-					hit->inside = (data[0] < EPSILON);
-				}
-				idx++;
-			}
-		}
+			hit_triangle_in_mesh(tree, hit);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/04 23:40:46 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 04:28:24 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "vec3d.h"
 # include "ray_inf.h"
 # include "quaternion.h"
-# include "mesh_tree.h"
+# include "kd_tree.h"
 
 # define EPSILON 1e-6
 
@@ -81,7 +81,7 @@ struct				s_ray_object
 {
 	int				type;
 	void			(*hit_fn)(t_ray_object *, t_ray_hit *);
-	t_mesh_tree		mesh_tree;
+	t_kd_tree		mesh_tree;
 	t_cut_plane		cut_plane;
 	t_vec3d			origin;
 	t_vec3d			rotation;
@@ -108,6 +108,8 @@ struct				s_ray_object
 	t_quaternion	rot_quat;
 	t_quaternion	inv_rot_quat;
 };
+
+int					hit_boundingbox(t_vec3d min, t_vec3d max, t_ray_hit *hit);
 
 void				hit_plane(t_ray_object *object, t_ray_hit *hit);
 void				hit_cone(t_ray_object *object, t_ray_hit *hit);

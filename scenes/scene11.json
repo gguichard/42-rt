@@ -19,14 +19,14 @@
 		{
 			"type": "trianglemesh",
 			"color": [255, 127, 0],
-			"objfile_path": "dragon.obj"
+			"objfile_path": "scenes/objects/dragon.obj"
 		},
 		{
 			"type": "trianglemesh",
 			"color": [255, 127, 0],
-			"origin": [-25, 50, 0],
-			"objfile_path": "mobius.obj",
-			"scale": 0.5
+			"origin": [-50, 50, 0],
+			"objfile_path": "scenes/objects/happy-buddha.obj",
+			"scale": 5
 		}
 	]
 }

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 19:20:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:11:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line, double scale)
 	else if (ft_strequ(split[0], "f"))
 		push_wf_obj_indices(obj, split, &err);
 	else if (ft_strequ(split[0], "vn"))
-		wf_add_vertex_to_vector(&obj->tmp_normals, split, 0, &err);
+		wf_add_vertex_to_vector(&obj->tmp_normals, split, 1, &err);
 	else if (ft_strequ(split[0], "v"))
 		wf_add_vertex_to_vector(&obj->tmp_vertices, split, scale, &err);
 	ft_strtab_free(split);

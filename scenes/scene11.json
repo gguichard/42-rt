@@ -12,21 +12,26 @@
 		},
 		{
 			"type": "light",
-			"color": [255, 255, 255],
+			"color": [255, 0, 0],
 			"origin": [0, 40, -50],
 			"intensity": 20000
 		},
 		{
-			"type": "trianglemesh",
-			"color": [255, 127, 0],
-			"objfile_path": "scenes/objects/dragon.obj"
+			"type": "light",
+			"color": [0, 0, 255],
+			"origin": [40, 40, -50],
+			"intensity": 10000
+		},
+		{
+			"type": "light",
+			"color": [0, 255, 0],
+			"origin": [-40, 80, -50],
+			"intensity": 10000
 		},
 		{
 			"type": "trianglemesh",
-			"color": [255, 127, 0],
-			"origin": [-50, 50, 0],
-			"objfile_path": "scenes/objects/happy-buddha.obj",
-			"scale": 5
+			"color": [255, 255, 255],
+			"objfile_path": "scenes/objects/dragon.obj"
 		}
 	]
 }

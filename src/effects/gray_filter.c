@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 01:46:31 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 04:51:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:22:16 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "vec3d.h"
 #include "math_utils.h"
 
-t_vec3d		gray_filter(t_vec3d color)
+t_vec3d	gray_filter(t_vec3d color)
 {
 	double	c;
 

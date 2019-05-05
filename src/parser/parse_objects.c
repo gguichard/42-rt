@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:37:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 19:06:49 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static t_error	create_object_and_add_to_scene(t_data *data
 		err = ERR_UNEXPECTED;
 	else
 	{
+		obj->scale = 1.0;
 		obj->diffuse = 1.0;
 		err = parse_ray_object(child, obj);
 		if (err == ERR_NOERROR)

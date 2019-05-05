@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:09:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:23:43 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "math_utils.h"
 
 static t_vec3d	get_specular_color(t_ray_object *light, t_ray_object *object
-		, double shine_factor)
+	, double shine_factor)
 {
 	double	shine_scalar;
 
@@ -30,7 +30,7 @@ static t_vec3d	get_specular_color(t_ray_object *light, t_ray_object *object
 }
 
 static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
-		, t_vec3d base_color)
+	, t_vec3d base_color)
 {
 	double	cosine_angle;
 	t_vec3d	diffuse;
@@ -57,7 +57,7 @@ static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
 }
 
 static t_vec3d	compute_light_color(t_data *data, t_ray_inf *light_ray
-		, t_ray_inf *ray_inf, t_vec3d base_color)
+	, t_ray_inf *ray_inf, t_vec3d base_color)
 {
 	t_vec3d			color;
 	t_ray_object	*light;
@@ -77,7 +77,7 @@ static t_vec3d	compute_light_color(t_data *data, t_ray_inf *light_ray
 }
 
 t_vec3d			trace_light_rays(t_data *data, t_ray_inf *ray_inf
-		, t_vec3d base_color)
+	, t_vec3d base_color)
 {
 	t_vec3d		color;
 	t_vec3d		bias;

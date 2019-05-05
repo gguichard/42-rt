@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:54:08 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:10:31 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:25:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static double	fresnel(t_vec3d direction, t_vec3d normal, double ior)
 }
 
 static int		get_refract_dir(t_vec3d direction, t_vec3d normal, double ior
-		, t_vec3d *refract)
+	, t_vec3d *refract)
 {
 	t_shading	shading;
 	t_vec3d		ref_normal;

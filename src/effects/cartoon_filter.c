@@ -6,14 +6,14 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 17:15:01 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 02:43:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:21:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "effects.h"
 #include "vec3d.h"
 
-t_vec3d		cartoon_filter(t_vec3d color, t_vec3d init_color)
+t_vec3d	cartoon_filter(t_vec3d color, t_vec3d init_color)
 {
 	double	init_c;
 	double	c;

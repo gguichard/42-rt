@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 05:49:43 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 17:59:28 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:12:17 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "vec3d.h"
 #include "error.h"
 
-t_vec3d	*parse_wf_obj_vertex(char **split, t_error *err)
+static t_vec3d	*parse_wf_obj_vertex(char **split, t_error *err, double scale)
 {
 	t_vec3d	*vertex;
 
@@ -31,20 +31,21 @@ t_vec3d	*parse_wf_obj_vertex(char **split, t_error *err)
 			*err = ERR_UNEXPECTED;
 		else
 		{
-			vertex->x = atof(split[1]);
-			vertex->y = atof(split[2]);
-			vertex->z = atof(split[3]);
+			vertex->x = atof(split[1]) * scale;
+			vertex->y = atof(split[2]) * scale;
+			vertex->z = atof(split[3]) * scale;
 		}
 	}
 	return (vertex);
 }
 
-void	wf_add_vertex_to_vector(t_vector *vector, char **split, t_error *err)
+void			wf_add_vertex_to_vector(t_vector *vector, char **split
+	, double scale, t_error *err)
 {
 	t_vec3d	*vertex;
 
 	*err = ERR_NOERROR;
-	vertex = parse_wf_obj_vertex(split, err);
+	vertex = parse_wf_obj_vertex(split, err, scale);
 	if (*err == ERR_NOERROR && !ft_vecpush(vector, vertex))
 	{
 		free(vertex);
@@ -52,7 +53,7 @@ void	wf_add_vertex_to_vector(t_vector *vector, char **split, t_error *err)
 	}
 }
 
-void	free_wf_obj(t_wf_obj *obj)
+void			free_wf_obj(t_wf_obj *obj)
 {
 	ft_vecdel(&obj->vertices, NULL);
 	ft_vecdel(&obj->normals, NULL);

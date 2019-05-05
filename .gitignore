@@ -7,3 +7,4 @@ rtv1
 .*.swp
 SDL2*
 a.out
+*.obj

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:07:55 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:11:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void		push_wf_obj_indices(t_wf_obj *obj, char **split, t_error *err)
 	}
 }
 
-static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
+static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line, double scale)
 {
 	t_error	err;
 	char	**split;
@@ -90,14 +90,14 @@ static t_error	parse_wf_obj_line(t_wf_obj *obj, const char *line)
 	else if (ft_strequ(split[0], "f"))
 		push_wf_obj_indices(obj, split, &err);
 	else if (ft_strequ(split[0], "vn"))
-		wf_add_vertex_to_vector(&obj->tmp_normals, split, &err);
+		wf_add_vertex_to_vector(&obj->tmp_normals, split, 1, &err);
 	else if (ft_strequ(split[0], "v"))
-		wf_add_vertex_to_vector(&obj->tmp_vertices, split, &err);
+		wf_add_vertex_to_vector(&obj->tmp_vertices, split, scale, &err);
 	ft_strtab_free(split);
 	return (err);
 }
 
-t_error			parse_wf_obj_file(const char *file, t_wf_obj *obj)
+t_error			parse_wf_obj_file(const char *file, t_wf_obj *obj, double scale)
 {
 	int		fd;
 	char	*line;
@@ -112,7 +112,7 @@ t_error			parse_wf_obj_file(const char *file, t_wf_obj *obj)
 	while (err == ERR_NOERROR && (ret = get_next_line(fd, &line)) == 1)
 	{
 		if (line[0] != '#')
-			err = parse_wf_obj_line(obj, line);
+			err = parse_wf_obj_line(obj, line, scale);
 		free(line);
 	}
 	if (ret != 0 && err == ERR_NOERROR)

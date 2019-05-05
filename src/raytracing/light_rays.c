@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:17 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 20:23:43 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:38:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_vec3d	compute_shading(t_ray_inf *light_ray, t_ray_inf *ray_inf
 	cosine_angle = clamp(cosine_angle, 0, 1);
 	diffuse = vec3d_scalar(vec3d_mul(light_ray->object->color, base_color)
 			, cosine_angle * ray_inf->object->diffuse);
-	specular = (t_vec3d){0, 0, 0};
+	specular = vec3d(0, 0, 0);
 	if (cosine_angle > .0 && ray_inf->object->specular > .0)
 	{
 		reflection_dir = vec3d_reflect(light_ray->direction, light_ray->normal);
@@ -62,7 +62,7 @@ static t_vec3d	compute_light_color(t_data *data, t_ray_inf *light_ray
 	t_vec3d			color;
 	t_ray_object	*light;
 
-	color = (t_vec3d){0, 0, 0};
+	color = vec3d(0, 0, 0);
 	light = light_ray->object;
 	if (light_ray->object->type == RAYOBJ_AMBIENTLIGHT)
 	{
@@ -84,7 +84,7 @@ t_vec3d			trace_light_rays(t_data *data, t_ray_inf *ray_inf
 	t_ray_inf	light_ray;
 	size_t		index;
 
-	color = (t_vec3d){0, 0, 0};
+	color = vec3d(0, 0, 0);
 	bias = vec3d_scalar(ray_inf->normal, SHADOW_BIAS);
 	light_ray.normal = ray_inf->normal;
 	light_ray.origin = vec3d_add(ray_inf->intersect, bias);

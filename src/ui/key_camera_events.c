@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:26 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 04:48:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:38:23 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	camera_event_translate(t_data *data)
 void		camera_event(t_data *data)
 {
 	if (data->lib.cam_keys & CAMERA_RIGHT)
-		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, M_PI / 90);
+		rotate_camera(&data->camera, vec3d(0, 1, 0), M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_LEFT)
-		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, -1 * M_PI / 90);
+		rotate_camera(&data->camera, vec3d(0, 1, 0), -1 * M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_DOWN)
 		rotate_camera(&data->camera, data->camera.right, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_UP)

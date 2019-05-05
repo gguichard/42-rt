@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:26:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 03:03:19 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:39:25 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	hit_plane(t_ray_object *object, t_ray_hit *hit)
 		if (distance >= .0)
 		{
 			hit->dist = distance;
-			hit->normal = (t_vec3d){0, 1, 0};
+			hit->normal = vec3d(0, 1, 0);
 			hit->inside = hit->direction.y > EPSILON;
 		}
 	}

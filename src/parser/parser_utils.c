@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:07:43 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:37:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_vec3d		read_json_color(t_json_token *token, t_error *err)
 	unsigned char	b;
 	t_vec3d			color;
 
-	color = (t_vec3d){0, 0, 0};
+	color = vec3d(0, 0, 0);
 	if (token->type != JSON_ARRAY)
 		*err = ERR_BADCOLOR;
 	else

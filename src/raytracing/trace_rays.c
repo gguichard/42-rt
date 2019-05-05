@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:54:08 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 20:25:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:39:16 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_vec3d			trace_refract_ray(t_data *data, t_ray_inf *ray_inf, int depth)
 	bias = vec3d_scalar(ray_inf->normal, SHADOW_BIAS);
 	if (vec3d_dot(ray_inf->direction, ray_inf->normal) > 0)
 		bias = vec3d_scalar(bias, -1);
-	refract_color = (t_vec3d){0, 0, 0};
+	refract_color = vec3d(0, 0, 0);
 	kr = fresnel(ray_inf->direction, ray_inf->normal
 			, ray_inf->object->refractive);
 	if (kr < 1 && get_refract_dir(ray_inf->direction, ray_inf->normal

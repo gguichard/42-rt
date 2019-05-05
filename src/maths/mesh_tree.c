@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 22:03:39 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 05:38:30 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 06:19:57 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static int		push_triangle_to_leaf(t_kd_tree **root, t_triangle *triangle)
 {
 	if (*root == NULL)
 	{
-		if ((*root = ft_memalloc(sizeof(t_kd_tree))) == NULL)
+		*root = ft_memalloc(sizeof(t_kd_tree));
+		if (*root == NULL)
 			return (0);
 	}
 	return (ft_vecpush(&(*root)->objects, triangle));

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 05:01:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 04:31:10 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 06:50:41 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "vec3d.h"
 
 static double	hit_triangle_for_mesh(t_vec3d origin, t_vec3d direction
-		, t_vec3d *vertices, double data[3])
+	, t_vec3d *vertices, double data[3])
 {
 	t_vec3d	tmp[5];
 	double	inv_det;

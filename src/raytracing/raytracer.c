@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 22:23:34 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:24:13 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 		hit.inside = 0;
 		obj->hit_fn(obj, &hit);
 		if (hit.dist > NEAR_PLANE_CLIPPING
-				&& (ray_inf->object == NULL || hit.dist < ray_inf->dist))
+			&& (ray_inf->object == NULL || hit.dist < ray_inf->dist))
 		{
 			ray_inf->object = obj;
 			ray_inf->dist = hit.dist;

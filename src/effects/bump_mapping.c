@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 17:07:11 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 04:52:39 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:21:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "effects.h"
 #include "vec3d.h"
 
-t_vec3d		bump_mapping(t_vec3d normal, t_vec3d intersect, double bump
-	, int type)
+t_vec3d	bump_mapping(t_vec3d normal, t_vec3d intersect, double bump, int type)
 {
 	double	noise[3];
 	double	tmp;

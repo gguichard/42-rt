@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 00:27:20 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:36:38 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:22:08 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "ray_inf.h"
 #include "vec3d.h"
 
-t_vec3d		apply_effects(t_data *data, t_ray_inf *ray_inf, t_vec3d color
-		, t_vec3d init_color)
+t_vec3d	apply_effects(t_data *data, t_ray_inf *ray_inf, t_vec3d color
+	, t_vec3d init_color)
 {
 	if (data->effect == GRAY_FILTER)
 		color = gray_filter(color);

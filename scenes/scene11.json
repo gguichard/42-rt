@@ -24,12 +24,6 @@
 		{
 			"type": "trianglemesh",
 			"color": [255, 127, 0],
-			"origin": [0, 100, 0],
-			"objfile_path": "dragon.obj"
-		},
-		{
-			"type": "trianglemesh",
-			"color": [255, 127, 0],
 			"origin": [-25, 50, 0],
 			"objfile_path": "mobius.obj"
 		}

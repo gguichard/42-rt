@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/05 23:03:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/06 07:31:14 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 # define RAYOBJ_TRIANGLEMESH 10
 # define RAYOBJ_LIGHT 11
 # define RAYOBJ_AMBIENTLIGHT 12
+
+# define CSG_OBJECT 0
+# define CSG_UNION 1
+# define CSG_SUB 2
 
 typedef struct s_ray_object	t_ray_object;
 
@@ -78,8 +82,18 @@ typedef struct		s_ray_hit
 	double			dist;
 	t_vec3d			normal;
 	int				inside;
+	double			dist_b;
+	t_vec3d			normal_b;
 	t_quad			quad;
 }					t_ray_hit;
+
+typedef struct		s_tree_csg
+{
+	int					type;
+	t_ray_object		*object;
+	struct s_tree_csg	*first;
+	struct s_tree_csg	*second;
+}					t_tree_csg;
 
 struct				s_ray_object
 {

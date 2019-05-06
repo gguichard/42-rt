@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:32:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/06 00:01:36 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/06 07:56:35 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 #include "vec3d.h"
 #include "solver.h"
 
-static t_vec3d	get_ellipsoid_normal(t_ray_object *object, t_ray_hit *hit)
+static t_vec3d	get_ellipsoid_normal(t_ray_object *object, t_ray_hit *hit
+	, double dist)
 {
 	t_vec3d	normal;
 
-	normal = vec3d_add(hit->origin, vec3d_scalar(hit->direction, hit->dist));
+	normal = vec3d_add(hit->origin, vec3d_scalar(hit->direction, dist));
 	normal.x /= (object->size.x * object->size.x);
 	normal.y /= (object->size.y * object->size.y);
 	normal.z /= (object->size.z * object->size.z);
@@ -42,7 +43,14 @@ void			hit_ellipsoid(t_ray_object *object, t_ray_hit *hit)
 	hit->quad.c = pow(hit->origin.x, 2) / tmp[0] + pow(hit->origin.y, 2)
 		/ tmp[1] + pow(hit->origin.z, 2) / tmp[2] - 1;
 	solve_quadratic_equation(&hit->quad);
-	hit->dist = add_limit_to_object(object, hit->quad, hit);
-	hit->normal = get_ellipsoid_normal(object, hit);
-	hit->inside = hit->dist > 0 && hit->dist == hit->quad.t1;
+	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
+	hit->normal = get_ellipsoid_normal(object, hit, hit->dist);
+	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
+	hit->normal_b = get_ellipsoid_normal(object, hit, hit->dist_b);
+	if (hit->dist < 0)
+	{
+		hit->dist = hit->dist_b;
+		hit->normal = hit->normal_b;
+		hit->inside = 1;
+	}
 }

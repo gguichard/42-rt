@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:38:28 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 03:21:28 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ static void	init_default_values(t_data *data)
 	data->camera.fov = tan(90 * .5 / 180 * M_PI);
 }
 
-static void	del_ray_object(void *data)
+static void	del_mesh_trees(size_t index, void *data)
 {
 	t_ray_object	*object;
 
+	(void)index;
 	object = (t_ray_object *)data;
 	if (object->type == RAYOBJ_TRIANGLEMESH)
 		del_kd_tree(&object->mesh_tree);
-	free(data);
 }
 
 int			main(int argc, char **argv)
@@ -68,7 +68,8 @@ int			main(int argc, char **argv)
 		run_event_loop(&data);
 	}
 	destroy_lib(&data.lib);
-	ft_vecdel(&data.objects, del_ray_object);
+	ft_veciter(&data.objects, del_mesh_trees);
+	ft_vecfree(&data.objects);
 	ft_vecfree(&data.lights);
 	if (err != ERR_NOERROR)
 		return (exit_with_error(err, argv[0]));

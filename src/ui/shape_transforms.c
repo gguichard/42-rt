@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:41:49 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:54:30 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 03:46:23 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "ray_inf.h"
 #include "vec3d.h"
 #include "math_utils.h"
+#include "quaternion.h"
 
 void		ui_select_object(t_data *data, SDL_Event *event)
 {
@@ -55,6 +56,22 @@ void		ui_translate_shape(t_data *data, t_vec3d direction)
 	if (object != NULL)
 	{
 		object->origin = vec3d_add(object->origin, direction);
+		ui_refresh(data);
+	}
+}
+
+void		ui_rotate_shape(t_data *data, t_vec3d rotation, double angle)
+{
+	t_ray_object	*object;
+
+	object = data->current;
+	if (object != NULL)
+	{
+		if (data->lib.ui_keys & UI_SHAPE_SHIFT)
+			angle = -angle;
+		object->rot_quat = quaternion_mul(object->rot_quat
+				, vec3d_to_rotate_quaternion(rotation, angle));
+		object->inv_rot_quat = quaternion_conj(object->rot_quat);
 		ui_refresh(data);
 	}
 }

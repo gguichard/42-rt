@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 20:24:13 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:39:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static t_vec3d	get_sky_color(t_vec3d ray_dir)
 	t_vec3d	sky_color;
 
 	factor = 0.5 * (ray_dir.y + 1.0);
-	color = vec3d_scalar((t_vec3d){1, 1, 1}, 1.0 - factor);
-	sky_color = vec3d_scalar((t_vec3d){0.5, 0.7, 1.0}, factor);
+	color = vec3d_scalar(vec3d(1, 1, 1), 1.0 - factor);
+	sky_color = vec3d_scalar(vec3d(0.5, 0.7, 1.0), factor);
 	return (vec3d_add(color, sky_color));
 }
 
@@ -89,7 +89,7 @@ t_vec3d			trace_primary_ray(t_data *data, t_vec3d origin, t_vec3d ray_dir
 	t_ray_inf	ray_inf;
 	t_vec3d		color;
 
-	color = (t_vec3d){0, 0, 0};
+	color = vec3d(0, 0, 0);
 	if (depth > 0)
 	{
 		ray_inf.origin = origin;

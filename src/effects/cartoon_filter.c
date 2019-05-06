@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 17:15:01 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/05 20:21:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:34:22 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ t_vec3d	cartoon_filter(t_vec3d color, t_vec3d init_color)
 	else if (c >= 0.05)
 		return (vec3d_scalar(init_color, 0.50));
 	else
-		return ((t_vec3d){0, 0, 0});
+		return (vec3d(0, 0, 0));
 }

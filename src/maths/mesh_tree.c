@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 22:03:39 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 19:15:39 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:36:20 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static double	get_midpoint_and_compute_bbox(t_kd_tree *tree, char axis)
 
 	idx = 0;
 	midpoint = 0;
-	tree->bbox_min = (t_vec3d){INFINITY, INFINITY, INFINITY};
-	tree->bbox_max = (t_vec3d){-INFINITY, -INFINITY, -INFINITY};
+	tree->bbox_min = vec3d(INFINITY, INFINITY, INFINITY);
+	tree->bbox_max = vec3d(-INFINITY, -INFINITY, -INFINITY);
 	while (idx < tree->objects.size)
 	{
 		vertices = ((t_triangle *)tree->objects.data[idx])->vertices;

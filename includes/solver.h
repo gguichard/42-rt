@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:44 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 23:29:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 23:04:09 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define SOLVER_H
 
 # include "vec3d.h"
-# include "ray_object.h"
+
+typedef struct s_ray_hit	t_ray_hit;
+typedef struct s_ray_object	t_ray_object;
 
 typedef struct	s_quad
 {

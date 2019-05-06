@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/05 19:03:48 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 23:03:03 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "ray_inf.h"
 # include "quaternion.h"
 # include "kd_tree.h"
+# include "solver.h"
 
 # define EPSILON 1e-6
 
@@ -37,6 +38,8 @@
 # define RAYOBJ_AMBIENTLIGHT 12
 
 typedef struct s_ray_object	t_ray_object;
+
+typedef struct s_quad		t_quad;
 
 typedef struct		s_obj_checker
 {
@@ -75,6 +78,7 @@ typedef struct		s_ray_hit
 	double			dist;
 	t_vec3d			normal;
 	int				inside;
+	t_quad			quad;
 }					t_ray_hit;
 
 struct				s_ray_object

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:25:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 03:05:09 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 00:00:50 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,18 @@ static t_vec3d	get_cone_normal(t_ray_object *object, t_ray_hit *hit)
 
 void			hit_cone(t_ray_object *object, t_ray_hit *hit)
 {
-	t_quad	quad;
 	double	tan_r2;
 
 	tan_r2 = pow(tan(object->angle), 2);
-	quad.a = pow(hit->direction.x, 2) + pow(hit->direction.y, 2)
+	hit->quad.a = pow(hit->direction.x, 2) + pow(hit->direction.y, 2)
 		- pow(hit->direction.z, 2) * tan_r2;
-	quad.b = 2 * (hit->direction.x * hit->origin.x
+	hit->quad.b = 2 * (hit->direction.x * hit->origin.x
 			+ hit->direction.y * hit->origin.y
 			- hit->direction.z * hit->origin.z * tan_r2);
-	quad.c = pow(hit->origin.x, 2) + pow(hit->origin.y, 2)
+	hit->quad.c = pow(hit->origin.x, 2) + pow(hit->origin.y, 2)
 		- pow(hit->origin.z, 2) * tan_r2;
-	solve_quadratic_equation(&quad);
-	hit->dist = add_limit_to_object(object, quad, hit);
+	solve_quadratic_equation(&hit->quad);
+	hit->dist = add_limit_to_object(object, hit->quad, hit);
 	hit->normal = get_cone_normal(object, hit);
-	hit->inside = hit->dist > 0 && quad.t1 >= 0 && hit->dist != quad.t2;
+	hit->inside = hit->dist > 0 && hit->dist == hit->quad.t1;
 }

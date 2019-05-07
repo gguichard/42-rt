@@ -6,13 +6,12 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 06:45:43 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/07 08:56:04 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 #include "panel.h"
-#include <stdio.h>
 
 int		write_text(t_text *msg, int size)
 {
@@ -80,6 +79,7 @@ int		draw_panel_obj(t_data *data)
 	draw_obj_bg(data);
 	draw_obj_spatial(data);
 	draw_obj_light(data);
+	draw_obj_effect(data);
 	return (1);
 }
 

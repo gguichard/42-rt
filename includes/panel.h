@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 02:50:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 06:43:43 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/07 08:14:17 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void				set_rgba_text(SDL_Color *color, int value);
 int					draw_obj_bg(t_data *data);
 void				draw_obj_spatial(t_data *data);
 void				draw_obj_light(t_data *data);
+void				draw_obj_effect(t_data *data);
 void				draw_camera_value(t_text *msg, t_camera *cam);
 #endif

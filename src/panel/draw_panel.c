@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 05:36:27 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/07 06:45:43 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "panel.h"
 #include <stdio.h>
 
-int		write_text(t_text *msg)
+int		write_text(t_text *msg, int size)
 {
 	/* a deplacer au debut du programme */ 
 	if (TTF_Init() == -1)
 		return (0);
-	if (!(msg->police = TTF_OpenFont("/Library/Fonts/Arial Black.ttf", 12)))
+	if (!(msg->police = TTF_OpenFont("/Library/Fonts/Arial Black.ttf", size)))
 	{
 		TTF_Quit();
 		return (0);
@@ -61,7 +61,6 @@ int		draw_panel_main(t_data *data)
 	SDL_Surface *bg;
 
 	msg.renderer = data->lib.panel.renderer;	
-
 	if (!(bg = SDL_LoadBMP("src/panel/background/panel_bg.bmp")))
 		return (0);
 	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
@@ -76,13 +75,21 @@ int		draw_panel_main(t_data *data)
 	return (1);
 
 }
+int		draw_panel_obj(t_data *data)
+{
+	draw_obj_bg(data);
+	draw_obj_spatial(data);
+	draw_obj_light(data);
+	return (1);
+}
+
 
 int		draw_panel(t_data *data)
 {
 	if (!(draw_panel_main(data)))
 		return (0);
 	if (data->current)
-		draw_obj_bg(data);
+		draw_panel_obj(data);
 	SDL_RenderPresent(data->lib.panel.renderer);
 	return (1);
 }

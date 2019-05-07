@@ -6,14 +6,14 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 07:13:59 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/28 17:11:07 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:22:39 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "vec3d.h"
 
-t_vec3d		normal_sin_perturbation(t_vec3d normal)
+t_vec3d	normal_sin_perturbation(t_vec3d normal)
 {
 	double		tmp;
 

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:25:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 07:29:12 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 07:56:41 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,37 @@
 #include "vec3d.h"
 #include "solver.h"
 
-t_vec3d	get_cone_normal(t_ray_object *object, t_vec3d intersect)
+static t_vec3d	get_cone_normal(t_ray_object *object, t_ray_hit *hit
+	, double dist)
 {
-	intersect.z = -pow(tan(object->angle), 2);
-	return (vec3d_unit(intersect));
+	t_vec3d	normal;
+
+	normal = vec3d_add(hit->origin, vec3d_scalar(hit->direction, dist));
+	normal.z = -pow(tan(object->angle), 2);
+	return (vec3d_unit(normal));
 }
 
-double	get_cone_dist(t_ray_object *object, t_vec3d origin, t_vec3d direction)
+void			hit_cone(t_ray_object *object, t_ray_hit *hit)
 {
-	t_quad	quad;
 	double	tan_r2;
 
 	tan_r2 = pow(tan(object->angle), 2);
-	quad.a = pow(direction.x, 2) + pow(direction.y, 2)
-		- pow(direction.z, 2) * tan_r2;
-	quad.b = 2 * (direction.x * origin.x + direction.y * origin.y
-			- direction.z * origin.z * tan_r2);
-	quad.c = pow(origin.x, 2) + pow(origin.y, 2) - pow(origin.z, 2) * tan_r2;
-	return (solve_quadratic_equation(&quad));
+	hit->quad.a = pow(hit->direction.x, 2) + pow(hit->direction.y, 2)
+		- pow(hit->direction.z, 2) * tan_r2;
+	hit->quad.b = 2 * (hit->direction.x * hit->origin.x
+			+ hit->direction.y * hit->origin.y
+			- hit->direction.z * hit->origin.z * tan_r2);
+	hit->quad.c = pow(hit->origin.x, 2) + pow(hit->origin.y, 2)
+		- pow(hit->origin.z, 2) * tan_r2;
+	solve_quadratic_equation(&hit->quad);
+	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
+	hit->normal = get_cone_normal(object, hit, hit->dist);
+	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
+	hit->normal_b = get_cone_normal(object, hit, hit->dist_b);
+	if (hit->dist < 0)
+	{
+		hit->dist = hit->dist_b;
+		hit->normal = hit->normal_b;
+		hit->inside = 1;
+	}
 }

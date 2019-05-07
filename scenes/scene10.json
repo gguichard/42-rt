@@ -1,0 +1,92 @@
+{
+	"camera": {
+		"origin": [0, 10, -40],
+		"fov": 120
+	},
+	"objects": [
+		{
+			"type": "light",
+			"origin": [60, 120, -60],
+			"color": [255, 255, 255],
+			"intensity": 20000
+		},
+		{
+			"type": "light",
+			"origin": [200, 200, -20],
+			"color": [255, 255, 255],
+			"intensity": 60000
+		},
+		{
+			"type": "light",
+			"origin": [800, 600, 500],
+			"color": [255, 255, 255],
+			"intensity": 800000
+		},
+		{
+			"type": "sphere",
+			"origin": [0, 10, 0],
+			"color": [244, 66, 226],
+			"radius": 10,
+			"specular": 0.4,
+			"shininess": 64,
+			"refractive": 1.5,
+			"refractive_factor": 0.8,
+			"y_max": 0
+		},
+		{
+			"type": "sphere",
+			"origin": [0, 10, 0],
+			"color": [244, 66, 226],
+			"radius": 11,
+			"specular": 0.4,
+			"shininess": 64,
+			"refractive": 1.5,
+			"refractive_factor": 0.8,
+			"y_max": 0
+		},
+		{
+			"type": "cylinder",
+			"origin": [0, 0, 0],
+			"color": [244, 66, 226],
+			"radius": 2,
+			"refractive": 1.5,
+			"refractive_factor": 0.3,
+			"rotation": [90, 0, 0],
+			"z_min": 0,
+			"z_max": 20
+		},
+		{
+			"type": "cone",
+			"origin": [0, -19, 0],
+			"color": [244, 66, 226],
+			"angle": 80,
+			"refractive": 1.5,
+			"refractive_factor": 0.3,
+			"rotation": [-90, 0, 0],
+			"z_max": 0,
+			"z_min": -2
+		},
+		{
+			"type": "cylinder",
+			"origin": [0, 10, 0],
+			"color": [244, 66, 226],
+			"radius": 11,
+			"refractive": 1.5,
+			"refractive_factor": 0.8,
+			"rotation": [90, 0, 0],
+			"z_min": -15,
+			"z_max": 0
+		},
+		{
+			"type": "cylinder",
+			"origin": [0, 10, 0],
+			"color": [244, 66, 226],
+			"radius": 10,
+			"refractive": 1.5,
+			"refractive_factor": 0.8,
+			"rotation": [90, 0, 0],
+			"z_min": -15,
+			"z_max": 0
+		}
+	]
+}

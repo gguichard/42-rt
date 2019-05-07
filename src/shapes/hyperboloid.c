@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:33:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 07:30:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 07:56:28 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,35 @@
 #include "vec3d.h"
 #include "solver.h"
 
-double	get_hyperboloid_dist(t_ray_object *object, t_vec3d origin
-		, t_vec3d direction)
+static t_vec3d	get_hyperboloid_normal(t_ray_object *object, t_ray_hit *hit
+	, double dist)
 {
-	t_quad	quad;
+	t_vec3d	normal;
 
-	quad.a = pow(direction.x, 2) + pow(direction.y, 2) - pow(direction.z, 2);
-	quad.b = 2 * (origin.x * direction.x + origin.y * direction.y
-			- origin.z * direction.z);
-	quad.c = pow(origin.x, 2) + pow(origin.y, 2) - pow(origin.z, 2)
-		+ object->radius;
-	return (solve_quadratic_equation(&quad));
+	(void)object;
+	normal = vec3d_add(hit->origin, vec3d_scalar(hit->direction, dist));
+	normal.z = -normal.z;
+	return (vec3d_unit(normal));
 }
 
-t_vec3d	get_hyperboloid_normal(t_ray_object *object, t_vec3d intersect)
+void			hit_hyperboloid(t_ray_object *object, t_ray_hit *hit)
 {
-	(void)object;
-	intersect.z = -intersect.z;
-	return (vec3d_unit(intersect));
+	hit->quad.a = pow(hit->direction.x, 2) + pow(hit->direction.y, 2)
+		- pow(hit->direction.z, 2);
+	hit->quad.b = 2 * (hit->origin.x * hit->direction.x
+			+ hit->origin.y * hit->direction.y
+			- hit->origin.z * hit->direction.z);
+	hit->quad.c = pow(hit->origin.x, 2) + pow(hit->origin.y, 2)
+		- pow(hit->origin.z, 2) + object->radius;
+	solve_quadratic_equation(&hit->quad);
+	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
+	hit->normal = get_hyperboloid_normal(object, hit, hit->dist);
+	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
+	hit->normal_b = get_hyperboloid_normal(object, hit, hit->dist_b);
+	if (hit->dist < 0)
+	{
+		hit->dist = hit->dist_b;
+		hit->normal = hit->normal_b;
+		hit->inside = 1;
+	}
 }

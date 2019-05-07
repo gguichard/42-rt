@@ -55,7 +55,8 @@
 			"rotation": [-90, 45, 0],
 			"radius": 7,
 			"specular": 0.2,
-			"shininess": 128
+			"shininess": 128,
+			"z_max": 10
 		},
 		{
 			"type": "cone",

@@ -1,0 +1,37 @@
+{
+	"camera": {
+		"origin": [0, 40, -50],
+		"rotation": [90, 0, 0],
+		"fov": 120
+	},
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.05
+		},
+		{
+			"type": "light",
+			"color": [255, 0, 0],
+			"origin": [0, 40, -50],
+			"intensity": 20000
+		},
+		{
+			"type": "light",
+			"color": [0, 0, 255],
+			"origin": [40, 40, -50],
+			"intensity": 10000
+		},
+		{
+			"type": "light",
+			"color": [0, 255, 0],
+			"origin": [-40, 80, -50],
+			"intensity": 10000
+		},
+		{
+			"type": "trianglemesh",
+			"color": [255, 255, 255],
+			"objfile_path": "scenes/objects/dragon.obj"
+		}
+	]
+}

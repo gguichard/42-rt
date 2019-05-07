@@ -6,7 +6,8 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:26 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/05 05:31:37 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 00:39:12 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/06 01:38:23 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +40,9 @@ static void	camera_event_translate(t_data *data)
 void		camera_event(t_data *data)
 {
 	if (data->lib.cam_keys & CAMERA_RIGHT)
-		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, M_PI / 90);
+		rotate_camera(&data->camera, vec3d(0, 1, 0), M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_LEFT)
-		rotate_camera(&data->camera, (t_vec3d){0, 1, 0}, -1 * M_PI / 90);
+		rotate_camera(&data->camera, vec3d(0, 1, 0), -1 * M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_DOWN)
 		rotate_camera(&data->camera, data->camera.right, M_PI / 90);
 	if (data->lib.cam_keys & CAMERA_UP)
@@ -59,14 +60,14 @@ static void	camera_revolve_key(SDL_Event *event, t_data *data)
 	{
 		if (event->key.keysym.sym == SDLK_e)
 			data->lib.cam_keys &= ~CAMERA_REVOLVE_L;
-		if (event->key.keysym.sym == SDLK_q)
+		else if (event->key.keysym.sym == SDLK_q)
 			data->lib.cam_keys &= ~CAMERA_REVOLVE_R;
 	}
-	if (event->key.type == SDL_KEYDOWN)
+	else if (event->key.type == SDL_KEYDOWN)
 	{
 		if (event->key.keysym.sym == SDLK_e)
 			data->lib.cam_keys |= CAMERA_REVOLVE_L;
-		if (event->key.keysym.sym == SDLK_q)
+		else if (event->key.keysym.sym == SDLK_q)
 			data->lib.cam_keys |= CAMERA_REVOLVE_R;
 	}
 }
@@ -77,23 +78,23 @@ static void	camera_release_key(SDL_Event *event, t_data *data)
 	{
 		if (event->key.keysym.sym == SDLK_RIGHT)
 			data->lib.cam_keys &= ~CAMERA_RIGHT;
-		if (event->key.keysym.sym == SDLK_LEFT)
+		else if (event->key.keysym.sym == SDLK_LEFT)
 			data->lib.cam_keys &= ~CAMERA_LEFT;
-		if (event->key.keysym.sym == SDLK_DOWN)
+		else if (event->key.keysym.sym == SDLK_DOWN)
 			data->lib.cam_keys &= ~CAMERA_DOWN;
-		if (event->key.keysym.sym == SDLK_UP)
+		else if (event->key.keysym.sym == SDLK_UP)
 			data->lib.cam_keys &= ~CAMERA_UP;
-		if (event->key.keysym.sym == SDLK_a)
+		else if (event->key.keysym.sym == SDLK_a)
 			data->lib.cam_keys &= ~CAMERA_TR_LEFT;
-		if (event->key.keysym.sym == SDLK_d)
+		else if (event->key.keysym.sym == SDLK_d)
 			data->lib.cam_keys &= ~CAMERA_TR_RIGHT;
-		if (event->key.keysym.sym == SDLK_w)
+		else if (event->key.keysym.sym == SDLK_w)
 			data->lib.cam_keys &= ~CAMERA_TR_FRONT;
-		if (event->key.keysym.sym == SDLK_s)
+		else if (event->key.keysym.sym == SDLK_s)
 			data->lib.cam_keys &= ~CAMERA_TR_BACK;
-		if (event->key.keysym.sym == SDLK_KP_PLUS)
+		else if (event->key.keysym.sym == SDLK_KP_PLUS)
 			data->lib.cam_keys &= ~CAMERA_TR_UP;
-		if (event->key.keysym.sym == SDLK_KP_MINUS)
+		else if (event->key.keysym.sym == SDLK_KP_MINUS)
 			data->lib.cam_keys &= ~CAMERA_TR_DOWN;
 	}
 	camera_revolve_key(event, data);
@@ -105,23 +106,23 @@ void		camera_press_key(SDL_Event *event, t_data *data)
 	{
 		if (event->key.keysym.sym == SDLK_RIGHT)
 			data->lib.cam_keys |= CAMERA_RIGHT;
-		if (event->key.keysym.sym == SDLK_LEFT)
+		else if (event->key.keysym.sym == SDLK_LEFT)
 			data->lib.cam_keys |= CAMERA_LEFT;
-		if (event->key.keysym.sym == SDLK_DOWN)
+		else if (event->key.keysym.sym == SDLK_DOWN)
 			data->lib.cam_keys |= CAMERA_DOWN;
-		if (event->key.keysym.sym == SDLK_UP)
+		else if (event->key.keysym.sym == SDLK_UP)
 			data->lib.cam_keys |= CAMERA_UP;
-		if (event->key.keysym.sym == SDLK_a)
+		else if (event->key.keysym.sym == SDLK_a)
 			data->lib.cam_keys |= CAMERA_TR_LEFT;
-		if (event->key.keysym.sym == SDLK_d)
+		else if (event->key.keysym.sym == SDLK_d)
 			data->lib.cam_keys |= CAMERA_TR_RIGHT;
-		if (event->key.keysym.sym == SDLK_w)
+		else if (event->key.keysym.sym == SDLK_w)
 			data->lib.cam_keys |= CAMERA_TR_FRONT;
-		if (event->key.keysym.sym == SDLK_s)
+		else if (event->key.keysym.sym == SDLK_s)
 			data->lib.cam_keys |= CAMERA_TR_BACK;
-		if (event->key.keysym.sym == SDLK_KP_PLUS)
+		else if (event->key.keysym.sym == SDLK_KP_PLUS)
 			data->lib.cam_keys |= CAMERA_TR_UP;
-		if (event->key.keysym.sym == SDLK_KP_MINUS)
+		else if (event->key.keysym.sym == SDLK_KP_MINUS)
 			data->lib.cam_keys |= CAMERA_TR_DOWN;
 	}
 	camera_release_key(event, data);

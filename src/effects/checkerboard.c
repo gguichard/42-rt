@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 02:43:23 by roduquen          #+#    #+#             */
-/*   Updated: 2019/04/30 17:37:52 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:22:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "ray_object.h"
 #include "vec3d.h"
 
-t_vec3d		apply_checkerboard(t_vec3d intersect, t_vec3d base_color
-		, t_obj_checker board)
+t_vec3d	apply_checkerboard(t_vec3d intersect, t_vec3d base_color
+	, t_obj_checker board)
 {
 	int	x;
 	int	y;

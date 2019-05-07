@@ -6,63 +6,32 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 23:43:42 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/04 23:36:18 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray_object.h"
 
-static void	assign_object_functions2(t_ray_object *object)
+void	assign_object_functions(t_ray_object *object)
 {
 	if (object->type == RAYOBJ_CONE)
-	{
-		object->intersect = get_cone_dist;
-		object->normal = get_cone_normal;
-	}
+		object->hit_fn = hit_cone;
 	else if (object->type == RAYOBJ_TORUS)
-	{
-		object->intersect = get_torus_dist;
-		object->normal = get_torus_normal;
-	}
+		object->hit_fn = hit_torus;
 	else if (object->type == RAYOBJ_TRIANGLE)
-	{
-		object->intersect = get_triangle_dist;
-		object->normal = get_triangle_normal;
-	}
+		object->hit_fn = hit_triangle;
 	else if (object->type == RAYOBJ_ELLIPSOID)
-	{
-		object->intersect = get_ellipsoid_dist;
-		object->normal = get_ellipsoid_normal;
-	}
+		object->hit_fn = hit_ellipsoid;
 	else if (object->type == RAYOBJ_HYPERBOLOID)
-	{
-		object->intersect = get_hyperboloid_dist;
-		object->normal = get_hyperboloid_normal;
-	}
-}
-
-void		assign_object_functions(t_ray_object *object)
-{
-	if (object->type == RAYOBJ_SPHERE)
-	{
-		object->intersect = get_sphere_dist;
-		object->normal = get_sphere_normal;
-	}
+		object->hit_fn = hit_hyperboloid;
+	else if (object->type == RAYOBJ_SPHERE)
+		object->hit_fn = hit_sphere;
 	else if (object->type == RAYOBJ_PLANE)
-	{
-		object->intersect = get_plane_dist;
-		object->normal = get_plane_normal;
-	}
+		object->hit_fn = hit_plane;
 	else if (object->type == RAYOBJ_CYLINDER)
-	{
-		object->intersect = get_cylinder_dist;
-		object->normal = get_cylinder_normal;
-	}
+		object->hit_fn = hit_cylinder;
 	else if (object->type == RAYOBJ_TANGLECUBE)
-	{
-		object->intersect = get_tanglecube_dist;
-		object->normal = get_tanglecube_normal;
-	}
-	else
-		assign_object_functions2(object);
+		object->hit_fn = hit_tanglecube;
+	else if (object->type == RAYOBJ_TRIANGLEMESH)
+		object->hit_fn = hit_trianglemesh;
 }

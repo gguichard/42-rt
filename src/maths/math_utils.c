@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maths_utils.c                                      :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 22:01:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:19:57 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/03 17:29:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "math_utils.h"
 #include "vec3d.h"
+
+void			swap_f(double *ptr1, double *ptr2)
+{
+	double	tmp;
+
+	tmp = *ptr1;
+	*ptr1 = *ptr2;
+	*ptr2 = tmp;
+}
 
 double			clamp(double value, double lo, double hi)
 {

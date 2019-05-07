@@ -6,11 +6,12 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 15:23:46 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:19:01 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <limits.h>
 #include "libft.h"
 #include "json_parser.h"
 #include "parser.h"
@@ -52,12 +53,14 @@ int				get_ray_object_type(t_json_token *token)
 			return (RAYOBJ_HYPERBOLOID);
 		else if (ft_strequ(token->value.str, "tanglecube"))
 			return (RAYOBJ_TANGLECUBE);
+		else if (ft_strequ(token->value.str, "trianglemesh"))
+			return (RAYOBJ_TRIANGLEMESH);
 	}
 	return (get_ray_light_type(token));
 }
 
 static void		parse_object_property_3(t_json_token *child
-		, t_ray_object *object, t_error *err)
+	, t_ray_object *object, t_error *err)
 {
 	if (ft_strequ(child->key, "perlin"))
 	{
@@ -69,10 +72,20 @@ static void		parse_object_property_3(t_json_token *child
 		object->wood.enabled = 1;
 		object->wood.color = read_json_color(child, err);
 	}
+	else if (ft_strequ(child->key, "objfile_path"))
+	{
+		if (child->type != JSON_STRING
+			|| ft_strlen(child->value.str) > PATH_MAX)
+			*err = ERR_INVALIDSCENE;
+		else
+			ft_strcpy(object->objfile_path, child->value.str);
+	}
+	else
+		parse_limits(child, object, err);
 }
 
 static void		parse_object_property_2(t_json_token *child
-		, t_ray_object *object, t_error *err)
+	, t_ray_object *object, t_error *err)
 {
 	if (ft_strequ(child->key, "specular"))
 		object->specular = clamp(read_json_double(child, err), 0, 1);
@@ -90,8 +103,8 @@ static void		parse_object_property_2(t_json_token *child
 		*err = parse_ray_object_checker(child, &object->checker);
 	else if (ft_strequ(child->key, "bump"))
 		object->bump = read_json_double(child, err);
-	else if (ft_strequ(child->key, "normal_circle"))
-		object->normal_circle = read_json_double(child, err);
+	else if (ft_strequ(child->key, "sin_normal"))
+		object->sin_normal = read_json_double(child, err);
 	else if (ft_strequ(child->key, "roughness"))
 		object->roughness = read_json_double(child, err);
 	else
@@ -99,7 +112,7 @@ static void		parse_object_property_2(t_json_token *child
 }
 
 void			parse_object_property(t_json_token *child
-		, t_ray_object *object, t_error *err)
+	, t_ray_object *object, t_error *err)
 {
 	*err = ERR_NOERROR;
 	if (ft_strequ(child->key, "type"))
@@ -112,6 +125,8 @@ void			parse_object_property(t_json_token *child
 		object->size = read_json_vec3d(child, err);
 	else if (ft_strequ(child->key, "color"))
 		object->color = read_json_color(child, err);
+	else if (ft_strequ(child->key, "scale"))
+		object->scale = read_json_double(child, err);
 	else if (ft_strequ(child->key, "angle"))
 		object->angle = read_json_double(child, err) / 180 * M_PI;
 	else if (ft_strequ(child->key, "radius"))

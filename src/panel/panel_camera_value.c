@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 06:27:43 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/05 10:04:54 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/05 10:08:05 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	compute_cam_angle(double angle[3], t_camera *cam)
 	dir.y = 0;
 	dir.z = 0;
 	dir = vec3d_unit(dir);
-	res = vec3d_dot(dir, axe);
+	res = vec3d_dot(cam->direction, axe);
 	angle[0] = acos(res) * (180.0 / M_PI);
 
 
@@ -58,7 +58,7 @@ void	compute_cam_angle(double angle[3], t_camera *cam)
 	dir.x = 0;
 	dir.y = cam->direction.y;
 	dir = vec3d_unit(dir);
-	res = vec3d_dot(dir, axe);
+	res = vec3d_dot(cam->direction, axe);
 	angle[1] = acos(res) * (180.0 / M_PI);	
 	
 
@@ -67,7 +67,7 @@ void	compute_cam_angle(double angle[3], t_camera *cam)
 	dir.y = 0;
 	dir.z = cam->direction.z;
 	dir = vec3d_unit(dir);
-	res = vec3d_dot(dir, axe);
+	res = vec3d_dot(cam->right, axe);
 	angle[2] = acos(res) * (180.0 / M_PI);	
 
 }

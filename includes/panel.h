@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 02:50:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/04 10:28:54 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/07 04:52:41 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ typedef struct		s_text
 */
 int					write_text(t_text *msg);
 void				set_rgba_text(SDL_Color *color, int value);
+int					draw_obj_bg(t_data *data);
 void				draw_camera_value(t_text *msg, t_camera *cam);
 #endif

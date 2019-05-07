@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/04 10:29:23 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/05/07 04:52:01 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,8 @@ ui/lib_hooks.c					\
 ui/shape_keys.c					\
 ui/shape_transforms.c			\
 panel/draw_panel.c				\
-panel/panel_camera_value.c		
+panel/panel_camera_value.c		\
+panel/draw_object_bg.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

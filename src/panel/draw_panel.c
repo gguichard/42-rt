@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/05 04:27:01 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/07 05:17:27 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,15 @@ void	set_rgba_text(SDL_Color *color, int value)
 	color->a = 0;
 }
 
-
-int		draw_panel(t_data *data)
+int		draw_panel_main(t_data *data)
 {
 	t_text	msg;
 	SDL_Surface *bg;
 
 	msg.renderer = data->lib.panel.renderer;	
 
-	if (!(bg = SDL_LoadBMP("src/panel/test.bmp")))
-		printf("fuck");
+	if (!(bg = SDL_LoadBMP("src/panel/background/panel_bg.bmp")))
+		return (0);
 	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
 	SDL_FreeSurface(bg);
 	msg.pos.x = 0;
@@ -73,41 +72,16 @@ int		draw_panel(t_data *data)
 	msg.pos.h = 150;
 	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
 	SDL_DestroyTexture(msg.texture);
-
-	if (!(bg = SDL_LoadBMP("src/panel/attribute.bmp")))
-		printf("fuck");
-	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
-	SDL_FreeSurface(bg);
-	msg.pos.x = 843;
-	msg.pos.y = 8;
-	SDL_QueryTexture(msg.texture, NULL, NULL, &(msg.pos.w), &(msg.pos.h));
-	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
-	SDL_DestroyTexture(msg.texture);
-
-	if (!(bg = SDL_LoadBMP("src/panel/effect_attribute.bmp")))
-		printf("fuck");
-	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
-	SDL_FreeSurface(bg);
-	msg.pos.x = 693;
-	msg.pos.y = 8;
-	SDL_QueryTexture(msg.texture, NULL, NULL, &(msg.pos.w), &(msg.pos.h));
-	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
-	SDL_DestroyTexture(msg.texture);
-
-	if (!(bg = SDL_LoadBMP("src/panel/object.bmp")))
-		printf("fuck");
-	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
-	SDL_FreeSurface(bg);
-	msg.pos.x = 342;
-	msg.pos.y = 8;
-	SDL_QueryTexture(msg.texture, NULL, NULL, &(msg.pos.w), &(msg.pos.h));
-	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
-	SDL_DestroyTexture(msg.texture);
-
-
-
 	draw_camera_value(&msg, &(data->camera));
-	SDL_RenderPresent(data->lib.panel.renderer);
+	return (1);
 
+}
+
+int		draw_panel(t_data *data)
+{
+	if (!(draw_panel_main(data)))
+		return (0);
+	draw_obj_bg(data);
+	SDL_RenderPresent(data->lib.panel.renderer);
 	return (1);
 }

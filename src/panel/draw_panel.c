@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 05:17:27 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/07 05:36:27 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int		draw_panel(t_data *data)
 {
 	if (!(draw_panel_main(data)))
 		return (0);
-	draw_obj_bg(data);
+	if (data->current)
+		draw_obj_bg(data);
 	SDL_RenderPresent(data->lib.panel.renderer);
 	return (1);
 }

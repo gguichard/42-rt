@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 04:50:54 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 05:09:35 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 06:30:14 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,13 @@ int		draw_object_bg(t_text *msg, SDL_Surface *bg)
 	return (1);
 }
 
-
 int		draw_obj_bg(t_data *data)
 {
-	t_text	msg;
-	SDL_Surface *bg;
+	t_text		msg;
+	SDL_Surface	*bg;
 
 	bg = NULL;
-	msg.renderer = data->lib.panel.renderer;	
+	msg.renderer = data->lib.panel.renderer;
 	if (!(draw_attribute_bg(&(msg), bg)))
 		return (0);
 	if (!(draw_effect_bg(&(msg), bg)))

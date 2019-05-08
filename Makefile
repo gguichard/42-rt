@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/08 01:18:16 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/05/08 05:37:43 by ymekraou         ###   ########.fr        #
 #    Updated: 2019/05/05 19:00:42 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -101,7 +101,8 @@ panel/draw_object_bg.c			\
 panel/object_spatial_value.c	\
 panel/object_light_value.c		\
 panel/object_effect_value.c		\
-panel/draw_object_name.c
+panel/draw_object_name.c		\
+panel/draw_object_color.c
 
 OBJ_DIR		=	.obj
 OBJ			=	$(SRC:.c=.o)

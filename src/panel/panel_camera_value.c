@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 06:27:43 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 06:27:13 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 06:40:40 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "panel.h"
 #include "vec3d.h"
 #include <math.h>
-#include <stdio.h>
 
 void	draw_camera_pos_value(t_text *msg, t_camera *cam)
 {
@@ -25,12 +24,12 @@ void	draw_camera_pos_value(t_text *msg, t_camera *cam)
 	write_text(msg, 12);
 	free(msg->str);
 	msg->pos.x = 125;
-	msg->pos.y = 87;	
+	msg->pos.y = 87;
 	msg->str = ft_sprintf("%.2lf", cam->origin.y);
 	write_text(msg, 12);
 	free(msg->str);
 	msg->pos.x = 125;
-	msg->pos.y = 110;	
+	msg->pos.y = 110;
 	msg->str = ft_sprintf("%.2lf", cam->origin.z);
 	write_text(msg, 12);
 	free(msg->str);
@@ -51,8 +50,6 @@ void	compute_cam_angle(double angle[3], t_camera *cam)
 	dir = vec3d_unit(dir);
 	res = vec3d_dot(cam->direction, axe);
 	angle[0] = acos(res) * (180.0 / M_PI);
-
-
 	axe.x = 0;
 	axe.y = 1;
 	dir.x = 0;
@@ -60,8 +57,6 @@ void	compute_cam_angle(double angle[3], t_camera *cam)
 	dir = vec3d_unit(dir);
 	res = vec3d_dot(cam->direction, axe);
 	angle[1] = acos(res) * (180.0 / M_PI);	
-	
-
 	axe.y = 0;
 	axe.z = 1;
 	dir.y = 0;
@@ -69,7 +64,6 @@ void	compute_cam_angle(double angle[3], t_camera *cam)
 	dir = vec3d_unit(dir);
 	res = vec3d_dot(cam->right, axe);
 	angle[2] = acos(res) * (180.0 / M_PI);	
-
 }
 
 void	draw_camera_angle_value(t_text *msg, t_camera *cam)
@@ -96,8 +90,8 @@ void	draw_camera_angle_value(t_text *msg, t_camera *cam)
 
 void	draw_camera_value(t_text *msg, t_camera *cam)
 {
-	set_rgba_text(&(msg->bg_color),0xE1E1E1);
-	set_rgba_text(&(msg->fg_color),0x0);
+	set_rgba_text(&(msg->bg_color), 0xE1E1E1);
+	set_rgba_text(&(msg->fg_color), 0x0);
 	draw_camera_pos_value(msg, cam);
 	draw_camera_angle_value(msg, cam);
 }

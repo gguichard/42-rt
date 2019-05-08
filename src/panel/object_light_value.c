@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 06:41:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 07:52:01 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 06:37:41 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	draw_obj_light(t_data *data)
 	t_text	msg;
 
 	msg.renderer = data->lib.panel.renderer;
-	set_rgba_text(&(msg.bg_color),0xE1E1E1);
-	set_rgba_text(&(msg.fg_color),0x0);
+	set_rgba_text(&(msg.bg_color), 0xE1E1E1);
+	set_rgba_text(&(msg.fg_color), 0x0);
 	draw_obj_phong_value(&(msg), data->current);
 	draw_obj_light_value(&(msg), data->current);
 }

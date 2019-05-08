@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 05:19:30 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/08 06:32:54 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 08:46:45 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ SDL_Texture		*get_square_color(SDL_Renderer *renderer, int r, int g, int b)
 	square = SDL_CreateRGBSurface(0, 5, 5, 32, 0, 0, 0, 0);
 	SDL_FillRect(square, NULL, SDL_MapRGB(square->format, r, g, b));
 	texture = SDL_CreateTextureFromSurface(renderer, square);
-	free(square);
+	SDL_FreeSurface(square);
 	return (texture);
 }
 

@@ -29,9 +29,25 @@
 			"intensity": 10000
 		},
 		{
-			"type": "trianglemesh",
-			"color": [255, 255, 255],
-			"objfile_path": "scenes/objects/dragon.obj"
+			"type": "sphere",
+			"color": [0, 255, 0],
+			"origin": [0, -50, 0],
+			"radius": 10
+		},
+		{
+			"type": "csg_sub",
+			"origin": [0, 0, 0],
+			"csg_left": {
+				"type": "sphere",
+				"color": [255, 255, 255],
+				"radius": 15
+			},
+			"csg_right": {
+				"type": "sphere",
+				"origin": [10, 0, 0],
+				"color": [255, 255, 255],
+				"radius": 7
+			}
 		}
 	]
 }

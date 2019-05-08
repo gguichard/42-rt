@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 20:19:01 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/08 23:15:54 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,25 @@ int				get_ray_object_type(t_json_token *token)
 			return (RAYOBJ_TANGLECUBE);
 		else if (ft_strequ(token->value.str, "trianglemesh"))
 			return (RAYOBJ_TRIANGLEMESH);
+		else if (ft_strequ(token->value.str, "csg_union"))
+			return (RAYOBJ_CSGUNION);
+		else if (ft_strequ(token->value.str, "csg_sub"))
+			return (RAYOBJ_CSGSUB);
+		else if (ft_strequ(token->value.str, "csg_inter"))
+			return (RAYOBJ_CSGINTER);
 	}
 	return (get_ray_light_type(token));
+}
+
+static void		parse_object_csg_properties(t_json_token *child
+	, t_ray_object *object, t_error *err)
+{
+	if (ft_strequ(child->key, "csg_left"))
+		object->csg_tree.left = create_ray_object(child, err);
+	else if (ft_strequ(child->key, "csg_right"))
+		object->csg_tree.right = create_ray_object(child, err);
+	else
+		parse_limits(child, object, err);
 }
 
 static void		parse_object_property_3(t_json_token *child
@@ -81,7 +98,7 @@ static void		parse_object_property_3(t_json_token *child
 			ft_strcpy(object->objfile_path, child->value.str);
 	}
 	else
-		parse_limits(child, object, err);
+		parse_object_csg_properties(child, object, err);
 }
 
 static void		parse_object_property_2(t_json_token *child

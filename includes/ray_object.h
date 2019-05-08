@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/08 16:01:49 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/08 22:33:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,16 @@
 # define RAYOBJ_HYPERBOLOID 8
 # define RAYOBJ_TANGLECUBE 9
 # define RAYOBJ_TRIANGLEMESH 10
-# define RAYOBJ_LIGHT 11
-# define RAYOBJ_AMBIENTLIGHT 12
+# define RAYOBJ_CSGUNION 11
+# define RAYOBJ_CSGSUB 12
+# define RAYOBJ_CSGINTER 13
+# define RAYOBJ_LIGHT 14
+# define RAYOBJ_AMBIENTLIGHT 15
 
-# define CSG_OBJECT 0
+# define CSG_NOCSG 0
 # define CSG_UNION 1
 # define CSG_SUB 2
+# define CSG_INTER 3
 
 typedef struct s_ray_object	t_ray_object;
 
@@ -88,10 +92,9 @@ typedef struct		s_ray_hit
 
 typedef struct		s_tree_csg
 {
-	int					type;
-	t_ray_object		*object;
-	struct s_tree_csg	*first;
-	struct s_tree_csg	*second;
+	int				type;
+	t_ray_object	*left;
+	t_ray_object	*right;
 }					t_tree_csg;
 
 struct				s_ray_object
@@ -99,6 +102,7 @@ struct				s_ray_object
 	int				type;
 	void			(*hit_fn)(t_ray_object *, t_ray_hit *);
 	t_kd_tree		mesh_tree;
+	t_tree_csg		csg_tree;
 	t_cut_plane		cut_plane;
 	t_vec3d			origin;
 	t_vec3d			rotation;

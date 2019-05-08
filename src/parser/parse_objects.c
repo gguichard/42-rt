@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 19:06:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/08 23:26:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,67 +21,80 @@
 #include "math_utils.h"
 #include "quaternion.h"
 
+void			del_ray_object_properties(t_ray_object *object)
+{
+	if (object->csg_tree.left != NULL)
+	{
+		del_ray_object_properties(object->csg_tree.left);
+		ft_memdel((void **)&object->csg_tree.left);
+	}
+	if (object->csg_tree.right != NULL)
+	{
+		del_ray_object_properties(object->csg_tree.right);
+		ft_memdel((void **)&object->csg_tree.right);
+	}
+}
+
+static void		del_ray_object(void *ptr)
+{
+	t_ray_object	*object;
+
+	object = (t_ray_object *)ptr;
+	del_ray_object_properties(object);
+	free(ptr);
+}
+
 static t_error	parse_ray_object(t_json_token *token, t_ray_object *object)
 {
 	t_error			err;
 	t_json_token	*child;
 
-	if (token->type != JSON_OBJECT)
-		err = ERR_SCENEBADFORMAT;
+	err = ERR_NOERROR;
+	child = token->value.child;
+	while (err == ERR_NOERROR && child != NULL)
+	{
+		parse_object_property(child, object, &err);
+		child = child->next;
+	}
+	if (object->type == RAYOBJ_UNKNOWN)
+		err = ERR_SCENEBADOBJECT;
 	else
 	{
-		err = ERR_NOERROR;
-		child = token->value.child;
-		while (err == ERR_NOERROR && child != NULL)
-		{
-			parse_object_property(child, object, &err);
-			child = child->next;
-		}
-		if (object->type == RAYOBJ_UNKNOWN)
-			err = ERR_SCENEBADOBJECT;
-		else
-		{
-			object->rot_quat = xyz_rot_to_quat(vec3d_scalar(object->rotation
-						, -1));
-			object->inv_rot_quat = quaternion_conj(object->rot_quat);
-			assign_object_functions(object);
-		}
+		object->rot_quat = xyz_rot_to_quat(vec3d_scalar(object->rotation, -1));
+		object->inv_rot_quat = quaternion_conj(object->rot_quat);
+		err = process_object_after_parsing(object);
 	}
 	return (err);
 }
 
-static t_error	create_object_and_add_to_scene(t_data *data
-		, t_json_token *child)
+t_ray_object	*create_ray_object(t_json_token *child, t_error *err)
 {
-	t_error			err;
-	t_ray_object	*obj;
-	t_vector		*vector;
+	t_ray_object	*object;
 
-	if ((obj = ft_memalloc(sizeof(t_ray_object))) == NULL)
-		err = ERR_UNEXPECTED;
+	object = NULL;
+	if (child->type != JSON_OBJECT)
+		*err = ERR_SCENEBADFORMAT;
+	else if ((object = ft_memalloc(sizeof(t_ray_object))) == NULL)
+		*err = ERR_UNEXPECTED;
 	else
 	{
-		obj->scale = 1.0;
-		obj->diffuse = 1.0;
-		err = parse_ray_object(child, obj);
-		if (err == ERR_NOERROR)
+		object->scale = 1.0;
+		object->diffuse = 1.0;
+		*err = parse_ray_object(child, object);
+		if (*err != ERR_NOERROR)
 		{
-			vector = (obj->type == RAYOBJ_LIGHT
-					|| obj->type == RAYOBJ_AMBIENTLIGHT)
-				? &data->lights : &data->objects;
-			if (!ft_vecpush(vector, obj))
-				err = ERR_UNEXPECTED;
+			del_ray_object_properties(object);
+			ft_memdel((void **)&object);
 		}
-		if (err != ERR_NOERROR)
-			free(obj);
 	}
-	return (err);
+	return (object);
 }
 
 t_error			parse_ray_objects(t_data *data, t_json_token *token)
 {
 	t_error			err;
 	t_json_token	*child;
+	t_ray_object	*object;
 
 	if (token->type != JSON_ARRAY)
 		return (ERR_SCENEBADFORMAT);
@@ -89,12 +102,16 @@ t_error			parse_ray_objects(t_data *data, t_json_token *token)
 	child = token->value.child;
 	while (err == ERR_NOERROR && child != NULL)
 	{
-		err = create_object_and_add_to_scene(data, child);
+		object = create_ray_object(child, &err);
+		if (err == ERR_NOERROR && (!ft_vecpush((object->type == RAYOBJ_LIGHT
+						|| object->type == RAYOBJ_AMBIENTLIGHT)
+					? &data->lights : &data->objects, object)))
+				err = ERR_UNEXPECTED;
 		child = child->next;
 	}
 	if (err != ERR_NOERROR)
 	{
-		ft_vecfree(&data->objects);
+		ft_vecdel(&data->objects, del_ray_object);
 		ft_vecfree(&data->lights);
 	}
 	return (err);

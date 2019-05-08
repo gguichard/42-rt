@@ -6,13 +6,15 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/04 23:36:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/08 23:28:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parser.h"
 #include "ray_object.h"
+#include "error.h"
 
-void	assign_object_functions(t_ray_object *object)
+static void	assign_hit_fn(t_ray_object *object)
 {
 	if (object->type == RAYOBJ_CONE)
 		object->hit_fn = hit_cone;
@@ -34,4 +36,24 @@ void	assign_object_functions(t_ray_object *object)
 		object->hit_fn = hit_tanglecube;
 	else if (object->type == RAYOBJ_TRIANGLEMESH)
 		object->hit_fn = hit_trianglemesh;
+}
+
+t_error		process_object_after_parsing(t_ray_object *object)
+{
+	if (object->type == RAYOBJ_CSGUNION)
+		object->csg_tree.type = CSG_UNION;
+	else if (object->type == RAYOBJ_CSGSUB)
+		object->csg_tree.type = CSG_SUB;
+	else if (object->type == RAYOBJ_CSGINTER)
+		object->csg_tree.type = CSG_INTER;
+	if (object->csg_tree.type != CSG_NOCSG)
+	{
+		if (object->csg_tree.left == NULL || object->csg_tree.right == NULL)
+		{
+			del_ray_object_properties(object);
+			return (ERR_SCENEBADFORMAT);
+		}
+	}
+	assign_hit_fn(object);
+	return (ERR_NOERROR);
 }

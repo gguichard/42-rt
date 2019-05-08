@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 20:17:52 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/06 14:40:29 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/07 18:01:19 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,10 @@ void		hit_with_csg(t_tree_csg *tree, t_ray_hit *hit)
 
 	ft_memset(&hit1, 0, sizeof(t_ray_hit));
 	ft_memset(&hit2, 0, sizeof(t_ray_hit));
+	hit1.direction = hit->direction;
+	hit1.origin = hit->origin;
+	hit2.direction = hit->direction;
+	hit2.origin = hit->origin;
 	if (tree->first->type == CSG_OBJECT)
 		tree->first->object->hit_fn(tree->first->object, &hit1);
 	else

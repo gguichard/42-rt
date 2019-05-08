@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:35 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 11:00:48 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/07 17:57:23 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ double			solve_quadratic_equation(t_quad *quad)
 	double	tmp;
 	double	sqrt_delta;
 
-	quad->delta = pow(quad->b, 2) - 4 * quad->a * quad->c;
+	quad->delta = quad->b * quad->b - 4 * quad->a * quad->c;
 	if (quad->delta >= 0)
 	{
 		tmp = quad->a * 2;
@@ -74,9 +74,9 @@ static double	solve_quartic_equation2(t_quartic *quartic, t_vec3d tmp[8])
 {
 	tmp[3].x = tmp[0].y / 3.0 + tmp[2].z;
 	tmp[3].y = sqrt(tmp[3].x - tmp[0].y);
-	tmp[3].z = sqrt(pow((tmp[3].x / 2.0), 2) - tmp[1].x);
+	tmp[3].z = sqrt((tmp[3].x / 2.0) * (tmp[3].x / 2.0) - tmp[1].x);
 	tmp[4].x = -(quartic->b / (4.0 * quartic->a));
-	tmp[4].y = pow(tmp[3].y, 2.0) - 2.0 * tmp[3].x - 4.0 * tmp[3].z;
+	tmp[4].y = tmp[3].y * tmp[3].y - 2.0 * tmp[3].x - 4.0 * tmp[3].z;
 	if (tmp[0].z > 0.0)
 		tmp[4].z = tmp[3].y / 2.0;
 	else
@@ -92,7 +92,7 @@ static double	solve_quartic_equation2(t_quartic *quartic, t_vec3d tmp[8])
 		tmp[5].y = -1.0;
 		tmp[5].z = -1.0;
 	}
-	tmp[6].x = pow(tmp[3].y, 2.0) - 2.0 * tmp[3].x + 4.0 * tmp[3].z;
+	tmp[6].x = tmp[3].y * tmp[3].y - 2.0 * tmp[3].x + 4.0 * tmp[3].z;
 	return (result_quartic_equation(tmp));
 }
 
@@ -101,16 +101,16 @@ double			solve_quartic_equation(t_quartic *quartic)
 	t_vec3d	tmp[8];
 
 	tmp[0].x = quartic->b / (2.0 * quartic->a);
-	tmp[0].y = (quartic->c / quartic->a) - ((3.0 * pow(tmp[0].x, 2.0)) / 2.0);
+	tmp[0].y = (quartic->c / quartic->a) - ((3.0 * tmp[0].x * tmp[0].x) / 2.0);
 	tmp[0].z = (quartic->d / quartic->a) + pow(tmp[0].x, 3.0)
 		- (quartic->c * tmp[0].x) / quartic->a;
 	tmp[1].x = (quartic->e / quartic->a) - 3.0 * pow((tmp[0].x / 2.0), 4.0)
-		+ (quartic->c / quartic->a) * pow((tmp[0].x / 2.0), 2.0)
+		+ (quartic->c / quartic->a) * (tmp[0].x / 2.0) * (tmp[0].x / 2.0)
 		- (quartic->d / quartic->a) * (tmp[0].x / 2.0);
-	tmp[1].y = -2.0 * pow((tmp[0].y / 3.0), 3.0) - pow(tmp[0].z, 2.0)
+	tmp[1].y = -2.0 * pow((tmp[0].y / 3.0), 3.0) - tmp[0].z * tmp[0].z
 		+ (8.0 / 3.0) * tmp[0].y * tmp[1].x;
 	tmp[1].z = -(pow(tmp[0].y, 2.0) / 3.0) - 4.0 * tmp[1].x;
-	tmp[2].x = pow((tmp[1].z / 3.0), 3.0) + pow((tmp[1].y / 2.0), 2.0);
+	tmp[2].x = pow((tmp[1].z / 3.0), 3.0) + (tmp[1].y / 2.0) * (tmp[1].y / 2.0);
 	if (tmp[2].x > 0.0)
 	{
 		tmp[2].y = cbrt(-(tmp[1].y) / 2.0 + sqrt(tmp[2].x));

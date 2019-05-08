@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:33:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/06 07:56:28 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/07 17:58:03 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static t_vec3d	get_hyperboloid_normal(t_ray_object *object, t_ray_hit *hit
 
 void			hit_hyperboloid(t_ray_object *object, t_ray_hit *hit)
 {
-	hit->quad.a = pow(hit->direction.x, 2) + pow(hit->direction.y, 2)
-		- pow(hit->direction.z, 2);
+	hit->quad.a = hit->direction.x * hit->direction.x + hit->direction.y
+		* hit->direction.y - hit->direction.z * hit->direction.z;
 	hit->quad.b = 2 * (hit->origin.x * hit->direction.x
 			+ hit->origin.y * hit->direction.y
 			- hit->origin.z * hit->direction.z);
-	hit->quad.c = pow(hit->origin.x, 2) + pow(hit->origin.y, 2)
-		- pow(hit->origin.z, 2) + object->radius;
+	hit->quad.c = hit->origin.x * hit->origin.x + hit->origin.y * hit->origin.y
+		- hit->origin.z * hit->origin.z + object->radius;
 	solve_quadratic_equation(&hit->quad);
 	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
 	hit->normal = get_hyperboloid_normal(object, hit, hit->dist);
@@ -44,6 +44,5 @@ void			hit_hyperboloid(t_ray_object *object, t_ray_hit *hit)
 	{
 		hit->dist = hit->dist_b;
 		hit->normal = hit->normal_b;
-		hit->inside = 1;
 	}
 }

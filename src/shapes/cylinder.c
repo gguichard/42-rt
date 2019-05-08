@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:28:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/06 07:56:25 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/07 17:35:16 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,21 @@ static t_vec3d	get_cylinder_normal(t_ray_object *object, t_ray_hit *hit
 
 void			hit_cylinder(t_ray_object *object, t_ray_hit *hit)
 {
-	hit->quad.a = pow(hit->direction.x, 2) + pow(hit->direction.y, 2);
+	hit->quad.a = hit->direction.x * hit->direction.x
+		+ hit->direction.y * hit->direction.y;
 	hit->quad.b = 2 * (hit->direction.x * hit->origin.x
 			+ hit->direction.y * hit->origin.y);
-	hit->quad.c = pow(hit->origin.x, 2) + pow(hit->origin.y, 2)
-		- pow(object->radius, 2);
+	hit->quad.c = hit->origin.x * hit->origin.x + hit->origin.y * hit->origin.y
+		- object->radius * object->radius;
 	solve_quadratic_equation(&hit->quad);
 	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
 	hit->normal = get_cylinder_normal(object, hit, hit->dist);
 	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
-	hit->normal_b = get_cylinder_normal(object, hit, hit->dist_b);
+	hit->normal_b = vec3d_scalar(get_cylinder_normal(
+				object, hit, hit->dist_b), -1);
 	if (hit->dist < 0)
 	{
 		hit->dist = hit->dist_b;
 		hit->normal = hit->normal_b;
-		hit->inside = 1;
 	}
 }

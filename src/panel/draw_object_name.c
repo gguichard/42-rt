@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/08 03:19:56 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 03:44:19 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,29 @@ void	draw_obj_color(t_data *data)
 	SDL_DestroyTexture(texture);
 }
 
+char	*get_obj_type(int id)
+{
+	if (id == 1)
+		return ("SPHERE");
+	if (id == 2)
+		return ("PLAN");
+	if (id == 3)
+		return ("CYLENDER");
+	if (id == 4)
+		return ("CONE");
+	if (id == 5)
+		return ("TORUS");
+	if (id == 6)
+		return ("TRIANGLE");
+	if (id == 7)
+		return ("ELLIPSOID");
+	if (id == 8)
+		return ("HYPERBOLOID");
+	if (id == 9)
+		return ("TANGLECUBE");
+	return ("UNKNOWN");
+}
+
 void	draw_obj_name(t_data *data)
 {
 	t_text	msg;
@@ -52,7 +75,6 @@ void	draw_obj_name(t_data *data)
 	set_rgba_text(&(msg.fg_color),0xFF0000);
 	msg.pos.x = 490;
 	msg.pos.y = 12;	
-	msg.str = "SPHERE";
+	msg.str = get_obj_type(data->current->type);
 	write_text(&(msg), 13);
-	//free(msg.str);
 }

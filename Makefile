@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/05 19:00:42 by roduquen         ###   ########.fr        #
+#    Updated: 2019/05/08 12:37:45 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ effects/perlin_noise.c			\
 effects/perlin_noise_filter.c	\
 effects/perlin_permut_tab.c		\
 effects/perturbations.c			\
-effects/sin_perturbation.c		\
+effects/wavy_effect.c			\
 effects/wood_filter.c			\
 maths/bbox.c					\
 maths/kd_tree.c					\
@@ -59,13 +59,15 @@ maths/vec3d_2.c					\
 misc/camera.c					\
 misc/error.c					\
 parser/parse_checker.c			\
+parser/parse_color.c			\
 parser/parse_limits.c			\
+parser/parse_misc.c				\
 parser/parse_objects.c			\
 parser/parse_objects_utils.c	\
 parser/parse_properties.c		\
 parser/parse_rotation.c			\
+parser/parse_vec3d.c			\
 parser/parse_vertices.c			\
-parser/parser_utils.c			\
 parser/scene_parser.c			\
 parser/setup_camera.c			\
 parser/wf_obj_parser.c			\

@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 01:47:15 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/06 01:35:11 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/08 12:30:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	add_normal_perturbation(t_ray_inf *ray_inf)
 	else if (ray_inf->object->roughness != 0.0)
 		ray_inf->normal = bump_mapping(ray_inf->normal, ray_inf->intersect
 				, ray_inf->object->roughness, 1);
-	else if (ray_inf->object->sin_normal != 0.0)
-		ray_inf->normal = normal_sin_perturbation(ray_inf->normal);
+	else if (ray_inf->object->wavy_effect)
+		ray_inf->normal = wavy_perturbation(ray_inf->normal
+				, ray_inf->intersect);
 }
 
 t_vec3d	add_color_perturbation(t_ray_inf *ray_inf, t_vec3d base_color)

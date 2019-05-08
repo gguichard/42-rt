@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sin_perturbation.c                                 :+:      :+:    :+:   */
+/*   wavy_effect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/26 07:13:59 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/05 20:22:39 by gguichar         ###   ########.fr       */
+/*   Created: 2019/05/08 12:29:10 by gguichar          #+#    #+#             */
+/*   Updated: 2019/05/08 12:43:50 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "vec3d.h"
 
-t_vec3d	normal_sin_perturbation(t_vec3d normal)
+t_vec3d	wavy_perturbation(t_vec3d normal, t_vec3d intersect)
 {
-	double		tmp;
-
-	tmp = sin(normal.x);
-	normal.x *= (tmp + normal.x);
-	tmp = cos(normal.y);
-	normal.y *= (tmp + normal.y);
-	tmp = -sin(normal.z);
-	normal.z *= (tmp + normal.z);
+	normal.x += sin(intersect.x) * 0.1;
+	normal.z += sin(intersect.x) * 0.1;
 	return (vec3d_unit(normal));
 }

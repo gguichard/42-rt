@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 05:43:46 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 08:09:34 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 01:55:55 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 
 void	draw_obj_pos_value(t_text *msg, t_ray_object *obj)
 {
-	msg->pos.x = 480;
-	msg->pos.y = 35;
+	msg->pos.x = 477;
+	msg->pos.y = 45;
 	msg->str = ft_sprintf("%.1lf", obj->origin.x);
 	write_text(msg, 11);
 	free(msg->str);
 	msg->pos.x = 565;
-	msg->pos.y = 35;	
+	msg->pos.y = 45;	
 	msg->str = ft_sprintf("%.1lf", obj->origin.y);
 	write_text(msg, 11);
 	free(msg->str);
-	msg->pos.x = 648;
-	msg->pos.y = 35;	
+	msg->pos.x = 653;
+	msg->pos.y = 45;	
 	msg->str = ft_sprintf("%.1lf", obj->origin.z);
 	write_text(msg, 11);
 	free(msg->str);

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 08:56:04 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 01:49:50 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int		draw_panel_main(t_data *data)
 int		draw_panel_obj(t_data *data)
 {
 	draw_obj_bg(data);
+	draw_obj_name(data);
+	draw_obj_color(data);
 	draw_obj_spatial(data);
 	draw_obj_light(data);
 	draw_obj_effect(data);

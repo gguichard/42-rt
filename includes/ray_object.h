@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/06 07:31:14 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/08 16:01:49 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct		s_ray_hit
 	t_vec3d			direction;
 	double			dist;
 	t_vec3d			normal;
-	int				inside;
 	double			dist_b;
 	t_vec3d			normal_b;
 	t_quad			quad;

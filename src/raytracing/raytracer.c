@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/06 01:39:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/08 16:02:37 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 		obj = (t_ray_object *)data->objects.data[index];
 		world_to_object_transform(obj, ray_inf, &hit);
 		hit.dist = -INFINITY;
-		hit.inside = 0;
 		obj->hit_fn(obj, &hit);
 		if (hit.dist > NEAR_PLANE_CLIPPING
 			&& (ray_inf->object == NULL || hit.dist < ray_inf->dist))
@@ -39,8 +38,6 @@ void			intersect_primary_ray(t_data *data, t_ray_inf *ray_inf)
 			ray_inf->object = obj;
 			ray_inf->dist = hit.dist;
 			ray_inf->normal = quat_rot_with_quat(hit.normal, obj->inv_rot_quat);
-			if (hit.inside)
-				ray_inf->normal = vec3d_scalar(ray_inf->normal, -1);
 		}
 		index++;
 	}

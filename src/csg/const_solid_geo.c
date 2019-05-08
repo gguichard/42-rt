@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 20:17:52 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/07 18:01:19 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/08 16:03:26 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		csg_sub_func(t_tree_csg *tree, t_ray_hit hit1, t_ray_hit hit2
 			hit->dist_b = hit1.dist_b;
 			hit->normal = hit2.normal_b;
 			hit->normal_b = hit1.normal_b;
-			hit->inside = hit2.inside;
 		}
 		else if (hit2.dist_b > hit1.dist_b)
 		{
@@ -81,7 +80,6 @@ void		csg_sub_func(t_tree_csg *tree, t_ray_hit hit1, t_ray_hit hit2
 			hit->dist.b = hit2.dist;
 			hit->normal = hit1.normal;
 			hit->normal_b = hit1.normal_b;
-			hit->inside = hit1.inside;
 		}
 	}
 }
@@ -121,7 +119,6 @@ void		csg_inter_func(t_tree_csg *tree, t_ray_hit hit1, t_ray_hit hit2
 			hit->dist_b = hit1.dist_b;
 			hit->normal = hit2.normal;
 			hit->normal_b = hit1.dist_b;
-			hit->inside = hit2.inside;
 		}
 	}
 	else if (hit1.dist_b > 0)
@@ -152,7 +149,6 @@ void		csg_inter_func(t_tree_csg *tree, t_ray_hit hit1, t_ray_hit hit2
 			hit->dist_b = hit1.dist_b;
 			hit->normal = hit2.normal;
 			hit->normal_b = hit1.normal_b;
-			hit->inside = hit2.inside;
 		}
 	}
 	else
@@ -188,7 +184,6 @@ void		hit_with_csg(t_tree_csg *tree, t_ray_hit *hit)
 		hit->normal = (hit->dist == hit1.dist ? hit1.normal : hit2.normal);
 		hit->normal_b = (hit->dist_b == hit1.dist_b ? hit1.normal_b
 				: hit2.normal_b);
-		hit->inside = hit->dist == hit1.dist_b || hit->dist == hit2.dist_b;
 	}
 	if (tree->type == CSG_SUB)
 		csg_sub_func(tree, hit1, hit2, hit);

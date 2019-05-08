@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 05:01:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:50:41 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/08 14:54:13 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ static void		hit_triangle_in_mesh(t_kd_tree *tree, t_ray_hit *hit)
 			hit->dist = dist;
 			hit->normal = get_triangle_normal_for_mesh(data + 1
 					, triangle->normals);
-			hit->inside = (data[0] < EPSILON);
+			if (data[0] < EPSILON)
+				hit->normal = vec3d_scalar(hit->normal, -1);
 		}
 		idx++;
 	}

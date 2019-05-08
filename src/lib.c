@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 04:37:09 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 04:13:57 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ static void	destroy_window(t_lib *lib)
 
 int			init_panel(t_panel *panel)
 {
-	if (SDL_CreateWindowAndRenderer(PANEL_WIDTH, PANEL_HEIGHT, 0, &(panel->window), &(panel->renderer)) < 0)
+	if (SDL_CreateWindowAndRenderer(PANEL_WIDTH, PANEL_HEIGHT,
+				0, &(panel->window), &(panel->renderer)) < 0)
 		return (0);
+	SDL_SetWindowPosition(panel->window, 800, 130);
+	SDL_SetWindowTitle(panel->window, "RT - parameters");
 	return (1);
 }
 

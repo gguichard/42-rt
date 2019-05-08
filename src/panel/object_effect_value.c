@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 08:11:46 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/07 08:53:46 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/08 04:45:35 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,35 @@
 void	draw_obj_att1(t_text *msg, t_ray_object *obj)
 {
 	msg->pos.x = 800;
-	msg->pos.y = 88;
+	msg->pos.y = 108;
 	msg->str = ft_sprintf("%.1lf", obj->bump);
-	write_text(msg, 11);
+	write_text(msg, 9);
 	free(msg->str);
 	msg->pos.x = 800;
-	msg->pos.y = 105;
+	msg->pos.y = 124;
 	msg->str = ft_sprintf("%.1lf", obj->roughness);
-	write_text(msg, 11);
+	write_text(msg, 9);
 	free(msg->str);
 }
 
 void	draw_obj_att2(t_text *msg, t_ray_object *obj)
 {
 	msg->pos.x = 800;
-	msg->pos.y = 31;
-	if (!(obj->wood.enabled))
-		msg->str = "off";
-	else	
-		msg->str = "on";
-	write_text(msg, 11);
-	msg->pos.x = 800;
-	msg->pos.y = 50;
+	msg->pos.y = 36;
 	if (!(obj->checker.size))
 		msg->str = "off";
 	else	
 		msg->str = "on";
 	write_text(msg, 11);
 	msg->pos.x = 800;
-	msg->pos.y = 69;
+	msg->pos.y = 64;
+	if (!(obj->wood.enabled))
+		msg->str = "off";
+	else	
+		msg->str = "on";
+	write_text(msg, 11);
+	msg->pos.x = 800;
+	msg->pos.y = 87;
 	if (!(obj->perlin.enabled))
 		msg->str = "off";
 	else	

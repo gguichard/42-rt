@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/09 14:01:56 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 20:00:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@
 ** TYPEDEF & STRUCTURES
 */
 
-typedef struct	s_data t_data;
+typedef struct s_data	t_data;
+
 typedef struct		s_panel
 {
 	SDL_Window		*window;
@@ -57,7 +58,6 @@ typedef struct		s_panel
 	SDL_Texture		*light_bg;
 	SDL_Texture		*effect_bg;
 	SDL_Texture		*object_bg;
-
 }					t_panel;
 
 typedef struct		s_lib

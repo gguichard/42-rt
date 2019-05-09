@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 08:11:46 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 17:11:44 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 18:42:06 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int		draw_obj_effect(t_data *data)
 	t_text	msg;
 
 	msg.renderer = data->lib.panel.renderer;
-	set_rgba_text(&(msg.bg_color), 0xE1E1E1);
+	set_rgba_text(&(msg.bg_color), 0xEBEBEB);
 	set_rgba_text(&(msg.fg_color), 0x0);
 	if (!(draw_rough_bump(&(msg), data)))
 		return (0);

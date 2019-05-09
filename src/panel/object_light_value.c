@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 06:41:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 18:05:03 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 18:45:09 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		draw_objlight_two(t_text *msg, t_ray_object *obj)
 	free(msg->str);
 	msg->pos.x = 947;
 	msg->pos.y = 83;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->refractive)))
+	if (!(msg->str = ft_sprintf("%.2lf", obj->refractive * 100.0)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -70,7 +70,7 @@ int		draw_objlight_three(t_text *msg, t_ray_object *obj)
 {
 	msg->pos.x = 947;
 	msg->pos.y = 102;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->reflective)))
+	if (!(msg->str = ft_sprintf("%.2lf", obj->reflective * 100.0)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -97,7 +97,7 @@ int		draw_obj_light(t_data *data)
 
 	msg.renderer = data->lib.panel.renderer;
 	msg.police = data->lib.panel.arial_black_11;
-	set_rgba_text(&(msg.bg_color), 0xE1E1E1);
+	set_rgba_text(&(msg.bg_color), 0xEBEBEB);
 	set_rgba_text(&(msg.fg_color), 0x0);
 	if (!(draw_objlight_one(&(msg), data->current)))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 05:43:46 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 18:05:25 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 18:41:09 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		draw_obj_spatial(t_data *data)
 
 	msg.renderer = data->lib.panel.renderer;
 	msg.police = data->lib.panel.arial_black_11;
-	set_rgba_text(&(msg.bg_color), 0xE1E1E1);
+	set_rgba_text(&(msg.bg_color), 0xEBEBEB);
 	set_rgba_text(&(msg.fg_color), 0x0);
 	if (!(draw_objvalue_one(&(msg), data->current)))
 		return (0);

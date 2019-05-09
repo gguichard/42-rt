@@ -1,20 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_objects.c                                     :+:      :+:    :+:   */
+/*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 05:37:44 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 19:22:51 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/09 20:16:35 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
-#include "mesh_tree.h"
 #include "ray_object.h"
+#include "kd_tree.h"
+#include "mesh_tree.h"
 #include "wf_obj_parser.h"
 #include "error.h"
+
+void			del_ray_object_properties(t_ray_object *object)
+{
+	if (object->csg_tree.left != NULL)
+	{
+		del_ray_object_properties(object->csg_tree.left);
+		ft_memdel((void **)&object->csg_tree.left);
+	}
+	if (object->csg_tree.right != NULL)
+	{
+		del_ray_object_properties(object->csg_tree.right);
+		ft_memdel((void **)&object->csg_tree.right);
+	}
+}
+
+void			del_ray_object(void *data)
+{
+	t_ray_object	*object;
+
+	object = (t_ray_object *)data;
+	if (object->type == RAYOBJ_TRIANGLEMESH)
+		del_kd_tree(&object->mesh_tree);
+	del_ray_object_properties(object);
+	free(data);
+}
 
 static t_error	create_mesh_tree_from_obj(t_ray_object *object)
 {

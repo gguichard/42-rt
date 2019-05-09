@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/05 19:00:42 by roduquen         ###   ########.fr        #
+#    Updated: 2019/05/09 20:16:53 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ LDLIBS		=	-lft
 SRC_DIR		=	src
 SRC 		=					\
 draw.c							\
-init_objects.c					\
 lib.c							\
 main.c							\
+objects.c						\
 effects/bump_mapping.c			\
 effects/cartoon_filter.c		\
 effects/checkerboard.c			\

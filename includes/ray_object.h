@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/08 22:33:55 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/09 20:14:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ struct				s_ray_object
 	t_quaternion	rot_quat;
 	t_quaternion	inv_rot_quat;
 };
+
+void				del_ray_object_properties(t_ray_object *object);
+void				del_ray_object(void *data);
 
 int					hit_boundingbox(t_vec3d min, t_vec3d max, t_ray_hit *hit);
 

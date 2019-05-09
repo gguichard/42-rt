@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/08 23:26:04 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/09 20:40:03 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,11 @@
 #include <math.h>
 #include "libft.h"
 #include "json_parser.h"
-#include "raytracer.h"
 #include "parser.h"
-#include "error.h"
+#include "raytracer.h"
 #include "ray_object.h"
-#include "math_utils.h"
+#include "error.h"
 #include "quaternion.h"
-
-void			del_ray_object_properties(t_ray_object *object)
-{
-	if (object->csg_tree.left != NULL)
-	{
-		del_ray_object_properties(object->csg_tree.left);
-		ft_memdel((void **)&object->csg_tree.left);
-	}
-	if (object->csg_tree.right != NULL)
-	{
-		del_ray_object_properties(object->csg_tree.right);
-		ft_memdel((void **)&object->csg_tree.right);
-	}
-}
-
-static void		del_ray_object(void *ptr)
-{
-	t_ray_object	*object;
-
-	object = (t_ray_object *)ptr;
-	del_ray_object_properties(object);
-	free(ptr);
-}
 
 static t_error	parse_ray_object(t_json_token *token, t_ray_object *object)
 {
@@ -106,7 +82,7 @@ t_error			parse_ray_objects(t_data *data, t_json_token *token)
 		if (err == ERR_NOERROR && (!ft_vecpush((object->type == RAYOBJ_LIGHT
 						|| object->type == RAYOBJ_AMBIENTLIGHT)
 					? &data->lights : &data->objects, object)))
-				err = ERR_UNEXPECTED;
+			err = ERR_UNEXPECTED;
 		child = child->next;
 	}
 	if (err != ERR_NOERROR)

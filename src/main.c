@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 22:55:16 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 06:38:28 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/09 20:17:19 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include "lib.h"
 #include "parser.h"
 #include "camera.h"
-#include "mesh_tree.h"
 #include "ray_object.h"
+#include "mesh_tree.h"
 
 static int	exit_with_error(t_error err, char *prog)
 {
@@ -35,16 +35,6 @@ static void	init_default_values(t_data *data)
 	data->winsize.aspect_ratio = data->winsize.width
 		/ (double)data->winsize.height;
 	data->camera.fov = tan(90 * .5 / 180 * M_PI);
-}
-
-static void	del_ray_object(void *data)
-{
-	t_ray_object	*object;
-
-	object = (t_ray_object *)data;
-	if (object->type == RAYOBJ_TRIANGLEMESH)
-		del_kd_tree(&object->mesh_tree);
-	free(data);
 }
 
 int			main(int argc, char **argv)

@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 10, -15]
+		"origin": [0, 10, 0]
 	},
 	"objects": [
 		{
@@ -19,7 +19,7 @@
 		{
 			"type": "sphere",
 			"radius": 2,
-			"origin": [0, 10, -5],
+			"origin": [0, 10, 7],
 			"color": [222, 255, 255],
 			"checkerboard": {
 				"color": [55, 42, 127],
@@ -29,16 +29,23 @@
 		{
 			"type": "sphere",
 			"radius": 2,
-			"origin": [5, 10, 0],
+			"origin": [0, 10, -7],
 			"color": [225, 255, 0],
 			"perlin": [225, 0, 0]
 		},
 		{
 			"type": "sphere",
 			"radius": 2,
-			"origin": [-5, 10, 0],
+			"origin": [-7, 10, 0],
 			"color": [0, 255, 255],
 			"wood": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2,
+			"origin": [7, 10, 0],
+			"color": [0, 255, 255],
+			"wood": [0, 0, 255]
 		},
 		{
 			"type": "light",

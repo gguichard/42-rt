@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 06:27:43 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/08 06:40:40 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 09:42:14 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,25 @@ void	draw_camera_pos_value(t_text *msg, t_camera *cam)
 void	compute_cam_angle(double angle[3], t_camera *cam)
 {
 	t_vec3d		axe;
-	t_vec3d		dir;
 	double		res;
 
-	axe.x = 1;
-	axe.y = 0;
-	axe.z = 0;
-	dir.x = cam->direction.x;
-	dir.y = 0;
-	dir.z = 0;
-	dir = vec3d_unit(dir);
+	axe = vec3d(1, 0, 0);
+	axe = vec3d_unit(axe);
 	res = vec3d_dot(cam->direction, axe);
 	angle[0] = acos(res) * (180.0 / M_PI);
-	axe.x = 0;
-	axe.y = 1;
-	dir.x = 0;
-	dir.y = cam->direction.y;
-	dir = vec3d_unit(dir);
-	res = vec3d_dot(cam->direction, axe);
-	angle[1] = acos(res) * (180.0 / M_PI);	
-	axe.y = 0;
-	axe.z = 1;
-	dir.y = 0;
-	dir.z = cam->direction.z;
-	dir = vec3d_unit(dir);
-	res = vec3d_dot(cam->right, axe);
-	angle[2] = acos(res) * (180.0 / M_PI);	
+//	if (cam->direction.z > 0)
+//		angle[0] *= (-1); 
+	axe = vec3d(0, 1, 0);
+	axe = vec3d_unit(axe);
+	res = vec3d_dot(cam->up, axe);
+	angle[1] = acos(res) * (180.0 / M_PI);
+//	if (cam->direction.z < 0)
+//		angle[1] *= (-1); 
+	axe = vec3d(0, 0, 1);
+	res = vec3d_dot(cam->up, axe);
+	angle[2] = acos(res) * (180.0 / M_PI);
+//	if (cam->direction.y < 0)
+//		angle[2] *= (-1); 
 }
 
 void	draw_camera_angle_value(t_text *msg, t_camera *cam)

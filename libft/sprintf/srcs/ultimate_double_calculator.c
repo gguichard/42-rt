@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:28:03 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/03 08:31:32 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/09 15:19:35 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	double_calculator2(t_dconv *var, t_double *doub)
 		zero_doub(var);
 	else if (doub->exp == 1024)
 		infinity_nan(var, doub, "nan.", "inf.");
-	else if (doub->exp > 0)
+	else if (doub->exp >= 0)
 		infinity_mul(var, doub, 53);
 	else
 		infinity_div(var, doub, 53);

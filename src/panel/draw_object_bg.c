@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 04:50:54 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 14:06:31 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 15:58:22 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int		draw_effect_bg(t_text *msg)
 {
 	msg->pos.x = 693;
 	msg->pos.y = 8;
-	SDL_QueryTexture(msg->texture, NULL, NULL, &(msg->pos.w), &(msg->pos.h));
-	SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos));
+	if (SDL_QueryTexture(msg->texture, NULL, NULL,
+				&(msg->pos.w), &(msg->pos.h)) < 0)
+		return (0);
+	if (SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos)) < 0)
+		return (0);
 	return (1);
 }
 
@@ -26,8 +29,11 @@ int		draw_attribute_bg(t_text *msg)
 {
 	msg->pos.x = 843;
 	msg->pos.y = 8;
-	SDL_QueryTexture(msg->texture, NULL, NULL, &(msg->pos.w), &(msg->pos.h));
-	SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos));
+	if (SDL_QueryTexture(msg->texture, NULL, NULL,
+				&(msg->pos.w), &(msg->pos.h)) < 0)
+		return (0);
+	if (SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos)) < 0)
+		return (0);
 	return (1);
 }
 
@@ -35,8 +41,11 @@ int		draw_object_bg(t_text *msg)
 {
 	msg->pos.x = 342;
 	msg->pos.y = 8;
-	SDL_QueryTexture(msg->texture, NULL, NULL, &(msg->pos.w), &(msg->pos.h));
-	SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos));
+	if (SDL_QueryTexture(msg->texture, NULL, NULL,
+				&(msg->pos.w), &(msg->pos.h)) < 0)
+		return (0);
+	if (SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos)) < 0)
+		return (0);
 	return (1);
 }
 

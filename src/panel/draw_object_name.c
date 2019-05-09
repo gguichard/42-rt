@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 14:12:13 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 16:00:30 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	*get_obj_type(int id)
 	if (id == 1)
 		return ("SPHERE");
 	if (id == 2)
-		return ("PLAN");
+		return ("PLANE");
 	if (id == 3)
-		return ("CYLENDER");
+		return ("CYLINDER");
 	if (id == 4)
 		return ("CONE");
 	if (id == 5)
@@ -34,10 +34,12 @@ char	*get_obj_type(int id)
 		return ("HYPERBOLOID");
 	if (id == 9)
 		return ("TANGLECUBE");
+	if (id == 9)
+		return ("TRIANGLEMESH");
 	return ("UNKNOWN");
 }
 
-void	draw_obj_name(t_data *data)
+int		draw_obj_name(t_data *data)
 {
 	t_text	msg;
 
@@ -48,5 +50,7 @@ void	draw_obj_name(t_data *data)
 	msg.pos.y = 12;
 	msg.str = get_obj_type(data->current->type);
 	msg.police = data->lib.panel.arial_black_13;
-	write_text(&(msg));
+	if (!(write_text(&(msg))))
+		return (0);
+	return (1);
 }

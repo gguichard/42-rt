@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 14:03:50 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 15:56:03 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,26 @@
 int		write_text(t_text *msg)
 {
 	if (!(msg->texte = TTF_RenderText_Shaded(msg->police, msg->str,
-					msg->fg_color, msg->bg_color)))	
+					msg->fg_color, msg->bg_color)))
 		return (0);
-	msg->texture = SDL_CreateTextureFromSurface(msg->renderer, msg->texte);
-	SDL_QueryTexture(msg->texture, NULL, NULL, &(msg->pos.w), &(msg->pos.h));
-	SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos));
+	if (!(msg->texture = SDL_CreateTextureFromSurface(msg->renderer,
+					msg->texte)))
+	{
+		SDL_FreeSurface(msg->texte);
+		return (0);
+	}
 	SDL_FreeSurface(msg->texte);
+	if (SDL_QueryTexture(msg->texture, NULL, NULL,
+				&(msg->pos.w), &(msg->pos.h)) < 0)
+	{
+		SDL_DestroyTexture(msg->texture);
+		return (0);
+	}
+	if (SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos)) < 0)
+	{
+		SDL_DestroyTexture(msg->texture);
+		return (0);
+	}
 	SDL_DestroyTexture(msg->texture);
 	return (1);
 }
@@ -47,20 +61,28 @@ int		draw_panel_main(t_data *data)
 	msg.pos.y = 0;
 	msg.pos.w = 1000;
 	msg.pos.h = 150;
-	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
+	if (SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos)) < 0)
+		return (0);
 	msg.police = data->lib.panel.arial_black_12;
-	draw_camera_value(&msg, &(data->camera));
+	if (!(draw_camera_value(&msg, &(data->camera))))
+		return (0);
 	return (1);
 }
 
 int		draw_panel_obj(t_data *data)
 {
-	draw_obj_bg(data);
-	draw_obj_name(data);
-	draw_obj_color(data);
-	draw_obj_spatial(data);
-	draw_obj_light(data);
-	draw_obj_effect(data);
+	if (!(draw_obj_bg(data)))
+		return (0);
+	if (!(draw_obj_name(data)))
+		return (0);
+	if (!(draw_obj_color(data)))
+		return (0);
+	if (!(draw_obj_spatial(data)))
+		return (0);
+	if (!(draw_obj_light(data)))
+		return (0);
+	if (!(draw_obj_effect(data)))
+		return (0);
 	return (1);
 }
 

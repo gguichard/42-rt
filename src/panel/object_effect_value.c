@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 08:11:46 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 14:10:38 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 17:11:44 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,33 @@
 #include "vec3d.h"
 #include "raytracer.h"
 
-void	draw_rough_bump(t_text *msg, t_data *data)
+int		draw_rough_bump(t_text *msg, t_data *data)
 {
 	msg->pos.x = 800;
 	msg->pos.y = 108;
 	msg->police = data->lib.panel.arial_black_9;
-	msg->str = ft_sprintf("%.1lf", data->current->bump);
-	write_text(msg);
+	if (!(msg->str = ft_sprintf("%.1lf", data->current->bump)))
+		return (0);
+	if (!(write_text(msg)))
+	{
+		free(msg->str);
+		return (0);
+	}
 	free(msg->str);
 	msg->pos.x = 800;
 	msg->pos.y = 124;
-	msg->str = ft_sprintf("%.1lf", data->current->roughness);
-	write_text(msg);
+	if (!(msg->str = ft_sprintf("%.1lf", data->current->roughness)))
+		return (0);
+	if (!(write_text(msg)))
+	{
+		free(msg->str);
+		return (0);
+	}
 	free(msg->str);
+	return (1);
 }
 
-void	draw_checker(t_text *msg, t_data *data)
+int		draw_checker(t_text *msg, t_data *data)
 {
 	msg->pos.x = 800;
 	msg->pos.y = 36;
@@ -39,18 +50,22 @@ void	draw_checker(t_text *msg, t_data *data)
 	if (!(data->current->checker.size))
 	{
 		msg->str = "off";
-		write_text(msg);
+		if (!(write_text(msg)))
+			return (0);
 	}
 	else
 	{
 		msg->pos.x = 780;
 		msg->str = "on";
-		write_text(msg);
-		draw_checker_color(data);
+		if (!(write_text(msg)))
+			return (0);
+		if (!(draw_checker_color(data)))
+			return (0);
 	}
+	return (1);
 }
 
-void	draw_wood(t_text *msg, t_data *data)
+int		draw_wood(t_text *msg, t_data *data)
 {
 	msg->pos.x = 800;
 	msg->pos.y = 64;
@@ -58,18 +73,22 @@ void	draw_wood(t_text *msg, t_data *data)
 	if (!(data->current->wood.enabled))
 	{
 		msg->str = "off";
-		write_text(msg);
+		if (!(write_text(msg)))
+			return (0);
 	}
 	else
 	{
 		msg->pos.x = 780;
 		msg->str = "on";
-		write_text(msg);
-		draw_wood_color(data);
+		if (!(write_text(msg)))
+			return (0);
+		if (!(draw_wood_color(data)))
+			return (0);
 	}
+	return (1);
 }
 
-void	draw_perlin(t_text *msg, t_data *data)
+int		draw_perlin(t_text *msg, t_data *data)
 {
 	msg->pos.x = 800;
 	msg->pos.y = 87;
@@ -77,26 +96,35 @@ void	draw_perlin(t_text *msg, t_data *data)
 	if (!(data->current->perlin.enabled))
 	{
 		msg->str = "off";
-		write_text(msg);
+		if (!(write_text(msg)))
+			return (0);
 	}
 	else
 	{
 		msg->pos.x = 780;
 		msg->str = "on";
-		write_text(msg);
-		draw_perlin_color(data);
+		if (!(write_text(msg)))
+			return (0);
+		if (!(draw_perlin_color(data)))
+			return (0);
 	}
+	return (1);
 }
 
-void	draw_obj_effect(t_data *data)
+int		draw_obj_effect(t_data *data)
 {
 	t_text	msg;
 
 	msg.renderer = data->lib.panel.renderer;
 	set_rgba_text(&(msg.bg_color), 0xE1E1E1);
 	set_rgba_text(&(msg.fg_color), 0x0);
-	draw_rough_bump(&(msg), data);
-	draw_wood(&(msg), data);
-	draw_perlin(&(msg), data);
-	draw_checker(&(msg), data);
+	if (!(draw_rough_bump(&(msg), data)))
+		return (0);
+	if (!(draw_wood(&(msg), data)))
+		return (0);
+	if (!(draw_perlin(&(msg), data)))
+		return (0);
+	if (!(draw_checker(&(msg), data)))
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/08 05:37:43 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/05/09 13:16:59 by ymekraou         ###   ########.fr        #
 #    Updated: 2019/05/05 19:00:42 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -95,6 +95,8 @@ ui/key_filter_events.c			\
 ui/lib_hooks.c					\
 ui/shape_keys.c					\
 ui/shape_transforms.c			\
+panel/init_panel.c				\
+panel/quit_panel.c				\
 panel/draw_panel.c				\
 panel/panel_camera_value.c		\
 panel/draw_object_bg.c			\

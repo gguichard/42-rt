@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/08 06:28:14 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 14:12:13 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	draw_obj_name(t_data *data)
 	msg.pos.x = 490;
 	msg.pos.y = 12;
 	msg.str = get_obj_type(data->current->type);
-	write_text(&(msg), 13);
+	msg.police = data->lib.panel.arial_black_13;
+	write_text(&(msg));
 }

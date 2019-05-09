@@ -6,36 +6,23 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/08 06:35:52 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 14:03:50 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 #include "panel.h"
 
-int		write_text(t_text *msg, int size)
+int		write_text(t_text *msg)
 {
-	if (TTF_Init() == -1)
-		return (0);
-	if (!(msg->police = TTF_OpenFont("/Library/Fonts/Arial Black.ttf", size)))
-	{
-		TTF_Quit();
-		return (0);
-	}
 	if (!(msg->texte = TTF_RenderText_Shaded(msg->police, msg->str,
-					msg->fg_color, msg->bg_color)))
-	{
-		TTF_CloseFont(msg->police);
-		TTF_Quit();
+					msg->fg_color, msg->bg_color)))	
 		return (0);
-	}
 	msg->texture = SDL_CreateTextureFromSurface(msg->renderer, msg->texte);
 	SDL_QueryTexture(msg->texture, NULL, NULL, &(msg->pos.w), &(msg->pos.h));
 	SDL_RenderCopy(msg->renderer, msg->texture, NULL, &(msg->pos));
 	SDL_FreeSurface(msg->texte);
 	SDL_DestroyTexture(msg->texture);
-	TTF_CloseFont(msg->police);
-	TTF_Quit();
 	return (1);
 }
 
@@ -53,19 +40,15 @@ void	set_rgba_text(SDL_Color *color, int value)
 int		draw_panel_main(t_data *data)
 {
 	t_text		msg;
-	SDL_Surface	*bg;
 
 	msg.renderer = data->lib.panel.renderer;
-	if (!(bg = SDL_LoadBMP("src/panel/background/panel_bg.bmp")))
-		return (0);
-	msg.texture = SDL_CreateTextureFromSurface(msg.renderer, bg);
-	SDL_FreeSurface(bg);
+	msg.texture = data->lib.panel.panel_bg;
 	msg.pos.x = 0;
 	msg.pos.y = 0;
 	msg.pos.w = 1000;
 	msg.pos.h = 150;
 	SDL_RenderCopy(msg.renderer, msg.texture, NULL, &(msg.pos));
-	SDL_DestroyTexture(msg.texture);
+	msg.police = data->lib.panel.arial_black_12;
 	draw_camera_value(&msg, &(data->camera));
 	return (1);
 }

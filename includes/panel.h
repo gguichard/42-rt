@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 02:50:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/08 08:31:44 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 13:50:09 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct		s_text
 ** PROTOTYPES
 */
 
-int					write_text(t_text *msg, int size);
+int					write_text(t_text *msg);
 void				set_rgba_text(SDL_Color *color, int value);
 void				draw_obj_name(t_data *data);
 int					draw_obj_bg(t_data *data);

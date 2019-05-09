@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 06:27:43 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 10:56:14 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/09 14:30:12 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	draw_camera_pos_value(t_text *msg, t_camera *cam)
 	msg->pos.x = 125;
 	msg->pos.y = 65;
 	msg->str = ft_sprintf("%.2lf", cam->origin.x);
-	write_text(msg, 12);
+	write_text(msg);
 	free(msg->str);
 	msg->pos.x = 125;
 	msg->pos.y = 87;
 	msg->str = ft_sprintf("%.2lf", cam->origin.y);
-	write_text(msg, 12);
+	write_text(msg);
 	free(msg->str);
 	msg->pos.x = 125;
 	msg->pos.y = 110;
 	msg->str = ft_sprintf("%.2lf", cam->origin.z);
-	write_text(msg, 12);
+	write_text(msg);
 	free(msg->str);
 }
 
@@ -40,17 +40,17 @@ void	draw_camera_angle_value(t_text *msg, t_camera *cam)
 	msg->pos.x = 275;
 	msg->pos.y = 65;
 	msg->str = ft_sprintf("%.1lf", cam->direction.x);
-	write_text(msg, 12);
+	write_text(msg);
 	free(msg->str);
 	msg->pos.x = 275;
 	msg->pos.y = 87;
 	msg->str = ft_sprintf("%.1lf", cam->direction.y);
-	write_text(msg, 12);
+	write_text(msg);
 	free(msg->str);
 	msg->pos.x = 275;
 	msg->pos.y = 110;
 	msg->str = ft_sprintf("%.1lf", cam->direction.z);
-	write_text(msg, 12);
+	write_text(msg);
 	free(msg->str);
 }
 

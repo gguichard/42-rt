@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 00:45:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:54:59 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 03:33:54 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	ui_select_object(t_data *data, SDL_Event *event);
 void	ui_radius_shape(t_data *data, SDL_Event *event);
 void	ui_translate_shape(t_data *data, t_vec3d direction);
+void	ui_rotate_shape(t_data *data, t_vec3d rotation, double angle);
 
 void	ui_loop_keys(t_data *data);
 void	ui_shapes_keys(SDL_Event *event, t_data *data);

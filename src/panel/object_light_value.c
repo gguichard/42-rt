@@ -6,12 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 06:41:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 18:45:09 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:47:57 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
-#include "ft_sprintf.h"
 #include "panel.h"
 #include "vec3d.h"
 #include "raytracer.h"
@@ -20,7 +19,7 @@ int		draw_objlight_one(t_text *msg, t_ray_object *obj)
 {
 	msg->pos.x = 947;
 	msg->pos.y = 28;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->diffuse)))
+	if (!(msg->str = double_as_string(obj->diffuse, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -30,7 +29,7 @@ int		draw_objlight_one(t_text *msg, t_ray_object *obj)
 	free(msg->str);
 	msg->pos.x = 947;
 	msg->pos.y = 45;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->specular)))
+	if (!(msg->str = double_as_string(obj->specular, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -45,7 +44,7 @@ int		draw_objlight_two(t_text *msg, t_ray_object *obj)
 {
 	msg->pos.x = 947;
 	msg->pos.y = 64;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->shininess)))
+	if (!(msg->str = double_as_string(obj->shininess, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -55,7 +54,7 @@ int		draw_objlight_two(t_text *msg, t_ray_object *obj)
 	free(msg->str);
 	msg->pos.x = 947;
 	msg->pos.y = 83;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->refractive * 100.0)))
+	if (!(msg->str = double_as_string(obj->refractive, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -70,7 +69,7 @@ int		draw_objlight_three(t_text *msg, t_ray_object *obj)
 {
 	msg->pos.x = 947;
 	msg->pos.y = 102;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->reflective * 100.0)))
+	if (!(msg->str = double_as_string(obj->reflective * 100.0, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -80,7 +79,7 @@ int		draw_objlight_three(t_text *msg, t_ray_object *obj)
 	free(msg->str);
 	msg->pos.x = 947;
 	msg->pos.y = 121;
-	if (!(msg->str = ft_sprintf("%.2lf", obj->rf_factor)))
+	if (!(msg->str = double_as_string(obj->rf_factor * 100.0, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{

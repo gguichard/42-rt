@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/08 23:15:54 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/10 17:27:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ static void		parse_object_property_2(t_json_token *child
 		*err = parse_ray_object_checker(child, &object->checker);
 	else if (ft_strequ(child->key, "bump"))
 		object->bump = read_json_double(child, err);
-	else if (ft_strequ(child->key, "sin_normal"))
-		object->sin_normal = read_json_double(child, err);
+	else if (ft_strequ(child->key, "wavy_effect"))
+		object->wavy_effect = read_json_boolean(child, err);
 	else if (ft_strequ(child->key, "roughness"))
 		object->roughness = read_json_double(child, err);
 	else

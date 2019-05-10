@@ -6,12 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 06:27:43 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 17:58:30 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:45:44 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
-#include "ft_sprintf.h"
 #include "panel.h"
 #include "vec3d.h"
 
@@ -19,7 +18,7 @@ int		draw_camvalue_one(t_text *msg, t_camera *cam)
 {
 	msg->pos.x = 125;
 	msg->pos.y = 65;
-	if (!(msg->str = ft_sprintf("%.2lf", cam->origin.x)))
+	if (!(msg->str = double_as_string(cam->origin.x, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -29,7 +28,7 @@ int		draw_camvalue_one(t_text *msg, t_camera *cam)
 	free(msg->str);
 	msg->pos.x = 125;
 	msg->pos.y = 87;
-	if (!(msg->str = ft_sprintf("%.2lf", cam->origin.y)))
+	if (!(msg->str = double_as_string(cam->origin.y, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -44,7 +43,7 @@ int		draw_camvalue_two(t_text *msg, t_camera *cam)
 {
 	msg->pos.x = 125;
 	msg->pos.y = 110;
-	if (!(msg->str = ft_sprintf("%.2lf", cam->origin.z)))
+	if (!(msg->str = double_as_string(cam->origin.z, 2)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -54,7 +53,7 @@ int		draw_camvalue_two(t_text *msg, t_camera *cam)
 	free(msg->str);
 	msg->pos.x = 275;
 	msg->pos.y = 65;
-	if (!(msg->str = ft_sprintf("%.1lf", cam->direction.x)))
+	if (!(msg->str = double_as_string(cam->direction.x, 1)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -69,7 +68,7 @@ int		draw_camvalue_three(t_text *msg, t_camera *cam)
 {
 	msg->pos.x = 275;
 	msg->pos.y = 87;
-	if (!(msg->str = ft_sprintf("%.1lf", cam->direction.y)))
+	if (!(msg->str = double_as_string(cam->direction.y, 1)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -79,7 +78,7 @@ int		draw_camvalue_three(t_text *msg, t_camera *cam)
 	free(msg->str);
 	msg->pos.x = 275;
 	msg->pos.y = 110;
-	if (!(msg->str = ft_sprintf("%.1lf", cam->direction.z)))
+	if (!(msg->str = double_as_string(cam->direction.z, 1)))
 		return (0);
 	if (!(write_text(msg)))
 	{

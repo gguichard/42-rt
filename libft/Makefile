@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/29 17:35:18 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/05 19:03:42 by roduquen         ###   ########.fr        #
+#    Updated: 2019/05/10 18:56:40 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,16 +125,13 @@ PF_LIB		=	$(PF_DIR)/printf.a
 JSON_DIR	=	json_parser
 JSON_LIB	=	$(JSON_DIR)/json_parser.a
 
-SPF_DIR		=	sprintf
-SPF_LIB		=	$(SPF_DIR)/libftsprintf.a
-
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 CPPFLAGS	=	-Iincludes
 
 all: $(NAME)
 
-$(NAME): $(PF_LIB) $(SPF_LIB) $(JSON_LIB) $(addprefix $(OBJ_DIR)/,$(OBJ))
+$(NAME): $(PF_LIB) $(JSON_LIB) $(addprefix $(OBJ_DIR)/,$(OBJ))
 	libtool -static -o $(NAME) $^
 
 $(PF_LIB):
@@ -142,9 +139,6 @@ $(PF_LIB):
 
 $(JSON_LIB):
 	$(MAKE) -C $(JSON_DIR)
-
-$(SPF_LIB):
-	$(MAKE) -C $(SPF_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c includes/libft.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
@@ -155,13 +149,11 @@ $(OBJ_DIR):
 clean:
 	$(MAKE) -C $(PF_DIR) clean
 	$(MAKE) -C $(JSON_DIR) clean
-	$(MAKE) -C $(SPF_DIR) clean
 	/bin/rm -rf $(OBJ_DIR)
 
 fclean: clean
 	$(MAKE) -C $(PF_DIR) fclean
 	$(MAKE) -C $(JSON_DIR) fclean
-	$(MAKE) -C $(SPF_DIR) fclean
 	/bin/rm -f $(NAME)
 
 re:

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 02:50:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 17:53:56 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:58:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,7 @@ int					draw_checker_color(t_data *data);
 int					draw_obj_light(t_data *data);
 int					draw_obj_effect(t_data *data);
 int					draw_camera_value(t_text *msg, t_camera *cam);
+
+char				*double_as_string(double value, unsigned int precision);
+
 #endif

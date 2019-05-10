@@ -6,11 +6,10 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 16:00:30 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:40:05 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sprintf.h"
 #include "panel.h"
 #include "raytracer.h"
 

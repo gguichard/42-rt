@@ -6,10 +6,11 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:59 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 02:50:25 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 03:24:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "ray_object.h"
 #include "vec3d.h"
 
@@ -33,7 +34,7 @@ void			hit_triangle(t_ray_object *object, t_ray_hit *hit)
 	tmp[1] = vec3d_sub(object->vertices[2], object->vertices[0]);
 	tmp[2] = vec3d_cross(hit->direction, tmp[1]);
 	var[0] = vec3d_dot(tmp[0], tmp[2]);
-	if (var[0] > -EPSILON && var[0] < EPSILON)
+	if (fabs(var[0]) < EPSILON)
 		return ;
 	var[1] = 1.0 / var[0];
 	tmp[3] = vec3d_sub(hit->origin, object->vertices[0]);

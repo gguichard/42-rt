@@ -60,12 +60,9 @@
 			}
 		},
 		{
-			"type": "csg_union",
+			"type": "csg_inter",
 			"origin": [0, 0, 0],
 			"color": [255, 255, 255],
-			"bump": 10.0,
-			"refractive": 1.5,
-			"refractive_factor": 0.7,
 			"csg_left": {
 				"type": "sphere",
 				"origin": [20, 0, 0],
@@ -73,31 +70,16 @@
 				"radius": 40
 			},
 			"csg_right": {
-				"type": "csg_union",
-				"origin": [10, 0, 0],
-				"color": [0, 255, 255],
-				"csg_left": {
 					"type": "sphere",
 					"origin": [50, 0, 0],
 					"color": [255, 255, 255],
 					"radius": 40
-				},
-				"csg_right": {
-					"type": "torus",
-					"origin": [50, 0, 0],
-					"color": [255, 255, 255],
-					"radius": 5,
-					"big_radius": 30
 				}
-			}
 		},
 		{
 			"type": "csg_union",
 			"origin": [0, 0, -100],
 			"color": [255, 255, 255],
-			"bump": 10.0,
-			"refractive": 1.5,
-			"refractive_factor": 0.7,
 			"csg_left": {
 				"type": "sphere",
 				"origin": [20, 0, 0],

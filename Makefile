@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/10 20:32:03 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/10 20:32:48 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ lib.c							\
 main.c							\
 objects.c						\
 csg/const_solid_geo.c			\
+csg/csg_inter.c					\
 csg/csg_sub.c					\
 effects/bump_mapping.c			\
 effects/cartoon_filter.c		\

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:28:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/07 17:35:16 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/10 21:20:42 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			hit_cylinder(t_ray_object *object, t_ray_hit *hit)
 	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
 	hit->normal_b = vec3d_scalar(get_cylinder_normal(
 				object, hit, hit->dist_b), -1);
-	if (hit->dist < 0)
+	if (hit->dist < 0 || (hit->dist_b > 0 && hit->dist_b < hit->dist))
 	{
 		hit->dist = hit->dist_b;
 		hit->normal = hit->normal_b;

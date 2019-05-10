@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/09 20:00:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/10 17:28:26 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 # define UI_SHAPE_RIGHT (1 << 1)
 # define UI_SHAPE_UP (1 << 2)
 # define UI_SHAPE_DOWN (1 << 3)
+# define UI_SHAPE_ROTX (1 << 4)
+# define UI_SHAPE_ROTY (1 << 5)
+# define UI_SHAPE_ROTZ (1 << 6)
+# define UI_SHAPE_SHIFT (1 << 7)
 
 /*
 ** TYPEDEF & STRUCTURES

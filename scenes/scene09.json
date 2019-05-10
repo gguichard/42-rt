@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 10, -40]
+		"origin": [0, 25, -50]
 	},
 	"objects": [
 		{
@@ -28,7 +28,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [0, 10, 0],
+			"origin": [0, 15, 0],
 			"color": [244, 66, 226],
 			"radius": 10,
 			"specular": 0.4,

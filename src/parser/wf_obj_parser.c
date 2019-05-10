@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 09:10:11 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 20:11:35 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/06 19:47:04 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_error			parse_wf_obj_file(const char *file, t_wf_obj *obj, double scale)
 		free(line);
 	}
 	if (ret != 0 && err == ERR_NOERROR)
-		err = ERR_UNEXPECTED;
+		err = ERR_ERRNO;
 	if (err != ERR_NOERROR)
 		free_wf_obj(obj);
 	close(fd);

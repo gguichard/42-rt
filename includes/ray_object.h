@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/10 15:24:29 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/10 17:28:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ struct				s_ray_object
 	double			reflective;
 	double			refractive;
 	double			rf_factor;
-	double			sin_normal;
+	int				wavy_effect;
 	char			objfile_path[PATH_MAX + 1];
 	t_quaternion	rot_quat;
 	t_quaternion	inv_rot_quat;

@@ -6,7 +6,25 @@
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
-			"intensity": 0.3
+			"intensity": 0.05
+		},
+		{
+			"type": "light",
+			"origin": [-40, 35, -40],
+			"color": [255, 255, 255],
+			"intensity": 6000
+		},
+		{
+			"type": "light",
+			"origin": [40, 8, -40],
+			"color": [255, 255, 255],
+			"intensity": 6000
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 40],
+			"color": [35, 35, 255],
+			"rotation": [-90, 0, 0]
 		},
 		{
 			"type": "plane",

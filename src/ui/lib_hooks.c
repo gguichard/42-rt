@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:02:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 08:19:47 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:44:46 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void		run_event_loop(t_data *data)
 {
 	SDL_Event	event;
 
-	draw_panel(data);
 	data->running = 1;
 	while (data->running)
 	{
@@ -64,7 +63,9 @@ void		run_event_loop(t_data *data)
 		{
 			if (event.type == SDL_QUIT
 				|| (event.type == SDL_KEYDOWN
-					&& event.key.keysym.sym == SDLK_ESCAPE))
+					&& event.key.keysym.sym == SDLK_ESCAPE)
+				|| (event.type == SDL_WINDOWEVENT
+					&& event.window.event == SDL_WINDOWEVENT_CLOSE))
 			{
 				data->running = 0;
 				break ;
@@ -72,6 +73,7 @@ void		run_event_loop(t_data *data)
 			ui_shapes_keys(&event, data);
 			camera_press_key(&event, data);
 			filter_key_apply(&event, data);
+			draw_panel(data);
 		}
 		if (data->running)
 			handle_loop(data);

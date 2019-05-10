@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/10 15:24:29 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:18:46 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ void				hit_tanglecube(t_ray_object *object, t_ray_hit *hit);
 void				hit_trianglemesh(t_ray_object *object, t_ray_hit *hit);
 void				hit_with_csg(t_ray_object *object, t_ray_hit *hit);
 void				csg_sub_func(t_ray_hit hit1, t_ray_hit hit2
+	, t_ray_hit *hit);
+void				csg_inter_func(t_ray_hit hit1, t_ray_hit hit2
 	, t_ray_hit *hit);
 
 #endif

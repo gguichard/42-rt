@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:33:29 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/07 17:58:03 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/10 21:05:00 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void			hit_hyperboloid(t_ray_object *object, t_ray_hit *hit)
 	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
 	hit->normal = get_hyperboloid_normal(object, hit, hit->dist);
 	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
-	hit->normal_b = get_hyperboloid_normal(object, hit, hit->dist_b);
-	if (hit->dist < 0)
+	hit->normal_b = vec3d_scalar(get_hyperboloid_normal(
+				object, hit, hit->dist_b), -1);
+	if (hit->dist < 0 || (hit->dist_b > 0 && hit->dist_b < hit->dist))
 	{
 		hit->dist = hit->dist_b;
 		hit->normal = hit->normal_b;

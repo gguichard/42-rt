@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/10 17:28:18 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/10 18:46:25 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ ui/shape_keys.c					\
 ui/shape_transforms.c			\
 panel/init_panel.c				\
 panel/quit_panel.c				\
+panel/panel_utils.c				\
 panel/draw_panel.c				\
 panel/panel_camera_value.c		\
 panel/draw_object_bg.c			\

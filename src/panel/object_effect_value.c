@@ -6,12 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 08:11:46 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 18:42:06 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:40:41 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
-#include "ft_sprintf.h"
 #include "panel.h"
 #include "vec3d.h"
 #include "raytracer.h"
@@ -21,7 +20,7 @@ int		draw_rough_bump(t_text *msg, t_data *data)
 	msg->pos.x = 800;
 	msg->pos.y = 108;
 	msg->police = data->lib.panel.arial_black_9;
-	if (!(msg->str = ft_sprintf("%.1lf", data->current->bump)))
+	if (!(msg->str = double_as_string(data->current->bump, 1)))
 		return (0);
 	if (!(write_text(msg)))
 	{
@@ -31,7 +30,7 @@ int		draw_rough_bump(t_text *msg, t_data *data)
 	free(msg->str);
 	msg->pos.x = 800;
 	msg->pos.y = 124;
-	if (!(msg->str = ft_sprintf("%.1lf", data->current->roughness)))
+	if (!(msg->str = double_as_string(data->current->roughness, 1)))
 		return (0);
 	if (!(write_text(msg)))
 	{

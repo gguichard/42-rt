@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 11:13:38 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/02 18:10:26 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/10 15:38:29 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIN_TITLE "RT"
 # define WIN_WIDTH 1280
-# define WIN_HEIGHT 800
+# define WIN_HEIGHT 860
 
 typedef struct	s_winsize
 {

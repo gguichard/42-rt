@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/08 23:28:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/09 00:17:55 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ static void	assign_hit_fn(t_ray_object *object)
 		object->hit_fn = hit_tanglecube;
 	else if (object->type == RAYOBJ_TRIANGLEMESH)
 		object->hit_fn = hit_trianglemesh;
+	else if (object->type == RAYOBJ_CSGUNION || object->type == RAYOBJ_CSGINTER
+		|| object->type == RAYOBJ_CSGSUB)
+		object->hit_fn = hit_with_csg;
 }
 
 t_error		process_object_after_parsing(t_ray_object *object)

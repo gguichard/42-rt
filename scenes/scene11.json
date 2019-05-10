@@ -1,5 +1,5 @@
 {
-	"camera": {
+"camera": {
 		"origin": [0, 40, -50],
 		"rotation": [90, 0, 0],
 		"fov": 120
@@ -18,6 +18,13 @@
 		},
 		{
 			"type": "light",
+			"color": [174, 127, 10],
+			"origin": [70, 400, 100],
+			"intensity": 20000000
+		},
+
+		{
+			"type": "light",
 			"color": [0, 0, 255],
 			"origin": [40, 40, -50],
 			"intensity": 10000
@@ -29,24 +36,90 @@
 			"intensity": 10000
 		},
 		{
-			"type": "sphere",
-			"color": [0, 255, 0],
-			"origin": [0, -50, 0],
-			"radius": 10
+			"type": "plane",
+			"origin": [0, -30, 0],
+			"color": [150, 150, 150],
+			"x_max": 15,
+			"x_min" : -15
 		},
 		{
 			"type": "csg_sub",
-			"origin": [0, 0, 0],
+			"origin": [0, 400, -500],
+			"color": [190, 190, 190],
 			"csg_left": {
-				"type": "sphere",
-				"color": [255, 255, 255],
-				"radius": 15
+				"type": "ellipsoid",
+				"origin": [0, 0, 0],
+				"color": [47, 68, 248],
+				"size": [50, 20, 90]
 			},
 			"csg_right": {
+				"type": "hyperboloid",
+				"origin": [0, 0, 0],
+				"color": [156, 48, 158],
+				"radius": 10
+			}
+		},
+		{
+			"type": "csg_union",
+			"origin": [0, 0, 0],
+			"color": [255, 255, 255],
+			"bump": 10.0,
+			"refractive": 1.5,
+			"refractive_factor": 0.7,
+			"csg_left": {
 				"type": "sphere",
-				"origin": [10, 0, 0],
+				"origin": [20, 0, 0],
 				"color": [255, 255, 255],
-				"radius": 7
+				"radius": 40
+			},
+			"csg_right": {
+				"type": "csg_union",
+				"origin": [10, 0, 0],
+				"color": [0, 255, 255],
+				"csg_left": {
+					"type": "sphere",
+					"origin": [50, 0, 0],
+					"color": [255, 255, 255],
+					"radius": 40
+				},
+				"csg_right": {
+					"type": "torus",
+					"origin": [50, 0, 0],
+					"color": [255, 255, 255],
+					"radius": 5,
+					"big_radius": 30
+				}
+			}
+		},
+		{
+			"type": "csg_union",
+			"origin": [0, 0, -100],
+			"color": [255, 255, 255],
+			"bump": 10.0,
+			"refractive": 1.5,
+			"refractive_factor": 0.7,
+			"csg_left": {
+				"type": "sphere",
+				"origin": [20, 0, 0],
+				"color": [255, 255, 255],
+				"radius": 40
+			},
+			"csg_right": {
+				"type": "csg_sub",
+				"origin": [10, 0, 0],
+				"color": [0, 255, 255],
+				"csg_left": {
+					"type": "sphere",
+					"origin": [50, 0, 0],
+					"color": [255, 255, 255],
+					"radius": 40
+				},
+				"csg_right": {
+					"type": "cylinder",
+					"origin": [50, 0, 0],
+					"color": [255, 255, 255],
+					"radius": 20
+				}
 			}
 		}
 	]

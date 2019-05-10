@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 10:59:14 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/02 04:46:41 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/10 15:07:17 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	create_name_screen(char name[30])
 	time(&actual_time);
 	if (!(ctime_r(&actual_time, name)))
 		return (1);
+	name[24] = 0;
 	ft_strcat(name, ".ppm");
 	return (0);
 }

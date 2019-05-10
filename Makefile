@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/10 13:29:08 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/10 15:24:52 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ draw.c							\
 lib.c							\
 main.c							\
 objects.c						\
+csg/const_solid_geo.c			\
+csg/csg_sub.c					\
 effects/bump_mapping.c			\
 effects/cartoon_filter.c		\
 effects/checkerboard.c			\
@@ -145,6 +147,7 @@ $(SDL_DIR):
 
 $(OBJ_DIR):
 	@mkdir $@ 2> /dev/null || true
+	@mkdir $@/csg 2> /dev/null || true
 	@mkdir $@/effects 2> /dev/null || true
 	@mkdir $@/events 2> /dev/null || true
 	@mkdir $@/maths 2> /dev/null || true

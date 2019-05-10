@@ -1,6 +1,6 @@
 {
 	"camera": {
-		"origin": [0, 20, -20]
+		"origin": [0, 10, 0]
 	},
 	"objects": [
 		{
@@ -18,21 +18,34 @@
 		},
 		{
 			"type": "sphere",
-			"radius": 10,
-			"origin": [0, 20, 0],
-			"color": [222, 184, 135],
-			"specular": 0.5,
-			"shininess": 64,
-			"x_min": 5
+			"radius": 2,
+			"origin": [0, 10, 7],
+			"color": [222, 255, 255],
+			"checkerboard": {
+				"color": [55, 42, 127],
+				"size": 2
+			}
 		},
 		{
-			"type": "tanglecube",
-			"radius": 10,
-			"origin": [10, 45, 0],
-			"color": [255, 255, 255],
-			"specular": 0.3,
-			"shininess": 50,
-			"wood": [173, 128, 45]
+			"type": "sphere",
+			"radius": 2,
+			"origin": [0, 10, -7],
+			"color": [225, 255, 0],
+			"perlin": [225, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2,
+			"origin": [-7, 10, 0],
+			"color": [0, 255, 255],
+			"wood": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2,
+			"origin": [7, 10, 0],
+			"color": [0, 255, 255],
+			"wood": [0, 0, 255]
 		},
 		{
 			"type": "light",

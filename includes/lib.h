@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 02:05:00 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/09 20:00:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "SDL.h"
 # include "error.h"
 # include "winsize.h"
+# include "panel.h"
 
 /*
 ** MACROS
@@ -45,11 +46,26 @@
 
 typedef struct s_data	t_data;
 
+typedef struct		s_panel
+{
+	SDL_Window		*window;
+	SDL_Renderer	*renderer;
+	TTF_Font		*arial_black_13;
+	TTF_Font		*arial_black_12;
+	TTF_Font		*arial_black_11;
+	TTF_Font		*arial_black_9;
+	SDL_Texture		*panel_bg;
+	SDL_Texture		*light_bg;
+	SDL_Texture		*effect_bg;
+	SDL_Texture		*object_bg;
+}					t_panel;
+
 typedef struct		s_lib
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
 	SDL_Texture		*texture;
+	t_panel			panel;
 	unsigned int	cam_keys;
 	unsigned int	ui_keys;
 	unsigned int	*view;
@@ -62,5 +78,8 @@ typedef struct		s_lib
 t_error				init_and_create_window(t_lib *lib, t_winsize winsize);
 void				run_event_loop(t_data *data);
 void				destroy_lib(t_lib *lib);
-
+void				quit_panel(t_panel *panel);
+int					quit_panel_font(t_panel *panel);
+int					init_panel(t_panel *panel);
+int					draw_panel(t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:00:47 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/09 13:59:55 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	destroy_window(t_lib *lib)
 		SDL_DestroyWindow(lib->window);
 		lib->window = NULL;
 	}
+	quit_panel(&(lib->panel));
 }
 
 t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
@@ -46,6 +47,8 @@ t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
 		&& (lib->window = SDL_CreateWindow(WIN_TITLE
 					, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED
 					, winsize.width, winsize.height, 0)) == NULL)
+		err = ERR_SDLINIT;
+	if (err == ERR_NOERROR && !(init_panel(&(lib->panel))))
 		err = ERR_SDLINIT;
 	if (err == ERR_NOERROR
 		&& (lib->renderer = SDL_CreateRenderer(lib->window, -1

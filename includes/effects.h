@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 04:49:00 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/08 12:29:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/10 17:23:05 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void			perlin_random_permutation(t_perlin *perlin);
 void			perlin_basic_permutation(t_perlin *perlin);
 t_vec3d			perlin_noise_filter(t_vec3d intersect, t_vec3d color1
 	, t_vec3d color2, t_vec3d color3);
-t_vec3d			wood_filter(t_vec3d intersect, t_vec3d color1
-	, t_vec3d color2, t_vec3d color3);
+t_vec3d			wood_filter(t_vec3d intersect, t_vec3d color1, t_vec3d color2);
 t_vec3d			wavy_perturbation(t_vec3d normal, t_vec3d intersect);
 t_vec3d			bump_mapping(t_vec3d normal, t_vec3d intersect, double bump
 	, int type);

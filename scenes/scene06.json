@@ -6,66 +6,17 @@
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
-			"intensity": 0.05
-		},
-		{
-			"type": "light",
-			"origin": [-40, 35, -40],
-			"color": [255, 255, 255],
-			"intensity": 6000
-		},
-		{
-			"type": "light",
-			"origin": [40, 8, -40],
-			"color": [255, 255, 255],
-			"intensity": 6000
-		},
-		{
-			"type": "plane",
-			"origin": [0, 0, 40],
-			"color": [35, 35, 255],
-			"rotation": [-90, 0, 0]
+			"intensity": 0.3
 		},
 		{
 			"type": "plane",
 			"origin": [0, 0, 0],
-			"color": [80, 80, 80],
-			"diffuse": 0.05
-		},
-		{
-			"type": "sphere",
-			"origin": [-30, 10, 0],
-			"color": [255, 0, 0],
-			"radius": 10,
-			"specular": 0.4,
-			"shininess": 64
-		},
-		{
-			"type": "sphere",
-			"origin": [30, 10, 0],
-			"color": [0, 255, 0],
-			"radius": 10,
-			"specular": 0.4,
-			"shininess": 64
-		},
-		{
-			"type": "cylinder",
-			"origin": [-20, 0, 5],
-			"color": [241, 66, 244],
-			"rotation": [-90, 45, 0],
-			"radius": 7,
-			"specular": 0.2,
-			"shininess": 128,
-			"z_max": 10
-		},
-		{
-			"type": "cone",
-			"origin": [15, 8, 6],
-			"color": [244, 238, 66],
-			"rotation": [-90, -45, 0],
-			"angle": 15,
-			"specular": 0.1,
-			"shininess": 128
+			"color": [255, 255, 255],
+			"diffuse": 0.05,
+			"checkerboard": {
+				"size": 20,
+				"color": [0, 0, 0]
+			}
 		}
 	]
 }

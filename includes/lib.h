@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:10:58 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/10 17:28:26 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:17:53 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_error				init_and_create_window(t_lib *lib, t_winsize winsize);
 void				run_event_loop(t_data *data);
 void				destroy_lib(t_lib *lib);
 void				quit_panel(t_panel *panel);
-int					quit_panel_font(t_panel *panel);
+void				quit_panel_font(t_panel *panel);
 int					init_panel(t_panel *panel);
 int					draw_panel(t_data *data);
 #endif

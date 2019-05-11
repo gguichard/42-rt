@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:40:08 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 14:26:34 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/11 14:18:49 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int		init_panel_font(t_panel *panel)
 		return (0);
 	if (!(panel->arial_black_13 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
 					13)))
-		return (quit_panel_font(panel));
+		return (0);
 	if (!(panel->arial_black_12 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
 					12)))
-		return (quit_panel_font(panel));
+		return (0);
 	if (!(panel->arial_black_11 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
 					11)))
-		return (quit_panel_font(panel));
+		return (0);
 	if (!(panel->arial_black_9 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
 					9)))
-		return (quit_panel_font(panel));
+		return (0);
 	return (1);
 }
 

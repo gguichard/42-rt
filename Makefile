@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/10 20:32:48 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/11 12:52:42 by roduquen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ parser/parse_color.c			\
 parser/parse_limits.c			\
 parser/parse_misc.c				\
 parser/parse_objects.c			\
+parser/parse_objects_type.c		\
 parser/parse_objects_utils.c	\
 parser/parse_properties.c		\
 parser/parse_rotation.c			\

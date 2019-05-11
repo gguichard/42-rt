@@ -6,12 +6,11 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/10 17:27:58 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 12:56:25 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <limits.h>
 #include "libft.h"
 #include "json_parser.h"
 #include "parser.h"
@@ -19,7 +18,7 @@
 #include "ray_object.h"
 #include "math_utils.h"
 
-static int		get_ray_light_type(t_json_token *token)
+int				get_ray_light_type(t_json_token *token)
 {
 	if (token->type == JSON_STRING)
 	{
@@ -29,40 +28,6 @@ static int		get_ray_light_type(t_json_token *token)
 			return (RAYOBJ_AMBIENTLIGHT);
 	}
 	return (RAYOBJ_UNKNOWN);
-}
-
-int				get_ray_object_type(t_json_token *token)
-{
-	if (token->type == JSON_STRING)
-	{
-		if (ft_strequ(token->value.str, "sphere"))
-			return (RAYOBJ_SPHERE);
-		else if (ft_strequ(token->value.str, "plane"))
-			return (RAYOBJ_PLANE);
-		else if (ft_strequ(token->value.str, "cylinder"))
-			return (RAYOBJ_CYLINDER);
-		else if (ft_strequ(token->value.str, "cone"))
-			return (RAYOBJ_CONE);
-		else if (ft_strequ(token->value.str, "torus"))
-			return (RAYOBJ_TORUS);
-		else if (ft_strequ(token->value.str, "triangle"))
-			return (RAYOBJ_TRIANGLE);
-		else if (ft_strequ(token->value.str, "ellipsoid"))
-			return (RAYOBJ_ELLIPSOID);
-		else if (ft_strequ(token->value.str, "hyperboloid"))
-			return (RAYOBJ_HYPERBOLOID);
-		else if (ft_strequ(token->value.str, "tanglecube"))
-			return (RAYOBJ_TANGLECUBE);
-		else if (ft_strequ(token->value.str, "trianglemesh"))
-			return (RAYOBJ_TRIANGLEMESH);
-		else if (ft_strequ(token->value.str, "csg_union"))
-			return (RAYOBJ_CSGUNION);
-		else if (ft_strequ(token->value.str, "csg_sub"))
-			return (RAYOBJ_CSGSUB);
-		else if (ft_strequ(token->value.str, "csg_inter"))
-			return (RAYOBJ_CSGINTER);
-	}
-	return (get_ray_light_type(token));
 }
 
 static void		parse_object_csg_properties(t_json_token *child

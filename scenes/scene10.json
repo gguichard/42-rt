@@ -23,71 +23,59 @@
 			"intensity": 800000
 		},
 		{
-			"type": "sphere",
-			"origin": [0, 10, 0],
-			"color": [244, 66, 226],
-			"radius": 10,
-			"specular": 0.4,
-			"shininess": 64,
-			"refractive": 1.5,
-			"refractive_factor": 0.8,
-			"y_max": 0
-		},
-		{
-			"type": "sphere",
-			"origin": [0, 10, 0],
-			"color": [244, 66, 226],
-			"radius": 11,
-			"specular": 0.4,
-			"shininess": 64,
-			"refractive": 1.5,
-			"refractive_factor": 0.8,
-			"y_max": 0
-		},
-		{
-			"type": "cylinder",
-			"origin": [0, 0, 0],
-			"color": [244, 66, 226],
-			"radius": 2,
-			"refractive": 1.5,
-			"refractive_factor": 0.3,
-			"rotation": [90, 0, 0],
-			"z_min": 0,
-			"z_max": 20
-		},
-		{
-			"type": "cone",
-			"origin": [0, -19, 0],
-			"color": [244, 66, 226],
-			"angle": 80,
-			"refractive": 1.5,
-			"refractive_factor": 0.3,
-			"rotation": [-90, 0, 0],
-			"z_max": 0,
-			"z_min": -2
-		},
-		{
 			"type": "csg_union",
 			"origin": [0, 0, 0],
-			"color": [244, 66, 226],
-			"radius": 11,
+			"color": [175, 0, 175],
+			"specular": 0.1,
+			"shininess": 64,
 			"refractive": 1.5,
 			"refractive_factor": 0.8,
 			"csg_left": {
-				"type": "cylinder",
-				"origin": [0, 10, 0],
-				"radius": 11,
-				"rotation": [90, 0, 0],
-				"z_min": -15,
-				"z_max": 0
-			},
-			"csg_right": {
-				"type": "cylinder",
+				"type": "sphere",
 				"origin": [0, 10, 0],
 				"radius": 10,
-				"rotation": [90, 0, 0],
-				"z_min": -15,
-				"z_max": 0
+				"y_max": 0
+			},
+			"csg_right": {
+				"type": "csg_union",
+				"csg_left": {
+					"type": "cylinder",
+					"origin": [0, 0, 0],
+					"radius": 2,
+					"rotation": [90, 0, 0],
+					"z_min": 0,
+					"z_max": 20
+				},
+				"csg_right": {
+					"type": "csg_union",
+					"csg_left": {
+						"type": "cone",
+						"origin": [0, -19, 0],
+						"angle": 80,
+						"rotation": [-90, 0, 0],
+						"z_max": 0,
+						"z_min": -2
+					},
+					"csg_right": {
+						"type": "csg_union",
+						"csg_left": {
+							"type": "cylinder",
+							"origin": [0, 0, 0],
+							"radius": 2,
+							"rotation": [90, 0, 0],
+							"z_min": 0,
+							"z_max": 20
+						},
+						"csg_right": {
+							"type": "cylinder",
+							"origin": [0, 10, 0],
+							"radius": 10,
+							"rotation": [90, 0, 0],
+							"z_min": -15,
+							"z_max": 0
+						}
+					}
+				}
 			}
 		}
 	]

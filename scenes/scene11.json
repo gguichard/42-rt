@@ -4,6 +4,7 @@
 		"rotation": [90, 0, 0],
 		"fov": 120
 	},
+	"fog":1000,
 	"objects": [
 		{
 			"type": "ambient_light",
@@ -52,7 +53,6 @@
 			"color": [255, 255, 255],
 			"refractive": 1.5,
 			"refractive_factor": 0.9,
-			"bump": 20.0,
 			"csg_left": {
 				"type": "sphere",
 				"origin": [20, 0, 0],
@@ -60,11 +60,10 @@
 				"radius": 40
 			},
 			"csg_right": {
-				"type": "trianglemesh",
+				"type": "sphere",
 				"origin": [50, 0, 0],
 				"color": [255, 255, 255],
-				"radius": 40,
-				"objfile_path": "scenes/objects/dragon.obj"
+				"radius": 40
 			}
 		},
 		{

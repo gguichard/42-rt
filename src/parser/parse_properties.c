@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 13:14:16 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 17:54:36 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@
 #include "error.h"
 #include "ray_object.h"
 #include "math_utils.h"
-
-int				get_ray_light_type(t_json_token *token)
-{
-	if (token->type == JSON_STRING)
-	{
-		if (ft_strequ(token->value.str, "light"))
-			return (RAYOBJ_LIGHT);
-		else if (ft_strequ(token->value.str, "ambient_light"))
-			return (RAYOBJ_AMBIENTLIGHT);
-	}
-	return (RAYOBJ_UNKNOWN);
-}
 
 static void		parse_object_csg_properties(t_json_token *child
 	, t_ray_object *object, t_error *err)

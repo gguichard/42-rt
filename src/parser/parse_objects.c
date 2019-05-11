@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/09 20:40:03 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 17:56:16 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ static t_error	parse_ray_object(t_json_token *token, t_ray_object *object)
 		parse_object_property(child, object, &err);
 		child = child->next;
 	}
-	if (object->type == RAYOBJ_UNKNOWN)
-		err = ERR_SCENEBADOBJECT;
-	else
+	if (err == ERR_NOERROR)
 	{
-		object->rot_quat = xyz_rot_to_quat(vec3d_scalar(object->rotation, -1));
-		object->inv_rot_quat = quaternion_conj(object->rot_quat);
-		err = process_object_after_parsing(object);
+		if (object->type == RAYOBJ_UNKNOWN)
+			err = ERR_SCENEBADOBJECT;
+		else
+		{
+			object->rot_quat = xyz_rot_to_quat(vec3d_scalar(object->rotation
+						, -1));
+			object->inv_rot_quat = quaternion_conj(object->rot_quat);
+			err = process_object_after_parsing(object);
+		}
 	}
 	return (err);
 }

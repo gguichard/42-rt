@@ -1,7 +1,7 @@
 {
 	"camera": {
-		"origin": [-20, 20, -20],
-		"rotation": [40, 35, 0]
+		"origin": [300, 100, 76],
+		"rotation": [0, -90, 20]
 	},
 	"objects": [
 		{
@@ -22,7 +22,7 @@
 			"z_min": 0,
 			"z_max": 152,
 			"specular": 0.05,
-			"reflective": 0.05
+			"wood": [175, 52, 52]
 		},
 		{
 			"type": "cylinder",
@@ -31,8 +31,8 @@
 			"radius": 5,
 			"z_min": 0,
 			"z_max": 152,
-			"reflective": 0.05,
-			"specular": 0.05
+			"specular": 0.05,
+			"wood": [175, 52, 52]
 		},
 		{
 			"type": "cylinder",
@@ -42,8 +42,8 @@
 			"rotation": [0, 90, 0],
 			"z_min": 0,
 			"z_max": 280,
-			"reflective": 0.05,
-			"specular": 0.05
+			"specular": 0.05,
+			"wood": [175, 52, 52]
 		},
 		{
 			"type": "cylinder",
@@ -53,8 +53,8 @@
 			"rotation": [0, 90, 0],
 			"z_min": 0,
 			"z_max": 280,
-			"reflective": 0.05,
-			"specular": 0.05
+			"specular": 0.05,
+			"wood": [175, 52, 52]
 		},
 		{
 			"type": "sphere",
@@ -134,7 +134,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [186, 8, 27],
+			"origin": [186, 8.4, 27],
 			"color": [255, 127, 0],
 			"radius": 3.5,
 			"shininess": 30,
@@ -142,7 +142,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [128, 8, 82],
+			"origin": [128, 8.4, 82],
 			"color": [18, 150, 130],
 			"radius": 3.5,
 			"shininess": 30,
@@ -150,7 +150,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [18, 8, 58],
+			"origin": [18, 8.4, 58],
 			"color": [255, 0, 0],
 			"radius": 3.5,
 			"shininess": 30,
@@ -158,7 +158,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [124, 8, 120],
+			"origin": [124, 8.4, 120],
 			"color": [0, 255, 0],
 			"radius": 3.5,
 			"shininess": 30,
@@ -166,7 +166,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [132, 8, 132],
+			"origin": [132, 8.4, 132],
 			"color": [0, 0, 255],
 			"radius": 3.5,
 			"shininess": 30,
@@ -174,7 +174,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [250, 8, 82],
+			"origin": [250, 8.4, 82],
 			"color": [165, 164, 130],
 			"radius": 3.5,
 			"shininess": 30,
@@ -182,7 +182,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [20, 8, 20],
+			"origin": [20, 8.4, 20],
 			"color": [255, 255, 255],
 			"radius": 3.5,
 			"shininess": 30,
@@ -190,7 +190,7 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [35, 8, 135],
+			"origin": [35, 8.4, 135],
 			"color": [0, 0, 0],
 			"radius": 3.5,
 			"shininess": 30,
@@ -342,6 +342,36 @@
 			"z_max": -85,
 			"specular": 0.5,
 			"shininess": 30
+		},
+		{
+			"type": "triangle",
+			"vertices": [[0, 0, 100], [0, 100, 0], [0, 0, -100]],
+			"origin": [-99.9, 0, 76],
+			"rotation": [0, 180, 0],
+			"reflective": 1.0
+		},
+		{
+			"type": "cylinder",
+			"origin": [-99, 0, 76],
+			"radius": 2,
+			"z_max": 100,
+			"z_min": -100
+		},
+		{
+			"type": "cylinder",
+			"origin": [-99, 0, 177],
+			"radius": 2,
+			"z_max": 0,
+			"z_min": -142,
+			"rotation": [45, 0, 0]
+		},
+		{
+			"type": "cylinder",
+			"origin": [-99, 0, -25],
+			"radius": 2,
+			"z_max": 142,
+			"z_min": 0,
+			"rotation": [-45, 0, 0]
 		},
 		{
 			"type": "ambient_light",

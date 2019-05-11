@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:03:38 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/11 02:47:33 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 16:47:42 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,25 @@ double			add_limit_to_object(t_ray_object *object, t_quad quad
 	t_vec3d	inter[2];
 	double	tmp[2];
 
-	if (quad.t1 < hit->min_dist)
+	if (quad.t1 <= hit->min_dist)
 		quad.t1 = -INFINITY;
-	if (quad.t2 < hit->min_dist)
+	if (quad.t2 <= hit->min_dist)
 		quad.t2 = -INFINITY;
-	if (quad.t1 < hit->min_dist && quad.t2 < hit->min_dist)
+	if (quad.t1 <= hit->min_dist && quad.t2 <= hit->min_dist)
 		return (-INFINITY);
 	inter[0] = vec3d_add(hit->origin, vec3d_scalar(hit->direction, quad.t1));
 	inter[1] = vec3d_add(hit->origin, vec3d_scalar(hit->direction, quad.t2));
 	tmp[0] = check_if_coef_is_neg(object, quad.t1, inter[0]);
 	tmp[1] = check_if_coef_is_neg(object, quad.t2, inter[1]);
-	if (quad.t2 < hit->min_dist)
+	if (quad.t2 <= hit->min_dist)
 		return (tmp[0]);
-	else if (quad.t1 < hit->min_dist)
+	else if (quad.t1 <= hit->min_dist)
 		return (tmp[1]);
-	else if (tmp[0] < hit->min_dist && tmp[1] < hit->min_dist)
+	else if (tmp[0] <= hit->min_dist && tmp[1] <= hit->min_dist)
 		return (-INFINITY);
-	else if (tmp[1] < hit->min_dist)
+	else if (tmp[1] <= hit->min_dist)
 		return (tmp[0]);
-	else if (tmp[0] < hit->min_dist)
+	else if (tmp[0] <= hit->min_dist)
 		return (tmp[1]);
 	else
 		return (tmp[0] < tmp[1] ? tmp[0] : tmp[1]);

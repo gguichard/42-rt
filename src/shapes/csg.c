@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 23:40:54 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 13:09:55 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 17:27:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,7 @@
 #include "ray_object.h"
 #include "vec3d.h"
 #include "quaternion.h"
-
-# define CSGACTION_MISS (1 << 0)
-# define CSGACTION_RETLIFCLOSER (1 << 1)
-# define CSGACTION_RETLIFFARTHER (1 << 2)
-# define CSGACTION_RETL (1 << 3)
-# define CSGACTION_RETRIFCLOSER (1 << 4)
-# define CSGACTION_RETRIFFARTHER (1 << 5)
-# define CSGACTION_RETR (1 << 6)
-# define CSGACTION_FLIPR (1 << 7)
-# define CSGACTION_LOOPL (1 << 8)
-# define CSGACTION_LOOPR (1 << 9)
-# define CSGACTION_LOOPLIFCLOSER (1 << 10)
-# define CSGACTION_LOOPRIFCLOSER (1 << 10)
-
-# define HIT_ENTER 0
-# define HIT_EXIT 1
-# define HIT_MISS 2
+#include "csg.h"
 
 const int	g_csg_union[3][3] = {
 	{CSGACTION_RETLIFCLOSER | CSGACTION_RETRIFCLOSER
@@ -69,18 +53,17 @@ static void	setup_csg_hit(t_ray_hit *hit, t_ray_object *object
 	hit->dist = -INFINITY;
 }
 
-static int	classify_hit_type(t_ray_object *object, t_ray_hit *hit)
+static int	classify_hit_type(t_ray_hit *hit)
 {
 	double	cosine_angle;
 
-	hit->normal = quat_rot_with_quat(hit->normal, object->inv_rot_quat);
-	if (hit->dist < hit->min_dist)
-		return (HIT_MISS);
+	if (hit->dist <= hit->min_dist)
+		return (CSGHIT_MISS);
 	cosine_angle = vec3d_dot(hit->direction, hit->normal);
 	if (cosine_angle < .0)
-		return (HIT_ENTER);
+		return (CSGHIT_ENTER);
 	else
-		return (HIT_EXIT);
+		return (CSGHIT_EXIT);
 }
 
 static void	hit_csg_actions(t_ray_object *object, t_ray_hit *hit
@@ -98,8 +81,8 @@ static void	hit_csg_actions(t_ray_object *object, t_ray_hit *hit
 	object->csg_tree.right->hit_fn(object->csg_tree.right, &hit_right);
 	while (1)
 	{
-		hit_type_left = classify_hit_type(object->csg_tree.left, &hit_left);
-		hit_type_right = classify_hit_type(object->csg_tree.right, &hit_right);
+		hit_type_left = classify_hit_type(&hit_left);
+		hit_type_right = classify_hit_type(&hit_right);
 		actions = table[hit_type_left][hit_type_right];
 		if (actions & CSGACTION_MISS)
 			break ;
@@ -108,7 +91,7 @@ static void	hit_csg_actions(t_ray_object *object, t_ray_hit *hit
 			|| (actions & CSGACTION_RETLIFFARTHER && hit_left.dist > hit_right.dist))
 		{
 			hit->dist = hit_left.dist;
-			hit->normal = hit_left.normal;
+			hit->normal = vec3d_unit(quat_rot_with_quat(hit_left.normal, object->csg_tree.left->inv_rot_quat));
 			break ;
 		}
 		else if (actions & CSGACTION_RETR
@@ -118,20 +101,20 @@ static void	hit_csg_actions(t_ray_object *object, t_ray_hit *hit
 			if (actions & CSGACTION_FLIPR)
 				hit_right.normal = vec3d_scalar(hit_right.normal, -1);
 			hit->dist = hit_right.dist;
-			hit->normal = hit_right.normal;
+			hit->normal = vec3d_unit(quat_rot_with_quat(hit_right.normal, object->csg_tree.right->inv_rot_quat));
 			break ;
 		}
 		else if (actions & CSGACTION_LOOPL
 			|| (actions & CSGACTION_LOOPLIFCLOSER && hit_left.dist <= hit_right.dist))
 		{
-			hit_left.min_dist = hit_left.dist + 1e-6;
+			hit_left.min_dist = hit_left.dist;
 			hit_left.dist = -INFINITY;
 			object->csg_tree.left->hit_fn(object->csg_tree.left, &hit_left);
 		}
 		else if (actions & CSGACTION_LOOPR
 			|| (actions & CSGACTION_LOOPRIFCLOSER && hit_right.dist <= hit_left.dist))
 		{
-			hit_right.min_dist = hit_right.dist + 1e-6;
+			hit_right.min_dist = hit_right.dist;
 			hit_right.dist = -INFINITY;
 			object->csg_tree.right->hit_fn(object->csg_tree.right, &hit_right);
 		}

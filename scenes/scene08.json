@@ -32,14 +32,14 @@
 		},
 		{
 			"type": "trianglemesh",
-			"origin": [-100, -1, 100],
+			"origin": [-100, -2, 100],
 			"scale": 0.01,
 			"objfile_path": "trianglemesh/boat.obj",
 			"color": [102, 45, 19]
 		},
 		{
 			"type": "plane",
-			"origin": [0, -5, 0],
+			"origin": [0, -2, 0],
 			"color": [70, 136, 242]
 		},
 		{

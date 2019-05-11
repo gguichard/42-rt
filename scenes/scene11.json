@@ -44,20 +44,15 @@
 		{
 			"type": "plane",
 			"origin": [0, -30, 0],
-			"color": [150, 150, 150],
-			"x_max": 15,
-			"x_min" : -15
-		},
-		{
-			"type": "hyperboloid",
-			"origin": [0, 0, 0],
-			"color": [156, 48, 158],
-			"radius": 30
+			"color": [150, 150, 150]
 		},
 		{
 			"type": "csg_inter",
 			"origin": [0, 0, 0],
 			"color": [255, 255, 255],
+			"refractive": 1.5,
+			"refractive_factor": 0.9,
+			"bump": 20.0,
 			"csg_left": {
 				"type": "sphere",
 				"origin": [20, 0, 0],
@@ -65,16 +60,19 @@
 				"radius": 40
 			},
 			"csg_right": {
-				"type": "sphere",
-				"origin": [50, 0, 0],
-				"color": [255, 255, 255],
-				"radius": 40
-			}
+					"type": "sphere",
+					"origin": [50, 0, 0],
+					"color": [255, 255, 255],
+					"radius": 40
+				}
 		},
 		{
 			"type": "csg_union",
 			"origin": [0, 0, -100],
 			"color": [255, 255, 255],
+			"bump": 20,
+			"refractive": 1.5,
+			"refractive_factor": 0.9,
 			"csg_left": {
 				"type": "sphere",
 				"origin": [20, 0, 0],

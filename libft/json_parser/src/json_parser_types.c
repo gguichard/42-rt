@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 12:03:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:24:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 22:47:02 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			read_json_number(t_json_lexeme *lexeme, t_json_token *token)
 	if (ft_strchr(lexeme->value, '.') != NULL)
 	{
 		token->type = JSON_FLOAT;
-		token->value.f = ft_bad_atof(lexeme->value);
+		token->value.f = atof(lexeme->value);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 20:09:16 by gguichar          #+#    #+#             */
-/*   Updated: 2018/08/30 02:14:21 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 21:10:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <string.h>
-# define BUFF_SIZE 4096
+# define BUFF_SIZE 8192
 
 typedef struct	s_fd
 {

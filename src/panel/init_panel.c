@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:40:08 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/11 14:18:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 21:36:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		init_panel(t_panel *panel)
 	if (SDL_CreateWindowAndRenderer(PANEL_WIDTH, PANEL_HEIGHT,
 				0, &(panel->window), &(panel->renderer)) < 0)
 		return (0);
-	SDL_SetWindowPosition(panel->window, 800, 130);
+	SDL_SetWindowPosition(panel->window, 800, 117);
 	SDL_SetWindowTitle(panel->window, "RT - parameters");
 	if (!(init_panel_texture(panel)))
 		return (0);

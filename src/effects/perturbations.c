@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 01:47:15 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/10 17:23:33 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 19:14:14 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ t_vec3d	add_color_perturbation(t_ray_inf *ray_inf, t_vec3d base_color)
 	}
 	else if (ray_inf->object->wood.enabled != 0)
 	{
-		return (wood_filter(intersect, ray_inf->object->wood.color
-				, vec3d(0.737, 0.560, 0.560)));
+		return (wood_filter(intersect, base_color
+				, ray_inf->object->wood.color));
 	}
 	return (base_color);
 }

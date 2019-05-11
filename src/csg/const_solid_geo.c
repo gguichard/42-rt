@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 20:17:52 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/11 12:42:37 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 18:54:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ void			hit_with_csg(t_ray_object *object, t_ray_hit *hit)
 	object->csg_tree.left->hit_fn(object->csg_tree.left, &hit1);
 	world_to_object_transform2(object->csg_tree.right, &hit2);
 	object->csg_tree.right->hit_fn(object->csg_tree.right, &hit2);
-	if (object->csg_tree.type == CSG_UNION)
+	if (object->type == RAYOBJ_CSGSUB)
+		csg_sub_func(hit1, hit2, hit);
+	else if (object->type == RAYOBJ_CSGINTER)
+		csg_inter_func(hit1, hit2, hit);
+	else if (object->type == RAYOBJ_CSGUNION)
 	{
 		hit->dist = chose_min_between_values(hit1.dist, hit2.dist);
 		hit->dist_b = chose_max_between_values(hit1.dist_b, hit2.dist_b);
 		fill_normal(hit1, hit2, hit, object);
 	}
-	else if (object->csg_tree.type == CSG_SUB)
-		csg_sub_func(hit1, hit2, hit);
-	else if (object->csg_tree.type == CSG_INTER)
-		csg_inter_func(hit1, hit2, hit);
 }

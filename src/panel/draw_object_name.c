@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/11 15:47:31 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/11 18:53:18 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,36 @@
 
 static char		*get_obj_type1(int id)
 {
-	if (id == 1)
+	if (id == RAYOBJ_SPHERE)
 		return ("SPHERE");
-	if (id == 2)
+	if (id == RAYOBJ_PLANE)
 		return ("PLANE");
-	if (id == 3)
+	if (id == RAYOBJ_CYLINDER)
 		return ("CYLINDER");
-	if (id == 4)
+	if (id == RAYOBJ_CONE)
 		return ("CONE");
-	if (id == 5)
+	if (id == RAYOBJ_TORUS)
 		return ("TORUS");
-	if (id == 6)
+	if (id == RAYOBJ_TRIANGLE)
 		return ("TRIANGLE");
-	if (id == 7)
+	if (id == RAYOBJ_ELLIPSOID)
 		return ("ELLIPSOID");
 	return (NULL);
 }
 
 static char		*get_obj_type2(int id)
 {
-	if (id == 8)
+	if (id == RAYOBJ_HYPERBOLOID)
 		return ("HYPERBOLOID");
-	if (id == 9)
+	if (id == RAYOBJ_TANGLECUBE)
 		return ("TANGLECUBE");
-	if (id == 10)
+	if (id == RAYOBJ_TRIANGLEMESH)
 		return ("TRIANGLEMESH");
-	if (id == 11)
+	if (id == RAYOBJ_CSGUNION)
 		return ("CSG UNION");
-	if (id == 12)
+	if (id == RAYOBJ_CSGSUB)
 		return ("CSG SUB");
-	if (id == 13)
+	if (id == RAYOBJ_CSGINTER)
 		return ("CSG INTER");
 	return (NULL);
 }

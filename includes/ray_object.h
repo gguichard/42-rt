@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/10 19:41:44 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 18:53:27 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@
 # define RAYOBJ_CSGINTER 13
 # define RAYOBJ_LIGHT 14
 # define RAYOBJ_AMBIENTLIGHT 15
-
-# define CSG_NOCSG 0
-# define CSG_UNION 1
-# define CSG_SUB 2
-# define CSG_INTER 3
 
 typedef struct s_ray_object	t_ray_object;
 
@@ -92,7 +87,6 @@ typedef struct		s_ray_hit
 
 typedef struct		s_tree_csg
 {
-	int				type;
 	t_ray_object	*left;
 	t_ray_object	*right;
 }					t_tree_csg;

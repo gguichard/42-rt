@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/09 00:17:55 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 18:54:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,17 @@ static void	assign_hit_fn(t_ray_object *object)
 		object->hit_fn = hit_tanglecube;
 	else if (object->type == RAYOBJ_TRIANGLEMESH)
 		object->hit_fn = hit_trianglemesh;
-	else if (object->type == RAYOBJ_CSGUNION || object->type == RAYOBJ_CSGINTER
+	else if (object->type == RAYOBJ_CSGUNION
+		|| object->type == RAYOBJ_CSGINTER
 		|| object->type == RAYOBJ_CSGSUB)
 		object->hit_fn = hit_with_csg;
 }
 
 t_error		process_object_after_parsing(t_ray_object *object)
 {
-	if (object->type == RAYOBJ_CSGUNION)
-		object->csg_tree.type = CSG_UNION;
-	else if (object->type == RAYOBJ_CSGSUB)
-		object->csg_tree.type = CSG_SUB;
-	else if (object->type == RAYOBJ_CSGINTER)
-		object->csg_tree.type = CSG_INTER;
-	if (object->csg_tree.type != CSG_NOCSG)
+	if (object->type == RAYOBJ_CSGUNION
+		|| object->type == RAYOBJ_CSGINTER
+		|| object->type == RAYOBJ_CSGSUB)
 	{
 		if (object->csg_tree.left == NULL || object->csg_tree.right == NULL)
 		{

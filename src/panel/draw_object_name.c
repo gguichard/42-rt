@@ -6,14 +6,14 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:40:05 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 15:47:31 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "panel.h"
 #include "raytracer.h"
 
-char	*get_obj_type(int id)
+static char		*get_obj_type1(int id)
 {
 	if (id == 1)
 		return ("SPHERE");
@@ -29,16 +29,40 @@ char	*get_obj_type(int id)
 		return ("TRIANGLE");
 	if (id == 7)
 		return ("ELLIPSOID");
+	return (NULL);
+}
+
+static char		*get_obj_type2(int id)
+{
 	if (id == 8)
 		return ("HYPERBOLOID");
 	if (id == 9)
 		return ("TANGLECUBE");
-	if (id == 9)
+	if (id == 10)
 		return ("TRIANGLEMESH");
-	return ("UNKNOWN");
+	if (id == 11)
+		return ("CSG UNION");
+	if (id == 12)
+		return ("CSG SUB");
+	if (id == 13)
+		return ("CSG INTER");
+	return (NULL);
 }
 
-int		draw_obj_name(t_data *data)
+char			*get_obj_type(int id)
+{
+	char	*str;
+
+	str = NULL;
+	str = get_obj_type1(id);
+	if (!str)
+		str = get_obj_type2(id);
+	if (!str)
+		return ("UNKNOWN");
+	return (str);
+}
+
+int				draw_obj_name(t_data *data)
 {
 	t_text	msg;
 

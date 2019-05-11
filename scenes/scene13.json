@@ -1,13 +1,80 @@
 {
 	"camera": {
-		"origin": [0, 20, -15],
-		"rotation": [65, 0, 0]
+		"origin": [-20, 20, -20],
+		"rotation": [40, 35, 0]
 	},
 	"objects": [
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
 			"intensity": 0.03
+		},
+		{
+			"comment": "wall back",
+			"type": "plane",
+			"origin": [0, 0, 20],
+			"color": [133, 60, 67],
+			"reflective": 1.0, 
+			"rotation": [90, 0, 0]
+		},
+		{
+			"comment": "wall right",
+			"type": "plane",
+			"origin": [50, 0, 0],
+			"color": [133, 60, 67],
+			"roughness": 0.1,
+			"rotation": [90, 0, 90]
+		},
+		{
+			"comment": "wall leftt",
+			"type": "plane",
+			"origin": [-50, 0, 0],
+			"color": [133, 60, 67],
+			"roughness": 0.1,
+			"rotation": [90, 0, 90]
+		},
+		{
+			"comment": "wall back bottom",
+			"type": "plane",
+			"origin": [0, -5, 19.8],
+			"color": [160, 82, 45],
+			"x_min": -50,
+			"x_max": 50,
+			"z_min": -2,
+			"z_max": 0,
+			"rotation": [90, 0, 0]
+		},
+		{
+			"comment": "wall back bottom",
+			"type": "plane",
+			"origin": [49.9, -5, 19.8],
+			"color": [160, 82, 45],
+			"x_min": -50,
+			"x_max": 50,
+			"z_min": -2,
+			"z_max": 0,
+			"rotation": [90, 0, -90]
+		},		
+		{
+			"comment": "wall back bottom",
+			"type": "plane",
+			"origin": [-49.9, -5, 19.8],
+			"color": [160, 82, 45],
+			"x_min": -50,
+			"x_max": 50,
+			"z_min": -2,
+			"z_max": 0,
+			"rotation": [90, 0, -90]
+		},	
+		{
+			"comment": "floor",
+			"type": "plane",
+			"origin": [0, -5, 0],
+			"color": [236, 236, 231],
+			"checkerboard": {
+				"color": [12, 12, 12],
+				"size": 5
+			}
 		},
 		{
 			"comment": "tapis du billard",
@@ -39,6 +106,8 @@
 			"type": "plane",
 			"origin": [-7, 5, -7],
 			"color": [140, 58, 60],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 14,
 			"z_min": -1,
@@ -50,6 +119,8 @@
 			"type": "plane",
 			"origin": [-7, 5, 7],
 			"color": [140, 58, 60],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 14,
 			"z_min": -1,
@@ -61,6 +132,8 @@
 			"type": "plane",
 			"origin": [-7, 5, -7],
 			"color": [140, 58, 60],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 14,
 			"z_min": -1,
@@ -72,6 +145,8 @@
 			"type": "plane",
 			"origin": [7, 5, -7],
 			"color": [140, 58, 60],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 14,
 			"z_min": -1,
@@ -82,6 +157,8 @@
 			"comment": "chessboard cyl bord",
 			"type": "cylinder",
 			"origin": [-7, 5, -7],
+			"specular": 0.35,
+			"shininess": 250,
 			"radius": 0.5,
 			"color": [140, 58, 60],
 			"z_min": 0,
@@ -92,6 +169,8 @@
 			"comment": "chessboard cyl bord",
 			"type": "cylinder",
 			"origin": [7, 5, -7],
+			"specular": 0.35,
+			"shininess": 250,
 			"radius": 0.5,
 			"color": [140, 58, 60],
 			"z_min": 0,
@@ -101,6 +180,8 @@
 		{
 			"comment": "chessboard cyl bord",
 			"type": "cylinder",
+			"specular": 0.35,
+			"shininess": 250,
 			"origin": [-7, 5, -7],
 			"radius": 0.5,
 			"color": [140, 58, 60],
@@ -112,6 +193,8 @@
 			"comment": "chessboard cyl bord",
 			"type": "cylinder",
 			"origin": [-7, 5, 7],
+			"specular": 0.35,
+			"shininess": 250,
 			"radius": 0.5,
 			"color": [140, 58, 60],
 			"z_min": 0,
@@ -121,6 +204,8 @@
 		{
 			"comment": "chessboard up bord",
 			"type": "plane",
+			"specular": 0.35,
+			"shininess": 250,
 			"origin": [-7, 6, -6],
 			"color": [143, 89, 34],
 			"x_min": 0,
@@ -132,6 +217,8 @@
 		{
 			"comment": "chessboard up bord",
 			"type": "plane",
+			"specular": 0.35,
+			"shininess": 250,
 			"origin": [-7, 6, 7],
 			"color": [143, 89, 34],
 			"x_min": 0,
@@ -144,6 +231,8 @@
 			"comment": "chessboard up bord",
 			"type": "plane",
 			"origin": [-6, 6, 6],
+			"specular": 0.35,
+			"shininess": 250,
 			"color": [143, 89, 34],
 			"x_min": 0,
 			"x_max": 12,
@@ -156,6 +245,8 @@
 			"type": "plane",
 			"origin": [7, 6, 6],
 			"color": [143, 89, 34],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 12,
 			"z_min": -1,
@@ -195,6 +286,8 @@
 			"type": "plane",
 			"origin": [15, 6, -15],
 			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": -1,
 			"x_max": 0,
 			"z_min": 0,
@@ -206,6 +299,8 @@
 			"type": "plane",
 			"origin": [-15, 6, -15],
 			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": -1,
 			"x_max": 0,
 			"z_min": 0,
@@ -217,6 +312,8 @@
 			"type": "plane",
 			"origin": [-15, 5, 15],
 			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 30,
 			"z_min": -1,
@@ -228,6 +325,8 @@
 			"type": "plane",
 			"origin": [-15, 5, -15],
 			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
 			"x_min": 0,
 			"x_max": 30,
 			"z_min": -1,
@@ -235,15 +334,125 @@
 			"rotation": [90, 0, 0]
 		},
 		{
-			"type": "light",
-			"origin": [100, 450, 0],
-			"color": [255, 255, 255],
-			"intensity": 150000
+			"comment": "table bord left cyl",
+			"type": "cylinder",
+			"radius": 0.5,
+			"origin": [-15, 5.5, -15],
+			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
+			"x_min": -1,
+			"x_max": 0,
+			"z_min": 0,
+			"z_max": 30,
+			"rotation": [0, 0, 0]
+		},
+		{
+			"comment": "table bord right cyl",
+			"type": "cylinder",
+			"radius": 0.5,
+			"specular": 0.35,
+			"shininess": 250,
+			"origin": [15, 5.5, -15],
+			"color": [119, 70, 52],
+			"x_min": 0,
+			"x_max": 1,
+			"z_min": 0,
+			"z_max": 30,
+			"rotation": [0, 0, 0]
+		},
+		{
+			"comment": "table bord front cyl",
+			"type": "cylinder",
+			"radius": 0.5,
+			"origin": [-15, 5.5, -15],
+			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
+			"x_min": 0,
+			"x_max": 1,
+			"z_min": 0,
+			"z_max": 30,
+			"rotation": [0, 90, 0]
+		},
+		{
+			"comment": "table bord back cyl",
+			"type": "cylinder",
+			"radius": 0.5,
+			"origin": [-15, 5.5, 15],
+			"color": [119, 70, 52],
+			"specular": 0.35,
+			"shininess": 250,
+			"x_min": -1,
+			"x_max": 0,
+			"z_min": 0,
+			"z_max": 30,
+			"rotation": [0, 90, 0]
+		},
+		{
+			"comment": "table bord left front sphere",
+			"type": "sphere",
+			"radius": 0.5,
+			"specular": 0.35,
+			"shininess": 250,
+			"origin": [-15, 5.5, -15],
+			"color": [119, 70, 52],
+			"x_min": -1,
+			"x_max": 0
+		},
+		{
+			"comment": "table bord right front sphere",
+			"type": "sphere",
+			"radius": 0.5,
+			"specular": 0.35,
+			"shininess": 250,
+			"origin": [15, 5.5, -15],
+			"color": [119, 70, 52],
+			"x_min": 0,
+			"x_max": 1
+		},
+		{
+			"comment": "table bord left back sphere",
+			"type": "sphere",
+			"specular": 0.35,
+			"shininess": 250,
+			"radius": 0.5,
+			"origin": [-15, 5.5, 15],
+			"color": [119, 70, 52],
+			"x_min": -1,
+			"x_max": 0
+		},
+		{
+			"comment": "table bord right back sphere",
+			"type": "sphere",
+			"specular": 0.35,
+			"shininess": 250,
+			"radius": 0.5,
+			"origin": [15, 5.5, 15],
+			"color": [119, 70, 52],
+			"x_min": 0,
+			"x_max": 1
+		},
+		{
+			"comment": "sphere",
+			"type": "sphere",
+			"radius": 0.5,
+			"origin": [0, 7, 0],
+			"color": [70, 136, 242],
+			"bump": 0.3,
+			"refractive": 1.5,
+			"refractive_factor": 0.7
 		},
 		{
 			"type": "light",
-			"origin": [-40, 45, 0],
-			"color": [255, 255, 255],
+			"origin": [20, 25, -20],
+			"color": [244, 223, 165],
+			"intensity": 2000
+		},
+		{
+			"type": "light",
+			"origin": [-20, 25, -20],
+			"color": [244, 218, 172],
 			"intensity": 2000
 		}
 	]

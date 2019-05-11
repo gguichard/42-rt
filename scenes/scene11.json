@@ -18,6 +18,12 @@
 		},
 		{
 			"type": "light",
+			"color": [255, 0, 0],
+			"origin": [50, 0, 0],
+			"intensity": 200
+		},
+		{
+			"type": "light",
 			"color": [174, 127, 10],
 			"origin": [70, 400, 100],
 			"intensity": 20000000
@@ -43,21 +49,10 @@
 			"x_min" : -15
 		},
 		{
-			"type": "csg_sub",
-			"origin": [0, 400, -500],
-			"color": [190, 190, 190],
-			"csg_left": {
-				"type": "ellipsoid",
-				"origin": [0, 0, 0],
-				"color": [47, 68, 248],
-				"size": [50, 20, 90]
-			},
-			"csg_right": {
-				"type": "hyperboloid",
-				"origin": [0, 0, 0],
-				"color": [156, 48, 158],
-				"radius": 10
-			}
+			"type": "hyperboloid",
+			"origin": [0, 0, 0],
+			"color": [156, 48, 158],
+			"radius": 30
 		},
 		{
 			"type": "csg_inter",
@@ -97,10 +92,10 @@
 					"radius": 40
 				},
 				"csg_right": {
-					"type": "cylinder",
-					"origin": [50, 0, 0],
+					"type": "cone",
+					"origin": [50, 0, 50],
 					"color": [255, 255, 255],
-					"radius": 20
+					"angle": 15
 				}
 			}
 		}

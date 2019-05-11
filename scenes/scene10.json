@@ -67,26 +67,28 @@
 			"z_min": -2
 		},
 		{
-			"type": "cylinder",
-			"origin": [0, 10, 0],
+			"type": "csg_union",
+			"origin": [0, 0, 0],
 			"color": [244, 66, 226],
 			"radius": 11,
 			"refractive": 1.5,
 			"refractive_factor": 0.8,
-			"rotation": [90, 0, 0],
-			"z_min": -15,
-			"z_max": 0
-		},
-		{
-			"type": "cylinder",
-			"origin": [0, 10, 0],
-			"color": [244, 66, 226],
-			"radius": 10,
-			"refractive": 1.5,
-			"refractive_factor": 0.8,
-			"rotation": [90, 0, 0],
-			"z_min": -15,
-			"z_max": 0
+			"csg_left": {
+				"type": "cylinder",
+				"origin": [0, 10, 0],
+				"radius": 11,
+				"rotation": [90, 0, 0],
+				"z_min": -15,
+				"z_max": 0
+			},
+			"csg_right": {
+				"type": "cylinder",
+				"origin": [0, 10, 0],
+				"radius": 10,
+				"rotation": [90, 0, 0],
+				"z_min": -15,
+				"z_max": 0
+			}
 		}
 	]
 }

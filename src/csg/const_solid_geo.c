@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 20:17:52 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/10 18:18:21 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/10 21:46:15 by roduquen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void			hit_with_csg(t_ray_object *object, t_ray_hit *hit)
 		hit->normal_b = (hit->dist_b == hit1.dist_b ? hit1.normal_b
 				: hit2.normal_b);
 	}
-	if (object->csg_tree.type == CSG_SUB)
+	else if (object->csg_tree.type == CSG_SUB)
 		csg_sub_func(hit1, hit2, hit);
-	if (object->csg_tree.type == CSG_INTER)
+	else if (object->csg_tree.type == CSG_INTER)
 		csg_inter_func(hit1, hit2, hit);
 }

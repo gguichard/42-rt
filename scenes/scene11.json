@@ -65,11 +65,11 @@
 				"radius": 40
 			},
 			"csg_right": {
-					"type": "sphere",
-					"origin": [50, 0, 0],
-					"color": [255, 255, 255],
-					"radius": 40
-				}
+				"type": "sphere",
+				"origin": [50, 0, 0],
+				"color": [255, 255, 255],
+				"radius": 40
+			}
 		},
 		{
 			"type": "csg_union",

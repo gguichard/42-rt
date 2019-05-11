@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 12:56:25 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 13:14:16 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,15 @@ static void		parse_object_csg_properties(t_json_token *child
 	, t_ray_object *object, t_error *err)
 {
 	if (ft_strequ(child->key, "csg_left"))
+	{
+		del_ray_object(object->csg_tree.left);
 		object->csg_tree.left = create_ray_object(child, err);
+	}
 	else if (ft_strequ(child->key, "csg_right"))
+	{
+		del_ray_object(object->csg_tree.right);
 		object->csg_tree.right = create_ray_object(child, err);
+	}
 	else
 		parse_limits(child, object, err);
 }

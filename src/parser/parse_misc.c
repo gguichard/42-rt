@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:20:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/08 12:47:15 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:09:11 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 double	read_json_double(t_json_token *token, t_error *err)
 {
-	*err = ERR_NOERROR;
+	*err = err_noerror;
 	if (token->type == JSON_FLOAT)
 		return (token->value.f);
 	else if (token->type == JSON_INTEGER)
 		return ((double)token->value.i);
 	else
 	{
-		*err = ERR_SCENEBADFORMAT;
+		*err = err_scenebadformat;
 		return (0);
 	}
 }
@@ -34,10 +34,10 @@ int		read_json_boolean(t_json_token *token, t_error *err)
 
 	value = 0;
 	if (token->type != JSON_BOOLEAN)
-		*err = ERR_SCENEBADFORMAT;
+		*err = err_scenebadformat;
 	else
 	{
-		*err = ERR_NOERROR;
+		*err = err_noerror;
 		value = token->value.i;
 	}
 	return (value);

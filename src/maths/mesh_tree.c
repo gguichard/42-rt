@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 22:03:39 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/06 01:36:20 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:07:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ t_error			create_triangle_mesh_root(t_wf_obj *wf_obj, t_kd_tree *root)
 	size_t		idx;
 	t_triangle	*trgl;
 
-	err = ERR_NOERROR;
+	err = err_noerror;
 	idx = 0;
-	while (err == ERR_NOERROR && (idx + 3) <= wf_obj->vertices.size)
+	while (err == err_noerror && (idx + 3) <= wf_obj->vertices.size)
 	{
 		if ((trgl = (t_triangle *)malloc(sizeof(t_triangle))) == NULL)
-			err = ERR_UNEXPECTED;
+			err = err_unexpected;
 		else
 		{
 			trgl->vertices[0] = *((t_vec3d *)wf_obj->vertices.data[idx]);
@@ -117,7 +117,7 @@ t_error			create_triangle_mesh_root(t_wf_obj *wf_obj, t_kd_tree *root)
 			trgl->normals[1] = *((t_vec3d *)wf_obj->normals.data[idx + 1]);
 			trgl->normals[2] = *((t_vec3d *)wf_obj->normals.data[idx + 2]);
 			if (!ft_vecpush(&root->objects, trgl)
-				&& (err = ERR_UNEXPECTED) == ERR_UNEXPECTED)
+				&& (err = err_unexpected) == err_unexpected)
 				free(trgl);
 			idx += 3;
 		}

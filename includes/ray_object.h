@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 21:42:39 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/11 18:53:27 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:15:58 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@
 # define RAYOBJ_LIGHT 14
 # define RAYOBJ_AMBIENTLIGHT 15
 
-typedef struct s_ray_object	t_ray_object;
-
-typedef struct s_quad		t_quad;
+typedef struct s_quad	t_quad;
 
 typedef struct		s_obj_checker
 {

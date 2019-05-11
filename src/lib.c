@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:04:40 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 21:34:30 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:14:06 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@ t_error		init_and_create_window(t_lib *lib, t_winsize winsize)
 {
 	t_error	err;
 
-	err = ERR_NOERROR;
+	err = err_noerror;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		err = ERR_SDLINIT;
-	if (err == ERR_NOERROR && !init_panel(&(lib->panel)))
-		err = ERR_SDLINIT;
-	if (err == ERR_NOERROR
+		err = err_sdlinit;
+	if (err == err_noerror && !init_panel(&(lib->panel)))
+		err = err_sdlinit;
+	if (err == err_noerror
 		&& (lib->window = SDL_CreateWindow(WIN_TITLE
 					, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED
 					, winsize.width, winsize.height, 0)) == NULL)
-		err = ERR_SDLINIT;
-	if (err == ERR_NOERROR
+		err = err_sdlinit;
+	if (err == err_noerror
 		&& (lib->renderer = SDL_CreateRenderer(lib->window, -1
 					, SDL_RENDERER_PRESENTVSYNC)) == NULL)
-		err = ERR_SDLINIT;
-	if (err == ERR_NOERROR
+		err = err_sdlinit;
+	if (err == err_noerror
 		&& (lib->texture = SDL_CreateTexture(lib->renderer
 					, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING
 					, winsize.width, winsize.height)) == NULL)
-		err = ERR_SDLINIT;
+		err = err_sdlinit;
 	return (err);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:55:24 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/29 20:58:16 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:11:14 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@
 
 const char	*error_to_str(t_error error)
 {
-	if (error == ERR_UNEXPECTED)
+	if (error == err_unexpected)
 		return ("Unexpected error");
-	else if (error == ERR_ERRNO)
+	else if (error == err_errno)
 		return (strerror(errno));
-	else if (error == ERR_SDLINIT)
+	else if (error == err_sdlinit)
 		return (SDL_GetError());
-	else if (error == ERR_NOSCENEFILE)
+	else if (error == err_noscenefile)
 		return ("Please specify a scene file");
-	else if (error == ERR_INVALIDSCENE)
+	else if (error == err_invalidscene)
 		return ("Scene file contains invalid characters");
-	else if (error == ERR_SCENEBADFORMAT)
+	else if (error == err_scenebadformat)
 		return ("Scene file bad format");
-	else if (error == ERR_SCENEBADOBJECT)
+	else if (error == err_scenebadobject)
 		return ("Scene bad object definition");
-	else if (error == ERR_BADVEC3D)
+	else if (error == err_badvec3d)
 		return ("Bad vec3d definition");
-	else if (error == ERR_BADCOLOR)
+	else if (error == err_badcolor)
 		return ("Bad color definition");
-	else if (error == ERR_BADOBJFILE)
+	else if (error == err_badobjfile)
 		return ("Bad .obj file\n");
 	else
 		return ("Unknown error");

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:41:19 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/07 17:58:37 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 00:38:34 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void			hit_tanglecube(t_ray_object *object, t_ray_hit *hit)
 	quartic.e = pow(hit->origin.x, 4) + pow(hit->origin.y, 4)
 		+ pow(hit->origin.z, 4) - 5.0 * vec3d_length2(hit->origin)
 		+ object->radius;
-	hit->dist = solve_quartic_equation(&quartic);
+	solve_quartic_equation(&quartic);
+	hit->dist = get_quartic_min_dist(&quartic, hit->min_dist);
 	hit->normal = get_tanglecube_normal(object, hit);
 }

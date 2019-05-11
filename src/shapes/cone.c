@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:25:25 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/10 21:20:36 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 02:11:32 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,8 @@ void			hit_cone(t_ray_object *object, t_ray_hit *hit)
 	hit->quad.c = hit->origin.x * hit->origin.x + hit->origin.y * hit->origin.y
 		- hit->origin.z * hit->origin.z * tan_r2;
 	solve_quadratic_equation(&hit->quad);
-	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
+	hit->dist = add_limit_to_object(object, hit->quad, hit);
 	hit->normal = get_cone_normal(hit, hit->dist, tan_r2);
-	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
-	hit->normal_b = vec3d_scalar(get_cone_normal(hit, hit->dist_b, tan_r2), -1);
-	if (hit->dist < 0 || (hit->dist_b > 0 && hit->dist_b < hit->dist))
-	{
-		hit->dist = hit->dist_b;
-		hit->normal = hit->normal_b;
-	}
+	if (hit->dist > 0 && hit->quad.t1 >= 0 && hit->dist != hit->quad.t2)
+		hit->normal = vec3d_scalar(hit->normal, -1);
 }

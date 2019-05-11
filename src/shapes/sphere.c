@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:27:31 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/09 15:58:48 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 03:11:23 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,9 @@ void			hit_sphere(t_ray_object *object, t_ray_hit *hit)
 	hit->quad.b = 2 * vec3d_dot(hit->origin, hit->direction);
 	hit->quad.c = vec3d_length2(hit->origin) - object->radius * object->radius;
 	solve_quadratic_equation(&hit->quad);
-	hit->dist = add_limit_to_object(object, hit->quad.t2, hit);
+	hit->dist = add_limit_to_object(object, hit->quad, hit);
 	hit->normal = get_sphere_normal(object, hit, hit->dist);
-	hit->dist_b = add_limit_to_object(object, hit->quad.t1, hit);
-	hit->normal_b = vec3d_scalar(
-			get_sphere_normal(object, hit, hit->dist_b), -1);
-	if (hit->dist < 0)
-	{
-		hit->dist = hit->dist_b;
-		hit->normal = hit->normal_b;
-	}
+	if (hit->dist > 0 && hit->quad.t1 >= 0 && hit->dist != hit->quad.t2
+		&& has_object_limit(object))
+		hit->normal = vec3d_scalar(hit->normal, -1);
 }

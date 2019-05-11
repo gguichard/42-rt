@@ -6,7 +6,7 @@
 #    By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 22:54:05 by gguichar          #+#    #+#              #
-#    Updated: 2019/05/10 20:32:48 by gguichar         ###   ########.fr        #
+#    Updated: 2019/05/11 00:42:35 by gguichar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,6 @@ draw.c							\
 lib.c							\
 main.c							\
 objects.c						\
-csg/const_solid_geo.c			\
-csg/csg_inter.c					\
-csg/csg_sub.c					\
 effects/bump_mapping.c			\
 effects/cartoon_filter.c		\
 effects/checkerboard.c			\
@@ -57,6 +54,7 @@ maths/kd_tree.c					\
 maths/limited_objects.c			\
 maths/math_utils.c				\
 maths/mesh_tree.c				\
+maths/quartic_dist.c			\
 maths/quaternion.c				\
 maths/quaternion_2.c			\
 maths/solver.c					\
@@ -84,6 +82,7 @@ raytracing/raytracer.c			\
 raytracing/trace_rays.c			\
 shapes/bbox.c					\
 shapes/cone.c					\
+shapes/csg.c					\
 shapes/cylinder.c				\
 shapes/ellipsoid.c				\
 shapes/hyperboloid.c			\
@@ -151,7 +150,6 @@ $(SDL_DIR):
 
 $(OBJ_DIR):
 	@mkdir $@ 2> /dev/null || true
-	@mkdir $@/csg 2> /dev/null || true
 	@mkdir $@/effects 2> /dev/null || true
 	@mkdir $@/events 2> /dev/null || true
 	@mkdir $@/maths 2> /dev/null || true

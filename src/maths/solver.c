@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 19:31:35 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/07 17:57:23 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 00:42:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,28 @@
 #include "solver.h"
 #include "vec3d.h"
 
-static double	choose_min_positive(double a, double b)
-{
-	if (a < 0 && b < 0)
-		return (-1);
-	else if (a < 0)
-		return (b);
-	else if (b < 0)
-		return (a);
-	else
-		return (a > b ? b : a);
-}
-
-double			solve_quadratic_equation(t_quad *quad)
+void		solve_quadratic_equation(t_quad *quad)
 {
 	double	tmp;
 	double	sqrt_delta;
 
 	quad->delta = quad->b * quad->b - 4 * quad->a * quad->c;
-	if (quad->delta >= 0)
+	if (quad->delta < 0)
+	{
+		quad->t1 = -INFINITY;
+		quad->t2 = -INFINITY;
+	}
+	else
 	{
 		tmp = quad->a * 2;
 		sqrt_delta = sqrt(quad->delta);
 		quad->t1 = (-quad->b + sqrt_delta) / tmp;
 		quad->t2 = (quad->delta == 0
 				? quad->t1 : (-quad->b - sqrt_delta) / tmp);
-		return (choose_min_positive(quad->t1, quad->t2));
 	}
-	else
-	{
-		quad->t1 = -1;
-		quad->t2 = -1;
-	}
-	return (-1);
 }
 
-static double	result_quartic_equation(t_vec3d tmp[8])
+static void	result_quartic_equation(t_quartic *quartic, t_vec3d tmp[8])
 {
 	if (tmp[0].z > 0.0)
 		tmp[6].y = -(tmp[3].y / 2.0);
@@ -63,14 +49,16 @@ static double	result_quartic_equation(t_vec3d tmp[8])
 	}
 	else
 	{
-		tmp[7].x = -1.0;
-		tmp[7].y = -1.0;
+		tmp[7].x = -INFINITY;
+		tmp[7].y = -INFINITY;
 	}
-	return (choose_min_positive(tmp[5].y, choose_min_positive(tmp[5].z
-				, choose_min_positive(tmp[7].x, tmp[7].y))));
+	quartic->t1 = tmp[5].y;
+	quartic->t2 = tmp[5].z;
+	quartic->t3 = tmp[7].x;
+	quartic->t4 = tmp[7].y;
 }
 
-static double	solve_quartic_equation2(t_quartic *quartic, t_vec3d tmp[8])
+static void	solve_quartic_equation2(t_quartic *quartic, t_vec3d tmp[8])
 {
 	tmp[3].x = tmp[0].y / 3.0 + tmp[2].z;
 	tmp[3].y = sqrt(tmp[3].x - tmp[0].y);
@@ -89,14 +77,14 @@ static double	solve_quartic_equation2(t_quartic *quartic, t_vec3d tmp[8])
 	}
 	else
 	{
-		tmp[5].y = -1.0;
-		tmp[5].z = -1.0;
+		tmp[5].y = -INFINITY;
+		tmp[5].z = -INFINITY;
 	}
 	tmp[6].x = tmp[3].y * tmp[3].y - 2.0 * tmp[3].x + 4.0 * tmp[3].z;
-	return (result_quartic_equation(tmp));
+	result_quartic_equation(quartic, tmp);
 }
 
-double			solve_quartic_equation(t_quartic *quartic)
+void		solve_quartic_equation(t_quartic *quartic)
 {
 	t_vec3d	tmp[8];
 
@@ -122,5 +110,5 @@ double			solve_quartic_equation(t_quartic *quartic)
 		tmp[2].z = 2.0 * sqrt(-(tmp[1].z / 3.0)) * cos(1.0 / 3.0
 				* acos(-(tmp[1].y / (2.0 * pow(-(tmp[1].z / 3.0)
 								, 3.0 / 2.0)))));
-	return (solve_quartic_equation2(quartic, tmp));
+	solve_quartic_equation2(quartic, tmp);
 }

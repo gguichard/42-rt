@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 16:30:09 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/07 17:46:48 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 00:38:43 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			hit_torus(t_ray_object *object, t_ray_hit *hit)
 		* (hit->origin.y * hit->direction.y);
 	quartic.e = (quartic.tmp3 - tmp[2]) * (quartic.tmp3 - tmp[2]) - 4 * tmp[0]
 		* (tmp[1] - hit->origin.y * hit->origin.y);
-	hit->dist = solve_quartic_equation(&quartic);
+	solve_quartic_equation(&quartic);
+	hit->dist = get_quartic_min_dist(&quartic, hit->min_dist);
 	hit->normal = get_torus_normal(object, hit);
 }

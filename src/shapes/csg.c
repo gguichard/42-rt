@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 23:40:54 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 17:27:55 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/12 01:29:05 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,32 +87,40 @@ static void	hit_csg_actions(t_ray_object *object, t_ray_hit *hit
 		if (actions & CSGACTION_MISS)
 			break ;
 		else if (actions & CSGACTION_RETL
-			|| (actions & CSGACTION_RETLIFCLOSER && hit_left.dist <= hit_right.dist)
-			|| (actions & CSGACTION_RETLIFFARTHER && hit_left.dist > hit_right.dist))
+			|| (actions & CSGACTION_RETLIFCLOSER
+				&& hit_left.dist <= hit_right.dist)
+			|| (actions & CSGACTION_RETLIFFARTHER
+				&& hit_left.dist > hit_right.dist))
 		{
 			hit->dist = hit_left.dist;
-			hit->normal = vec3d_unit(quat_rot_with_quat(hit_left.normal, object->csg_tree.left->inv_rot_quat));
+			hit->normal = vec3d_unit(quat_rot_with_quat(hit_left.normal
+						, object->csg_tree.left->inv_rot_quat));
 			break ;
 		}
 		else if (actions & CSGACTION_RETR
-			|| (actions & CSGACTION_RETRIFCLOSER && hit_right.dist <= hit_left.dist)
-			|| (actions & CSGACTION_RETRIFFARTHER && hit_right.dist > hit_left.dist))
+			|| (actions & CSGACTION_RETRIFCLOSER
+				&& hit_right.dist <= hit_left.dist)
+			|| (actions & CSGACTION_RETRIFFARTHER
+				&& hit_right.dist > hit_left.dist))
 		{
 			if (actions & CSGACTION_FLIPR)
 				hit_right.normal = vec3d_scalar(hit_right.normal, -1);
 			hit->dist = hit_right.dist;
-			hit->normal = vec3d_unit(quat_rot_with_quat(hit_right.normal, object->csg_tree.right->inv_rot_quat));
+			hit->normal = vec3d_unit(quat_rot_with_quat(hit_right.normal
+						, object->csg_tree.right->inv_rot_quat));
 			break ;
 		}
 		else if (actions & CSGACTION_LOOPL
-			|| (actions & CSGACTION_LOOPLIFCLOSER && hit_left.dist <= hit_right.dist))
+			|| (actions & CSGACTION_LOOPLIFCLOSER
+				&& hit_left.dist <= hit_right.dist))
 		{
 			hit_left.min_dist = hit_left.dist;
 			hit_left.dist = -INFINITY;
 			object->csg_tree.left->hit_fn(object->csg_tree.left, &hit_left);
 		}
 		else if (actions & CSGACTION_LOOPR
-			|| (actions & CSGACTION_LOOPRIFCLOSER && hit_right.dist <= hit_left.dist))
+			|| (actions & CSGACTION_LOOPRIFCLOSER
+				&& hit_right.dist <= hit_left.dist))
 		{
 			hit_right.min_dist = hit_right.dist;
 			hit_right.dist = -INFINITY;
@@ -131,4 +139,6 @@ void		hit_csg(t_ray_object *object, t_ray_hit *hit)
 		hit_csg_actions(object, hit, g_csg_inter);
 	else if (object->type == RAYOBJ_CSGSUB)
 		hit_csg_actions(object, hit, g_csg_sub);
+	if (hit->dist <= hit->min_dist)
+		hit->dist = -INFINITY;
 }

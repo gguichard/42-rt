@@ -1,5 +1,5 @@
 {
-"camera": {
+	"camera": {
 		"origin": [0, 40, -50],
 		"rotation": [90, 0, 0],
 		"fov": 120
@@ -60,11 +60,12 @@
 				"radius": 40
 			},
 			"csg_right": {
-					"type": "sphere",
-					"origin": [50, 0, 0],
-					"color": [255, 255, 255],
-					"radius": 40
-				}
+				"type": "trianglemesh",
+				"origin": [50, 0, 0],
+				"color": [255, 255, 255],
+				"radius": 40,
+				"objfile_path": "scenes/objects/dragon.obj"
+			}
 		},
 		{
 			"type": "csg_union",

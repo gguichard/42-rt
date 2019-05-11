@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 12:32:13 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/08 12:33:37 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:09:47 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ t_vec3d		read_json_vec3d(t_json_token *token, t_error *err)
 
 	ft_memset(&vec, 0, sizeof(t_vec3d));
 	if (token->type != JSON_ARRAY)
-		*err = ERR_BADVEC3D;
+		*err = err_badvec3d;
 	else
 	{
-		*err = ERR_NOERROR;
+		*err = err_noerror;
 		child = token->value.child;
 		if (!write_json_vec3d_field(&child, &vec.x)
 			|| !write_json_vec3d_field(&child, &vec.y)
 			|| !write_json_vec3d_field(&child, &vec.z)
 			|| child != NULL)
-			*err = ERR_BADVEC3D;
+			*err = err_badvec3d;
 	}
 	return (vec);
 }

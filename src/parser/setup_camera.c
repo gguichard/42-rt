@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 17:05:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/03 04:06:17 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:09:14 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ t_error	setup_camera_properties(t_data *data, t_json_token *token)
 	t_json_token	*child;
 
 	if (token->type != JSON_OBJECT)
-		return (ERR_SCENEBADFORMAT);
-	err = ERR_NOERROR;
+		return (err_scenebadformat);
+	err = err_noerror;
 	child = token->value.child;
-	while (err == ERR_NOERROR && child != NULL)
+	while (err == err_noerror && child != NULL)
 	{
 		if (ft_strequ(child->key, "origin"))
 			data->camera.origin = read_json_vec3d(child, &err);

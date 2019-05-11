@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:23:02 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 17:54:36 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:11:15 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		parse_object_property_3(t_json_token *child
 	{
 		if (child->type != JSON_STRING
 			|| ft_strlen(child->value.str) > PATH_MAX)
-			*err = ERR_INVALIDSCENE;
+			*err = err_invalidscene;
 		else
 			ft_strcpy(object->objfile_path, child->value.str);
 	}
@@ -90,7 +90,7 @@ static void		parse_object_property_2(t_json_token *child
 void			parse_object_property(t_json_token *child
 	, t_ray_object *object, t_error *err)
 {
-	*err = ERR_NOERROR;
+	*err = err_noerror;
 	if (ft_strequ(child->key, "type"))
 		object->type = get_ray_object_type(child);
 	else if (ft_strequ(child->key, "origin"))

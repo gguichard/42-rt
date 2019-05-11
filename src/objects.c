@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 05:37:44 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 13:14:33 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:14:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static t_error	create_mesh_tree_from_obj(t_ray_object *object)
 
 	ft_printf("Loading \"%s\" file...\n", object->objfile_path);
 	err = parse_wf_obj_file(object->objfile_path, &wf_obj, object->scale);
-	if (err == ERR_NOERROR)
+	if (err == err_noerror)
 	{
 		err = create_triangle_mesh_root(&wf_obj, &object->mesh_tree);
-		if (err == ERR_NOERROR && !build_mesh_tree(&object->mesh_tree, 'x', 0))
-			err = ERR_UNEXPECTED;
+		if (err == err_noerror && !build_mesh_tree(&object->mesh_tree, 'x', 0))
+			err = err_unexpected;
 		free_wf_obj(&wf_obj);
 	}
 	ft_printf("\"%s\" finished.\n", object->objfile_path);
@@ -70,9 +70,9 @@ t_error			create_meshes_from_objects(t_vector *objects)
 	size_t			idx;
 	t_ray_object	*obj;
 
-	err = ERR_NOERROR;
+	err = err_noerror;
 	idx = 0;
-	while (err == ERR_NOERROR && idx < objects->size)
+	while (err == err_noerror && idx < objects->size)
 	{
 		obj = (t_ray_object *)objects->data[idx];
 		if (obj->type == RAYOBJ_TRIANGLEMESH && obj->scale != 0)

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 05:49:43 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/05 20:12:17 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:10:38 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static t_vec3d	*parse_wf_obj_vertex(char **split, t_error *err, double scale)
 
 	vertex = NULL;
 	if (ft_strtab_count(split) < 4)
-		*err = ERR_BADOBJFILE;
+		*err = err_badobjfile;
 	else
 	{
-		*err = ERR_NOERROR;
+		*err = err_noerror;
 		vertex = (t_vec3d *)malloc(sizeof(t_vec3d));
 		if (vertex == NULL)
-			*err = ERR_UNEXPECTED;
+			*err = err_unexpected;
 		else
 		{
 			vertex->x = atof(split[1]) * scale;
@@ -44,12 +44,12 @@ void			wf_add_vertex_to_vector(t_vector *vector, char **split
 {
 	t_vec3d	*vertex;
 
-	*err = ERR_NOERROR;
+	*err = err_noerror;
 	vertex = parse_wf_obj_vertex(split, err, scale);
-	if (*err == ERR_NOERROR && !ft_vecpush(vector, vertex))
+	if (*err == err_noerror && !ft_vecpush(vector, vertex))
 	{
 		free(vertex);
-		*err = ERR_UNEXPECTED;
+		*err = err_unexpected;
 	}
 }
 

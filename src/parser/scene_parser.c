@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 17:17:48 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/01 16:08:09 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:11:16 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,25 @@ static char			*read_scene_file(const char *file_path, t_error *err)
 	ssize_t	ret;
 	char	buffer[4096];
 
-	*err = ERR_NOERROR;
+	*err = err_noerror;
 	str = NULL;
 	if ((fd = open(file_path, O_RDONLY)) == -1)
-		*err = ERR_ERRNO;
+		*err = err_errno;
 	else
 	{
 		while ((ret = read(fd, &buffer, sizeof(buffer) - 1)) != 0)
 		{
 			buffer[ret] = '\0';
 			if (ft_strlen(buffer) != (size_t)ret
-				&& (*err = ERR_INVALIDSCENE) == ERR_INVALIDSCENE)
+				&& (*err = err_invalidscene) == err_invalidscene)
 				break ;
 			str = ft_strjoin_free(str, buffer);
 		}
 		if (ret == -1)
-			*err = ERR_ERRNO;
+			*err = err_errno;
 		close(fd);
 	}
-	return (*err != ERR_NOERROR ? ft_strdel(&str) : str);
+	return (*err != err_noerror ? ft_strdel(&str) : str);
 }
 
 static t_error		read_json_scene(t_data *data, t_json_token *root)
@@ -53,12 +53,12 @@ static t_error		read_json_scene(t_data *data, t_json_token *root)
 	t_json_token	*child;
 
 	if (root->type != JSON_OBJECT)
-		return (ERR_SCENEBADFORMAT);
+		return (err_scenebadformat);
 	else
 	{
-		err = ERR_NOERROR;
+		err = err_noerror;
 		child = root->value.child;
-		while (err == ERR_NOERROR && child != NULL)
+		while (err == err_noerror && child != NULL)
 		{
 			if (ft_strequ(child->key, "camera"))
 				err = setup_camera_properties(data, child);
@@ -77,10 +77,10 @@ static t_json_token	*decode_scene(t_data *data, const char *json_data
 {
 	t_json_token	*root;
 
-	*err = ERR_NOERROR;
+	*err = err_noerror;
 	root = parse_json(json_data);
 	if (root == NULL)
-		*err = ERR_UNEXPECTED;
+		*err = err_unexpected;
 	else
 	{
 		*err = read_json_scene(data, root);
@@ -94,12 +94,12 @@ t_error				parse_scene(t_data *data, const char *file_path)
 	t_error	err;
 	char	*scene_content;
 
-	err = ERR_NOERROR;
+	err = err_noerror;
 	scene_content = read_scene_file(file_path, &err);
-	if (err == ERR_NOERROR)
+	if (err == err_noerror)
 	{
 		if (scene_content == NULL)
-			err = ERR_INVALIDSCENE;
+			err = err_invalidscene;
 		else
 		{
 			decode_scene(data, scene_content, &err);

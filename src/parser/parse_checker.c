@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 17:08:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 17:11:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:09:10 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_error	parse_ray_object_checker(t_json_token *token, t_obj_checker *board)
 	t_json_token	*child;
 
 	if (token->type != JSON_OBJECT)
-		err = ERR_SCENEBADFORMAT;
+		err = err_scenebadformat;
 	else
 	{
-		err = ERR_NOERROR;
+		err = err_noerror;
 		child = token->value.child;
-		while (err == ERR_NOERROR && child != NULL)
+		while (err == err_noerror && child != NULL)
 		{
 			if (ft_strequ(child->key, "color"))
 				board->color = read_json_color(child, &err);

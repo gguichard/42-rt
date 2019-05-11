@@ -6,7 +6,7 @@
 /*   By: roduquen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 20:17:52 by roduquen          #+#    #+#             */
-/*   Updated: 2019/05/10 18:18:21 by roduquen         ###   ########.fr       */
+/*   Updated: 2019/05/11 12:02:22 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ void			hit_with_csg(t_ray_object *object, t_ray_hit *hit)
 	{
 		hit->dist = chose_min_between_values(hit1.dist, hit2.dist);
 		hit->dist_b = chose_max_between_values(hit1.dist_b, hit2.dist_b);
-		hit->normal = (hit->dist == hit1.dist ? hit1.normal : hit2.normal);
-		hit->normal_b = (hit->dist_b == hit1.dist_b ? hit1.normal_b
-				: hit2.normal_b);
+		hit->normal = vec3d_unit(quat_rot_with_quat(hit->dist == hit1.dist
+					? hit1.normal : hit2.normal
+					, object->csg_tree.left->inv_rot_quat));
+		hit->normal_b = vec3d_unit(quat_rot_with_quat(hit->dist_b == hit1.dist_b
+					? hit1.normal_b : hit2.normal_b
+					, object->csg_tree.right->inv_rot_quat));
 	}
 	if (object->csg_tree.type == CSG_SUB)
 		csg_sub_func(hit1, hit2, hit);

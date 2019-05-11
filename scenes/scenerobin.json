@@ -1,0 +1,181 @@
+{
+	"camera": {
+		"origin": [-29, 15, 25],
+		"rotation": [0, 135, 0]
+	},
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.03
+		},
+		{
+			"type": "light",
+			"origin": [-29, 29, 29],
+			"color": [10, 179, 192],
+			"intensity": 2000
+		},
+		{
+			"type": "light",
+			"origin": [-29, 29, -29],
+			"color": [192, 10, 179],
+			"intensity": 2000
+		},
+		{
+			"type": "light",
+			"origin": [29, 29, -29],
+			"color": [167, 123, 212],
+			"intensity": 2000
+		},
+		{
+			"type": "light",
+			"origin": [29, 29, 29],
+			"color": [179, 192, 10],
+			"intensity": 2000
+		},
+		{
+			"type": "plane",
+			"origin": [0, 0, 0],
+			"normal": [0, -1, 0],
+			"color": [0, 0, 0],
+			"z_max": 30,
+			"z_min": -30,
+			"x_max": 30,
+			"y_max": 30,
+			"y_min": -30,
+			"x_min": -30,
+			"reflective": 0.2
+		},
+		{
+			"type": "plane",
+			"origin": [0, 30, 0],
+			"normal": [0, -1, 0],
+			"color": [0, 0, 0],
+			"z_max": 30,
+			"z_min": -30,
+			"x_max": 30,
+			"y_max": 30,
+			"y_min": -30,
+			"x_min": -30,
+			"reflective": 0.2
+		},
+		{
+			"type": "plane",
+			"origin": [0, 30, 30],
+			"normal": [0, -1, 0],
+			"color": [174, 127, 10],
+			"rotation": [90, 0, 0],
+			"z_max": 30,
+			"z_min": -30,
+			"x_max": 30,
+			"y_max": 30,
+			"y_min": -30,
+			"x_min": -30,
+			"reflective": 0.2
+		},
+		{
+			"type": "plane",
+			"origin": [0, 30, -30],
+			"normal": [0, -1, 0],
+			"color": [174, 127, 10],
+			"rotation": [90, 0, 0],
+			"z_max": 30,
+			"z_min": -30,
+			"x_max": 30,
+			"y_max": 30,
+			"y_min": -30,
+			"x_min": -30,
+			"reflective": 0.2
+		},
+		{
+			"type": "plane",
+			"origin": [30, 30, 0],
+			"normal": [0, -1, 0],
+			"color": [174, 127, 10],
+			"rotation": [0, 0, 90],
+			"z_max": 30,
+			"z_min": -30,
+			"x_max": 30,
+			"y_max": 30,
+			"y_min": -30,
+			"x_min": -30,
+			"reflective": 0.2
+		},
+		{
+			"type": "plane",
+			"origin": [-30, 30, 0],
+			"normal": [0, -1, 0],
+			"color": [174, 127, 10],
+			"rotation": [0, 0, 90],
+			"z_max": 30,
+			"z_min": -30,
+			"x_max": 30,
+			"y_max": 30,
+			"y_min": -30,
+			"x_min": -30,
+			"reflective": 0.2
+		},
+		{
+			"type": "sphere",
+			"radius": 3,
+			"origin": [0, 27, 8],
+			"color": [222, 255, 255],
+			"checkerboard": {
+				"color": [55, 42, 127],
+				"size": 2
+			}
+		},
+		{
+			"type": "cylinder",
+			"radius": 8,
+			"origin": [0, 0, 0],
+			"rotation": [90, 0, 0],
+			"color": [225, 255, 0],
+			"bump": 2.0,
+			"refractive": 1.8,
+			"refractive_factor": 1.0
+		},
+		{
+			"type": "sphere",
+			"radius": 2,
+			"origin": [-8, 15, 0],
+			"color": [0, 255, 255],
+			"wood": [255, 0, 0]
+		},
+		{
+			"type": "sphere",
+			"radius": 2,
+			"origin": [8, 9, 0],
+			"color": [0, 255, 255],
+			"wood": [0, 0, 255]
+		},
+		{
+			"type": "cone",
+			"angle": 15,
+			"origin": [10, 10, 25],
+			"rotation": [90, 0, 0],
+			"color": [0, 0, 0],
+			"bump": 0.2,
+			"refractive": 1.5,
+			"refractive_factor": 1.0
+		},
+		{
+			"type": "hyperboloid",
+			"radius": 30,
+			"origin": [-10, 10, -25],
+			"rotation": [90, 0, 0],
+			"color": [0, 0, 0],
+			"bump": 0.2,
+			"refractive": 1.5,
+			"refractive_factor": 1.0
+		},
+		{
+			"type": "torus",
+			"radius": 4,
+			"big_radius": 15,
+			"origin": [19, 4, 0],
+			"color": [167, 172, 56],
+			"perlin": [255, 255, 255]
+		}
+	]
+}

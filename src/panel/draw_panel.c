@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 22:44:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/09 15:56:03 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/05/12 02:50:09 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 int		write_text(t_text *msg)
 {
-	if (!(msg->texte = TTF_RenderText_Shaded(msg->police, msg->str,
-					msg->fg_color, msg->bg_color)))
+	if (!(msg->texte = TTF_RenderText_Shaded(msg->police, msg->str
+					, msg->fg_color, msg->bg_color)))
 		return (0);
-	if (!(msg->texture = SDL_CreateTextureFromSurface(msg->renderer,
-					msg->texte)))
+	if (!(msg->texture = SDL_CreateTextureFromSurface(msg->renderer
+					, msg->texte)))
 	{
 		SDL_FreeSurface(msg->texte);
 		return (0);
 	}
 	SDL_FreeSurface(msg->texte);
-	if (SDL_QueryTexture(msg->texture, NULL, NULL,
-				&(msg->pos.w), &(msg->pos.h)) < 0)
+	if (SDL_QueryTexture(msg->texture, NULL, NULL
+				, &(msg->pos.w), &(msg->pos.h)) < 0)
 	{
 		SDL_DestroyTexture(msg->texture);
 		return (0);

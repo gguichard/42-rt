@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 05:19:30 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:39:49 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/12 02:49:14 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int				draw_wood_color(t_data *data)
 	SDL_Rect	pos;
 	int			ret;
 
-	texture = get_square_color(data->lib.panel.renderer,
-			(int)(data->current->wood.color.x * 255.0),
-			(int)(data->current->wood.color.y * 255.0),
-			(int)(data->current->wood.color.z * 255.0));
+	texture = get_square_color(data->lib.panel.renderer
+			, (int)(data->current->wood.color.x * 255.0)
+			, (int)(data->current->wood.color.y * 255.0)
+			, (int)(data->current->wood.color.z * 255.0));
 	if (!(texture))
 		return (0);
 	pos.x = 815;
@@ -59,10 +59,10 @@ int				draw_perlin_color(t_data *data)
 	SDL_Rect	pos;
 	int			ret;
 
-	texture = get_square_color(data->lib.panel.renderer,
-			(int)(data->current->perlin.color.x * 255.0),
-			(int)(data->current->perlin.color.y * 255.0),
-			(int)(data->current->perlin.color.z * 255.0));
+	texture = get_square_color(data->lib.panel.renderer
+			, (int)(data->current->perlin.color.x * 255.0)
+			, (int)(data->current->perlin.color.y * 255.0)
+			, (int)(data->current->perlin.color.z * 255.0));
 	if (!(texture))
 		return (0);
 	pos.x = 815;
@@ -82,10 +82,10 @@ int				draw_checker_color(t_data *data)
 	SDL_Rect	pos;
 	int			ret;
 
-	texture = get_square_color(data->lib.panel.renderer,
-			(int)(data->current->checker.color.x * 255.0),
-			(int)(data->current->checker.color.y * 255.0),
-			(int)(data->current->checker.color.z * 255.0));
+	texture = get_square_color(data->lib.panel.renderer
+			, (int)(data->current->checker.color.x * 255.0)
+			, (int)(data->current->checker.color.y * 255.0)
+			, (int)(data->current->checker.color.z * 255.0));
 	if (!(texture))
 		return (0);
 	pos.x = 815;
@@ -105,10 +105,10 @@ int				draw_obj_color(t_data *data)
 	SDL_Rect	pos;
 	int			ret;
 
-	texture = get_square_color(data->lib.panel.renderer,
-			(int)(data->current->color.x * 255.0),
-			(int)(data->current->color.y * 255.0),
-			(int)(data->current->color.z * 255.0));
+	texture = get_square_color(data->lib.panel.renderer
+			, (int)(data->current->color.x * 255.0)
+			, (int)(data->current->color.y * 255.0)
+			, (int)(data->current->color.z * 255.0));
 	if (!(texture))
 		return (0);
 	pos.x = 659;

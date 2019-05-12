@@ -53,6 +53,7 @@
 			"color": [255, 255, 255],
 			"refractive": 1.5,
 			"refractive_factor": 0.9,
+			"bump": 1000,
 			"csg_left": {
 				"type": "sphere",
 				"origin": [20, 0, 0],
@@ -90,10 +91,10 @@
 					"radius": 40
 				},
 				"csg_right": {
-					"type": "cone",
+					"type": "cylinder",
 					"origin": [50, 0, 50],
 					"color": [255, 255, 255],
-					"angle": 15
+					"radius": 15
 				}
 			}
 		}

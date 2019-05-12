@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:40:08 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/11 21:36:09 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/12 02:49:53 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ int		init_panel_font(t_panel *panel)
 {
 	if (TTF_Init() == -1)
 		return (0);
-	if (!(panel->arial_black_13 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
-					13)))
+	if (!(panel->arial_black_13 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf"
+					, 13)))
 		return (0);
-	if (!(panel->arial_black_12 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
-					12)))
+	if (!(panel->arial_black_12 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf"
+					, 12)))
 		return (0);
-	if (!(panel->arial_black_11 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
-					11)))
+	if (!(panel->arial_black_11 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf"
+					, 11)))
 		return (0);
-	if (!(panel->arial_black_9 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf",
-					9)))
+	if (!(panel->arial_black_9 = TTF_OpenFont("/Library/Fonts/Arial Black.ttf"
+					, 9)))
 		return (0);
 	return (1);
 }
@@ -61,8 +61,8 @@ int		init_panel_texture(t_panel *panel)
 
 int		init_panel(t_panel *panel)
 {
-	if (SDL_CreateWindowAndRenderer(PANEL_WIDTH, PANEL_HEIGHT,
-				0, &(panel->window), &(panel->renderer)) < 0)
+	if (SDL_CreateWindowAndRenderer(PANEL_WIDTH, PANEL_HEIGHT
+			, 0, &(panel->window), &(panel->renderer)) < 0)
 		return (0);
 	SDL_SetWindowPosition(panel->window, 800, 117);
 	SDL_SetWindowTitle(panel->window, "RT - parameters");

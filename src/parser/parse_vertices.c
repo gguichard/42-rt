@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 17:11:47 by gguichar          #+#    #+#             */
-/*   Updated: 2019/04/30 17:12:34 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:09:13 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ t_error	parse_ray_object_vertices(t_json_token *token, t_vec3d *vertices)
 	int				idx;
 
 	if (token->type != JSON_ARRAY)
-		err = ERR_NOERROR;
+		err = err_noerror;
 	else
 	{
-		err = ERR_NOERROR;
+		err = err_noerror;
 		child = token->value.child;
 		idx = 0;
-		while (err == ERR_NOERROR && child != NULL && idx < 3)
+		while (err == err_noerror && child != NULL && idx < 3)
 		{
 			vertices[idx] = read_json_vec3d(child, &err);
 			child = child->next;
 			idx++;
 		}
 		if (idx != 3 || child != NULL)
-			err = ERR_SCENEBADFORMAT;
+			err = err_scenebadformat;
 	}
 	return (err);
 }

@@ -31,14 +31,21 @@
 			"color": [52, 66, 39]
 		},
 		{
+			"type": "trianglemesh",
+			"origin": [-100, -2, 100],
+			"scale": 0.01,
+			"objfile_path": "trianglemesh/boat.obj",
+			"color": [102, 45, 19]
+		},
+		{
 			"type": "plane",
-			"origin": [0, -5, 0],
+			"origin": [0, -2, 0],
 			"color": [70, 136, 242]
 		},
 		{
 			"type": "sphere",
-			"origin": [-20, 4, 20],
-			"radius": 10,
+			"origin": [-20, 2, 20],
+			"radius": 6,
 			"color": [240, 55, 55],
 			"reflective": 0.25,
 			"specular": 0.1,
@@ -46,8 +53,8 @@
 		},
 		{
 			"type": "sphere",
-			"origin": [20, 6, 30],
-			"radius": 10,
+			"origin": [20, 4, 30],
+			"radius": 6,
 			"color": [132, 246, 70],
 			"reflective": 0.25,
 			"specular": 0.1,

@@ -6,7 +6,7 @@
 /*   By: gguichar <gguichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 23:36:50 by gguichar          #+#    #+#             */
-/*   Updated: 2019/05/11 18:54:10 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/11 23:09:12 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ t_error		process_object_after_parsing(t_ray_object *object)
 		if (object->csg_tree.left == NULL || object->csg_tree.right == NULL)
 		{
 			del_ray_object_properties(object);
-			return (ERR_SCENEBADFORMAT);
+			return (err_scenebadformat);
 		}
 	}
 	assign_hit_fn(object);
-	return (ERR_NOERROR);
+	return (err_noerror);
 }

@@ -1,79 +1,82 @@
 {
 	"camera": {
-		"origin": [10, 0, -40]
+		"origin": [0, 0, 0]
 	},
 	"objects": [
 		{
-			"type": "triangle",
-			"color": [0, 0, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[0, 0, 0], [10, 0, 0], [0, 10, 0]]
-		},
-		{
-			"type": "triangle",
-			"color": [0, 0, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[10, 10, 0], [0, 10, 0], [10, 0, 0]]
-		},
-		{
-			"type": "triangle",
-			"color": [0, 255, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[0, 0, 10], [10, 0, 10], [0, 10, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [0, 255, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[10, 10, 10], [0, 10, 10], [10, 0, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [255, 0, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[0, 10, 0], [10, 10, 0], [0, 10, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [255, 0, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[10, 10, 10], [10, 10, 0], [0, 10, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [255, 255, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[0, 0, 0], [10, 0, 0], [0, 0, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [255, 255, 255],
-			"origin": [0, 0, 0],
-			"vertices": [[10, 0, 10], [10, 0, 0], [0, 0, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [255, 255, 0],
-			"origin": [0, 0, 0],
-			"vertices": [[0, 10, 0], [0, 10, 10], [0, 0, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [255, 255, 0],
-			"origin": [0, 0, 0],
-			"vertices": [[0, 10, 0], [0, 0, 0], [0, 0, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [135, 151, 27],
-			"origin": [0, 0, 0],
-			"vertices": [[10, 10, 0], [10, 10, 10], [10, 0, 10]]
-		},
-		{
-			"type": "triangle",
-			"color": [135, 151, 27],
-			"origin": [0, 0, 0],
-			"vertices": [[10, 10, 0], [10, 0, 0], [10, 0, 10]]
+			"type": "csg_union",
+			"origin":[100, 100, 100],
+			"color":[170, 142, 186],
+			"csg_left":{
+				"type": "plane",
+				"origin": [0, -10, 0],
+				"rotation":[0, 0, 0],
+				"x_min": -10,
+				"x_max": 10,
+				"z_min": -10,
+				"z_max": 10
+			},
+			"csg_right":{
+				"type": "csg_union",
+				"origin":[0, 0, 0],
+				"csg_left":{
+					"type": "plane",
+					"origin": [0, -10, 0],
+					"rotation":[0, 0, 0],
+					"x_min": -10,
+					"x_max": 10,
+					"z_min": -10,
+					"z_max": 10
+				},
+				"csg_right":{
+					"type": "csg_union",
+					"origin":[0, 0, 0],
+					"csg_left":{
+						"type": "plane",
+						"origin": [-10, 0, 0],
+						"rotation":[0, 0, 90],
+						"x_min": -10,
+						"x_max": 10,
+						"z_min": -10,
+						"z_max": 10
+					},
+					"csg_right":{
+						"type": "csg_union",
+						"origin":[0, 0, 0],
+						"csg_left":{
+							"type": "plane",
+							"origin": [10, 0, 0],
+							"rotation":[0, 0, 90],
+							"x_min": -10,
+							"x_max": 10,
+							"z_min": -10,
+							"z_max": 10
+						},
+						"csg_right":{
+							"type": "csg_union",
+							"origin":[0, 0, 0],
+							"csg_left":{
+								"type": "plane",
+								"origin": [0, 0, 10],
+								"rotation":[90, 0, 0],
+								"x_min": -10,
+								"x_max": 10,
+								"z_min": -10,
+								"z_max": 10
+							},
+							"csg_right":{
+								"type": "plane",
+								"origin": [0, 0, -10],
+								"rotation":[90, 0, 0],
+								"x_min": -10,
+								"x_max": 10,
+								"z_min": -10,
+								"z_max": 10
+							}
+						}
+					}
+				}
+			}
 		},
 		{
 			"type": "ambient_light",

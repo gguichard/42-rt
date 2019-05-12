@@ -1,0 +1,31 @@
+{
+	"camera": {
+		"origin": [0, 10, 30],
+		"rotation": [30, 150, 0],
+		"fov": 120
+	},
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.05
+		},
+		{
+			"type": "light",
+			"origin": [0, 40, 0],
+			"color": [255, 255, 255],
+			"intensity": 10000
+		},
+		{
+			"type": "light",
+			"origin": [0, 40, 20],
+			"color": [255, 0, 0],
+			"intensity": 14000
+		},
+		{
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/room.obj",
+			"color": [255, 255, 255]
+		}
+	]
+}

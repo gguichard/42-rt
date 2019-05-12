@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/11 18:53:18 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/12 02:28:55 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char		*get_obj_type2(int id)
 	if (id == RAYOBJ_TANGLECUBE)
 		return ("TANGLECUBE");
 	if (id == RAYOBJ_TRIANGLEMESH)
-		return ("TRIANGLEMESH");
+		return ("MESH");
 	if (id == RAYOBJ_CSGUNION)
 		return ("CSG UNION");
 	if (id == RAYOBJ_CSGSUB)

@@ -1,0 +1,117 @@
+{
+	"camera": {
+		"origin": [-8.1, 20.2, -68],
+		"rotation": [0, 5, 0]
+	},
+	"fog": 100000,
+	"objects": [
+		{
+			"type": "ambient_light",
+			"color": [255, 255, 255],
+			"intensity": 0.05
+		},
+		{
+			"type": "light",
+			"origin": [-5000, 12000, -5000],
+			"color": [255, 255, 255],
+			"intensity": 300000000000000
+		},
+		{
+			"type": "plane",
+			"origin": [0, -1, 0],
+			"color": [70, 136, 242],
+			"bump": 0.3,
+			"refractive": 1.5,
+			"refractive_factor": 0.7
+		},
+		{
+			"type": "plane",
+			"origin": [0, -5, 0],
+			"color": [70, 136, 242]
+		},
+		{
+			"type": "torus",
+			"origin": [0, -1, 10],
+			"radius": 2,
+			"big_radius": 6,
+			"checkerboard": {
+				"color": [255, 255, 255],
+				"size": 1
+			},
+			"color": [255, 0, 0]
+		},
+		{
+			"type": "ellipsoid",
+			"origin": [-42, 10, -30],
+			"size": [5, 1, 22],
+			"color": [10, 235, 50],
+			"rotation": [90, 0, 0]
+		},
+		{
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/longchair.obj",
+			"origin": [4, 14.5, -45],
+			"scale": 0.09,
+			"color": [138, 63, 7],
+			"rotation": [15, 180, 0]
+		},
+		{
+			"type": "hyperboloid",
+			"radius": 5,
+			"origin": [0, 31, -55],
+			"color": [149, 86, 40],
+			"checkerboard": {
+				"color": [171, 120, 58],
+				"size": 0.01
+			},
+			"wood": [0, 255, 0],
+			"z_max": 5,
+			"z_min": 0,
+			"rotation": [90, 0, 0]
+		},
+		{
+			"type": "plane",
+			"origin": [-6, 13.9, -55],
+			"rotation": [15, 0, 0],
+			"x_min": -8,
+			"x_max": 3,
+			"z_min": -8,
+			"z_max": 6,
+			"color": [255, 0, 0],
+			"roughness": 0.5
+		},
+		{
+			"type": "cylinder",
+			"origin": [0, 13.9, -55],
+			"rotation": [90, 0, 0],
+			"radius": 0.2,
+			"z_min": -13,
+			"z_max": 8,
+			"color": [255, 255, 0]
+		},
+		{
+			"type": "plane",
+			"origin": [0, -1, 0],
+			"rotation": [15, 0, 0],
+			"z_max": 2,
+			"color": [253, 227, 141],
+			"bump": 0.0, 
+			"roughness": 0.25
+		},
+		{
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/eiffel.obj",
+			"origin": [4, -10, 400],
+			"scale": 100.0,
+			"color": [107, 113, 134]
+		},
+		{
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/goldenbridge.obj",
+			"origin": [4, -10, 1500],
+			"scale": 100.0,
+			"color": [255, 20, 20],
+			"rotation": [0, 90, 0]
+		}
+	]
+}

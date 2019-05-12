@@ -1,13 +1,32 @@
 {
 	"camera": {
-		"origin": [-20, 20, -20],
-		"rotation": [40, 35, 0]
+		"origin": [-8.13, 27.55, -11.13],
+		"rotation": [35, 50, 0]
 	},
 	"objects": [
 		{
 			"type": "ambient_light",
 			"color": [255, 255, 255],
 			"intensity": 0.03
+		},
+		{
+			"comment": "wall front",
+			"type": "plane",
+			"origin": [0, 0, -41],
+			"color": [133, 60, 67],
+			"rotation": [90, 0, 0]
+		},
+		{
+			"comment": "rideau",
+			"type": "plane",
+			"origin": [0, 0, -40.98],
+			"color": [255, 0, 0],
+			"wavy_effect": true,
+			"rotation": [90, 0, 0],
+			"x_min": -49.9,
+			"x_max": 49.9,
+			"z_min": -35,
+			"z_max": -7
 		},
 		{
 			"comment": "wall back",
@@ -26,7 +45,7 @@
 			"rotation": [90, 0, 90]
 		},
 		{
-			"comment": "wall leftt",
+			"comment": "wall left",
 			"type": "plane",
 			"origin": [-50, 0, 0],
 			"color": [133, 60, 67],
@@ -34,9 +53,9 @@
 			"rotation": [90, 0, 90]
 		},
 		{
-			"comment": "wall back bottom",
+			"comment": "wall front bottom",
 			"type": "plane",
-			"origin": [0, -5, 19.8],
+			"origin": [0, -5, -40.99],
 			"color": [160, 82, 45],
 			"x_min": -50,
 			"x_max": 50,
@@ -47,25 +66,42 @@
 		{
 			"comment": "wall back bottom",
 			"type": "plane",
-			"origin": [49.9, -5, 19.8],
+			"origin": [0, -5, 19.95],
 			"color": [160, 82, 45],
-			"x_min": -50,
-			"x_max": 50,
+			"x_min": -70,
+			"x_max": 70,
+			"z_min": -2,
+			"z_max": 0,
+			"rotation": [90, 0, 0]
+		},
+		{
+			"comment": "wall right bottom",
+			"type": "plane",
+			"origin": [49.9, -5, 19.95],
+			"color": [160, 82, 45],
+			"x_min": -70,
+			"x_max": 70,
 			"z_min": -2,
 			"z_max": 0,
 			"rotation": [90, 0, -90]
 		},		
 		{
-			"comment": "wall back bottom",
+			"comment": "wall left bottom",
 			"type": "plane",
-			"origin": [-49.9, -5, 19.8],
+			"origin": [-49.9, -5, 19.95],
 			"color": [160, 82, 45],
-			"x_min": -50,
-			"x_max": 50,
+			"x_min": -70,
+			"x_max": 70,
 			"z_min": -2,
 			"z_max": 0,
 			"rotation": [90, 0, -90]
 		},	
+		{
+			"comment": "roof",
+			"type": "plane",
+			"origin": [0, 36, 0],
+			"color": [236, 236, 231]
+		},
 		{
 			"comment": "floor",
 			"type": "plane",
@@ -434,26 +470,149 @@
 			"x_max": 1
 		},
 		{
-			"comment": "sphere",
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-6.5, 6, 5.5],
+			"color": [195, 42, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-5.5, 6, 5.5],
+			"color": [255, 255, 255],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-4.5, 6, 5.5],
+			"color": [55, 180, 211],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-5.5, 6, 5.5],
+			"color": [0, 255, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-3.5, 6, 5.5],
+			"color": [0, 0, 255],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-2.5, 6, 5.5],
+			"color": [255, 0, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-1.5, 6, 5.5],
+			"color": [0, 255, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [-0.5, 6, 5.5],
+			"color": [0, 0, 255],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [0.5, 6, 5.5],
+			"color": [0, 255, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [1.5, 6, 5.5],
+			"color": [0, 0, 255],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [2.5, 6, 5.5],
+			"color": [255, 0, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [3.5, 6, 5.5],
+			"color": [0, 255, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [4.5, 6, 5.5],
+			"color": [0, 0, 255],
+			"scale": 0.2
+		},
+		{
+			"comment": "pion",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [5.5, 6, 5.5],
+			"color": [195, 42, 0],
+			"scale": 0.2
+		},
+		{
+			"comment": "Liberty Statue",
+			"type": "trianglemesh",
+			"objfile_path": "trianglemesh/missliberty.obj",
+			"origin": [49.9, 11, -2],
+			"color": [181, 181, 189],
+			"specular": 0.1,
+			"shininess": 20,
+			"rotation": [0, -90, 0],
+			"scale": 5
+		},
+		{
+			"comment": "billard red ball",
 			"type": "sphere",
-			"radius": 0.5,
-			"origin": [0, 7, 0],
-			"color": [70, 136, 242],
-			"bump": 0.3,
-			"refractive": 1.5,
-			"refractive_factor": 0.7
+			"radius": 1,
+			"objfile_path": "trianglemesh/pawn.obj",
+			"origin": [10, 6, 2],
+			"color": [240, 5, 5],
+			"specular": 0.2,
+			"shininess": 900
 		},
 		{
 			"type": "light",
 			"origin": [20, 25, -20],
 			"color": [244, 223, 165],
-			"intensity": 2000
+			"intensity": 1500
 		},
 		{
 			"type": "light",
 			"origin": [-20, 25, -20],
 			"color": [244, 218, 172],
-			"intensity": 2000
+			"intensity": 1500
 		}
 	]
 }

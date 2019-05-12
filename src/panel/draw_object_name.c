@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 01:12:15 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:40:05 by gguichar         ###   ########.fr       */
+/*   Updated: 2019/05/12 02:21:19 by gguichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_obj_type(int id)
 	if (id == 9)
 		return ("TANGLECUBE");
 	if (id == 9)
-		return ("TRIANGLEMESH");
+		return ("MESH");
 	return ("UNKNOWN");
 }
 
